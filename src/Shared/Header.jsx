@@ -9,9 +9,9 @@ const Header = () => {
   return (
     <div className="flex items-center justify-between gap-4 p-6">
       <div className="w-full flex items-center gap-6">
-        {/* <Link to="/"> */}
-        <img className="max-w-60 h-10" src={logo} alt="" />
-        {/* </Link> */}
+        <Link to="/">
+          <img className="max-w-60 h-10" src={logo} alt="" />
+        </Link>
         <div className="flex items-center gap-5 rounded-full bg-white p-3 w-full max-w-xl">
           <img src={search} alt="" />
           <input type="search" placeholder="Search videos" />
