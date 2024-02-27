@@ -39,7 +39,7 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
+    <div className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
       <div>
         <button className="bg-indigo-600 flex gap-2 items-center justify-center mb-8 text-base text-white font-semibold rounded-full w-full py-3 px-6 ">
           <img src={add} alt="" />
