@@ -4,11 +4,13 @@ import Sidebar from "../Shared/Sidebar";
 
 const Layout = () => {
   return (
-    <div>
+    <div className="h-screen">
       <Header />
-      <div className="flex">
-        <Sidebar />
-        <Outlet />
+      <div style={{ height: "calc(100vh - 97px )" }}>
+        <div className="flex h-full">
+          <Sidebar />
+          <Outlet />
+        </div>
       </div>
     </div>
   );
