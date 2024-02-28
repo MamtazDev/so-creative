@@ -6,6 +6,7 @@ import notification from "../assets/notification.png";
 import active from "../assets/active.png";
 import { useState } from "react";
 import Notification from "./Notification";
+import Credit from "./Credit";
 
 const Header = () => {
   const [showNotification, setShowNotification] = useState(false);
@@ -24,7 +25,10 @@ const Header = () => {
         </div>
 
         <div className="w-full flex justify-end items-center gap-4">
-          <button className="whitespace-nowrap gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF] transition-all duration-300 ease-in hover:bg-[#C67CFF] hover:text-white">
+          <button
+            onClick={() => setShowCredit(!showCredit)}
+            className="whitespace-nowrap gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF] transition-all duration-300 ease-in hover:bg-[#C67CFF] hover:text-white"
+          >
             6 Credits Remaining
           </button>
 
@@ -55,7 +59,7 @@ const Header = () => {
       {showNotification && (
         <Notification setShowNotification={setShowNotification} />
       )}
-      {showCredit}
+      {showCredit && <Credit setShowCredit={setShowCredit} />}
     </div>
   );
 };
