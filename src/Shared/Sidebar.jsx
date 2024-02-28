@@ -53,7 +53,7 @@ const Sidebar = () => {
               className={`${
                 location.pathname === data.path
                   ? "active bg-white text-indigo-600"
-                  : "text-customBlack"
+                  : "text-slate-900"
               } " rounded-full py-3 px-6 flex items-center gap-3 text-sm font-semibold"`}
               key={index}
             >
@@ -70,7 +70,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="flex gap-3 items-center text-customBlack ">
+      <div className="flex gap-3 items-center text-slate-900 ">
         <img src={companyLogo} alt="" />
         <div>
           <p className="text-base font-semibold">Company Name</p>

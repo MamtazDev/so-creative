@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layouts/Layout";
+import Home from "../components/Home/Home";
 
 export const router = createBrowserRouter([
   {
@@ -8,7 +9,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div>jhjg</div>,
+        element: <Home />,
       },
       {
         path: "/all-videos",
