@@ -23,7 +23,7 @@ const RecentVideos = () => {
   ];
   return (
     <div className="mb-24">
-      <p className="text-slate-900 text-xl font-bold mb-6">Recent Videos</p>
+      <p className=" text-xl font-bold mb-6">Recent Videos</p>
       <div className="grid grid-cols-5 gap-6">
         {videos.map((data, index) => (
           <div className="relative" key={index}>
@@ -45,9 +45,7 @@ const RecentVideos = () => {
             >
               {data.status}
             </button>
-            <p className="text-base text-slate-900 font-semibold mb-1">
-              {data.name}
-            </p>
+            <p className="text-base  font-semibold mb-1">{data.name}</p>
             <p className="text-slate-500 text-sm font-normal">1 day ago</p>
           </div>
         ))}

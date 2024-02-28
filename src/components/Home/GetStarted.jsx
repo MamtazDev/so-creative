@@ -36,7 +36,7 @@ const GetStarted = () => {
   ];
   return (
     <div className="max-w-[672px] m-auto">
-      <p className="text-slate-900 text-xl font-semibold mb-5">Get Started</p>
+      <p className=" text-xl font-semibold mb-5">Get Started</p>
       <div className="grid grid-cols-2 gap-6">
         {details.map((data, index) => (
           <div key={index}>
@@ -50,7 +50,7 @@ const GetStarted = () => {
                 {data.name}
               </button>
             </div>
-            <p className="text-slate-900 font-bold text-base">{data.title}</p>
+            <p className=" font-bold text-base">{data.title}</p>
           </div>
         ))}
       </div>

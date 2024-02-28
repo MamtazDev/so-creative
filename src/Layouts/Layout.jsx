@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Shared/Header";
 import Sidebar from "../Shared/Sidebar";
-import profile from "../assets/profile.png";
+import ChatBot from "../Shared/ChatBot";
 
 const Layout = () => {
   return (
@@ -12,9 +12,7 @@ const Layout = () => {
           <Sidebar />
           <div className="mr-8 mb-8 ml-8 p-10 bg-white rounded-3xl w-full overflow-y-auto no_scrollbar">
             <Outlet />
-            <button className="fixed bottom-14 right-14">
-              <img src={profile} alt="" />
-            </button>
+            <ChatBot />
           </div>
         </div>
       </div>
