@@ -2,7 +2,7 @@ import sun from "../../../assets/sun.png";
 import GetStarted from "./GetStarted";
 import RecentVideos from "./RecentVideos";
 
-const Home = () => {
+const UserHome = () => {
   return (
     <div>
       <div className="flex items-center gap-3 mb-6">
@@ -15,4 +15,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default UserHome;

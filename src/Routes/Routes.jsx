@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../components/UserPanel/Home/Home";
-import UserPanelLayout from "../Layouts/UserPanelLayout";
 import MainLayout from "../Layouts/MainLayout";
+import UserPanelLayout from "../Layouts/UserPanelLayout";
+
+import UserHome from "../components/UserPanel/Home/UserHome";
+import Home from "../pages/Website/Home";
 
 export const router = createBrowserRouter([
   {
@@ -12,27 +14,16 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/all-videos",
-        element: <div>all-videos</div>,
-      },
-      {
-        path: "/media-storage",
-        element: <div>media-storage</div>,
-      },
-      {
-        path: "/brand-kit",
-        element: <div>brand-kit</div>,
-      },
     ],
   },
+
   {
     path: "/user",
     element: <UserPanelLayout />,
     children: [
       {
         path: "/user",
-        element: <Home />,
+        element: <UserHome />,
       },
       {
         path: "/user/all-videos",
