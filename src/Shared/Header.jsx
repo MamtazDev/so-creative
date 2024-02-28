@@ -7,10 +7,12 @@ import active from "../assets/active.png";
 import { useState } from "react";
 import Notification from "./Notification";
 import Credit from "./Credit";
+import Help from "./Help";
 
 const Header = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [showCredit, setShowCredit] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
   return (
     <div>
       <div className="flex items-center justify-between gap-4 p-6">
@@ -20,7 +22,11 @@ const Header = () => {
           </Link>
           <div className="flex items-center gap-5 rounded-full bg-white p-3 w-full max-w-xl">
             <img src={search} alt="" />
-            <input type="search" placeholder="Search videos" />
+            <input
+              className="w-full"
+              type="search"
+              placeholder="Search videos"
+            />
           </div>
         </div>
 
@@ -32,7 +38,10 @@ const Header = () => {
             6 Credits Remaining
           </button>
 
-          <button className="bg-white rounded-full p-3">
+          <button
+            onClick={() => setShowHelp(!showHelp)}
+            className="bg-white rounded-full p-3"
+          >
             <img src={message} alt="" />
           </button>
           <div
@@ -60,6 +69,7 @@ const Header = () => {
         <Notification setShowNotification={setShowNotification} />
       )}
       {showCredit && <Credit setShowCredit={setShowCredit} />}
+      {showHelp && <Help setShowHelp={setShowHelp} />}
     </div>
   );
 };
