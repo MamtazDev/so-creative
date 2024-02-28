@@ -16,9 +16,9 @@ const ChatBot = () => {
     "Something else",
   ];
   return (
-    <div className="fixed bottom-14 right-14">
+    <div className="fixed z-50 max-w-[512px] w-full  bottom-14 right-14">
       {show && (
-        <div className="rounded-3xl bg-white shadow-2xl max-h-[672px] max-w-[512px] h-full w-full">
+        <div className="rounded-3xl bg-white shadow-2xl max-h-[672px]  h-full ">
           <div className="chatbot_header border-b p-6 w-full flex gap-2 items-start justify-between">
             <div className="flex items-center gap-3">
               <img src={profile} alt="" />
