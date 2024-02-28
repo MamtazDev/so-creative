@@ -1,7 +1,7 @@
-import plus from "../../assets/plus.png";
-import edit from "../../assets/edit.png";
-import upload from "../../assets/upload.png";
-import access from "../../assets/access.png";
+import plus from "../../../assets/plus.png";
+import edit from "../../../assets/edit.png";
+import upload from "../../../assets/upload.png";
+import access from "../../../assets/access.png";
 
 const GetStarted = () => {
   const details = [

@@ -9,6 +9,7 @@ import Notification from "./Notification";
 
 const Header = () => {
   const [showNotification, setShowNotification] = useState(false);
+  const [showCredit, setShowCredit] = useState(false);
   return (
     <div>
       <div className="flex items-center justify-between gap-4 p-6">
@@ -54,6 +55,7 @@ const Header = () => {
       {showNotification && (
         <Notification setShowNotification={setShowNotification} />
       )}
+      {showCredit}
     </div>
   );
 };

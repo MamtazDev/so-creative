@@ -3,7 +3,7 @@ import Header from "../Shared/Header";
 import Sidebar from "../Shared/Sidebar";
 import ChatBot from "../Shared/ChatBot";
 
-const Layout = () => {
+const UserPanelLayout = () => {
   return (
     <div className="h-screen">
       <Header />
@@ -20,4 +20,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default UserPanelLayout;

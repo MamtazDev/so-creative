@@ -1,4 +1,4 @@
-import sun from "../../assets/sun.png";
+import sun from "../../../assets/sun.png";
 import GetStarted from "./GetStarted";
 import RecentVideos from "./RecentVideos";
 
