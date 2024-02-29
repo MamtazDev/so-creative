@@ -1,7 +1,11 @@
 import { useState } from "react";
 import arrow from "../../../assets/down-arrow.svg";
 
-const AllVideoHeader = ({ handleFilterChange }) => {
+const AllVideoHeader = ({
+  handleFilterChange,
+  handleComponentChange,
+  selectedComponent,
+}) => {
   const [selectedFilter, setSelectedFilter] = useState("Videos");
 
   const handleButtonClick = (filter) => {
@@ -35,7 +39,12 @@ const AllVideoHeader = ({ handleFilterChange }) => {
           </button>
         </div>
         <div className="bg-slate-100 border rounded-full p-1">
-          <button className="bg-white rounded-full p-1.5 text-xs font-medium">
+          <button
+            onClick={() => handleComponentChange("folder")}
+            className={`${
+              selectedComponent === "folder" ? "bg-white" : "bg-transparent"
+            }  rounded-full p-1.5 text-xs font-medium`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -49,7 +58,12 @@ const AllVideoHeader = ({ handleFilterChange }) => {
               />
             </svg>
           </button>
-          <button className="p-1.5 text-xs font-medium">
+          <button
+            onClick={() => handleComponentChange("file")}
+            className={`${
+              selectedComponent === "file" ? "bg-white" : "bg-transparent"
+            }  rounded-full p-1.5 text-xs font-medium`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
