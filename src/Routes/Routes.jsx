@@ -9,6 +9,7 @@ import AllVideos from "../pages/UserPanel/AllVideos";
 import Home from "../pages/Website/Home";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
 import BrandKit from "../pages/UserPanel/BrandKit";
+import MediaStorage from "../pages/UserPanel/MediaStorage";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/user/media-storage",
-        element: <div>media-storage</div>,
+        element: <MediaStorage />,
       },
       {
         path: "/user/brand-kit",
