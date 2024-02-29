@@ -1,19 +1,10 @@
+import { answers, reactions } from "../../Data/AllDatas";
 import arrowLeft from "../../assets/arrow-left.png";
 import helpQuery from "../../assets/help-ans.png";
-import sad from "../../assets/sad.png";
-import upset from "../../assets/upset.png";
-import happy from "../../assets/happy.png";
 import open from "../../assets/open.png";
 import { Link } from "react-router-dom";
 
 const ChangeEmail = () => {
-  const reactions = [sad, upset, happy];
-  const answers = [
-    "Go to your dashboard and click your profile icon at the top right corner.",
-    "​Click on Account Settings.",
-    "Click on the pen icon button to type the new email address and click Save to update it.",
-    "The new email address will receive an email to confirm it. Click on Confirm new email address button to confirm it. Alternatively, copy and paste the link/URL included in the email.",
-  ];
   return (
     <div>
       <div className=" flex items-center gap-3 mb-8">
