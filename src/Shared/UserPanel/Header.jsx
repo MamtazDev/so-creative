@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
-import search from "../assets/search.png";
-import message from "../assets/message-question.png";
-import notification from "../assets/notification.png";
-import active from "../assets/active.png";
+import logo from "../../assets/logo.png";
+import search from "../../assets/search.png";
+import message from "../../assets/message-question.png";
+import notification from "../../assets/notification.png";
+import active from "../../assets/active.png";
 import { useState } from "react";
 import Notification from "./Notification";
 import Credit from "./Credit";

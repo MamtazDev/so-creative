@@ -1,13 +1,13 @@
-import add from "../assets/add.png";
-import home from "../assets/home.png";
-import homeActive from "../assets/home-active.png";
-import video from "../assets/video.png";
-import videoActive from "../assets/video-active.png";
-import media from "../assets/media.png";
-import mediaActive from "../assets/media-active.png";
-import brand from "../assets/brand.png";
-import brandActive from "../assets/brand-active.png";
-import companyLogo from "../assets/company-logo.png";
+import add from "../../assets/add.png";
+import home from "../../assets/home.png";
+import homeActive from "../../assets/home-active.png";
+import video from "../../assets/video.png";
+import videoActive from "../../assets/video-active.png";
+import media from "../../assets/media.png";
+import mediaActive from "../../assets/media-active.png";
+import brand from "../../assets/brand.png";
+import brandActive from "../../assets/brand-active.png";
+import companyLogo from "../../assets/company-logo.png";
 import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
