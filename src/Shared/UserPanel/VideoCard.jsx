@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const VideoCard = ({ status, name }) => {
   return (
     <div className="relative">
