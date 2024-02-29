@@ -26,7 +26,7 @@ const EditorDashboard = () => {
 
           {/* Recent Activities start */}
           <div className="col-span-4">
-            <div className="recent_activites pb-10">
+            <div className="recent_activites">
               <div className="seciton_heading pb-6">
                 <h3 className="text-2xl font-bold text-slate-900">
                   Recent Activities

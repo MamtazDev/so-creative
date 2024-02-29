@@ -4,12 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .website_contianer{
+@layer components {
+    .website_contianer {
         @apply container max-w-[1440px] w-full px-5
     }
 }
 
 .myworktable tbody tr:last-child td {
+    border-bottom-width: 0;
+}
+
+.activity_card:last-child {
     border-bottom-width: 0;
 }
