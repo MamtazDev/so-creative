@@ -194,3 +194,42 @@ export const notifications = [
     time: "10:30 AM",
   },
 ];
+
+export const guidelines = [
+  {
+    title: "Brand Guidelines",
+    subtitle:
+      "Add brand images and custom watermarks and use them across your projects.",
+  },
+  {
+    title: "Logos",
+    subtitle:
+      "Add brand images and custom watermarks and use them across your projects.",
+  },
+  {
+    title: "Fonts",
+    subtitle:
+      "Add brand images and custom watermarks and use them across your projects.",
+  },
+  {
+    title: "Color Palette",
+    subtitle:
+      "Add your brand color palettes to maintain brand consistency across your videos",
+    buttonName: "Add Color",
+  },
+  {
+    title: "Image Assets",
+    subtitle:
+      "Add brand images and custom watermarks and use them across your projects.",
+  },
+  {
+    title: "Video Assets",
+    subtitle:
+      "Add brand videos and custom clips and use them across your projects.",
+  },
+  {
+    title: "Audio Assets",
+    subtitle:
+      "Add custom audio and use them for subtitles and caption in any videos",
+  },
+];

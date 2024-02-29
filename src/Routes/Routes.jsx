@@ -7,8 +7,8 @@ import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
 import UserHome from "../pages/UserPanel/UserHome";
 import AllVideos from "../pages/UserPanel/AllVideos";
 import Home from "../pages/Website/Home";
-import EditorPanelLayout from './../Layouts/EditorPanelLayout';
-
+import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
+import BrandKit from "../pages/UserPanel/BrandKit";
 
 export const router = createBrowserRouter([
   {
@@ -40,14 +40,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "/user/brand-kit",
-        element: <div>brand-kit</div>,
+        element: <BrandKit />,
       },
     ],
   },
 
   {
     path: "/editor",
-    element: <EditorPanelLayout/>,
+    element: <EditorPanelLayout />,
     children: [
       {
         path: "/editor",
