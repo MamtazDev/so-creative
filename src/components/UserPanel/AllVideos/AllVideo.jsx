@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import VideoCard from "../../../Shared/UserPanel/VideoCard";
 
 const AllVideo = ({ filteredVideos }) => {
