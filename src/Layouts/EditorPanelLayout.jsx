@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Shared/Header";
-import Sidebar from "../Shared/Sidebar";
+import Sidebar from "../Shared/UserPanel/Sidebar";
+import Header from "../Shared/UserPanel/Header";
 
 const EditorPanelLayout = () => {
   return (

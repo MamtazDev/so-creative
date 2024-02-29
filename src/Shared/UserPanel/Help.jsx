@@ -1,5 +1,5 @@
-import help from "../assets/help.png";
-import close from "../assets/close.png";
+import help from "../../assets/help.png";
+import close from "../../assets/close.png";
 import { useState } from "react";
 import HelpOptions from "./HelpOptions";
 import GettingStarted from "./GettingStarted";

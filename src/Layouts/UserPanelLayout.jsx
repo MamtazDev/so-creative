@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Shared/Header";
-import Sidebar from "../Shared/Sidebar";
-import ChatBot from "../Shared/ChatBot";
+import Header from "../Shared/UserPanel/Header";
+import Sidebar from "../Shared/UserPanel/Sidebar";
+import ChatBot from "../Shared/UserPanel/ChatBot";
 
 const UserPanelLayout = () => {
   return (

@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import EditorPanelLayout from "../Layouts/EditorPanelLayout";
+
 import MainLayout from "../Layouts/MainLayout";
 import UserPanelLayout from "../Layouts/UserPanelLayout";
-import UserHome from "../components/UserPanel/Home/UserHome";
-import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
-import Home from "../pages/Website/Home";
 import EditorAllProjects from "../pages/EditorPanel/EditorAllProjects";
-
+import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
+import UserHome from "../pages/UserPanel/UserHome";
+import Home from "../pages/Website/Home";
+import EditorPanelLayout from './../Layouts/EditorPanelLayout';
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
 
   {
     path: "/editor",
-    element: <EditorPanelLayout />,
+    element: <EditorPanelLayout/>,
     children: [
       {
         path: "/editor",
