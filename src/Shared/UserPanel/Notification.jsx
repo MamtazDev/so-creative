@@ -1,8 +1,8 @@
-import close from "../assets/close.png";
-import accepted from "../assets/accepted.png";
-import alert from "../assets/alert.png";
-import rejected from "../assets/rejected.png";
-import premium from "../assets/premium.png";
+import close from "../../assets/close.png";
+import accepted from "../../assets/accepted.png";
+import alert from "../../assets/alert.png";
+import rejected from "../../assets/rejected.png";
+import premium from "../../assets/premium.png";
 
 const Notification = ({ setShowNotification }) => {
   const notifications = [
