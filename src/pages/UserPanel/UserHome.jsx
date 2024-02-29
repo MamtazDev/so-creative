@@ -1,6 +1,6 @@
-import sun from "../../../assets/sun.png";
-import GetStarted from "./GetStarted";
-import RecentVideos from "./RecentVideos";
+import sun from "../../assets/sun.png";
+import GetStarted from "../../components/UserPanel/Home/GetStarted";
+import RecentVideos from "../../components/UserPanel/Home/RecentVideos";
 
 const UserHome = () => {
   return (
