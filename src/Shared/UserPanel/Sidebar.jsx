@@ -17,25 +17,25 @@ const Sidebar = () => {
       pic: home,
       activePic: homeActive,
       title: "Home",
-      path: "/",
+      path: "/user",
     },
     {
       pic: video,
       activePic: videoActive,
       title: "All Videos",
-      path: "/all-videos",
+      path: "/user/all-videos",
     },
     {
       pic: media,
       activePic: mediaActive,
       title: "Media Storage",
-      path: "/media-storage",
+      path: "/user/media-storage",
     },
     {
       pic: brand,
       activePic: brandActive,
       title: "Brand Kit",
-      path: "/brand-kit",
+      path: "/user/brand-kit",
     },
   ];
   return (
