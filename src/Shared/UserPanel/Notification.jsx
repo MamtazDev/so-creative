@@ -1,44 +1,7 @@
+import { notifications } from "../../Data/AllDatas";
 import close from "../../assets/close.png";
-import accepted from "../../assets/accepted.png";
-import alert from "../../assets/alert.png";
-import rejected from "../../assets/rejected.png";
-import premium from "../../assets/premium.png";
 
 const Notification = ({ setShowNotification }) => {
-  const notifications = [
-    {
-      pic: accepted,
-      new: true,
-      title: "Project Accepted  🎉",
-      description:
-        "<span  style='color:#4F46E5;'>@shawnmahbub </span>  accepted the job for Advanced Training Module.",
-      time: "09:40 AM",
-    },
-    {
-      pic: alert,
-      new: false,
-      title: "Exclusive Event Alert",
-      description:
-        "Join our annual event this weekend! Meet new people & more social. Register now!",
-      time: "08:29 AM",
-    },
-    {
-      pic: rejected,
-      new: false,
-      title: "Project Rejected",
-      description:
-        "<span style='color:#4F46E5;'>@shawnmahbub </span>  rejected the job for Advanced Training Module.",
-      time: "20:30 PM",
-    },
-    {
-      pic: premium,
-      new: false,
-      title: "Unlock Premium Features",
-      description:
-        "Upgrade to Premium for exclusive benefits & enhance your experience!",
-      time: "10:30 AM",
-    },
-  ];
   return (
     <div className="notification fixed z-50 top-[84px] right-[82px]  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl p-6 max-w-[448px]">
       <div className="flex gap-2 justify-between items-center mb-6">

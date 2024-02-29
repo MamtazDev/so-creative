@@ -5,8 +5,10 @@ import UserPanelLayout from "../Layouts/UserPanelLayout";
 import EditorAllProjects from "../pages/EditorPanel/EditorAllProjects";
 import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
 import UserHome from "../pages/UserPanel/UserHome";
+import AllVideos from "../pages/UserPanel/AllVideos";
 import Home from "../pages/Website/Home";
 import EditorPanelLayout from './../Layouts/EditorPanelLayout';
+
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +32,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/user/all-videos",
-        element: <div>all-videos</div>,
+        element: <AllVideos />,
       },
       {
         path: "/user/media-storage",

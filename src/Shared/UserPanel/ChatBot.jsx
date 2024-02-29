@@ -5,16 +5,11 @@ import active from "../../assets/active.png";
 import send from "../../assets/send.png";
 import chatBot from "../../assets/chatBot.png";
 import { useState } from "react";
+import { quickOptions } from "../../Data/AllDatas";
 
 const ChatBot = () => {
   const [show, setShow] = useState(false);
-  const quickOptions = [
-    "Payment and Subscription",
-    "Account question",
-    "Editing Questions",
-    "Issue or Bug",
-    "Something else",
-  ];
+
   return (
     <div className="fixed z-50 max-w-[512px] w-full  bottom-14 right-14">
       {show && (
