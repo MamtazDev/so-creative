@@ -25,7 +25,7 @@ const Header = () => {
     },
   ];
   return (
-    <header className="py-9">
+    <header className="py-9 absolute w-full">
       <div className="website_contianer">
         <div className="navbar_wrapper flex items-center">
           <div className="nav_brand">
@@ -33,6 +33,7 @@ const Header = () => {
               <img src={NavLogo} alt="brand_nav" />
             </Link>
           </div>
+
           <nav className="mx-auto">
             <ul className="flex gap-7 lg:gap-[47px]">
               {NavItemData.map((navitem, index) => (
@@ -46,6 +47,7 @@ const Header = () => {
               ))}
             </ul>
           </nav>
+
           <div className="nav_btn flex gap-3">
             <Link
               to={"/login"}
@@ -55,7 +57,7 @@ const Header = () => {
             </Link>
             <Link
               to={"/get-started"}
-              className="block font-hanken text-base font-semibold py-[14px] px-[30px] border border-gray-800 rounded-[100px]">
+              className="block font-hanken text-base font-semibold py-[14px] px-[30px] border-2 border-transparant rounded-[100px] bg-[linear-gradient(121deg,_#C67CFF_-1.44%,_#3A65FF_100%)]">
               {" "}
               Get Started
             </Link>
