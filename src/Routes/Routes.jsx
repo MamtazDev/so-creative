@@ -3,6 +3,7 @@ import MainLayout from "../Layouts/MainLayout";
 import UserPanelLayout from "../Layouts/UserPanelLayout";
 import Home from "../pages/Website/Home";
 import UserHome from "../pages/UserPanel/UserHome";
+import AllVideos from "../pages/UserPanel/AllVideos";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/user/all-videos",
-        element: <div>all-videos</div>,
+        element: <AllVideos />,
       },
       {
         path: "/user/media-storage",
