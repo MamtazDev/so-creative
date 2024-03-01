@@ -10,7 +10,7 @@ const FirstBrand = ({ setStep }) => {
       </p>
       <button
         onClick={() => setStep(2)}
-        className="flex items-center gap-2 py-3 px-6 rounded-full bg-indigo-600 text-white"
+        className="flex items-center gap-2 py-3 px-6 rounded-full bg-indigo-600 text-white text-base"
       >
         <Plus size={24} /> Create
       </button>
