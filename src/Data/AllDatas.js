@@ -200,37 +200,50 @@ export const guidelines = [
     title: "Brand Guidelines",
     subtitle:
       "Add brand images and custom watermarks and use them across your projects.",
+    acceptType: "application/pdf",
+    inputName: "guidelines",
   },
   {
     title: "Logos",
     subtitle:
       "Add brand images and custom watermarks and use them across your projects.",
+    acceptType: "image/svg+xml",
+    inputName: "logos",
   },
   {
     title: "Fonts",
     subtitle:
       "Add brand images and custom watermarks and use them across your projects.",
+    acceptType: ".ttf, .otf, .woff, .woff2",
+    inputName: "fonts",
   },
   {
     title: "Color Palette",
     subtitle:
       "Add your brand color palettes to maintain brand consistency across your videos",
     buttonName: "Add Color",
+    acceptType: "image/*",
+    inputName: "colors",
   },
   {
     title: "Image Assets",
     subtitle:
       "Add brand images and custom watermarks and use them across your projects.",
+    inputName: "images",
   },
   {
     title: "Video Assets",
     subtitle:
       "Add brand videos and custom clips and use them across your projects.",
+    acceptType: "video/*,.mkv",
+    inputName: "videos",
   },
   {
     title: "Audio Assets",
     subtitle:
       "Add custom audio and use them for subtitles and caption in any videos",
+    acceptType: ".mp3,audio/*",
+    inputName: "audios",
   },
 ];
 

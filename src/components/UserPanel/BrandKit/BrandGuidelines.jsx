@@ -1,13 +1,17 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { guidelines } from "../../../Data/AllDatas";
 import BrandUpload from "../../../Shared/UserPanel/BrandUpload";
-import brand from "../../../assets/brand-img.svg";
+import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
 
 const BrandGuidelines = () => {
   const brandImgRef = useRef();
+  const guidelinesInputRefs = useRef(
+    Array.from({ length: guidelines.length }).map(() => React.createRef())
+  );
   const [brandImg, setBrandImg] = useState(null);
   const [description, setDescription] = useState("");
+  const [brand, setBrand] = useState({});
   const maxLength = 500;
 
   const handleImageChange = (event) => {
@@ -22,16 +26,46 @@ const BrandGuidelines = () => {
     setDescription(inputValue);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here
+  };
+
+  const handleChange = (e, fieldName, index) => {
+    const file = e.target.files[0];
+    setBrand((prevState) => ({
+      ...prevState,
+      [fieldName]: file,
+    }));
+  };
+
+  console.log("data:", brand);
   return (
-    <form className="flex items-start justify-between gap-10">
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-start justify-between gap-10"
+    >
       <div className="flex flex-col gap-10 ">
         {guidelines.map((data, index) => (
-          <BrandUpload
-            key={index}
-            title={data.title}
-            subTitle={data.subtitle}
-            buttonName={data.buttonName}
-          />
+          <div key={index}>
+            <input
+              type="file"
+              name={data.inputName}
+              accept={data?.acceptType}
+              className="hidden"
+              onChange={(e) => handleChange(e, data.inputName)}
+              ref={guidelinesInputRefs.current[index]}
+            />
+            <BrandUpload
+              title={data.title}
+              subTitle={data.subtitle}
+              buttonName={data.buttonName}
+              acceptType={data?.acceptType}
+              inputRef={() =>
+                guidelinesInputRefs.current[index].current.click()
+              }
+            />
+          </div>
         ))}
       </div>
       <div className="max-w-[584px] w-full border rounded-3xl p-10">
@@ -45,8 +79,8 @@ const BrandGuidelines = () => {
           />
 
           <img
-            className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer"
-            src={brandImg ? URL.createObjectURL(brandImg) : brand}
+            className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer object-contain"
+            src={brandImg ? URL.createObjectURL(brandImg) : brandInput}
             alt=""
           />
           <img
@@ -83,7 +117,10 @@ const BrandGuidelines = () => {
             {description.length}/{maxLength} Characters
           </p>
         </div>
-        <button className="w-full rounded-full bg-indigo-600 text-white text-base font-semibold px-6 py-3">
+        <button
+          type="submit"
+          className="w-full rounded-full bg-indigo-600 text-white text-base font-semibold px-6 py-3"
+        >
           Save Brand
         </button>
       </div>
