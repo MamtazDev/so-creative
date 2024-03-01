@@ -20,6 +20,24 @@ export const MyWorkTableData = [
     duration: 4,
     dateCreated: "September 10, 2023",
   },
+  {
+    clientImg: clientImg1,
+    clientName: "Xavier Davis",
+    projectName: "Product Showcase Video",
+    assignee: "Shawn Mahbub",
+    status: "Approved",
+    duration: 4,
+    dateCreated: "September 10, 2023",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Xavier Davis",
+    projectName: "Product Showcase Video",
+    assignee: "Shawn Mahbub",
+    status: "New Project",
+    duration: 4,
+    dateCreated: "September 10, 2023",
+  },
 ];
 
 export const RecentActivites = [

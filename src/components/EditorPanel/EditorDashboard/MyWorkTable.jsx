@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { CaretRight } from "@phosphor-icons/react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -5,8 +6,9 @@ import {
   tableHeading,
   tableHeadingTwo,
 } from "../../../utils/data";
+import { CaretLeft } from "@phosphor-icons/react/dist/ssr";
 
-const MyWorkTable = () => {
+const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
 
   return (
@@ -88,83 +90,113 @@ const MyWorkTable = () => {
       )}
 
       {route.pathname === "/editor/all-projects" && (
-        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
-          <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
-            <table className="min-w-full leading-normal myworktable">
-              <thead>
-                <tr>
-                  {tableHeadingTwo.map((tableHadingName, index) => (
-                    <th
-                      className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                      key={index}>
-                      {tableHadingName}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-
-              <tbody>
-                {MyWorkTableData.map((tableDataInfo, index) => (
-                  <tr key={index}>
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 w-8 h-8">
-                          <img
-                            className="w-full h-full rounded-full"
-                            src={tableDataInfo.clientImg}
-                            alt="img"
-                          />
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
-                            {tableDataInfo.clientName}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                        {tableDataInfo.projectName}
-                      </p>
-                    </td>
-
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                        {tableDataInfo.assignee}
-                      </p>
-                    </td>
-
-                    <td
-                      className={
-                        "px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm"
-                      }>
-                      <p
-                        className={`${
-                          tableDataInfo.status === "In Progress" &&
-                          "text-sm font-normal text-white bg-orange-500 inline p-1 rounded-full whitespace-no-wrap"
-                        }`}>
-                        {tableDataInfo.status}
-                      </p>
-                    </td>
-
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                        {tableDataInfo.duration} days
-                      </p>
-                    </td>
-
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                        {tableDataInfo.dateCreated} <CaretRight size={20} />
-                      </p>
-                    </td>
+        <>
+          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
+            <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
+              <table className="min-w-full leading-normal myworktable">
+                <thead>
+                  <tr>
+                    {tableHeadingTwo.map((tableHadingName, index) => (
+                      <th
+                        className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
+                        key={index}>
+                        {tableHadingName}
+                      </th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+
+                <tbody>
+                  {filteredData.map((tableDataInfo, index) => (
+                    <tr key={index}>
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0 w-8 h-8">
+                            <img
+                              className="w-full h-full rounded-full"
+                              src={tableDataInfo.clientImg}
+                              alt="img"
+                            />
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
+                              {tableDataInfo.clientName}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                          {tableDataInfo.projectName}
+                        </p>
+                      </td>
+
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                          {tableDataInfo.assignee}
+                        </p>
+                      </td>
+
+                      <td
+                        className={
+                          "px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm"
+                        }>
+                        <p
+                          className={`${
+                            tableDataInfo.status === "In Progress" &&
+                            "text-sm font-normal text-white bg-orange-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
+                          } ${
+                            tableDataInfo.status === "Approved" &&
+                            "text-sm font-normal text-white bg-green-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
+                          } ${
+                            tableDataInfo.status === "New Project" &&
+                            "text-sm font-normal text-white bg-red-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
+                          }`}>
+                          {tableDataInfo.status}
+                        </p>
+                      </td>
+
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                          {tableDataInfo.duration} days
+                        </p>
+                      </td>
+
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
+                          {tableDataInfo.dateCreated} <CaretRight size={20} />
+                        </p>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+
+          <div className="container mx-auto px-4">
+            <nav
+              className="flex flex-row flex-nowrap justify-between md:justify-center items-center"
+              aria-label="Pagination">
+              <button
+                className="flex items-center text-base font-medium border border-slate-200 p-3 rounded-full gap-2"
+                title="Previous">
+                <CaretLeft className="text-slate-200" size={16} />
+                <span className="text-slate-200">Previous</span>
+              </button>
+
+              <a className="w-3 block border">1</a>
+
+              <button
+                className="flex items-center text-base font-medium border border-slate-200 p-3 rounded-full gap-2"
+                title="Previous">
+                <span className="text-slate-200">Next</span>
+                <CaretRight className="text-slate-200" size={16} />
+              </button>
+            </nav>
+          </div>
+        </>
       )}
     </>
   );
