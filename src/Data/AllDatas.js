@@ -51,6 +51,14 @@ export const videos = [
     status: "Exported",
   },
   {
+    name: "Sales Training Video",
+    status: "In Progress",
+  },
+  {
+    name: "Sales Training Video",
+    status: "In Progress",
+  },
+  {
     name: "Employee Onboarding Training",
     status: "Exported",
   },

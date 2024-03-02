@@ -28,7 +28,6 @@ const BrandGuidelines = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
   };
 
   const handleChange = (e, fieldName, index) => {
