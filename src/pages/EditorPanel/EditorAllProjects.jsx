@@ -50,6 +50,7 @@ const EditorAllProjects = () => {
               Completed
             </button>
           </div>
+
           <div className="sorting_dropdown bg-slate-100 rounded-full p-1">
             <select
               name=""
