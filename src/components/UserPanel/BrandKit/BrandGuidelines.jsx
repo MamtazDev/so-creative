@@ -44,7 +44,7 @@ const BrandGuidelines = () => {
       onSubmit={handleSubmit}
       className="flex items-start justify-between gap-10"
     >
-      <div className="flex flex-col gap-10 ">
+      <div className="w-full flex flex-col gap-10 ">
         {guidelines.map((data, index) => (
           <div key={index}>
             <input
@@ -56,9 +56,11 @@ const BrandGuidelines = () => {
               ref={guidelinesInputRefs.current[index]}
             />
             <BrandUpload
+              brandData={brand}
               title={data.title}
               subTitle={data.subtitle}
               buttonName={data.buttonName}
+              inputName={data.inputName}
               acceptType={data?.acceptType}
               inputRef={() =>
                 guidelinesInputRefs.current[index].current.click()
