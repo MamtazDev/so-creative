@@ -3,16 +3,49 @@ import logo from "../../assets/logo.png";
 import search from "../../assets/search.png";
 import message from "../../assets/message-question.png";
 import notification from "../../assets/notification.png";
-import active from "../../assets/active.png";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Notification from "./Notification";
 import Credit from "./Credit";
 import Help from "./Help";
+import ProfileActive from "./ProfileActive";
+import ProfileDropdown from "./ProfileDropdown";
 
 const Header = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [showCredit, setShowCredit] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+
+  const notificationRef = useRef(null);
+  const creditRef = useRef(null);
+  const helpRef = useRef(null);
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        notificationRef.current &&
+        !notificationRef.current.contains(event.target)
+      ) {
+        setShowNotification(false);
+      }
+      if (creditRef.current && !creditRef.current.contains(event.target)) {
+        setShowCredit(false);
+      }
+      if (helpRef.current && !helpRef.current.contains(event.target)) {
+        setShowHelp(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowProfile(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <div>
       <div className="flex items-center justify-between gap-4 p-6">
@@ -56,20 +89,27 @@ const Header = () => {
               <img src={notification} alt="" />
             </button>
           </div>
-          <div className="relative">
-            <button className="text-white text-sm font-semibold h-12 w-12 bg-[#4F16A5] rounded-full p-3">
-              JA
-            </button>
-
-            <img className="absolute bottom-0 -right-1" src={active} alt="" />
+          <div onClick={() => setShowProfile(!showProfile)}>
+            <ProfileActive />
           </div>
         </div>
       </div>
       {showNotification && (
-        <Notification setShowNotification={setShowNotification} />
+        <Notification
+          setShowNotification={setShowNotification}
+          notificationRef={notificationRef}
+        />
       )}
-      {showCredit && <Credit setShowCredit={setShowCredit} />}
-      {showHelp && <Help setShowHelp={setShowHelp} />}
+      {showCredit && (
+        <Credit setShowCredit={setShowCredit} creditRef={creditRef} />
+      )}
+      {showHelp && <Help setShowHelp={setShowHelp} helpRef={helpRef} />}
+      {showProfile && (
+        <ProfileDropdown
+          setShowProfile={setShowProfile}
+          profileRef={profileRef}
+        />
+      )}
     </div>
   );
 };

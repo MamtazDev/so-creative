@@ -1,9 +1,12 @@
 import { notifications } from "../../Data/AllDatas";
 import close from "../../assets/close.png";
 
-const Notification = ({ setShowNotification }) => {
+const Notification = ({ setShowNotification, notificationRef }) => {
   return (
-    <div className="notification fixed z-50 top-[84px] right-[82px]  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl p-6 max-w-[448px]">
+    <div
+      ref={notificationRef}
+      className="notification fixed z-50 top-[84px] right-[82px]  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl p-6 max-w-[448px]"
+    >
       <div className="flex gap-2 justify-between items-center mb-6">
         <p className="text-xl font-bold">Notification</p>
         <button onClick={() => setShowNotification(false)}>

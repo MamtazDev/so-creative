@@ -34,7 +34,7 @@ const BrandGuidelines = () => {
     const file = e.target.files[0];
     setBrand((prevState) => ({
       ...prevState,
-      [fieldName]: file,
+      [fieldName]: [...(prevState[fieldName] || []), file],
     }));
   };
 
