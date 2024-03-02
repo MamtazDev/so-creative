@@ -5,7 +5,7 @@ import minus from "../../assets/minus.png";
 import creditPlus from "../../assets/creditPlus.png";
 import { useState } from "react";
 
-const Credit = ({ setShowCredit }) => {
+const Credit = ({ setShowCredit, creditRef }) => {
   const [count, setCount] = useState(2);
   const handleIncrement = () => {
     setCount(count + 1);
@@ -16,7 +16,10 @@ const Credit = ({ setShowCredit }) => {
     }
   };
   return (
-    <div className="fixed z-50 top-[84px] right-[210px]  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[448px]">
+    <div
+      ref={creditRef}
+      className="fixed z-50 top-[84px] right-[210px]  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[448px]"
+    >
       <div className="p-8">
         <div className="flex items-center gap-2 justify-between mb-8">
           <div>
