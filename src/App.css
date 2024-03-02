@@ -11,12 +11,12 @@ textarea:focus-visible {
     outline: none;
 }
 
-.gradient_text {
+/* .gradient_text {
     background: var(--Linear-1, linear-gradient(121deg, #C67CFF -1.44%, #3A65FF 101.49%));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+} */
 
 .sidebar .active {
     position: relative;

@@ -70,7 +70,10 @@ const ChatBot = () => {
         </div>
       )}
       <div className="text-end mt-4">
-        <button onClick={() => setShow(!show)}>
+        <button
+          className="hover:scale-105 transition-all duration-300 ease-in"
+          onClick={() => setShow(!show)}
+        >
           <img src={show ? chatOff : profile} alt="" />
         </button>
       </div>

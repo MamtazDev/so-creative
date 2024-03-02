@@ -33,14 +33,14 @@ const Header = () => {
         <div className="w-full flex justify-end items-center gap-4">
           <button
             onClick={() => setShowCredit(!showCredit)}
-            className="whitespace-nowrap gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF] transition-all duration-300 ease-in hover:bg-[#C67CFF] hover:text-white"
+            className="bg-gradient-to-r from-purple-500 to-indigo-900 text-transparent bg-clip-text whitespace-nowrap hover:text-indigo-600 hover:border-indigo-600 transition-all duration-300 ease-in gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF]"
           >
             6 Credits Remaining
           </button>
 
           <button
             onClick={() => setShowHelp(!showHelp)}
-            className="bg-white rounded-full p-3"
+            className="bg-white hover:bg-indigo-100 transition-all duration-300 ease-in rounded-full p-3"
           >
             <img src={message} alt="" />
           </button>
@@ -52,7 +52,7 @@ const Header = () => {
               8
             </button>
 
-            <button className="bg-white rounded-full p-3">
+            <button className="bg-white  hover:bg-indigo-100 transition-all duration-300 ease-in rounded-full p-3">
               <img src={notification} alt="" />
             </button>
           </div>
