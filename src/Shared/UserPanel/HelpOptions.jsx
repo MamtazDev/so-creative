@@ -1,5 +1,5 @@
-import search from "../../assets/search.png";
-import arrow from "../../assets/arrow-right.png";
+import search from "../../assets/search.svg";
+import arrow from "../../assets/arrow-right.svg";
 
 const HelpOptions = ({ setStep }) => {
   const handleGetStarted = () => {

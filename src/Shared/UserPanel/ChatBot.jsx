@@ -1,9 +1,9 @@
-import profile from "../../assets/profile.png";
-import chatOff from "../../assets/chatOff.png";
-import close from "../../assets/close.png";
-import active from "../../assets/active.png";
-import send from "../../assets/send.png";
-import chatBot from "../../assets/chatBot.png";
+import profile from "../../assets/chatbot.svg";
+import chatOff from "../../assets/chatOff.svg";
+import close from "../../assets/close.svg";
+import active from "../../assets/active.svg";
+import send from "../../assets/send.svg";
+import chatBot from "../../assets/noChat.svg";
 import { useEffect, useRef, useState } from "react";
 import { quickOptions } from "../../utils/data";
 
