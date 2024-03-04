@@ -1,4 +1,4 @@
-import mp4 from "../../../assets/mp4.png";
+import mp4 from "../../../assets/mp4.svg";
 
 const VideoCard = () => {
   return (

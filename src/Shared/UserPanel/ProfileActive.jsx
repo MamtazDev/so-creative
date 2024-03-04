@@ -1,6 +1,4 @@
-import React from "react";
-
-import active from "../../assets/active.png";
+import active from "../../assets/active.svg";
 
 const ProfileActive = () => {
   return (

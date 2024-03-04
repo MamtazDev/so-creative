@@ -1,10 +1,10 @@
-import add from "../../assets/add.png";
-import companyLogo from "../../assets/company-logo.png";
+import companyLogo from "../../assets/company-logo.svg";
 import createProject from "../../assets/create-project.svg";
 import selectDraft from "../../assets/select-draft.svg";
 import { Link, useLocation } from "react-router-dom";
 import { menus } from "../../utils/data";
 import { useState } from "react";
+import { Plus } from "@phosphor-icons/react";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -18,7 +18,7 @@ const Sidebar = () => {
             onClick={() => setShow(!show)}
             className="bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 ease-in flex gap-2 items-center justify-center mb-8 text-base text-white font-semibold rounded-full w-full py-3 px-6 "
           >
-            <img src={add} alt="" />
+            <Plus size={24} />
             New Project
           </button>
           {show && (

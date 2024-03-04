@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import search from "../../assets/search.png";
-import message from "../../assets/message-question.png";
-import notification from "../../assets/notification.png";
+import search from "../../assets/search.svg";
+import message from "../../assets/message-question.svg";
+import notification from "../../assets/notification.svg";
 import { useEffect, useRef, useState } from "react";
 import Notification from "./Notification";
 import Credit from "./Credit";
@@ -74,7 +74,7 @@ const Header = () => {
 
           <button
             onClick={() => setShowHelp(!showHelp)}
-            className="bg-white hover:bg-indigo-100 transition-all duration-300 ease-in rounded-full p-3"
+            className="bg-slate-900 hover:bg-slate-600 transition-all duration-300 ease-in rounded-full p-3"
           >
             <img src={message} alt="" />
           </button>
