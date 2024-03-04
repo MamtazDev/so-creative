@@ -1,6 +1,12 @@
 import clientImg1 from "../assets/editor_panel/clientImg1.svg";
 import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
 import home from "../assets/home.png";
+import dashboardIconActive from "../assets/editor_panel/dashboard_icon.svg";
+import dashboardIcon from "../assets/editor_panel/dashboard_icon_inactive.svg";
+import myTasksIcon from "../assets/editor_panel/my_tasks.svg";
+import myTasksIconActive from "../assets/editor_panel/my_tasks_active.svg";
+import clientIcon from "../assets/editor_panel/clients.svg";
+import clientIconActive from "../assets/editor_panel/client_active.svg";
 import homeActive from "../assets/home-active.png";
 import video from "../assets/video.png";
 import videoActive from "../assets/video-active.png";
@@ -104,31 +110,60 @@ export const RecentActivites = [
 
 export const menus = [
   {
+    type: "user",
     pic: home,
     activePic: homeActive,
     title: "Home",
     path: "/user",
   },
+
   {
+    type: "user",
     pic: video,
     activePic: videoActive,
     title: "All Videos",
     path: "/user/all-videos",
   },
+
   {
+    type: "user",
     pic: media,
     activePic: mediaActive,
     title: "Media Storage",
     path: "/user/media-storage",
   },
+
   {
+    type: "user",
     pic: brand,
     activePic: brandActive,
     title: "Brand Kit",
     path: "/user/brand-kit",
   },
 
+  {
+    type: "editor",
+    pic: dashboardIcon,
+    activePic: dashboardIconActive,
+    title: "Dashboard",
+    path: "/editor",
+  },
 
+  {
+    type: "editor",
+    pic: myTasksIcon,
+    activePic: myTasksIconActive,
+    title: "My Tasks",
+    path: "/editor/my-tasks",
+  },
+
+  {
+    type: "editor",
+    pic: clientIcon,
+    activePic: clientIconActive,
+    title: "Clients",
+    path: "/editor/clients",
+  },
 ];
 
 export const videos = [
