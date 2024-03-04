@@ -1,24 +1,30 @@
-import clientImg1 from "../assets/editor_panel/clientImg1.svg";
-import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
-import home from "../assets/home.svg";
-import homeActive from "../assets/home-active.svg";
-import video from "../assets/video.svg";
-import videoActive from "../assets/video-active.svg";
-import media from "../assets/media.svg";
-import mediaActive from "../assets/media-active.svg";
-import brand from "../assets/brand.svg";
-import brandActive from "../assets/brand-active.svg";
-import plus from "../assets/plus.svg";
-import edit from "../assets/edit.svg";
-import upload from "../assets/upload.svg";
-import access from "../assets/access.svg";
-import sad from "../assets/sad.svg";
-import upset from "../assets/upset.svg";
-import happy from "../assets/happy.svg";
 import accepted from "../assets/accepted.svg";
+import access from "../assets/access.svg";
 import alert from "../assets/alert.svg";
-import rejected from "../assets/rejected.svg";
+import brandActive from "../assets/brand-active.svg";
+import brand from "../assets/brand.svg";
+import edit from "../assets/edit.svg";
+import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
+import clientImg1 from "../assets/editor_panel/clientImg1.svg";
+import clientIconActive from "../assets/editor_panel/client_active.svg";
+import clientIcon from "../assets/editor_panel/clients.svg";
+import dashboardIconActive from "../assets/editor_panel/dashboard_icon.svg";
+import dashboardIcon from "../assets/editor_panel/dashboard_icon_inactive.svg";
+import myTasksIcon from "../assets/editor_panel/my_tasks.svg";
+import myTasksIconActive from "../assets/editor_panel/my_tasks_active.svg";
+import happy from "../assets/happy.svg";
+import homeActive from "../assets/home-active.svg";
+import home from "../assets/home.svg";
+import mediaActive from "../assets/media-active.svg";
+import media from "../assets/media.svg";
+import plus from "../assets/plus.svg";
 import premium from "../assets/premium.svg";
+import rejected from "../assets/rejected.svg";
+import sad from "../assets/sad.svg";
+import upload from "../assets/upload.svg";
+import upset from "../assets/upset.svg";
+import videoActive from "../assets/video-active.svg";
+import video from "../assets/video.svg";
 
 export const tableHeading = [
   "Client",
@@ -104,28 +110,59 @@ export const RecentActivites = [
 
 export const menus = [
   {
+    type: "user",
     pic: home,
     activePic: homeActive,
     title: "Home",
     path: "/user",
   },
+
   {
+    type: "user",
     pic: video,
     activePic: videoActive,
     title: "All Videos",
     path: "/user/all-videos",
   },
+
   {
+    type: "user",
     pic: media,
     activePic: mediaActive,
     title: "Media Storage",
     path: "/user/media-storage",
   },
+
   {
+    type: "user",
     pic: brand,
     activePic: brandActive,
     title: "Brand Kit",
     path: "/user/brand-kit",
+  },
+
+  {
+    type: "editor",
+    pic: dashboardIcon,
+    activePic: dashboardIconActive,
+    title: "Dashboard",
+    path: "/editor",
+  },
+
+  {
+    type: "editor",
+    pic: myTasksIcon,
+    activePic: myTasksIconActive,
+    title: "My Tasks",
+    path: "/editor/my-tasks",
+  },
+
+  {
+    type: "editor",
+    pic: clientIcon,
+    activePic: clientIconActive,
+    title: "Clients",
+    path: "/editor/clients",
   },
 ];
 

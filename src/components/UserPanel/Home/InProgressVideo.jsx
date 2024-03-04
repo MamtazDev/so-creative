@@ -13,8 +13,7 @@ const InProgressVideo = () => {
       {inProgressVideos.map((data, index) => (
         <div
           key={index}
-          className="border rounded-2xl p-4 flex gap-4 items-center"
-        >
+          className="border rounded-2xl p-4 flex gap-4 items-center">
           <div className="relative">
             <iframe
               className="rounded-xl "

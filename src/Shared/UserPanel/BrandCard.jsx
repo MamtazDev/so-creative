@@ -1,5 +1,4 @@
 import { Plus } from "@phosphor-icons/react";
-import close from "../../assets/close.svg";
 import BrandcardInner from "./BrandcardInner";
 
 const BrandCard = ({ brand, inputRef }) => {

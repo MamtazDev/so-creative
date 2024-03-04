@@ -1,4 +1,4 @@
-import React from "react";
+import close from "../../assets/close.svg";
 
 const BrandcardInner = ({ data }) => {
   const fileName = data.name.split(".")[0];

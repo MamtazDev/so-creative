@@ -20,11 +20,11 @@ import {
 import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 
 const MyWorkTable = ({ filteredData }) => {
-  const route = useLocation();
   const [modalPopup, setModalPopup] = useState(false);
   const [jobAction, setJobAction] = useState(false);
   const [file, setFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
+  const route = useLocation();
   const { getRootProps, getInputProps } = useDropzone({
     accept: "video/*,image/*",
     onDrop: (acceptedFiles) => {

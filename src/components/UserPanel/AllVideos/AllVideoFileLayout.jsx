@@ -6,8 +6,7 @@ const AllVideoFileLayout = ({ filteredVideos }) => {
           borderCollapse: "separate",
           borderSpacing: "24px",
         }}
-        className="w-full"
-      >
+        className="w-full">
         <thead>
           <tr className="text-slate-500 font-medium text-base">
             <th className="text-start ">Name</th>
@@ -38,8 +37,7 @@ const AllVideoFileLayout = ({ filteredVideos }) => {
                 <button
                   className={`${
                     data.status === "Draft" ? "bg-slate-800" : "bg-green-500"
-                  } text-white font-semibold text-sm px-[6px] rounded-md`}
-                >
+                  } text-white font-semibold text-sm px-[6px] rounded-md`}>
                   {data.status}
                 </button>
               </td>
