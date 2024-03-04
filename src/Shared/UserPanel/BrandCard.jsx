@@ -1,5 +1,5 @@
 import { Plus } from "@phosphor-icons/react";
-import close from "../../assets/close.png";
+import close from "../../assets/close.svg";
 
 const BrandCard = ({ brand, inputRef }) => {
   return (

@@ -1,4 +1,4 @@
-import sun from "../../assets/sun.png";
+import sun from "../../assets/sun.svg";
 import GetStarted from "../../components/UserPanel/Home/GetStarted";
 import InProgressVideo from "../../components/UserPanel/Home/InProgressVideo";
 import RecentVideos from "../../components/UserPanel/Home/RecentVideos";

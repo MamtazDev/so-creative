@@ -1,8 +1,8 @@
-import close from "../../assets/close.png";
-import secure from "../../assets/secure.png";
-import credit from "../../assets/credit.png";
-import minus from "../../assets/minus.png";
-import creditPlus from "../../assets/creditPlus.png";
+import close from "../../assets/close.svg";
+import secure from "../../assets/secure.svg";
+import credit from "../../assets/credit.svg";
+import minus from "../../assets/minus.svg";
+import creditPlus from "../../assets/creditPlus.svg";
 import { useState } from "react";
 
 const Credit = ({ setShowCredit, creditRef }) => {

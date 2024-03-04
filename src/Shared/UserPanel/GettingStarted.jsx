@@ -1,5 +1,5 @@
-import arrow from "../../assets/arrow-right.png";
-import arrowLeft from "../../assets/arrow-left.png";
+import arrow from "../../assets/arrow-right.svg";
+import arrowLeft from "../../assets/arrow-left.svg";
 
 const GettingStarted = ({ setStep }) => {
   const handleStep = () => {

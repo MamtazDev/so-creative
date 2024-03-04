@@ -1,8 +1,8 @@
-import arrowLeft from "../../assets/arrow-left.png";
-import helpQuery from "../../assets/help-ans.png";
-import open from "../../assets/open.png";
+import arrowLeft from "../../assets/arrow-left.svg";
+import helpQuery from "../../assets/help-ans.svg";
+import open from "../../assets/open.svg";
 import { Link } from "react-router-dom";
-import { answers } from "../../utils/data";
+import { answers, reactions } from "../../utils/data";
 
 const ChangeEmail = () => {
   return (

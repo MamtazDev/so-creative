@@ -1,4 +1,4 @@
-import folderIcon from "../../../assets/folder.png";
+import folderIcon from "../../../assets/folder.svg";
 
 const FolderCard = ({ folder, folderIndex, selectedFolder, onFolderClick }) => {
   return (
