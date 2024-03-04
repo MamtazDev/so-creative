@@ -1,5 +1,5 @@
-import { notifications } from "../../Data/AllDatas";
 import close from "../../assets/close.png";
+import { notifications } from "../../utils/data";
 
 const Notification = ({ setShowNotification, notificationRef }) => {
   return (

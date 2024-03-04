@@ -1,4 +1,7 @@
-import { videos } from "../../../Data/AllDatas";
+
+import React from "react";
+import { videos } from "../../../utils/data";
+
 
 const InProgressVideo = () => {
   const inProgressVideos = videos.filter(
@@ -20,7 +23,8 @@ const InProgressVideo = () => {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen></iframe>
+              allowFullScreen
+            ></iframe>
             <button className="absolute top-1 right-1 bg-orange-500 text-[10.5px] text-white py-[1.75px] px-[5.25px] rounded-md ">
               {data.status}
             </button>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import VideoCard from "../../../Shared/UserPanel/VideoCard";
 import arrow from "../../../assets/arrow-right.svg";
-import { videos } from "../../../Data/AllDatas";
+import { videos } from "../../../utils/data";
 
 const RecentVideos = () => {
   return (
