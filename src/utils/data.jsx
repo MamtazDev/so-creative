@@ -1,12 +1,11 @@
-import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
-import clientImg1 from "../assets/editor_panel/clientImg1.svg";
-
 import accepted from "../assets/accepted.svg";
 import access from "../assets/access.svg";
 import alert from "../assets/alert.svg";
 import brandActive from "../assets/brand-active.svg";
 import brand from "../assets/brand.svg";
 import edit from "../assets/edit.svg";
+import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
+import clientImg1 from "../assets/editor_panel/clientImg1.svg";
 import clientIconActive from "../assets/editor_panel/client_active.svg";
 import clientIcon from "../assets/editor_panel/clients.svg";
 import dashboardIconActive from "../assets/editor_panel/dashboard_icon.svg";

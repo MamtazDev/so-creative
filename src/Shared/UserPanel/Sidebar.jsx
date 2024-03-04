@@ -9,6 +9,7 @@ import { Plus } from "@phosphor-icons/react";
 const Sidebar = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
+  const [userType, setUserType] = useState("user");
 
   return (
     <div className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
