@@ -1,6 +1,8 @@
 import { menus } from "../../Data/AllDatas";
 import add from "../../assets/add.png";
 import companyLogo from "../../assets/company-logo.png";
+import createProject from "../../assets/create-project.svg";
+import selectDraft from "../../assets/select-draft.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
@@ -9,10 +11,22 @@ const Sidebar = () => {
   return (
     <div className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
       <div>
-        <button className="bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 ease-in flex gap-2 items-center justify-center mb-8 text-base text-white font-semibold rounded-full w-full py-3 px-6 ">
-          <img src={add} alt="" />
-          New Project
-        </button>
+        <div className="relative">
+          <button className="bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 ease-in flex gap-2 items-center justify-center mb-8 text-base text-white font-semibold rounded-full w-full py-3 px-6 ">
+            <img src={add} alt="" />
+            New Project
+          </button>
+          <div className="absolute top-14 w-full z-50 bg-white rounded-2xl py-5 px-6">
+            <button className="flex gap-3.5 items-center text-base font-medium mb-6">
+              <img src={createProject} alt="" />
+              Create Project
+            </button>
+            <button className="flex gap-3.5 items-center text-base font-medium">
+              <img src={selectDraft} alt="" />
+              Select Drafts
+            </button>
+          </div>
+        </div>
 
         <div className="flex flex-col gap-1">
           {menus.map((data, index) => (

@@ -13,7 +13,7 @@ import access from "../assets/access.png";
 import sad from "../assets/sad.png";
 import upset from "../assets/upset.png";
 import happy from "../assets/happy.png";
-import accepted from "../assets/accepted.png";
+import accepted from "../assets/accepted.svg";
 import alert from "../assets/alert.png";
 import rejected from "../assets/rejected.png";
 import premium from "../assets/premium.png";
