@@ -1,25 +1,50 @@
 /* eslint-disable react/prop-types */
 import {
+  ArrowUp,
   CaretDown,
   CaretRight,
   FileText,
   PuzzlePiece,
+  Question,
 } from "@phosphor-icons/react";
 import { CaretLeft } from "@phosphor-icons/react/dist/ssr";
+import { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { Link, useLocation } from "react-router-dom";
-import imgOne from "../../../assets/editor_panel/profile_profile.svg";
+
 import {
   MyWorkTableData,
   tableHeading,
   tableHeadingTwo,
 } from "../../../utils/data";
-import { useState } from "react";
+import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
   const [modalPopup, setModalPopup] = useState(false);
+  const [jobAction, setJobAction] = useState(false);
+  const [file, setFile] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "video/*,image/*",
+    onDrop: (acceptedFiles) => {
+      setFile(acceptedFiles[0]);
+      if (acceptedFiles[0].type.startsWith("image/")) {
+        setThumbnail(URL.createObjectURL(acceptedFiles[0]));
+      }
+    },
+  });
+
   const handlePopup = () => {
     setModalPopup(!modalPopup);
+  };
+
+  const handeJobAction = () => {
+    setJobAction(!jobAction);
+  };
+
+  const handleUploadClick = () => {
+    document.getElementById("fileInput").click();
   };
 
   return (
@@ -100,104 +125,15 @@ const MyWorkTable = ({ filteredData }) => {
             </table>
 
             {modalPopup === true && (
-              <div className="absolute top-0 left-0 w-full h-screen bg-black/50 backdrop-blur-sm">
-                <div className="flex justify-center items-center h-screen">
-                  <div className="w-[1150px] bg-white rounded-3xl">
-                    <div className="modal_header border-b border-b-black/10 p-6 flex justify-between items-center">
-                      <div className="project_info flex gap-3">
-                        <div className="left">
-                          <img src={imgOne} alt="profile" />
-                        </div>
-                        <div className="right">
-                          <h2 className="text-slate-900 text-lg font-semibold flex gap-3 items-center">
-                            Sales Strategies Video Series
-                            <span className="bg-red-500 rounded-md text-white py-[2px] px-[6px] text-xs font-semibold">
-                              New Project
-                            </span>
-                          </h2>
-                          <p className="text-slate-600 text-sm font-normal">
-                            Created September 1, 2023
-                          </p>
-                        </div>
-                      </div>
-                      <div className="project_action flex gap-3">
-                        <button
-                          onClick={handlePopup}
-                          className="text-base font-semibold text-red-600 border border-red-600 py-3 px-6 rounded-full">
-                          Decline Job
-                        </button>
-                        <button className="text-base font-semibold text-white bg-indigo-600 border border-indigo-600 py-3 px-6 rounded-full">
-                          Accept Job
-                        </button>
-                      </div>
-                    </div>
-                    <div className="modal_description p-10">
-                      <div className="left">
-                        <div className="project_brief_wrapper pb-10">
-                          <div className="section_head pb-4">
-                            <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                              <FileText size={24} className="text-indigo-600" />
-                              Project Brief
-                            </h2>
-                          </div>
-                          <div className="project_brief border border-slate-200 rounded-3xl">
-                            <div className="project_des p-6 border-b border-b-slate-200">
-                              <p className="text-slate-800 text-xs font-normal pb-4">
-                                This project aims to create a video series
-                                focusing on impactful sales strategies for
-                                businesses of all sizes. The series will
-                                leverage your on-demand video editing service to
-                                showcase its capabilities and attract potential
-                                clients, while providing valuable and actionable
-                                sales advice.
-                              </p>
-
-                              <p className="text-slate-800 text-xs font-normal">
-                                To achieve your project goals, a multifaceted
-                                approach blending content marketing, social
-                                media engagement, and strategic partnerships is
-                                essential. Crafting informative blog posts,
-                                videos, and social media content showcasing the
-                                benefits of your on-demand video editing service
-                                will help increase brand awareness and position
-                                your company as thought l...
-                              </p>
-                            </div>
-                            <div className="see_more flex justify-center py-4">
-                              <button className="text-indigo-600 text-sm font-semibold flex items-center gap-2">
-                                Show More
-                                <CaretDown
-                                  size={20}
-                                  className="text-indigo-600 text-sm font-semibold"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="addons_wrapper pb-10">
-                          <div className="section_head pb-4">
-                            <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                              <PuzzlePiece
-                                size={24}
-                                className="text-indigo-600"
-                              />
-                              Add-Ons
-                            </h2>
-                          </div>
-
-                          <div className="addons_items p-4 border-b border-b-slate-100">
-
-                          </div>
-
-                          <div className="addons_bottom rounded-3xl"></div>
-                        </div>
-                      </div>
-                      <div className="right"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <EditorProjectPopUp
+                jobAction={jobAction}
+                handlePopup={handlePopup}
+                handeJobAction={handeJobAction}
+                handleUploadClick={handleUploadClick}
+                thumbnail={thumbnail}
+                getInputProps={getInputProps}
+                file={file}
+              />
             )}
           </div>
         </div>
@@ -233,7 +169,9 @@ const MyWorkTable = ({ filteredData }) => {
                             />
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
+                            <p
+                              className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer"
+                              onClick={handlePopup}>
                               {tableDataInfo.clientName}
                             </p>
                           </div>
@@ -286,6 +224,18 @@ const MyWorkTable = ({ filteredData }) => {
                   ))}
                 </tbody>
               </table>
+
+              {modalPopup === true && (
+                <EditorProjectPopUp
+                  jobAction={jobAction}
+                  handlePopup={handlePopup}
+                  handeJobAction={handeJobAction}
+                  handleUploadClick={handleUploadClick}
+                  thumbnail={thumbnail}
+                  getInputProps={getInputProps}
+                  file={file}
+                />
+              )}
             </div>
           </div>
 
