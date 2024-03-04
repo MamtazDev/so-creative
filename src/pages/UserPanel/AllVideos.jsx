@@ -1,8 +1,8 @@
 import { useState } from "react";
 import AllVideo from "../../components/UserPanel/AllVideos/AllVideo";
 import AllVideoHeader from "../../components/UserPanel/AllVideos/AllVideoHeader";
-import { videos } from "../../Data/AllDatas";
 import AllVideoFileLayout from "../../components/UserPanel/AllVideos/AllVideoFileLayout";
+import { videos } from "../../utils/data";
 
 const AllVideos = () => {
   const [filteredVideos, setFilteredVideos] = useState(videos);
