@@ -4,14 +4,32 @@ import close from "../../assets/close.png";
 import active from "../../assets/active.png";
 import send from "../../assets/send.png";
 import chatBot from "../../assets/chatBot.png";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { quickOptions } from "../../Data/AllDatas";
 
 const ChatBot = () => {
   const [show, setShow] = useState(false);
+  const chatbotRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (chatbotRef.current && !chatbotRef.current.contains(event.target)) {
+        setShow(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="fixed z-50 max-w-[512px] w-full  bottom-14 right-14">
+    <div
+      ref={chatbotRef}
+      className="fixed z-40 max-w-[512px] w-full  bottom-14 right-14"
+    >
       {show && (
         <div className="rounded-3xl bg-white shadow-2xl max-h-[672px]  h-full ">
           <div className="chatbot_header border-b p-6 w-full flex gap-2 items-start justify-between">
@@ -70,7 +88,10 @@ const ChatBot = () => {
         </div>
       )}
       <div className="text-end mt-4">
-        <button onClick={() => setShow(!show)}>
+        <button
+          className="hover:scale-105 transition-all duration-300 ease-in"
+          onClick={() => setShow(!show)}
+        >
           <img src={show ? chatOff : profile} alt="" />
         </button>
       </div>
