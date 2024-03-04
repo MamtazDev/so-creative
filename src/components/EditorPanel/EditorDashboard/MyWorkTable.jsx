@@ -1,15 +1,51 @@
 /* eslint-disable react/prop-types */
-import { CaretRight } from "@phosphor-icons/react";
+import {
+  ArrowUp,
+  CaretDown,
+  CaretRight,
+  FileText,
+  PuzzlePiece,
+  Question,
+} from "@phosphor-icons/react";
+import { CaretLeft } from "@phosphor-icons/react/dist/ssr";
+import { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { Link, useLocation } from "react-router-dom";
+
 import {
   MyWorkTableData,
   tableHeading,
   tableHeadingTwo,
 } from "../../../utils/data";
-import { CaretLeft } from "@phosphor-icons/react/dist/ssr";
+import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
+  const [modalPopup, setModalPopup] = useState(false);
+  const [jobAction, setJobAction] = useState(false);
+  const [file, setFile] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "video/*,image/*",
+    onDrop: (acceptedFiles) => {
+      setFile(acceptedFiles[0]);
+      if (acceptedFiles[0].type.startsWith("image/")) {
+        setThumbnail(URL.createObjectURL(acceptedFiles[0]));
+      }
+    },
+  });
+
+  const handlePopup = () => {
+    setModalPopup(!modalPopup);
+  };
+
+  const handeJobAction = () => {
+    setJobAction(!jobAction);
+  };
+
+  const handleUploadClick = () => {
+    document.getElementById("fileInput").click();
+  };
 
   return (
     <>
@@ -42,7 +78,9 @@ const MyWorkTable = ({ filteredData }) => {
                           />
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
+                          <p
+                            className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer"
+                            onClick={handlePopup}>
                             {tableDataInfo.clientName}
                           </p>
                         </div>
@@ -85,6 +123,18 @@ const MyWorkTable = ({ filteredData }) => {
                 </tr>
               </tbody>
             </table>
+
+            {modalPopup === true && (
+              <EditorProjectPopUp
+                jobAction={jobAction}
+                handlePopup={handlePopup}
+                handeJobAction={handeJobAction}
+                handleUploadClick={handleUploadClick}
+                thumbnail={thumbnail}
+                getInputProps={getInputProps}
+                file={file}
+              />
+            )}
           </div>
         </div>
       )}
@@ -119,7 +169,9 @@ const MyWorkTable = ({ filteredData }) => {
                             />
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
+                            <p
+                              className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer"
+                              onClick={handlePopup}>
                               {tableDataInfo.clientName}
                             </p>
                           </div>
@@ -172,27 +224,53 @@ const MyWorkTable = ({ filteredData }) => {
                   ))}
                 </tbody>
               </table>
+
+              {modalPopup === true && (
+                <EditorProjectPopUp
+                  jobAction={jobAction}
+                  handlePopup={handlePopup}
+                  handeJobAction={handeJobAction}
+                  handleUploadClick={handleUploadClick}
+                  thumbnail={thumbnail}
+                  getInputProps={getInputProps}
+                  file={file}
+                />
+              )}
             </div>
           </div>
 
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto mt-10 px-4">
             <nav
-              className="flex flex-row flex-nowrap justify-between md:justify-center items-center"
+              className="flex gap-4 flex-row flex-nowrap justify-between md:justify-center items-center"
               aria-label="Pagination">
               <button
-                className="flex items-center text-base font-medium border border-slate-200 p-3 rounded-full gap-2"
+                className="flex items-center text-base font-medium border border-slate-200  px-3 py-1 rounded-full gap-2"
                 title="Previous">
                 <CaretLeft className="text-slate-200" size={16} />
                 <span className="text-slate-200">Previous</span>
               </button>
-
-              <a className="w-3 block border">1</a>
-
+              <div className="flex gap-4">
+                <a className="block cursor-pointer border px-3 py-1 rounded-full text-base text-white font-medium bg-indigo-600">
+                  1
+                </a>
+                <a className="block cursor-pointer border border-transparent px-3 py-1 rounded-full text-base font-medium text-[#64748B]">
+                  2
+                </a>
+                <a className="block cursor-pointer border border-transparent px-3 py-1 rounded-full text-base font-medium text-[#64748B]">
+                  3
+                </a>
+                <a className="block cursor-pointer border border-transparent px-3 py-1 rounded-full text-base font-medium text-[#64748B]">
+                  ...
+                </a>
+                <a className="block cursor-pointer border border-transparent px-3 py-1 rounded-full text-base font-medium text-[#64748B]">
+                  10
+                </a>
+              </div>
               <button
-                className="flex items-center text-base font-medium border border-slate-200 p-3 rounded-full gap-2"
+                className="flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
                 title="Previous">
-                <span className="text-slate-200">Next</span>
-                <CaretRight className="text-slate-200" size={16} />
+                <span className="text-indigo-600">Next</span>
+                <CaretRight className="text-indigo-600" size={16} />
               </button>
             </nav>
           </div>
