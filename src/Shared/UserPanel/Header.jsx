@@ -20,6 +20,7 @@ const Header = () => {
   const creditRef = useRef(null);
   const helpRef = useRef(null);
   const profileRef = useRef(null);
+  // const notifyButtonref = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -35,9 +36,9 @@ const Header = () => {
       if (helpRef.current && !helpRef.current.contains(event.target)) {
         setShowHelp(false);
       }
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setShowProfile(false);
-      }
+      // if (profileRef.current && !profileRef.current.contains(event.target)) {
+      //   setShowProfile(false);
+      // }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -45,7 +46,7 @@ const Header = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [showNotification]);
   return (
     <div>
       <div className="flex items-center justify-between gap-4 p-6">
@@ -78,6 +79,7 @@ const Header = () => {
             <img src={message} alt="" />
           </button>
           <div
+            // ref={notifyButtonref}
             onClick={() => setShowNotification(!showNotification)}
             className="relative"
           >

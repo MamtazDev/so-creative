@@ -28,7 +28,7 @@ const ChatBot = () => {
   return (
     <div
       ref={chatbotRef}
-      className="fixed z-50 max-w-[512px] w-full  bottom-14 right-14"
+      className="fixed z-40 max-w-[512px] w-full  bottom-14 right-14"
     >
       {show && (
         <div className="rounded-3xl bg-white shadow-2xl max-h-[672px]  h-full ">
