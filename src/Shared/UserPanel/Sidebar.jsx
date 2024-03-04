@@ -15,26 +15,14 @@ const Sidebar = () => {
         </button>
 
         <div className="flex flex-col gap-1">
-          {menus.map((data, index) => (
-            <Link
-              to={data.path}
-              className={`${
-                location.pathname === data.path
-                  ? "active bg-white text-indigo-600"
-                  : ""
-              } rounded-full py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in`}
-              key={index}
-            >
-              {" "}
-              <img
-                src={
-                  location.pathname === data.path ? data.activePic : data.pic
-                }
-                alt=""
-              />
+          {
+            menus.map((data, index) => (
+            <Link to={data.path} className={`${ location.pathname === data.path  ? "active bg-white text-indigo-600"  : ""  } rounded-full py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in`} key={index}>
+              <img src={location.pathname === data.path ? data.activePic : data.pic} alt=""/>
               {data.title}
             </Link>
-          ))}
+            ))
+          }
         </div>
       </div>
 

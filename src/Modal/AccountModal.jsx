@@ -4,12 +4,10 @@ import brandInput from "../assets/brand-img.svg";
 import camera from "../assets/camera.svg";
 
 const AccountModal = ({ setShowAccount }) => {
+  const [inputData, setInputData] = useState({});
   const brandImgRef = useRef();
   const modalBodyRef = useRef();
-
-  const [inputData, setInputData] = useState({});
   // const handleImageChange = (event) => {};
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "image") {
@@ -24,6 +22,7 @@ const AccountModal = ({ setShowAccount }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -44,13 +43,11 @@ const AccountModal = ({ setShowAccount }) => {
     <div className="fixed top-0 z-50 h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
         ref={modalBodyRef}
-        className="max-w-[640px] w-full bg-white text-black p-10 rounded-2xl relative"
-      >
-        <div
-          onClick={() => setShowAccount(false)}
-          className="absolute top-5 right-5 "
-        >
-          <button>
+        className="max-w-[640px] w-full bg-white text-black p-10 rounded-2xl relative">
+        <div>
+          <button
+            onClick={() => setShowAccount(false)}
+            className="absolute top-5 right-5 ">
             <img src={close} alt="" />
           </button>
         </div>
@@ -106,8 +103,7 @@ const AccountModal = ({ setShowAccount }) => {
               !inputData?.image || !inputData?.name || !inputData?.email
             }
             type="submit"
-            className={`w-full rounded-full bg-indigo-600 disabled:bg-[#A7A3F2] text-white text-base font-semibold px-6 py-3`}
-          >
+            className={`w-full rounded-full bg-indigo-600 disabled:bg-[#A7A3F2] text-white text-base font-semibold px-6 py-3`}>
             Save Changes
           </button>
         </form>

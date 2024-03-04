@@ -1,15 +1,22 @@
 import clientImg1 from "../assets/editor_panel/clientImg1.svg";
 import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
 
-  export const tableHeading = ["Client", "Project Name", "Duration", "Date Created"];
-  export const tableHeadingTwo = [
-    "Client",
-    "Project Name",
-    "Assignee",
-    "Status",
-    "Duration",
-    "Last Activity",
-  ];
+export const tableHeading = [
+  "Client",
+  "Project Name",
+  "Duration",
+  "Date Created",
+];
+
+export const tableHeadingTwo = [
+  "Client",
+  "Project Name",
+  "Assignee",
+  "Status",
+  "Duration",
+  "Last Activity",
+];
+
 export const MyWorkTableData = [
   {
     clientImg: clientImg1,

@@ -7,8 +7,7 @@ const BrandCard = ({ brand, inputRef }) => {
       {brand.map((data, index) => {
         const fileName = data.name.split(".")[0];
         const fileExtension = data.name.split(".").slice(1).join(".");
-        const truncatedFileName =
-          fileName.length > 10 ? fileName.slice(0, 10) : fileName;
+        const truncatedFileName =  fileName.length > 10 ? fileName.slice(0, 10) : fileName;
 
         return (
           <div key={index} className="border rounded-xl relative">

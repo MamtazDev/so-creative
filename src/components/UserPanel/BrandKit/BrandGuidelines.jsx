@@ -5,13 +5,13 @@ import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
 
 const BrandGuidelines = () => {
+  const [brandImg, setBrandImg] = useState(null);
+  const [description, setDescription] = useState("");
+  const [brand, setBrand] = useState({});
   const brandImgRef = useRef();
   const guidelinesInputRefs = useRef(
     Array.from({ length: guidelines.length }).map(() => React.createRef())
   );
-  const [brandImg, setBrandImg] = useState(null);
-  const [description, setDescription] = useState("");
-  const [brand, setBrand] = useState({});
   const maxLength = 500;
 
   const handleImageChange = (event) => {
