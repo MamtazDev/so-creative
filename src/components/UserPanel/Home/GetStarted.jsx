@@ -1,4 +1,4 @@
-import { details } from "../../../Data/AllDatas";
+import { details } from "../../../utils/data";
 
 const GetStarted = () => {
   return (

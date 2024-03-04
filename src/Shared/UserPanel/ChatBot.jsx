@@ -5,7 +5,7 @@ import active from "../../assets/active.png";
 import send from "../../assets/send.png";
 import chatBot from "../../assets/chatBot.png";
 import { useEffect, useRef, useState } from "react";
-import { quickOptions } from "../../Data/AllDatas";
+import { quickOptions } from "../../utils/data";
 
 const ChatBot = () => {
   const [show, setShow] = useState(false);

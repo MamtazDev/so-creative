@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import { guidelines } from "../../../Data/AllDatas";
 import BrandUpload from "../../../Shared/UserPanel/BrandUpload";
 import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
+import { guidelines } from "../../../utils/data";
 
 const BrandGuidelines = () => {
   const brandImgRef = useRef();

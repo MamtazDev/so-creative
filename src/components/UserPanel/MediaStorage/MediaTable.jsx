@@ -1,8 +1,8 @@
 import React from "react";
-import { mediaStorage } from "../../../Data/AllDatas";
 import mp4 from "../../../assets/mp4.png";
 import folder from "../../../assets/folder.png";
 import { DotsThreeOutline } from "@phosphor-icons/react";
+import { mediaStorage } from "../../../utils/data";
 
 const MediaTable = () => {
   const folders = mediaStorage.filter((item) => item.folder);

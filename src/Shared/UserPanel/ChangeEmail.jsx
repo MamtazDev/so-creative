@@ -1,8 +1,8 @@
-import { answers, reactions } from "../../Data/AllDatas";
 import arrowLeft from "../../assets/arrow-left.png";
 import helpQuery from "../../assets/help-ans.png";
 import open from "../../assets/open.png";
 import { Link } from "react-router-dom";
+import { answers } from "../../utils/data";
 
 const ChangeEmail = () => {
   return (

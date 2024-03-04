@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { mediaStorage } from "../../../Data/AllDatas";
 import FolderCard from "./FolderCard";
 import VideoCard from "./VideoCard";
+import { mediaStorage } from "../../../utils/data";
 
 const AllFiles = () => {
   const folders = mediaStorage.filter((item) => item.folder);
