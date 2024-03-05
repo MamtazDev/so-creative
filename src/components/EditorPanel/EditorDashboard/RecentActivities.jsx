@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { RecentActivites } from "../../../utils/data";
 
 const RecentActivities = () => {
@@ -30,9 +31,9 @@ const RecentActivities = () => {
                 <span className="font-bold">
                   Sales Strategies Video Series by
                 </span>
-                <span className="text-amber-600 ml-1">
+                <Link to={"#"} className="text-amber-600 ml-1">
                   {activityItem?.mentionName}
-                </span>
+                </Link>
               </p>
               <p className="text-slate-500 text-xs font-medium">
                 {activityItem.dateTime}
