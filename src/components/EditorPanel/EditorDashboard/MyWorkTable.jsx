@@ -55,64 +55,75 @@ const MyWorkTable = ({ filteredData }) => {
             <table className="min-w-full leading-normal myworktable">
               <thead>
                 <tr>
-                  {tableHeading.map((tableHadingName, index) => (
-                    <th
-                      className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                      key={index}>
-                      {tableHadingName}
-                    </th>
-                  ))}
+                  {tableHeading.length > 0 ? (
+                    tableHeading.map((tableHadingName, index) => (
+                      <th
+                        className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
+                        key={index}
+                      >
+                        {tableHadingName}
+                      </th>
+                    ))
+                  ) : (
+                    <p>There is no data</p>
+                  )}
                 </tr>
               </thead>
 
               <tbody>
-                {MyWorkTableData.map((tableDataInfo, index) => (
-                  <tr key={index}>
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 w-8 h-8">
-                          <img
-                            className="w-full h-full rounded-full"
-                            src={tableDataInfo.clientImg}
-                            alt="img"
-                          />
+                {MyWorkTableData.length > 0 ? (
+                  MyWorkTableData.map((tableDataInfo, index) => (
+                    <tr key={index}>
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0 w-8 h-8">
+                            <img
+                              className="w-full h-full rounded-full"
+                              src={tableDataInfo.clientImg}
+                              alt="img"
+                            />
+                          </div>
+                          <div className="ml-3">
+                            <p
+                              className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer"
+                              onClick={handlePopup}
+                            >
+                              {tableDataInfo.clientName}
+                            </p>
+                          </div>
                         </div>
-                        <div className="ml-3">
-                          <p
-                            className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer"
-                            onClick={handlePopup}>
-                            {tableDataInfo.clientName}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                        {tableDataInfo.projectName}
-                      </p>
-                    </td>
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                          {tableDataInfo.projectName}
+                        </p>
+                      </td>
 
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                        {tableDataInfo.duration} days
-                      </p>
-                    </td>
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                          {tableDataInfo.duration} days
+                        </p>
+                      </td>
 
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                        {tableDataInfo.dateCreated} <CaretRight size={20} />
-                      </p>
-                    </td>
-                  </tr>
-                ))}
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
+                          {tableDataInfo.dateCreated} <CaretRight size={20} />
+                        </p>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <p>There is no data</p>
+                )}
                 <tr>
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm"></td>
 
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
                     <Link
                       to={"/editor/all-projects"}
-                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3">
+                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
+                    >
                       All Projects <CaretRight size={20} />
                     </Link>
                   </td>
@@ -146,82 +157,94 @@ const MyWorkTable = ({ filteredData }) => {
               <table className="min-w-full leading-normal myworktable">
                 <thead>
                   <tr>
-                    {tableHeadingTwo.map((tableHadingName, index) => (
-                      <th
-                        className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                        key={index}>
-                        {tableHadingName}
-                      </th>
-                    ))}
+                    {tableHeadingTwo.length > 0 ? (
+                      tableHeadingTwo.map((tableHadingName, index) => (
+                        <th
+                          className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
+                          key={index}
+                        >
+                          {tableHadingName}
+                        </th>
+                      ))
+                    ) : (
+                      <p>There is no data</p>
+                    )}
                   </tr>
                 </thead>
 
                 <tbody>
-                  {filteredData.map((tableDataInfo, index) => (
-                    <tr key={index}>
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 w-8 h-8">
-                            <img
-                              className="w-full h-full rounded-full"
-                              src={tableDataInfo.clientImg}
-                              alt="img"
-                            />
+                  {filteredData.length > 0 ? (
+                    filteredData.map((tableDataInfo, index) => (
+                      <tr key={index}>
+                        <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                          <div className="flex items-center">
+                            <div className="flex-shrink-0 w-8 h-8">
+                              <img
+                                className="w-full h-full rounded-full"
+                                src={tableDataInfo.clientImg}
+                                alt="img"
+                              />
+                            </div>
+                            <div className="ml-3">
+                              <p
+                                className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer"
+                                onClick={handlePopup}
+                              >
+                                {tableDataInfo.clientName}
+                              </p>
+                            </div>
                           </div>
-                          <div className="ml-3">
-                            <p
-                              className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer"
-                              onClick={handlePopup}>
-                              {tableDataInfo.clientName}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
+                        </td>
 
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                          {tableDataInfo.projectName}
-                        </p>
-                      </td>
+                        <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                          <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                            {tableDataInfo.projectName}
+                          </p>
+                        </td>
 
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                          {tableDataInfo.assignee}
-                        </p>
-                      </td>
+                        <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                          <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                            {tableDataInfo.assignee}
+                          </p>
+                        </td>
 
-                      <td
-                        className={
-                          "px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm"
-                        }>
-                        <p
-                          className={`${
-                            tableDataInfo.status === "In Progress" &&
-                            "text-sm font-normal text-white bg-orange-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
-                          } ${
-                            tableDataInfo.status === "Approved" &&
-                            "text-sm font-normal text-white bg-green-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
-                          } ${
-                            tableDataInfo.status === "New Project" &&
-                            "text-sm font-normal text-white bg-red-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
-                          }`}>
-                          {tableDataInfo.status}
-                        </p>
-                      </td>
+                        <td
+                          className={
+                            "px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm"
+                          }
+                        >
+                          <p
+                            className={`${
+                              tableDataInfo.status === "In Progress" &&
+                              "text-sm font-normal text-white bg-orange-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
+                            } ${
+                              tableDataInfo.status === "Approved" &&
+                              "text-sm font-normal text-white bg-green-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
+                            } ${
+                              tableDataInfo.status === "New Project" &&
+                              "text-sm font-normal text-white bg-red-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
+                            }`}
+                          >
+                            {tableDataInfo.status}
+                          </p>
+                        </td>
 
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                          {tableDataInfo.duration} days
-                        </p>
-                      </td>
+                        <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                          <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+                            {tableDataInfo.duration} days
+                          </p>
+                        </td>
 
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
-                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                          {tableDataInfo.dateCreated} <CaretRight size={20} />
-                        </p>
-                      </td>
-                    </tr>
-                  ))}
+                        <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
+                          <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
+                            {tableDataInfo.dateCreated} <CaretRight size={20} />
+                          </p>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <p>There is no data</p>
+                  )}
                 </tbody>
               </table>
 
@@ -242,10 +265,12 @@ const MyWorkTable = ({ filteredData }) => {
           <div className="container mx-auto mt-10 px-4">
             <nav
               className="flex gap-4 flex-row flex-nowrap justify-between md:justify-center items-center"
-              aria-label="Pagination">
+              aria-label="Pagination"
+            >
               <button
                 className="flex items-center text-base font-medium border border-slate-200  px-3 py-1 rounded-full gap-2"
-                title="Previous">
+                title="Previous"
+              >
                 <CaretLeft className="text-slate-200" size={16} />
                 <span className="text-slate-200">Previous</span>
               </button>
@@ -268,7 +293,8 @@ const MyWorkTable = ({ filteredData }) => {
               </div>
               <button
                 className="flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
-                title="Previous">
+                title="Previous"
+              >
                 <span className="text-indigo-600">Next</span>
                 <CaretRight className="text-indigo-600" size={16} />
               </button>

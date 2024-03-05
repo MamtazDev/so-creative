@@ -4,9 +4,11 @@ import BrandcardInner from "./BrandcardInner";
 const BrandCard = ({ brand, inputRef }) => {
   return (
     <div className="grid grid-cols-5 gap-6">
-      {brand.map((data, index) => (
-        <BrandcardInner key={index} data={data} />
-      ))}
+      {brand.length > 0 ? (
+        brand.map((data, index) => <BrandcardInner key={index} data={data} />)
+      ) : (
+        <p>There is no data</p>
+      )}
       <div
         onClick={inputRef}
         className="border border-dashed rounded-xl flex items-center justify-center"

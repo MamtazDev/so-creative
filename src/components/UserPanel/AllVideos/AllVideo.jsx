@@ -5,9 +5,13 @@ const AllVideo = ({ filteredVideos }) => {
   return (
     <>
       <div className="grid grid-cols-5 gap-6">
-        {filteredVideos?.map((data, index) => (
-          <VideoCard key={index} name={data.name} status={data.status} />
-        ))}
+        {filteredVideos.length > 0 ? (
+          filteredVideos?.map((data, index) => (
+            <VideoCard key={index} name={data.name} status={data.status} />
+          ))
+        ) : (
+          <p>There is no data</p>
+        )}
       </div>
     </>
   );

@@ -17,9 +17,15 @@ const RecentVideos = () => {
         </Link>
       </div>
       <div className="grid grid-cols-5 gap-6">
-        {videos.slice(0, 5).map((data, index) => (
-          <VideoCard key={index} name={data.name} status={data.status} />
-        ))}
+        {videos.length > 0 ? (
+          videos
+            .slice(0, 5)
+            .map((data, index) => (
+              <VideoCard key={index} name={data.name} status={data.status} />
+            ))
+        ) : (
+          <p>There is no data</p>
+        )}
       </div>
     </div>
   );

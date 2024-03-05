@@ -35,21 +35,25 @@ const GettingStarted = ({ setStep }) => {
         <p className="text-base text-indigo-600 font-bold">Getting Started</p>
       </div>
       <div className="flex flex-col gap-4">
-        {gettingStarted.map((data, index) => (
-          <div
-            onClick={data?.function}
-            className="border rounded-xl py-3 px-4 flex items-center gap-2 justify-between cursor-pointer"
-            key={index}
-          >
-            <div>
-              <p className="mb-2 text-base font-bold ">{data.query}</p>
-              <p className="text-sm font-medium">
-                updated {data.time} months ago
-              </p>
+        {gettingStarted.length > 0 ? (
+          gettingStarted.map((data, index) => (
+            <div
+              onClick={data?.function}
+              className="border rounded-xl py-3 px-4 flex items-center gap-2 justify-between cursor-pointer"
+              key={index}
+            >
+              <div>
+                <p className="mb-2 text-base font-bold ">{data.query}</p>
+                <p className="text-sm font-medium">
+                  updated {data.time} months ago
+                </p>
+              </div>
+              <img src={arrow} alt="" />
             </div>
-            <img src={arrow} alt="" />
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>There is no data</p>
+        )}
       </div>
     </div>
   );

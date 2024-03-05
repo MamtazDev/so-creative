@@ -40,19 +40,23 @@ const HelpOptions = ({ setStep }) => {
         />
       </div>
       <div className="flex flex-col gap-4">
-        {helps.map((data, index) => (
-          <div
-            onClick={data?.function}
-            className="border rounded-xl py-3 px-4 flex items-center gap-2 justify-between cursor-pointer"
-            key={index}
-          >
-            <div>
-              <p className="mb-2 text-base font-bold ">{data.title}</p>
-              <p className="text-sm font-medium">{data.no} articles</p>
+        {helps.length > 0 ? (
+          helps.map((data, index) => (
+            <div
+              onClick={data?.function}
+              className="border rounded-xl py-3 px-4 flex items-center gap-2 justify-between cursor-pointer"
+              key={index}
+            >
+              <div>
+                <p className="mb-2 text-base font-bold ">{data.title}</p>
+                <p className="text-sm font-medium">{data.no} articles</p>
+              </div>
+              <img src={arrow} alt="" />
             </div>
-            <img src={arrow} alt="" />
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>There is no data</p>
+        )}
       </div>
     </div>
   );

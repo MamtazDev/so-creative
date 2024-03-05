@@ -45,29 +45,33 @@ const BrandGuidelines = () => {
       className="flex items-start justify-between gap-10"
     >
       <div className="w-full flex flex-col gap-10 ">
-        {guidelines.map((data, index) => (
-          <div key={index}>
-            <input
-              type="file"
-              name={data.inputName}
-              accept={data?.acceptType}
-              className="hidden"
-              onChange={(e) => handleChange(e, data.inputName)}
-              ref={guidelinesInputRefs.current[index]}
-            />
-            <BrandUpload
-              brandData={brand}
-              title={data.title}
-              subTitle={data.subtitle}
-              buttonName={data.buttonName}
-              inputName={data.inputName}
-              acceptType={data?.acceptType}
-              inputRef={() =>
-                guidelinesInputRefs.current[index].current.click()
-              }
-            />
-          </div>
-        ))}
+        {guidelines.length > 0 ? (
+          guidelines.map((data, index) => (
+            <div key={index}>
+              <input
+                type="file"
+                name={data.inputName}
+                accept={data?.acceptType}
+                className="hidden"
+                onChange={(e) => handleChange(e, data.inputName)}
+                ref={guidelinesInputRefs.current[index]}
+              />
+              <BrandUpload
+                brandData={brand}
+                title={data.title}
+                subTitle={data.subtitle}
+                buttonName={data.buttonName}
+                inputName={data.inputName}
+                acceptType={data?.acceptType}
+                inputRef={() =>
+                  guidelinesInputRefs.current[index].current.click()
+                }
+              />
+            </div>
+          ))
+        ) : (
+          <p>There is no data</p>
+        )}
       </div>
       <div className="max-w-[584px] w-full border rounded-3xl p-10">
         <div onClick={() => brandImgRef.current.click()} className="relative">

@@ -62,14 +62,18 @@ const ChatBot = () => {
             <div>
               <p className="text-xs font-semibold mb-3">SUGGESTIONS</p>
               <div className="flex items-center flex-wrap gap-3">
-                {quickOptions.map((data, index) => (
-                  <button
-                    className="bg-indigo-100 py-2 px-4 rounded-xl text-sm font-normal"
-                    key={index}
-                  >
-                    {data}
-                  </button>
-                ))}
+                {quickOptions.length > 0 ? (
+                  quickOptions.map((data, index) => (
+                    <button
+                      className="bg-indigo-100 py-2 px-4 rounded-xl text-sm font-normal"
+                      key={index}
+                    >
+                      {data}
+                    </button>
+                  ))
+                ) : (
+                  <p>There is no data</p>
+                )}
               </div>
             </div>
           </div>

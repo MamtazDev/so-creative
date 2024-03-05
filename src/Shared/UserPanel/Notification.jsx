@@ -2,6 +2,24 @@ import close from "../../assets/close.svg";
 import { notifications } from "../../utils/data";
 
 const Notification = ({ setShowNotification, notificationRef }) => {
+  const formatDateTitle = (date) => {
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const inputDate = new Date(date);
+
+    if (inputDate.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0)) {
+      return "Today";
+    } else if (
+      inputDate.setHours(0, 0, 0, 0) === yesterday.setHours(0, 0, 0, 0)
+    ) {
+      return "Yesterday";
+    } else {
+      return date;
+    }
+  };
+
   return (
     <div
       ref={notificationRef}
@@ -13,55 +31,43 @@ const Notification = ({ setShowNotification, notificationRef }) => {
           <img src={close} alt="" />
         </button>
       </div>
+
       <div>
-        <div className="flex gap-4 items-center mb-5">
-          <p className="text-slate-500 text-sm font-semibold">Today</p>
-          <div className="border-b w-full"></div>
-        </div>
-        <div>
-          {notifications.slice(0, 2).map((data, index) => (
-            <div key={index} className="flex items-start gap-4 mb-5">
-              <img src={data.pic} alt="" />
-              <div>
-                <div className="flex items-center gap-2 justify-between">
-                  <p>{data.title}</p>
-                  {data.new && (
-                    <button className="text-xs text-white py-[1px] px-2 rounded-[32px] bg-[#E84E4E]">
-                      <span className="inline-block w-2 h-2 rounded-full bg-white mr-1"></span>
-                      New
-                    </button>
-                  )}
-                </div>
-                <p dangerouslySetInnerHTML={{ __html: data.description }} />
-                <p>{data.time}</p>
+        {notifications.length > 0 ? (
+          notifications.map((data, index) => (
+            <div key={index}>
+              <div className="flex gap-4 items-center mb-5">
+                <p className="text-slate-500 text-sm font-semibold whitespace-nowrap">
+                  {formatDateTitle(data.date)}
+                </p>
+                <div className="border-b w-full"></div>
               </div>
+              {data.lists.length > 0 &&
+                data.lists.map((list, listIndex) => (
+                  <div key={listIndex} className="flex items-start gap-4 mb-5">
+                    <img src={list.pic} alt="" />
+                    <div>
+                      <div className="flex items-center gap-2 justify-between">
+                        <p>{list.title}</p>
+                        {list.new && (
+                          <button className="text-xs text-white py-[1px] px-2 rounded-[32px] bg-[#E84E4E]">
+                            <span className="inline-block w-2 h-2 rounded-full bg-white mr-1"></span>
+                            New
+                          </button>
+                        )}
+                      </div>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: list.description }}
+                      />
+                      <p>{data.time}</p>
+                    </div>
+                  </div>
+                ))}
             </div>
-          ))}
-        </div>
-        <div className="flex gap-4 items-center mb-5">
-          <p className="text-slate-500 text-sm font-semibold">Yesterday</p>
-          <div className="border-b w-full"></div>
-        </div>
-        <div>
-          {notifications.slice(2, 4).map((data, index) => (
-            <div key={index} className="flex items-start gap-4 mb-5">
-              <img src={data.pic} alt="" />
-              <div>
-                <div className="flex items-center gap-2 justify-between">
-                  <p>{data.title}</p>
-                  {data.new && (
-                    <button className="text-xs text-white py-[1px] px-2 rounded-[32px] bg-[#E84E4E]">
-                      <span className="inline-block w-2 h-2 rounded-full bg-white mr-1"></span>
-                      New
-                    </button>
-                  )}
-                </div>
-                <p dangerouslySetInnerHTML={{ __html: data.description }} />
-                <p>{data.time}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+          ))
+        ) : (
+          <p>There is no data</p>
+        )}
       </div>
 
       <button className="rounded-full w-full border py-2 pr-4 pl-2 text-base font-medium">
