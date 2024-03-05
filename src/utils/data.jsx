@@ -541,3 +541,9 @@ export const helps = [
     no: 25,
   },
 ];
+
+export const createProjectStepper = [
+  "Upload Files",
+  "Create Brief",
+  "Select Add ons",
+];

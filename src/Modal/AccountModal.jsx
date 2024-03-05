@@ -37,14 +37,12 @@ const AccountModal = ({ setShowAccount }) => {
         ref={modalBodyRef}
         className="max-w-[640px] w-full bg-white text-black p-10 rounded-2xl relative"
       >
-        <div>
-          <button
-            onClick={() => setShowAccount(false)}
-            className="absolute top-5 right-5 "
-          >
-            <img src={close} alt="" />
-          </button>
-        </div>
+        <button
+          onClick={() => setShowAccount(false)}
+          className="absolute top-5 right-5 "
+        >
+          <img src={close} alt="" />
+        </button>
 
         {step === 1 && (
           <div>
