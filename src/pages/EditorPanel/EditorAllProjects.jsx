@@ -1,8 +1,10 @@
 import { useState } from "react";
 import MyWorkTable from "../../components/EditorPanel/EditorDashboard/MyWorkTable";
 import { MyWorkTableData } from "../../utils/data";
+import { useLocation } from "react-router-dom";
 
 const EditorAllProjects = () => {
+    const route = useLocation();
   const [filter, setFilter] = useState("All");
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
@@ -22,7 +24,11 @@ const EditorAllProjects = () => {
     <>
       <div className="seciton_heading pb-6 flex items-center justify-between">
         <div className="title">
-          <h3 className="text-2xl font-bold text-slate-900">All Projects</h3>
+          <h3 className="text-2xl font-bold text-slate-900">
+            {route.pathname === "/editor/all-projects"
+              ? "All Projects"
+              : "All Clients"}
+          </h3>
         </div>
         <div className="sorting flex items-center gap-3">
           <div className="button_group bg-slate-100 rounded-full p-1">

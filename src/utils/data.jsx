@@ -32,6 +32,7 @@ export const tableHeading = [
   "Duration",
   "Date Created",
 ];
+
 export const tableHeadingTwo = [
   "Client",
   "Project Name",
@@ -40,11 +41,21 @@ export const tableHeadingTwo = [
   "Duration",
   "Last Activity",
 ];
+
+export const clientTableHeading = [
+  "Client",
+  "Project Count",
+  "Total Duration",
+  "Last Project Status",
+  "Last Activity",
+];
+
 export const MyWorkTableData = [
   {
     clientImg: clientImg1,
     clientName: "Xavier Davis",
     projectName: "Product Showcase Video",
+    projectCount: 4,
     assignee: "Shawn Mahbub",
     status: "In Progress",
     duration: 4,
@@ -54,6 +65,7 @@ export const MyWorkTableData = [
     clientImg: clientImg1,
     clientName: "Xavier Davis",
     projectName: "Product Showcase Video",
+    projectCount: 4,
     assignee: "Shawn Mahbub",
     status: "Approved",
     duration: 4,
@@ -63,6 +75,7 @@ export const MyWorkTableData = [
     clientImg: clientImg1,
     clientName: "Xavier Davis",
     projectName: "Product Showcase Video",
+    projectCount: 4,
     assignee: "Shawn Mahbub",
     status: "New Project",
     duration: 4,
@@ -154,7 +167,7 @@ export const menus = [
     pic: myTasksIcon,
     activePic: myTasksIconActive,
     title: "My Tasks",
-    path: "/editor/my-tasks",
+    path: "/editor/all-projects",
   },
 
   {

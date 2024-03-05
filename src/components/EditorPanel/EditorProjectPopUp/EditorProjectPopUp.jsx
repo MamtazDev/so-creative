@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import {
   ArrowUp,
@@ -22,6 +23,7 @@ const EditorProjectPopUp = ({
   handleUploadClick,
   thumbnail,
   getInputProps,
+  getRootProps,
   file,
 }) => {
   return (
@@ -88,7 +90,8 @@ const EditorProjectPopUp = ({
                     </div>
                     <div className="submit_video outline-1 outline-dashed outline-slate-200  rounded-3xl">
                       <div className="upoload_video py-12 px-6 flex justify-center items-center flex-col border-b border-dashed">
-                        <div onClick={handleUploadClick}>
+
+                        <div {...getRootProps()} onClick={handleUploadClick}>
                           {thumbnail ? (
                             <img
                               src={thumbnail}
