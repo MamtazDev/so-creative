@@ -1,33 +1,8 @@
 import arrow from "../../assets/arrow-right.svg";
 import arrowLeft from "../../assets/arrow-left.svg";
+import { gettingStarted } from "../../utils/data";
 
 const GettingStarted = ({ setStep }) => {
-  const handleStep = () => {
-    setStep(3);
-  };
-  const gettingStarted = [
-    {
-      query: "How to change the email address of your account?",
-      time: "2",
-      function: handleStep,
-    },
-    {
-      query: "How to apply a promo code?",
-      time: "3",
-    },
-    {
-      query: "How to download your invoices?",
-      time: "3",
-    },
-    {
-      query: "How to cancel your subscription?",
-      time: "3",
-    },
-    {
-      query: "How collaborator charges are calculated",
-      time: "3",
-    },
-  ];
   return (
     <div>
       <div className=" flex items-center gap-3  mb-8">
@@ -38,7 +13,7 @@ const GettingStarted = ({ setStep }) => {
         {gettingStarted.length > 0 ? (
           gettingStarted.map((data, index) => (
             <div
-              onClick={data?.function}
+              onClick={() => setStep(3)}
               className="border rounded-xl py-3 px-4 flex items-center gap-2 justify-between cursor-pointer"
               key={index}
             >

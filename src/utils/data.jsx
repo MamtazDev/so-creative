@@ -495,3 +495,49 @@ export const mediaStorage = [
     ],
   },
 ];
+
+export const gettingStarted = [
+  {
+    query: "How to change the email address of your account?",
+    time: "2",
+  },
+  {
+    query: "How to apply a promo code?",
+    time: "3",
+  },
+  {
+    query: "How to download your invoices?",
+    time: "3",
+  },
+  {
+    query: "How to cancel your subscription?",
+    time: "3",
+  },
+  {
+    query: "How collaborator charges are calculated",
+    time: "3",
+  },
+];
+
+export const helps = [
+  {
+    title: "Getting Started",
+    no: 2,
+  },
+  {
+    title: "How to use SoCreative",
+    no: 14,
+  },
+  {
+    title: "Account and Subscription",
+    no: 5,
+  },
+  {
+    title: "Issues and Feedback",
+    no: 4,
+  },
+  {
+    title: "FAQs",
+    no: 25,
+  },
+];

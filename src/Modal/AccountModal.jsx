@@ -4,6 +4,7 @@ import brandInput from "../assets/brand-img.svg";
 import camera from "../assets/camera.svg";
 import verifyEmail from "../assets/verify-email.svg";
 import { Link } from "react-router-dom";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 const AccountModal = ({ setShowAccount }) => {
   const [inputData, setInputData] = useState({});
@@ -28,31 +29,19 @@ const AccountModal = ({ setShowAccount }) => {
     setStep(2);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        modalBodyRef.current &&
-        !modalBodyRef.current.contains(event.target)
-      ) {
-        setShowAccount(false);
-      }
-    };
+  useOutsideClick(modalBodyRef, () => setShowAccount(false));
 
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
   return (
     <div className="fixed top-0 z-50 h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
         ref={modalBodyRef}
-        className="max-w-[640px] w-full bg-white text-black p-10 rounded-2xl relative">
+        className="max-w-[640px] w-full bg-white text-black p-10 rounded-2xl relative"
+      >
         <div>
           <button
             onClick={() => setShowAccount(false)}
-            className="absolute top-5 right-5 ">
+            className="absolute top-5 right-5 "
+          >
             <img src={close} alt="" />
           </button>
         </div>

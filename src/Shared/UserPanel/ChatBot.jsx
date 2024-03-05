@@ -6,24 +6,13 @@ import send from "../../assets/send.svg";
 import chatBot from "../../assets/noChat.svg";
 import { useEffect, useRef, useState } from "react";
 import { quickOptions } from "../../utils/data";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const ChatBot = () => {
   const [show, setShow] = useState(false);
   const chatbotRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (chatbotRef.current && !chatbotRef.current.contains(event.target)) {
-        setShow(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  useOutsideClick(chatbotRef, () => setShow(false));
 
   return (
     <div

@@ -3,12 +3,13 @@ import logo from "../../assets/logo.png";
 import search from "../../assets/search.svg";
 import message from "../../assets/message-question.svg";
 import notification from "../../assets/notification.svg";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Notification from "./Notification";
 import Credit from "./Credit";
 import Help from "./Help";
 import ProfileActive from "./ProfileActive";
 import ProfileDropdown from "./ProfileDropdown";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Header = () => {
   const [showNotification, setShowNotification] = useState(false);
@@ -21,30 +22,11 @@ const Header = () => {
   const helpRef = useRef(null);
   const profileRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      switch (true) {
-        case notificationRef.current &&
-          !notificationRef.current.contains(event.target):
-          setShowNotification(false);
-          break;
-        case creditRef.current && !creditRef.current.contains(event.target):
-          setShowCredit(false);
-          break;
-        case helpRef.current && !helpRef.current.contains(event.target):
-          setShowHelp(false);
-          break;
-        default:
-          break;
-      }
-    };
+  useOutsideClick(notificationRef, () => setShowNotification(false));
+  useOutsideClick(creditRef, () => setShowCredit(false));
+  useOutsideClick(helpRef, () => setShowHelp(false));
+  useOutsideClick(profileRef, () => setShowProfile(false));
 
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showNotification]);
   return (
     <div>
       <div className="flex items-center justify-between gap-4 p-6">

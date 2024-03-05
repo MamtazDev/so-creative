@@ -63,7 +63,7 @@ const BrandGuidelines = () => {
                 buttonName={data.buttonName}
                 inputName={data.inputName}
                 acceptType={data?.acceptType}
-                inputRef={() =>
+                inputRefClick={() =>
                   guidelinesInputRefs.current[index].current.click()
                 }
               />
