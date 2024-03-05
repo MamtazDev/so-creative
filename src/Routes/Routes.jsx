@@ -9,6 +9,8 @@ import Home from "../pages/Website/Home";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
 import BrandKit from "../pages/UserPanel/BrandKit";
 import MediaStorage from "../pages/UserPanel/MediaStorage";
+import Register from "../pages/Auth/Register";
+import Login from "../pages/Auth/Login";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,15 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
     ],
+  },
+
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 
   {
