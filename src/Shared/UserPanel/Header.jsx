@@ -20,25 +20,23 @@ const Header = () => {
   const creditRef = useRef(null);
   const helpRef = useRef(null);
   const profileRef = useRef(null);
-  // const notifyButtonref = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        notificationRef.current &&
-        !notificationRef.current.contains(event.target)
-      ) {
-        setShowNotification(false);
+      switch (true) {
+        case notificationRef.current &&
+          !notificationRef.current.contains(event.target):
+          setShowNotification(false);
+          break;
+        case creditRef.current && !creditRef.current.contains(event.target):
+          setShowCredit(false);
+          break;
+        case helpRef.current && !helpRef.current.contains(event.target):
+          setShowHelp(false);
+          break;
+        default:
+          break;
       }
-      if (creditRef.current && !creditRef.current.contains(event.target)) {
-        setShowCredit(false);
-      }
-      if (helpRef.current && !helpRef.current.contains(event.target)) {
-        setShowHelp(false);
-      }
-      // if (profileRef.current && !profileRef.current.contains(event.target)) {
-      //   setShowProfile(false);
-      // }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
