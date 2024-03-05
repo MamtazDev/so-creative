@@ -57,6 +57,10 @@ export const router = createBrowserRouter([
         path: "/editor/all-projects",
         element: <EditorAllProjects />,
       },
+      {
+        path: "/editor/clients",
+        element: <EditorAllProjects />,
+      },
     ],
   },
 ]);

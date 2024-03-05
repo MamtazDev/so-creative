@@ -9,14 +9,12 @@ import { Plus } from "@phosphor-icons/react";
 const Sidebar = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
-  const [userType, setUserType] = useState("user");
 
   return (
-    <div className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
+    <aside className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
       <div>
         <div className="relative">
-          <button
-            onClick={() => setShow(!show)}
+          <button onClick={() => setShow(!show)}
             className="bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 ease-in flex gap-2 items-center justify-center mb-8 text-base text-white font-semibold rounded-full w-full py-3 px-6 "
           >
             <Plus size={24} />
@@ -67,7 +65,7 @@ const Sidebar = () => {
           <p className="text-xs font-normal">Free Plan</p>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 
