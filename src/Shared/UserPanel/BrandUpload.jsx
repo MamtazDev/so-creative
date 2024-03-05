@@ -6,7 +6,7 @@ const BrandUpload = ({
   subTitle,
   inputName,
   buttonName,
-  inputRef,
+  inputRefClick,
   brandData,
 }) => {
   return (
@@ -15,10 +15,10 @@ const BrandUpload = ({
       <p className="text-slate-500 font-normal text-sm mb-6">{subTitle}</p>
 
       {Object.keys(brandData).find((i) => i === inputName) ? (
-        <BrandCard brand={brandData[inputName]} inputRef={inputRef} />
+        <BrandCard brand={brandData[inputName]} inputRefClick={inputRefClick} />
       ) : (
         <button
-          onClick={inputRef}
+          onClick={inputRefClick}
           type="button"
           className="border border-indigo-600 text-indigo-600 rounded-full py-2 px-6"
         >

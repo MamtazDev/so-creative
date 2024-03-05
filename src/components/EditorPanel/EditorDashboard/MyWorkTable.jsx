@@ -72,13 +72,18 @@ const MyWorkTable = ({ filteredData }) => {
             <table className="min-w-full leading-normal myworktable">
               <thead>
                 <tr>
-                  {tableHeading.map((tableHadingName, index) => (
-                    <th
-                      className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                      key={index}>
-                      {tableHadingName}
-                    </th>
-                  ))}
+                  {tableHeading.length > 0 ? (
+                    tableHeading.map((tableHadingName, index) => (
+                      <th
+                        className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
+                        key={index}
+                      >
+                        {tableHadingName}
+                      </th>
+                    ))
+                  ) : (
+                    <p>There is no data</p>
+                  )}
                 </tr>
               </thead>
 
@@ -131,7 +136,8 @@ const MyWorkTable = ({ filteredData }) => {
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
                     <Link
                       to={"/editor/all-projects"}
-                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3">
+                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
+                    >
                       All Projects <CaretRight size={20} />
                     </Link>
                   </td>
@@ -164,13 +170,18 @@ const MyWorkTable = ({ filteredData }) => {
               <table className="min-w-full leading-normal myworktable">
                 <thead>
                   <tr>
-                    {tableHeadingTwo.map((tableHadingName, index) => (
-                      <th
-                        className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                        key={index}>
-                        {tableHadingName}
-                      </th>
-                    ))}
+                    {tableHeadingTwo.length > 0 ? (
+                      tableHeadingTwo.map((tableHadingName, index) => (
+                        <th
+                          className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
+                          key={index}
+                        >
+                          {tableHadingName}
+                        </th>
+                      ))
+                    ) : (
+                      <p>There is no data</p>
+                    )}
                   </tr>
                 </thead>
 

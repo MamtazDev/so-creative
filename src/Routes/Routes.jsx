@@ -11,21 +11,25 @@ import BrandKit from "../pages/UserPanel/BrandKit";
 import MediaStorage from "../pages/UserPanel/MediaStorage";
 
 export const router = createBrowserRouter([
+  // {
+  //   path: "/",
+  //   element: <MainLayout />,
+  //   children: [
+  //     {
+  //       path: "/",
+  //       element: <Home />,
+  //     },
+  //   ],
+  // },
+
   {
     path: "/",
-    element: <MainLayout />,
+    element: <UserPanelLayout />,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <UserHome />,
       },
-    ],
-  },
-
-  {
-    path: "/user",
-    element: <UserPanelLayout />,
-    children: [
       {
         path: "/user",
         element: <UserHome />,

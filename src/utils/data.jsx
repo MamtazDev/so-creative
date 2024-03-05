@@ -2074,36 +2074,67 @@ export const quickOptions = [
 
 export const notifications = [
   {
-    pic: accepted,
-    new: true,
-    title: "Project Accepted  🎉",
-    description:
-      "<span  style='color:#4F46E5;'>@shawnmahbub </span>  accepted the job for Advanced Training Module.",
-    time: "09:40 AM",
+    date: "2024-03-05",
+    lists: [
+      {
+        pic: accepted,
+        new: true,
+        title: "Project Accepted  🎉",
+        description:
+          "<span  style='color:#4F46E5;'>@shawnmahbub </span>  accepted the job for Advanced Training Module.",
+        time: "09:40 AM",
+      },
+      {
+        pic: alert,
+        new: false,
+        title: "Exclusive Event Alert",
+        description:
+          "Join our annual event this weekend! Meet new people & more social. Register now!",
+        time: "08:29 AM",
+      },
+    ],
   },
   {
-    pic: alert,
-    new: false,
-    title: "Exclusive Event Alert",
-    description:
-      "Join our annual event this weekend! Meet new people & more social. Register now!",
-    time: "08:29 AM",
+    date: "2024-03-04",
+    lists: [
+      {
+        pic: rejected,
+        new: false,
+        title: "Project Rejected",
+        description:
+          "<span style='color:#4F46E5;'>@shawnmahbub </span>  rejected the job for Advanced Training Module.",
+        time: "20:30 PM",
+      },
+      {
+        pic: premium,
+        new: false,
+        title: "Unlock Premium Features",
+        description:
+          "Upgrade to Premium for exclusive benefits & enhance your experience!",
+        time: "10:30 AM",
+      },
+    ],
   },
   {
-    pic: rejected,
-    new: false,
-    title: "Project Rejected",
-    description:
-      "<span style='color:#4F46E5;'>@shawnmahbub </span>  rejected the job for Advanced Training Module.",
-    time: "20:30 PM",
-  },
-  {
-    pic: premium,
-    new: false,
-    title: "Unlock Premium Features",
-    description:
-      "Upgrade to Premium for exclusive benefits & enhance your experience!",
-    time: "10:30 AM",
+    date: "2024-03-03",
+    lists: [
+      {
+        pic: rejected,
+        new: false,
+        title: "Project Rejected",
+        description:
+          "<span style='color:#4F46E5;'>@shawnmahbub </span>  rejected the job for Advanced Training Module.",
+        time: "20:30 PM",
+      },
+      {
+        pic: premium,
+        new: false,
+        title: "Unlock Premium Features",
+        description:
+          "Upgrade to Premium for exclusive benefits & enhance your experience!",
+        time: "10:30 AM",
+      },
+    ],
   },
 ];
 
@@ -2232,5 +2263,51 @@ export const mediaStorage = [
           "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
       },
     ],
+  },
+];
+
+export const gettingStarted = [
+  {
+    query: "How to change the email address of your account?",
+    time: "2",
+  },
+  {
+    query: "How to apply a promo code?",
+    time: "3",
+  },
+  {
+    query: "How to download your invoices?",
+    time: "3",
+  },
+  {
+    query: "How to cancel your subscription?",
+    time: "3",
+  },
+  {
+    query: "How collaborator charges are calculated",
+    time: "3",
+  },
+];
+
+export const helps = [
+  {
+    title: "Getting Started",
+    no: 2,
+  },
+  {
+    title: "How to use SoCreative",
+    no: 14,
+  },
+  {
+    title: "Account and Subscription",
+    no: 5,
+  },
+  {
+    title: "Issues and Feedback",
+    no: 4,
+  },
+  {
+    title: "FAQs",
+    no: 25,
   },
 ];

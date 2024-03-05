@@ -26,25 +26,29 @@ const MediaTable = () => {
           </tr>
         </thead>
         <tbody>
-          {combinedItems.map((data, index) => (
-            <tr className="text-base font-semibold" key={index}>
-              <td>
-                <div className="flex gap-4 items-center">
-                  <img src={data.folder ? folder : mp4} alt="" />
-                  <p>{data.folder ? "Folder Title" : "filename.mp4"}</p>
-                </div>
-              </td>
-              <td>1.26 GB</td>
-              <td>1 day ago</td>
-              <td>
-                <DotsThreeOutline
-                  className="text-slate-500"
-                  size={20}
-                  weight="fill"
-                />
-              </td>
-            </tr>
-          ))}
+          {combinedItems.length > 0 ? (
+            combinedItems.map((data, index) => (
+              <tr className="text-base font-semibold" key={index}>
+                <td>
+                  <div className="flex gap-4 items-center">
+                    <img src={data.folder ? folder : mp4} alt="" />
+                    <p>{data.folder ? "Folder Title" : "filename.mp4"}</p>
+                  </div>
+                </td>
+                <td>1.26 GB</td>
+                <td>1 day ago</td>
+                <td>
+                  <DotsThreeOutline
+                    className="text-slate-500"
+                    size={20}
+                    weight="fill"
+                  />
+                </td>
+              </tr>
+            ))
+          ) : (
+            <p>There is no data</p>
+          )}
         </tbody>
       </table>
     </div>

@@ -6,24 +6,13 @@ import send from "../../assets/send.svg";
 import chatBot from "../../assets/noChat.svg";
 import { useEffect, useRef, useState } from "react";
 import { quickOptions } from "../../utils/data";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const ChatBot = () => {
   const [show, setShow] = useState(false);
   const chatbotRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (chatbotRef.current && !chatbotRef.current.contains(event.target)) {
-        setShow(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  useOutsideClick(chatbotRef, () => setShow(false));
 
   return (
     <div
@@ -62,14 +51,18 @@ const ChatBot = () => {
             <div>
               <p className="text-xs font-semibold mb-3">SUGGESTIONS</p>
               <div className="flex items-center flex-wrap gap-3">
-                {quickOptions.map((data, index) => (
-                  <button
-                    className="bg-indigo-100 py-2 px-4 rounded-xl text-sm font-normal"
-                    key={index}
-                  >
-                    {data}
-                  </button>
-                ))}
+                {quickOptions.length > 0 ? (
+                  quickOptions.map((data, index) => (
+                    <button
+                      className="bg-indigo-100 py-2 px-4 rounded-xl text-sm font-normal"
+                      key={index}
+                    >
+                      {data}
+                    </button>
+                  ))
+                ) : (
+                  <p>There is no data</p>
+                )}
               </div>
             </div>
           </div>
