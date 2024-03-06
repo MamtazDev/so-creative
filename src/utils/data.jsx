@@ -434,31 +434,38 @@ export const guidelines = [
 
 export const mediaStorage = [
   {
+    id: 1,
     video:
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
   },
   {
+    id: 2,
     video:
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   },
   {
+    id: 3,
     video:
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
   },
   {
+    id: 4,
     video:
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
   },
   {
+    id: 5,
     video:
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   },
   {
+    id: 6,
     video:
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
   },
 
   {
+    id: 7,
     folder: [
       {
         video:
@@ -483,6 +490,7 @@ export const mediaStorage = [
     ],
   },
   {
+    id: 8,
     folder: [
       {
         video:
