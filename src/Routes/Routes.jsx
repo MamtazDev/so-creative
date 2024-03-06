@@ -8,6 +8,7 @@ import BrandKit from "../pages/UserPanel/BrandKit";
 import MediaStorage from "../pages/UserPanel/MediaStorage";
 import UserHome from "../pages/UserPanel/UserHome";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
+import AdminDashboard from "../pages/AdminPanel/AdminDashboard";
 
 export const router = createBrowserRouter([
   // {
@@ -63,6 +64,17 @@ export const router = createBrowserRouter([
       {
         path: "/editor/clients",
         element: <EditorAllClients />,
+      },
+    ],
+  },
+
+  {
+    path: "/admin",
+    element: <EditorPanelLayout />,
+    children: [
+      {
+        path: "/admin",
+        element: <AdminDashboard />,
       },
     ],
   },
