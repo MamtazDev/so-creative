@@ -5,16 +5,19 @@ import { Link, useLocation } from "react-router-dom";
 import { menus } from "../../utils/data";
 import { useState } from "react";
 import { Plus } from "@phosphor-icons/react";
+import CreateProjectModal from "../../Modal/CreateProjectModal";
 
 const Sidebar = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   return (
     <aside className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
       <div>
         <div className="relative">
-          <button onClick={() => setShow(!show)}
+          <button
+            onClick={() => setShow(!show)}
             className="bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 ease-in flex gap-2 items-center justify-center mb-8 text-base text-white font-semibold rounded-full w-full py-3 px-6 "
           >
             <Plus size={24} />
@@ -22,7 +25,10 @@ const Sidebar = () => {
           </button>
           {show && (
             <div className="absolute top-14 w-full z-50 bg-white rounded-2xl py-5 px-6">
-              <button className="flex gap-3.5 items-center text-base font-medium mb-6">
+              <button
+                onClick={() => setShowCreateModal(true)}
+                className="flex gap-3.5 items-center text-base font-medium mb-6"
+              >
                 <img src={createProject} alt="" />
                 Create Project
               </button>
@@ -65,6 +71,9 @@ const Sidebar = () => {
           <p className="text-xs font-normal">Free Plan</p>
         </div>
       </div>
+      {showCreateModal && (
+        <CreateProjectModal setShowCreateModal={setShowCreateModal} />
+      )}
     </aside>
   );
 };
