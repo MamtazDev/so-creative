@@ -3,14 +3,17 @@ import createProject from "../../assets/create-project.svg";
 import selectDraft from "../../assets/select-draft.svg";
 import { Link, useLocation } from "react-router-dom";
 import { menus } from "../../utils/data";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Plus } from "@phosphor-icons/react";
 import CreateProjectModal from "../../Modal/CreateProjectModal";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Sidebar = () => {
   const location = useLocation();
+  const showRef = useRef();
   const [show, setShow] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  useOutsideClick(showRef, () => setShow(false));
 
   return (
     <aside className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
@@ -24,7 +27,10 @@ const Sidebar = () => {
             New Project
           </button>
           {show && (
-            <div className="absolute top-14 w-full z-50 bg-white rounded-2xl py-5 px-6">
+            <div
+              ref={showRef}
+              className="absolute top-14 w-full z-50 bg-white rounded-2xl py-5 px-6"
+            >
               <button
                 onClick={() => setShowCreateModal(true)}
                 className="flex gap-3.5 items-center text-base font-medium mb-6"
