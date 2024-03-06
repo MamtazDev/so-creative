@@ -12,7 +12,10 @@ const AllFiles = () => {
     <div className="grid grid-cols-5 gap-6">
       {combinedItems.length > 0 ? (
         combinedItems.map((item, index) => (
-          <div key={index} className="border p-10 rounded-xl">
+          <div
+            key={index}
+            className="border p-10 rounded-xl hover:shadow hover:bg-slate-50 transition-all duration-300 ease-in"
+          >
             {item.folder && <FolderCard folder={item.folder} />}
             {item.video && <VideoCard video={item.video} />}
           </div>

@@ -12,6 +12,7 @@ const UploadFile = () => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "video/mp4": [".mp4"],
+      "video/mov": [".mov"],
     },
     onDrop: (acceptedFiles) => {
       setIsUploading(true);
@@ -23,7 +24,7 @@ const UploadFile = () => {
             progress += Math.random() * 10;
             setUploadProgress(progress);
             upload();
-          }, 500); // Simulate upload progress every 0.5 seconds
+          }, 500);
         } else {
           setIsUploading(false);
           setUploadProgress(0);
@@ -47,7 +48,7 @@ const UploadFile = () => {
   };
 
   return (
-    <div className="border border-dashed rounded-xl text-center mb-10">
+    <div className=" text-center mb-10">
       {isUploading && (
         <div>
           <div className="bg-indigo-50 h-2 rounded-md">
@@ -59,7 +60,10 @@ const UploadFile = () => {
           <p>{uploadProgress}%</p>
         </div>
       )}
-      <div {...getRootProps({ style: dashedBoxStyle })} className="p-12">
+      <div
+        {...getRootProps({ style: dashedBoxStyle })}
+        className="p-12 rounded-xl "
+      >
         <input {...getInputProps()} />
         <img className="m-auto mb-5" src={mp4} alt="" />
         <p className="text-lg font-semibold mb-1">Upload a File or</p>
