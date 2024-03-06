@@ -47,7 +47,7 @@ const UploadFile = () => {
   };
 
   return (
-    <div className="border border-dashed rounded-xl text-center">
+    <div className="border border-dashed rounded-xl text-center mb-10">
       {isUploading && (
         <div>
           <div className="bg-indigo-50 h-2 rounded-md">
