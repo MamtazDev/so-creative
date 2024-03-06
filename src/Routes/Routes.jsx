@@ -11,6 +11,7 @@ import BrandKit from "../pages/UserPanel/BrandKit";
 import MediaStorage from "../pages/UserPanel/MediaStorage";
 import Register from "../pages/Auth/Register";
 import Login from "../pages/Auth/Login";
+import Folder from "../pages/UserPanel/Folder";
 
 export const router = createBrowserRouter([
   // {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/media-storage",
         element: <MediaStorage />,
+      },
+      {
+        path: "/user/media-storage/folder/:id",
+        element: <Folder />,
       },
       {
         path: "/user/brand-kit",

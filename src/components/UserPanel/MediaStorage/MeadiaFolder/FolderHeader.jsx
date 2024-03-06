@@ -1,15 +1,15 @@
 import { Plus } from "@phosphor-icons/react";
-import arrow from "../../../assets/down-arrow.svg";
+import arrow from "../../../../assets/down-arrow.svg";
 
-const MediaHeader = ({
+const FolderHeader = ({
   handleComponentChange,
   selectedComponent,
-  setOpenCreateFolderModal,
   setOpedUploadVideoModal,
+  title,
 }) => {
   return (
     <div className="mb-6 flex justify-between items-center gap-4">
-      <p className="text-xl font-bold">All Files & Media</p>
+      <p className="text-xl font-bold">{title}</p>
       <div className="flex items-center gap-3">
         <div className="bg-slate-100 border rounded-full p-1">
           <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
@@ -58,12 +58,6 @@ const MediaHeader = ({
         </div>
         <button
           className="flex items-center gap-1 py-2 px-3 rounded-full bg-indigo-600 text-white text-sm"
-          onClick={() => setOpenCreateFolderModal(true)}
-        >
-          <Plus size={20} /> Create Folder
-        </button>
-        <button
-          className="flex items-center gap-1 py-2 px-3 rounded-full bg-indigo-600 text-white text-sm"
           onClick={() => setOpedUploadVideoModal(true)}
         >
           <Plus size={20} /> Upload Video
@@ -73,4 +67,4 @@ const MediaHeader = ({
   );
 };
 
-export default MediaHeader;
+export default FolderHeader;

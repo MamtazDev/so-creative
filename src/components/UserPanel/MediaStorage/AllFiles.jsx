@@ -6,7 +6,7 @@ import { mediaStorage } from "../../../utils/data";
 const AllFiles = ({ data }) => {
   const folders = data.folders;
   const videos = data.files;
-  const combinedItems = folders.concat(videos);
+  const combinedItems = data.folders ? folders.concat(videos) : data;
 
   console.log(combinedItems, "fsfk");
 
@@ -17,6 +17,7 @@ const AllFiles = ({ data }) => {
           <div key={index} className="border p-10 rounded-xl">
             {item.folderData && <FolderCard folder={item.folderData} />}
             {item.fileData && <VideoCard video={item.fileData} />}
+            {!item.fileData && !item.folderData && <VideoCard video={item} />}
           </div>
         ))
       ) : (

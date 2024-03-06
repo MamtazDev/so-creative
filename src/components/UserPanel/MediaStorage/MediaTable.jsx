@@ -4,10 +4,11 @@ import folder from "../../../assets/folder.svg";
 import { DotsThreeOutline } from "@phosphor-icons/react";
 import { mediaStorage } from "../../../utils/data";
 
-const MediaTable = () => {
-  const folders = mediaStorage.filter((item) => item.folder);
-  const videos = mediaStorage.filter((item) => item.video);
-  const combinedItems = folders.concat(videos);
+const MediaTable = ({ data }) => {
+  const folders = data.folders;
+  const videos = data.files;
+  const combinedItems = data.folders ? folders.concat(videos) : data;
+  console.log(combinedItems, "dfjkdfj");
   return (
     <div>
       <table
@@ -31,11 +32,16 @@ const MediaTable = () => {
               <tr className="text-base font-semibold" key={index}>
                 <td>
                   <div className="flex gap-4 items-center">
-                    <img src={data.folder ? folder : mp4} alt="" />
-                    <p>{data.folder ? "Folder Title" : "filename.mp4"}</p>
+                    {data.folderData && <img src={folder} alt="" />}
+                    {data.fileData && <img src={mp4} alt="" />}
+                    {/* <img src={data.folderData ? folder : mp4} alt="" /> */}
+                    {data.folderData && <p>{data.folderData.title}</p>}
+                    {data.fileData && <p>{data.fileData.title}</p>}
                   </div>
                 </td>
-                <td>1.26 GB</td>
+                <td>
+                  {data.folderData && <span>{data.folderData.folderSize}</span>}
+                </td>
                 <td>1 day ago</td>
                 <td>
                   <DotsThreeOutline

@@ -1,11 +1,15 @@
 import { DotsThreeOutline } from "@phosphor-icons/react";
 import folderIcon from "../../../assets/folder.svg";
 import { formatFileSize } from "../../../utils/converter";
+import { useNavigate } from "react-router";
 
 const FolderCard = ({ folder, folderIndex, selectedFolder, onFolderClick }) => {
-  console.log(folder, "ggg");
+  const navigate = useNavigate();
   return (
-    <div className="text-center relative">
+    <div
+      className="text-center relative cursor-pointer"
+      onClick={() => navigate(`/user/media-storage/folder/${folder?._id}`)}
+    >
       <button className="absolute -top-6 -right-6">
         <DotsThreeOutline className="text-slate-500" size={20} weight="fill" />
       </button>
