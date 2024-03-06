@@ -27,6 +27,10 @@ import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
 import taskIcon from "../assets/editor_panel/newproject_icon.svg";
 import taskIcon2 from "../assets/editor_panel/inprogress.svg";
+import internalInActive from "../assets/admin/internal_inactive.svg"
+import internalActive from "../assets/admin/internal_active.svg"
+import companiesInActive from "../assets/admin/companis_inactive.svg";
+import companiesActive from "../assets/admin/companis_active.svg";
 
 export const tableHeading = [
   "Client",
@@ -170,6 +174,20 @@ export const menus = [
     activePic: clientIconActive,
     title: "Clients",
     path: "/editor/clients",
+  },
+  {
+    type: "admin",
+    pic: internalInActive,
+    activePic: internalActive,
+    title: "Internal Users",
+    path: "/admin",
+  },
+  {
+    type: "admin",
+    pic: companiesInActive,
+    activePic: companiesActive,
+    title: "Companies",
+    path: "/admin/companies",
   },
 ];
 
