@@ -27,8 +27,8 @@ import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
 import taskIcon from "../assets/editor_panel/newproject_icon.svg";
 import taskIcon2 from "../assets/editor_panel/inprogress.svg";
-import internalInActive from "../assets/admin/internal_inactive.svg"
-import internalActive from "../assets/admin/internal_active.svg"
+import internalInActive from "../assets/admin/internal_inactive.svg";
+import internalActive from "../assets/admin/internal_active.svg";
 import companiesInActive from "../assets/admin/companis_inactive.svg";
 import companiesActive from "../assets/admin/companis_active.svg";
 
@@ -54,6 +54,13 @@ export const clientTableHeading = [
   "Total Duration",
   "Last Project Status",
   "Last Activity",
+];
+
+export const internalTableHeading = [
+  "Name",
+  "Joined",
+  "Last Active",
+  "User Role",
 ];
 
 export const insightsCardData = [
@@ -119,6 +126,19 @@ export const RecentActivites = [
   },
 ];
 
+export const internalUserData = [
+  {
+    clientImg: clientImg1,
+    clientName: "Xavier Davis",
+    projectName: "Product Showcase Video",
+    projectCount: 5,
+    assignee: "Shawn Mahbub",
+    status: "In Progress",
+    duration: 4,
+    dateCreated: "September 10, 2023",
+  },
+];
+
 export const menus = [
   {
     type: "user",
@@ -180,14 +200,14 @@ export const menus = [
     pic: internalInActive,
     activePic: internalActive,
     title: "Internal Users",
-    path: "/admin",
+    path: "/internal-users",
   },
   {
     type: "admin",
     pic: companiesInActive,
     activePic: companiesActive,
     title: "Companies",
-    path: "/admin/companies",
+    path: "/internal-users/companies",
   },
 ];
 
