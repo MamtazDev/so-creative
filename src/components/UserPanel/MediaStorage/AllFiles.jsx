@@ -3,18 +3,20 @@ import FolderCard from "./FolderCard";
 import VideoCard from "./VideoCard";
 import { mediaStorage } from "../../../utils/data";
 
-const AllFiles = () => {
-  const folders = mediaStorage.filter((item) => item.folder);
-  const videos = mediaStorage.filter((item) => item.video);
+const AllFiles = ({ data }) => {
+  const folders = data.folders;
+  const videos = data.files;
   const combinedItems = folders.concat(videos);
+
+  console.log(combinedItems, "fsfk");
 
   return (
     <div className="grid grid-cols-5 gap-6">
       {combinedItems.length > 0 ? (
         combinedItems.map((item, index) => (
           <div key={index} className="border p-10 rounded-xl">
-            {item.folder && <FolderCard folder={item.folder} />}
-            {item.video && <VideoCard video={item.video} />}
+            {item.folderData && <FolderCard folder={item.folderData} />}
+            {item.fileData && <VideoCard video={item.fileData} />}
           </div>
         ))
       ) : (

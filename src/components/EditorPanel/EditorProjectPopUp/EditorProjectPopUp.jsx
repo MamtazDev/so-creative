@@ -26,6 +26,7 @@ const EditorProjectPopUp = ({
   getRootProps,
   file,
 }) => {
+  
   return (
     <div className="absolute top-0 left-0 w-full h-screen bg-black/50 backdrop-blur-sm">
       <div className="flex justify-center items-center h-screen">
@@ -74,8 +75,7 @@ const EditorProjectPopUp = ({
               )}
             </div>
           </div>
-          <div
-            className={`modal_description p-10  h-[640px] ${
+          <div className={`modal_description p-10  h-[640px] ${
               jobAction === true && "overflow-y-scroll"
             }`}>
             <div className="grid grid-cols-12 gap-10">
@@ -90,7 +90,6 @@ const EditorProjectPopUp = ({
                     </div>
                     <div className="submit_video outline-1 outline-dashed outline-slate-200  rounded-3xl">
                       <div className="upoload_video py-12 px-6 flex justify-center items-center flex-col border-b border-dashed">
-
                         <div {...getRootProps()} onClick={handleUploadClick}>
                           {thumbnail ? (
                             <img

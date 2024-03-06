@@ -4,7 +4,7 @@ import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
 import { guidelines } from "../../../utils/data";
 
-const BrandGuidelines = () => {
+const BrandGuidelines = ({ setStep }) => {
   const [brandImg, setBrandImg] = useState(null);
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState({});
@@ -123,6 +123,7 @@ const BrandGuidelines = () => {
           </p>
         </div>
         <button
+          onClick={() => setStep(3)}
           type="submit"
           className="w-full rounded-full bg-indigo-600 text-white text-base font-semibold px-6 py-3"
         >
