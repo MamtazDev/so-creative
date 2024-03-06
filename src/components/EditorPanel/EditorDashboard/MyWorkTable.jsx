@@ -39,31 +39,23 @@ const MyWorkTable = ({ filteredData }) => {
       }
     },
   });
-
   const handleUploadClick = () => {
     document.getElementById("fileInput").click();
   };
-
   const handlePopup = () => {
     setModalPopup(!modalPopup);
   };
-
   const handeJobAction = () => {
     setJobAction(!jobAction);
   };
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-
   const paginatedData = filteredData?.slice(startIndex, endIndex);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   //repeted the data
   const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
 
@@ -222,8 +214,6 @@ const MyWorkTable = ({ filteredData }) => {
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
             <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
               <table className="min-w-full leading-normal myworktable">
-
-
                 <TableHead tableHeading={clientTableHeading} />
 
                 <tbody>

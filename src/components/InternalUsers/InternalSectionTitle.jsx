@@ -1,13 +1,15 @@
+/* eslint-disable react/prop-types */
+import { UserPlus } from "@phosphor-icons/react";
 import { useLocation } from "react-router-dom";
 
-const EditroSectionTitle = ({ filter, handleFilterChange }) => {
+const InternalSectionTitle = ({ filter, handleFilterChange }) => {
   const route = useLocation();
   return (
     <div className="seciton_heading pb-6 flex items-center justify-between">
       <div className="title">
         <h3 className="text-2xl font-bold text-slate-900">
-          {route.pathname === "/editor/all-projects"
-            ? "All Projects"
+          {route.pathname === "/internal-users"
+            ? "10 Internal Users"
             : "All Clients"}
         </h3>
       </div>
@@ -26,16 +28,24 @@ const EditroSectionTitle = ({ filter, handleFilterChange }) => {
             className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
               filter === "Active" && "bg-white text-text-slate-600"
             }`}
-            onClick={() => handleFilterChange("Active")}>
-            Active
+            onClick={() => handleFilterChange("Admin")}>
+            Admin
           </button>
 
           <button
             className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
               filter === "Completed" && "bg-white text-text-slate-600"
             }`}
-            onClick={() => handleFilterChange("Completed")}>
-            Completed
+            onClick={() => handleFilterChange("Account Manager")}>
+            Account Manager
+          </button>
+
+          <button
+            className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
+              filter === "Completed" && "bg-white text-text-slate-600"
+            }`}
+            onClick={() => handleFilterChange("Editor")}>
+            Editor
           </button>
         </div>
 
@@ -47,9 +57,14 @@ const EditroSectionTitle = ({ filter, handleFilterChange }) => {
             <option value="">Sort by: Last Modified</option>
           </select>
         </div>
+
+        <button className="text-xs font-semibold text-white bg-black flex gap-2 py-[10px] px-[16px] rounded-full">
+          <UserPlus size={16} />
+          Invite User
+        </button>
       </div>
     </div>
   );
 };
 
-export default EditroSectionTitle;
+export default InternalSectionTitle;
