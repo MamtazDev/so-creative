@@ -8,16 +8,34 @@ const AllFiles = ({ data }) => {
   const videos = data.files;
   const combinedItems = data.folders ? folders.concat(videos) : data;
 
-  console.log(combinedItems, "fsfk");
+  const [clickedItem, setClickedItem] = useState(null);
 
   return (
     <div className="grid grid-cols-5 gap-6">
       {combinedItems.length > 0 ? (
         combinedItems.map((item, index) => (
           <div key={index} className="border p-10 rounded-xl">
-            {item.folderData && <FolderCard folder={item.folderData} />}
-            {item.fileData && <VideoCard video={item.fileData} />}
-            {!item.fileData && !item.folderData && <VideoCard video={item} />}
+            {item.folderData && (
+              <FolderCard
+                folder={item.folderData}
+                setClickedItem={setClickedItem}
+                clickedItem={clickedItem}
+              />
+            )}
+            {item.fileData && (
+              <VideoCard
+                video={item.fileData}
+                setClickedItem={setClickedItem}
+                clickedItem={clickedItem}
+              />
+            )}
+            {!item.fileData && !item.folderData && (
+              <VideoCard
+                video={item}
+                setClickedItem={setClickedItem}
+                clickedItem={clickedItem}
+              />
+            )}
           </div>
         ))
       ) : (

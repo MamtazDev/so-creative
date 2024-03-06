@@ -13,7 +13,7 @@ import {
 import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 import EditorPagination from "./EditorPagination";
 
-const MyWorkTable = ({ filteredData }) => {
+const MyWorkTable = ({ filteredData, repeatedData }) => {
   const route = useLocation();
   const [modalPopup, setModalPopup] = useState(false);
   const [jobAction, setJobAction] = useState(false);
@@ -48,18 +48,14 @@ const MyWorkTable = ({ filteredData }) => {
     setJobAction(!jobAction);
   };
 
-  // Define your state variables
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
 
-  // Calculate start and end index for the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // Get the data for the current page
   const paginatedData = filteredData?.slice(startIndex, endIndex);
 
-  // Function to handle page changes
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -76,8 +72,7 @@ const MyWorkTable = ({ filteredData }) => {
                     tableHeading.map((tableHadingName, index) => (
                       <th
                         className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                        key={index}
-                      >
+                        key={index}>
                         {tableHadingName}
                       </th>
                     ))
@@ -136,8 +131,7 @@ const MyWorkTable = ({ filteredData }) => {
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
                     <Link
                       to={"/editor/all-projects"}
-                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
-                    >
+                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3">
                       All Projects <CaretRight size={20} />
                     </Link>
                   </td>
@@ -150,6 +144,7 @@ const MyWorkTable = ({ filteredData }) => {
             {modalPopup === true && (
               <EditorProjectPopUp
                 jobAction={jobAction}
+                setModalPopup={setModalPopup}
                 handlePopup={handlePopup}
                 handeJobAction={handeJobAction}
                 handleUploadClick={handleUploadClick}
@@ -174,8 +169,7 @@ const MyWorkTable = ({ filteredData }) => {
                       tableHeadingTwo.map((tableHadingName, index) => (
                         <th
                           className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                          key={index}
-                        >
+                          key={index}>
                           {tableHadingName}
                         </th>
                       ))
@@ -259,6 +253,7 @@ const MyWorkTable = ({ filteredData }) => {
                 <EditorProjectPopUp
                   jobAction={jobAction}
                   handlePopup={handlePopup}
+                  setModalPopup={setModalPopup}
                   handeJobAction={handeJobAction}
                   handleUploadClick={handleUploadClick}
                   thumbnail={thumbnail}
@@ -303,7 +298,7 @@ const MyWorkTable = ({ filteredData }) => {
                       key={index}
                       className="hover:bg-indigo-100 hover:cursor-pointer"
                       onClick={handlePopup}>
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3]  text-sm">
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-8 h-8">
                             <img
@@ -320,13 +315,13 @@ const MyWorkTable = ({ filteredData }) => {
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3]  text-sm">
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
                           {tableDataInfo.projectCount}
                         </p>
                       </td>
 
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3]  text-sm">
+                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
                           {tableDataInfo.duration} days
                         </p>
@@ -334,7 +329,7 @@ const MyWorkTable = ({ filteredData }) => {
 
                       <td
                         className={
-                          "px-4 py-4 border-b border-[#e5e5e5b3]  text-sm"
+                          "px-4 py-4 border-b border-[#e5e5e5b3] text-sm"
                         }>
                         <p
                           className={`${
@@ -365,6 +360,7 @@ const MyWorkTable = ({ filteredData }) => {
                 <EditorProjectPopUp
                   jobAction={jobAction}
                   handlePopup={handlePopup}
+                  setModalPopup={setModalPopup}
                   handeJobAction={handeJobAction}
                   handleUploadClick={handleUploadClick}
                   thumbnail={thumbnail}

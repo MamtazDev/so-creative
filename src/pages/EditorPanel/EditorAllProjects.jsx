@@ -10,7 +10,12 @@ const EditorAllProjects = () => {
     setFilter(newFilter);
   };
 
-  const filteredData = MyWorkTableData.filter((item) =>
+  const repeatedData = Array.from(
+    { length: 50 },
+    () => MyWorkTableData
+  ).flat();
+
+  const filteredData = repeatedData.filter((item) =>
     filter === "All"
       ? true
       : filter === "Active"
@@ -29,10 +34,11 @@ const EditorAllProjects = () => {
               : "All Clients"}
           </h3>
         </div>
-        
+
         <div className="sorting flex items-center gap-3">
           <div className="button_group bg-slate-100 rounded-full p-1">
-            <button className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
+            <button
+              className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
                 filter === "All" && "bg-white text-text-slate-600"
               }`}
               onClick={() => handleFilterChange("All")}>
@@ -67,7 +73,7 @@ const EditorAllProjects = () => {
         </div>
       </div>
 
-      <MyWorkTable filteredData={filteredData} />
+      <MyWorkTable filteredData={filteredData} repeatedData={repeatedData} />
     </>
   );
 };
