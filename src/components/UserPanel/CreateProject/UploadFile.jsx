@@ -48,7 +48,10 @@ const UploadFile = () => {
   };
 
   return (
-    <div className=" text-center mb-10">
+    <div
+      {...getRootProps({ style: dashedBoxStyle })}
+      className=" text-center mb-10 rounded-xl"
+    >
       {isUploading && (
         <div>
           <div className="bg-indigo-50 h-2 rounded-md">
@@ -60,10 +63,7 @@ const UploadFile = () => {
           <p>{uploadProgress}%</p>
         </div>
       )}
-      <div
-        {...getRootProps({ style: dashedBoxStyle })}
-        className="p-12 rounded-xl "
-      >
+      <div className="p-12  ">
         <input {...getInputProps()} />
         <img className="m-auto mb-5" src={mp4} alt="" />
         <p className="text-lg font-semibold mb-1">Upload a File or</p>

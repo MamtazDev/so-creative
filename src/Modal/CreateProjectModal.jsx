@@ -4,6 +4,7 @@ import useOutsideClick from "../hooks/useOutsideClick";
 import close from "../assets/close.svg";
 import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
 import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
+import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
 
 const CreateProjectModal = ({ setShowCreateModal }) => {
   const createRef = useRef();
@@ -24,6 +25,7 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
         <Stepper />
         <UploadFile />
         <StockVideos />
+        <AllAvater />
       </div>
     </div>
   );
