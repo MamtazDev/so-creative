@@ -11,7 +11,6 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 const ChatBot = () => {
   const [show, setShow] = useState(false);
   const chatbotRef = useRef(null);
-
   useOutsideClick(chatbotRef, () => setShow(false));
 
   return (
