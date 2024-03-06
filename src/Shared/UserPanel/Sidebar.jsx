@@ -32,7 +32,10 @@ const Sidebar = () => {
               className="absolute top-14 w-full z-50 bg-white rounded-2xl py-5 px-6"
             >
               <button
-                onClick={() => setShowCreateModal(true)}
+                onClick={() => {
+                  setShowCreateModal(true);
+                  setShow(false);
+                }}
                 className="flex gap-3.5 items-center text-base font-medium mb-6"
               >
                 <img src={createProject} alt="" />

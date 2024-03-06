@@ -3,6 +3,7 @@ import Stepper from "../components/UserPanel/CreateProject/Stepper";
 import useOutsideClick from "../hooks/useOutsideClick";
 import close from "../assets/close.svg";
 import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
+import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
 
 const CreateProjectModal = ({ setShowCreateModal }) => {
   const createRef = useRef();
@@ -22,6 +23,7 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
 
         <Stepper />
         <UploadFile />
+        <StockVideos />
       </div>
     </div>
   );
