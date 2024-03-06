@@ -5,7 +5,10 @@ import { gettingStarted } from "../../utils/data";
 const GettingStarted = ({ setStep }) => {
   return (
     <div>
-      <div className=" flex items-center gap-3  mb-8">
+      <div
+        onClick={() => setStep(1)}
+        className="cursor-pointer flex items-center gap-3  mb-8"
+      >
         <img src={arrowLeft} alt="" />
         <p className="text-base text-indigo-600 font-bold">Getting Started</p>
       </div>
