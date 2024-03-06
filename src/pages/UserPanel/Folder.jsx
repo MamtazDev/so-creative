@@ -41,7 +41,7 @@ const Folder = () => {
           {selectedComponent === "folder" ? (
             <AllFiles data={data.files} />
           ) : (
-            <MediaTable />
+            <MediaTable data={data.files} />
           )}
         </>
       )}
