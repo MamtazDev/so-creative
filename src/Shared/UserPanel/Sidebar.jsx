@@ -1,12 +1,12 @@
+import { Plus } from "@phosphor-icons/react";
+import { useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import CreateProjectModal from "../../Modal/CreateProjectModal";
 import companyLogo from "../../assets/company-logo.svg";
 import createProject from "../../assets/create-project.svg";
 import selectDraft from "../../assets/select-draft.svg";
-import { Link, useLocation } from "react-router-dom";
-import { menus } from "../../utils/data";
-import { useState, useRef } from "react";
-import { Plus } from "@phosphor-icons/react";
-import CreateProjectModal from "../../Modal/CreateProjectModal";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { menus } from "../../utils/data";
 
 const Sidebar = () => {
   const location = useLocation();

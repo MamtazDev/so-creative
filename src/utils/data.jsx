@@ -25,6 +25,8 @@ import upload from "../assets/upload.svg";
 import upset from "../assets/upset.svg";
 import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
+import taskIcon from "../assets/editor_panel/newproject_icon.svg";
+import taskIcon2 from "../assets/editor_panel/inprogress.svg";
 
 export const tableHeading = [
   "Client",
@@ -48,6 +50,19 @@ export const clientTableHeading = [
   "Total Duration",
   "Last Project Status",
   "Last Activity",
+];
+
+export const insightsCardData = [
+  {
+    icon: taskIcon,
+    name: "New Projects",
+    number: 8,
+  },
+  {
+    icon: taskIcon2,
+    name: "In Progress",
+    number: 12,
+  },
 ];
 
 export const MyWorkTableData = [
@@ -81,7 +96,6 @@ export const MyWorkTableData = [
     duration: 4,
     dateCreated: "September 10, 2023",
   },
-
 ];
 
 export const RecentActivites = [
@@ -95,27 +109,6 @@ export const RecentActivites = [
   {
     img: activityPersonImg1,
     type: "Client",
-    name: "Shawn Mahbub",
-    mentionName: "",
-    dateTime: "29 Apr, 2020 4:28 PM",
-  },
-  {
-    img: activityPersonImg1,
-    type: "Editor",
-    name: "Shawn Mahbub",
-    mentionName: "",
-    dateTime: "29 Apr, 2020 4:28 PM",
-  },
-  {
-    img: activityPersonImg1,
-    type: "Client",
-    name: "Shawn Mahbub",
-    mentionName: "",
-    dateTime: "29 Apr, 2020 4:28 PM",
-  },
-  {
-    img: activityPersonImg1,
-    type: "Editor",
     name: "Shawn Mahbub",
     mentionName: "",
     dateTime: "29 Apr, 2020 4:28 PM",

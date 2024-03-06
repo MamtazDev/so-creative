@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
+import Loading from "../../../Shared/Loading";
 import { RecentActivites } from "../../../utils/data";
 
 const RecentActivities = () => {
+  const repeatedData = Array.from({ length: 5 }, () => RecentActivites).flat();
   return (
-    <div className="recent_activities_wrapper border border-slate-200 rounded-2xl">
-      {RecentActivites.length > 0 ? (
-        RecentActivites.map((activityItem, index) => (
-          <div
-            className="activity_card flex gap-2 border-b border-b-slate-200 p-[22px]"
-            key={index}
-          >
+    <div className="recent_activities_wrapper border border-slate-200 rounded-2xl h-[650px] overflow-y-scroll">
+      {repeatedData.length > 0 ? (
+        repeatedData.map((activityItem, index) => (
+          <div className="activity_card flex gap-2 border-b border-b-slate-200 p-[22px]"
+            key={index}>
             <div className="left_activity_card">
               <img src={activityItem.img} alt="activity_img" />
             </div>
@@ -21,8 +21,7 @@ const RecentActivities = () => {
                     activityItem.type === "Editor"
                       ? "bg-blue-500 text-xs font-bold text-white py-2 px-2 rounded ml-[6px]"
                       : "bg-[#4F16A5] text-xs font-bold text-white py-2 px-2 rounded ml-[6px]"
-                  }`}
-                >
+                  }`}>
                   {activityItem.type}
                 </span>
               </h3>
@@ -42,7 +41,7 @@ const RecentActivities = () => {
           </div>
         ))
       ) : (
-        <p>There is no data</p>
+        <Loading />
       )}
     </div>
   );
