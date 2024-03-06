@@ -4,6 +4,7 @@ import {
   ArrowUp,
   CaretDown,
   CaretRight,
+  CaretUp,
   FileText,
   PuzzlePiece,
   Question,
@@ -15,10 +16,13 @@ import PreviousVideo from "../../../assets/editor_panel/previou_video.png";
 import uploadVideo from "../../../assets/editor_panel/upload_video.svg";
 import voiceOverImg from "../../../assets/editor_panel/voice_over.svg";
 import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const EditorProjectPopUp = ({
   jobAction,
   handlePopup,
+  setModalPopup,
   handeJobAction,
   handleUploadClick,
   thumbnail,
@@ -26,11 +30,20 @@ const EditorProjectPopUp = ({
   getRootProps,
   file,
 }) => {
-  
+  const [expanded, setExpanded] = useState(false);
+  const modalOut = useRef();
+
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+    useOutsideClick(modalOut, () => setModalPopup(false));
+
   return (
     <div className="absolute top-0 left-0 w-full h-screen bg-black/50 backdrop-blur-sm">
       <div className="flex justify-center items-center h-screen">
-        <div className="w-[1150px] bg-white rounded-3xl">
+        <div
+          ref={modalOut}
+          className="w-[1150px] bg-white rounded-3xl overflow-y-scroll">
           <div className="modal_header border-b border-b-black/10 p-6 flex justify-between items-center">
             <div className="project_info flex gap-3">
               <div className="left">
@@ -75,7 +88,8 @@ const EditorProjectPopUp = ({
               )}
             </div>
           </div>
-          <div className={`modal_description p-10  h-[640px] ${
+          <div
+            className={`modal_description p-10 h-[640px] ${
               jobAction === true && "overflow-y-scroll"
             }`}>
             <div className="grid grid-cols-12 gap-10">
@@ -186,31 +200,83 @@ const EditorProjectPopUp = ({
                   <div className="project_brief border border-slate-200 rounded-3xl">
                     <div className="project_des p-6 border-b border-b-slate-200">
                       <p className="text-slate-800 text-xs font-normal pb-4">
-                        This project aims to create a video series focusing on
-                        impactful sales strategies for businesses of all sizes.
-                        The series will leverage your on-demand video editing
-                        service to showcase its capabilities and attract
-                        potential clients, while providing valuable and
-                        actionable sales advice.
+                        {expanded ? (
+                          <>
+                            This project aims to create a video series focusing
+                            on impactful sales strategies for businesses of all
+                            sizes. The series will leverage your on-demand video
+                            editing service to showcase its capabilities and
+                            attract potential clients, while providing valuable
+                            and actionable sales advice. This project aims to
+                            create a video series focusing on impactful sales
+                            strategies for businesses of all sizes. The series
+                            will leverage your on-demand video editing service
+                            to showcase its capabilities and attract potential
+                            clients, while providing valuable and actionable
+                            sales advice.
+                          </>
+                        ) : (
+                          <>
+                            This project aims to create a video series focusing
+                            on impactful sales strategies for businesses of all
+                            sizes. The series will leverage your on-demand video
+                            editing service to showcase its capabilities and
+                            attract potential clients, while providing valuable
+                            and actionable sales advice.
+                            <span className="ellipsis"> ...</span>
+                          </>
+                        )}
                       </p>
-
                       <p className="text-slate-800 text-xs font-normal">
-                        To achieve your project goals, a multifaceted approach
-                        blending content marketing, social media engagement, and
-                        strategic partnerships is essential. Crafting
-                        informative blog posts, videos, and social media content
-                        showcasing the benefits of your on-demand video editing
-                        service will help increase brand awareness and position
-                        your company as thought l...
+                        {expanded ? (
+                          <>
+                            To achieve your project goals, a multifaceted
+                            approach blending content marketing, social media
+                            engagement, and strategic partnerships is essential.
+                            Crafting informative blog posts, videos, and social
+                            media content showcasing the benefits of your
+                            on-demand video editing service will help increase
+                            brand awareness and position your company as thought
+                            leaders in the industry. To achieve your project
+                            goals, a multifaceted approach blending content
+                            marketing, social media engagement, and strategic
+                            partnerships is essential. Crafting informative blog
+                            posts, videos, and social media content showcasing
+                            the benefits of your on-demand video editing service
+                            will help increase brand awareness and position your
+                            company as thought leaders in the industry.
+                          </>
+                        ) : (
+                          <>
+                            To achieve your project goals, a multifaceted
+                            approach blending content marketing, social media
+                            engagement, and strategic partnerships is essential.
+                            Crafting informative blog posts, videos, and social
+                            media content showcasing the benefits of your
+                            on-demand video editing service will help increase
+                            brand awareness and position your company as thought
+                            leaders in the industry.
+                            <span className="ellipsis"> ...</span>
+                          </>
+                        )}
                       </p>
                     </div>
                     <div className="see_more flex justify-center py-4">
-                      <button className="text-indigo-600 text-sm font-semibold flex items-center gap-2">
-                        Show More
-                        <CaretDown
-                          size={20}
-                          className="text-indigo-600 text-sm font-semibold"
-                        />
+                      <button
+                        onClick={toggleExpanded}
+                        className="text-indigo-600 text-sm font-semibold flex items-center gap-2">
+                        {expanded ? "Show Less" : "Show More"}
+                        {expanded ? (
+                          <CaretUp
+                            size={20}
+                            className="text-indigo-600 text-sm font-semibold"
+                          />
+                        ) : (
+                          <CaretDown
+                            size={20}
+                            className="text-indigo-600 text-sm font-semibold"
+                          />
+                        )}
                       </button>
                     </div>
                   </div>
