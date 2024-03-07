@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import mp4 from "../../../assets/mp4.svg";
 import SelectedVideo from "./SelectedVideo";
+import UploadProgress from "./UploadProgress";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
+  const [newSelectedVideo, setNewSelectedVideo] = useState([]);
   const [isDragActive, setIsDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -15,25 +17,28 @@ const UploadFile = () => {
       "video/mov": [".mov"],
     },
     onDrop: (acceptedFiles) => {
+      setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
-      let progress = 0;
 
+      let progress = 0;
       const upload = () => {
         if (progress < 100) {
           setTimeout(() => {
             progress += Math.random() * 10;
-            setUploadProgress(progress);
+            progress = Math.min(progress, 100);
+            setUploadProgress(Math.floor(progress));
             upload();
           }, 500);
         } else {
           setIsUploading(false);
-          setUploadProgress(0);
+          setUploadProgress(100);
           setSelectedVideos([...selectedVideos, ...acceptedFiles]);
         }
       };
 
       upload();
     },
+    multiple: false,
     onDragEnter: () => {
       setIsDragActive(true);
     },
@@ -50,18 +55,13 @@ const UploadFile = () => {
   return (
     <div
       {...getRootProps({ style: dashedBoxStyle })}
-      className=" text-center mb-10 rounded-xl"
+      className=" text-center mb-10 rounded-xl relative"
     >
       {isUploading && (
-        <div>
-          <div className="bg-indigo-50 h-2 rounded-md">
-            <div
-              style={{ width: `${uploadProgress}%` }}
-              className="bg-indigo-600 rounded-md h-2"
-            ></div>
-          </div>
-          <p>{uploadProgress}%</p>
-        </div>
+        <UploadProgress
+          uploadProgress={uploadProgress}
+          newSelectedVideo={newSelectedVideo}
+        />
       )}
       <div className="p-12  ">
         <input {...getInputProps()} />
