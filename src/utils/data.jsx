@@ -1,3 +1,9 @@
+import AboutProject from "../components/UserPanel/CreateProject/AboutProject";
+import SupportingMaterial from "../components/UserPanel/CreateProject/SupportingMaterial";
+import SelectBrand from "../components/UserPanel/CreateProject/SelectBrand";
+import AspectRatio from "../components/UserPanel/CreateProject/AspectRatio";
+import AddPresenter from "../components/UserPanel/CreateProject/AddPresenter";
+
 import accepted from "../assets/accepted.svg";
 import access from "../assets/access.svg";
 import alert from "../assets/alert.svg";
@@ -25,6 +31,9 @@ import upload from "../assets/upload.svg";
 import upset from "../assets/upset.svg";
 import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
+import landscape from "../assets/landscape.svg";
+import square from "../assets/square.svg";
+import portrait from "../assets/portrait.svg";
 import taskIcon from "../assets/editor_panel/newproject_icon.svg";
 import taskIcon2 from "../assets/editor_panel/inprogress.svg";
 import internalInActive from "../assets/admin/internal_inactive.svg";
@@ -586,4 +595,45 @@ export const createProjectStepper = [
   "Upload Files",
   "Create Brief",
   "Select Add ons",
+];
+
+export const expandsDetails = [
+  {
+    title: "Tell us more about your project",
+    component: <AboutProject />,
+  },
+  {
+    title: "Supporting Materials",
+    component: <SupportingMaterial />,
+  },
+  {
+    title: "Select Brand Kit",
+    component: <SelectBrand />,
+  },
+  {
+    title: "Aspect Ratio",
+    component: <AspectRatio />,
+  },
+  {
+    title: "Add Presenter",
+    component: <AddPresenter />,
+  },
+];
+
+export const aspectRatio = [
+  {
+    pic: landscape,
+    ratio: "16:9",
+    name: "Landscape",
+  },
+  {
+    pic: square,
+    ratio: "1:1",
+    name: "Square",
+  },
+  {
+    pic: portrait,
+    ratio: "9:16",
+    name: "Portrait",
+  },
 ];

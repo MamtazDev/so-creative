@@ -17,7 +17,7 @@ const SupportingMaterial = () => {
   });
   console.log("pppp", file);
   return (
-    <div className="border rounded-xl p-6 mb-6">
+    <div className="border rounded-xl p-6">
       <FromLabel
         title="Supporting Materials"
         subtitle="Any planning templates, scripts, storyboards and any other documentation that may support the creative process."

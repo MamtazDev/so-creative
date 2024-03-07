@@ -3,7 +3,7 @@ import FromLabel from "./FromLabel";
 const AboutProject = () => {
   return (
     <div>
-      <div className="border rounded-xl p-6 mb-6">
+      <div className="border rounded-xl p-6">
         <div className="flex justify-between items-start gap-6 ">
           <div>
             <p className="text-slate-500 text-sm font-normal mb-1">
