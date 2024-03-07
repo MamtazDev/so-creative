@@ -8,6 +8,10 @@
     .website_contianer {
         @apply container max-w-[1440px] w-full px-5
     }
+
+    .brief_input {
+        @apply px-4 py-3.5 border w-full shadow-sm rounded-lg
+    }
 }
 
 .myworktable tbody tr:last-child td {
