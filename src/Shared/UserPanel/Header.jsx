@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import search from "../../assets/search.png";
-import message from "../../assets/message-question.png";
-import notification from "../../assets/notification.png";
-import { useEffect, useRef, useState } from "react";
+import search from "../../assets/search.svg";
+import message from "../../assets/message-question.svg";
+import notification from "../../assets/notification.svg";
+import { useRef, useState } from "react";
 import Notification from "./Notification";
 import Credit from "./Credit";
 import Help from "./Help";
 import ProfileActive from "./ProfileActive";
 import ProfileDropdown from "./ProfileDropdown";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Header = () => {
   const [showNotification, setShowNotification] = useState(false);
@@ -20,33 +21,12 @@ const Header = () => {
   const creditRef = useRef(null);
   const helpRef = useRef(null);
   const profileRef = useRef(null);
-  // const notifyButtonref = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        notificationRef.current &&
-        !notificationRef.current.contains(event.target)
-      ) {
-        setShowNotification(false);
-      }
-      if (creditRef.current && !creditRef.current.contains(event.target)) {
-        setShowCredit(false);
-      }
-      if (helpRef.current && !helpRef.current.contains(event.target)) {
-        setShowHelp(false);
-      }
-      // if (profileRef.current && !profileRef.current.contains(event.target)) {
-      //   setShowProfile(false);
-      // }
-    };
+  useOutsideClick(notificationRef, () => setShowNotification(false));
+  useOutsideClick(creditRef, () => setShowCredit(false));
+  useOutsideClick(helpRef, () => setShowHelp(false));
+  useOutsideClick(profileRef, () => setShowProfile(false));
 
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showNotification]);
   return (
     <div>
       <div className="flex items-center justify-between gap-4 p-6">
@@ -74,7 +54,7 @@ const Header = () => {
 
           <button
             onClick={() => setShowHelp(!showHelp)}
-            className="bg-white hover:bg-indigo-100 transition-all duration-300 ease-in rounded-full p-3"
+            className="bg-slate-900 hover:bg-slate-600 transition-all duration-300 ease-in rounded-full p-3"
           >
             <img src={message} alt="" />
           </button>

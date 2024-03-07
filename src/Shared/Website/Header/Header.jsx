@@ -36,28 +36,32 @@ const Header = () => {
 
           <nav className="mx-auto">
             <ul className="flex gap-7 lg:gap-[47px]">
-              {NavItemData.map((navitem, index) => (
-                <li key={index}>
-                  <Link
-                    className="font-hanken text-base font-medium text-black"
-                    to={navitem.link}>
-                    {navitem.name}
-                  </Link>
-                </li>
-              ))}
+              {NavItemData.length > 0 &&
+                NavItemData.map((navitem, index) => (
+                  <li key={index}>
+                    <Link
+                      className="font-hanken text-base font-medium text-black"
+                      to={navitem.link}
+                    >
+                      {navitem.name}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </nav>
 
           <div className="nav_btn flex gap-3">
             <Link
               to={"/login"}
-              className="block font-hanken text-base font-semibold py-[14px] px-[30px] border-2 border-gray-800 rounded-[100px]">
+              className="block font-hanken text-base font-semibold py-[14px] px-[30px] border-2 border-gray-800 rounded-[100px]"
+            >
               {" "}
               Login
             </Link>
             <Link
               to={"/get-started"}
-              className="block font-hanken text-base font-semibold py-[14px] px-[30px] border-2 border-transparant rounded-[100px] bg-[linear-gradient(121deg,_#C67CFF_-1.44%,_#3A65FF_100%)]">
+              className="block font-hanken text-base font-semibold py-[14px] px-[30px] border-2 border-transparant rounded-[100px] bg-[linear-gradient(121deg,_#C67CFF_-1.44%,_#3A65FF_100%)]"
+            >
               {" "}
               Get Started
             </Link>

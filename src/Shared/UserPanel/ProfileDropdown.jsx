@@ -41,20 +41,24 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
           </div>
         </div>
         <div className="py-5 px-6 flex flex-col  gap-6">
-          {items.map((data, index) => (
-            <div
-              onClick={
-                data?.function
-                // setShowProfile(false);
-                // setShowAccount(true);
-              }
-              className="flex items-center gap-3.5 cursor-pointer"
-              key={index}
-            >
-              {data.icon}
-              <p className="text-base font-medium">{data.title}</p>
-            </div>
-          ))}
+          {items.length > 0 ? (
+            items.map((data, index) => (
+              <div
+                onClick={
+                  data?.function
+                  // setShowProfile(false);
+                  // setShowAccount(true);
+                }
+                className="flex items-center gap-3.5 cursor-pointer"
+                key={index}
+              >
+                {data.icon}
+                <p className="text-base font-medium">{data.title}</p>
+              </div>
+            ))
+          ) : (
+            <p>There is no data</p>
+          )}
         </div>
       </div>
 

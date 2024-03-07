@@ -12,14 +12,13 @@ const VideoCard = ({ status, name }) => {
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </div>
       <button
         className={`${
           status === "Draft" ? "bg-slate-800" : "bg-green-500"
-        } text-white font-semibold text-sm px-[6px] rounded-md absolute top-2 right-2`}
-      >
+        } text-white font-semibold text-sm px-[6px] rounded-md absolute top-2 right-2`}>
         {status}
       </button>
       <p className="text-base  font-semibold mb-1">{name}</p>

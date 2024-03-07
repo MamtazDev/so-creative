@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { mediaStorage } from "../../../Data/AllDatas";
 import FolderCard from "./FolderCard";
 import VideoCard from "./VideoCard";
+import { mediaStorage } from "../../../utils/data";
 
 const AllFiles = () => {
   const folders = mediaStorage.filter((item) => item.folder);
@@ -10,12 +10,19 @@ const AllFiles = () => {
 
   return (
     <div className="grid grid-cols-5 gap-6">
-      {combinedItems.map((item, index) => (
-        <div key={index} className="border p-10 rounded-xl">
-          {item.folder && <FolderCard folder={item.folder} />}
-          {item.video && <VideoCard video={item.video} />}
-        </div>
-      ))}
+      {combinedItems.length > 0 ? (
+        combinedItems.map((item, index) => (
+          <div
+            key={index}
+            className="border p-10 rounded-xl hover:shadow hover:bg-slate-50 transition-all duration-300 ease-in"
+          >
+            {item.folder && <FolderCard folder={item.folder} />}
+            {item.video && <VideoCard video={item.video} />}
+          </div>
+        ))
+      ) : (
+        <p>There is no data</p>
+      )}
     </div>
   );
 };

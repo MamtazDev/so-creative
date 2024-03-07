@@ -1,12 +1,15 @@
 import { useState } from "react";
 import AllVideo from "../../components/UserPanel/AllVideos/AllVideo";
 import AllVideoHeader from "../../components/UserPanel/AllVideos/AllVideoHeader";
-import { videos } from "../../Data/AllDatas";
 import AllVideoFileLayout from "../../components/UserPanel/AllVideos/AllVideoFileLayout";
+import { videos } from "../../utils/data";
+import useLoading from "../../hooks/useLoading";
+import Loading from "../../Shared/Loading";
 
 const AllVideos = () => {
   const [filteredVideos, setFilteredVideos] = useState(videos);
   const [selectedComponent, setSelectedComponent] = useState("folder");
+  const { isLoading } = useLoading();
 
   const handleFilterChange = (filter) => {
     if (filter === "Videos") {
@@ -20,16 +23,22 @@ const AllVideos = () => {
     setSelectedComponent(filter);
   };
   return (
-    <div>
+    <div className="h-full">
       <AllVideoHeader
         handleFilterChange={handleFilterChange}
         handleComponentChange={handleComponentChange}
         selectedComponent={selectedComponent}
       />
-      {selectedComponent === "folder" ? (
-        <AllVideo filteredVideos={filteredVideos} />
+      {isLoading ? (
+        <Loading />
       ) : (
-        <AllVideoFileLayout filteredVideos={filteredVideos} />
+        <>
+          {selectedComponent === "folder" ? (
+            <AllVideo filteredVideos={filteredVideos} />
+          ) : (
+            <AllVideoFileLayout filteredVideos={filteredVideos} />
+          )}
+        </>
       )}
     </div>
   );

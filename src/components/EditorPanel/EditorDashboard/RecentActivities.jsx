@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
+import Loading from "../../../Shared/Loading";
 import { RecentActivites } from "../../../utils/data";
 
 const RecentActivities = () => {
+  const repeatedData = Array.from({ length: 5 }, () => RecentActivites).flat();
   return (
-      <div className="recent_activities_wrapper border border-slate-200 rounded-2xl">
-        {RecentActivites.map((activityItem, index) => (
-          <div
-            className="activity_card flex gap-2 border-b border-b-slate-200 p-[22px]"
+    <div className="recent_activities_wrapper border border-slate-200 rounded-2xl h-[650px] overflow-y-scroll">
+      {repeatedData.length > 0 ? (
+        repeatedData.map((activityItem, index) => (
+          <div className="activity_card flex gap-2 border-b border-b-slate-200 p-[22px]"
             key={index}>
             <div className="left_activity_card">
               <img src={activityItem.img} alt="activity_img" />
@@ -27,17 +30,20 @@ const RecentActivities = () => {
                 <span className="font-bold">
                   Sales Strategies Video Series by
                 </span>
-                <span className="text-amber-600 ml-1">
+                <Link to={"#"} className="text-amber-600 ml-1">
                   {activityItem?.mentionName}
-                </span>
+                </Link>
               </p>
               <p className="text-slate-500 text-xs font-medium">
                 {activityItem.dateTime}
               </p>
             </div>
           </div>
-        ))}
-      </div>
+        ))
+      ) : (
+        <Loading />
+      )}
+    </div>
   );
 };
 

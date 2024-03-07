@@ -1,17 +1,17 @@
 import React, { useRef, useState } from "react";
-import { guidelines } from "../../../Data/AllDatas";
 import BrandUpload from "../../../Shared/UserPanel/BrandUpload";
 import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
+import { guidelines } from "../../../utils/data";
 
-const BrandGuidelines = () => {
+const BrandGuidelines = ({ setStep }) => {
+  const [brandImg, setBrandImg] = useState(null);
+  const [description, setDescription] = useState("");
+  const [brand, setBrand] = useState({});
   const brandImgRef = useRef();
   const guidelinesInputRefs = useRef(
     Array.from({ length: guidelines.length }).map(() => React.createRef())
   );
-  const [brandImg, setBrandImg] = useState(null);
-  const [description, setDescription] = useState("");
-  const [brand, setBrand] = useState({});
   const maxLength = 500;
 
   const handleImageChange = (event) => {
@@ -38,36 +38,39 @@ const BrandGuidelines = () => {
     }));
   };
 
-  console.log("data:", brand);
   return (
     <form
       onSubmit={handleSubmit}
       className="flex items-start justify-between gap-10"
     >
       <div className="w-full flex flex-col gap-10 ">
-        {guidelines.map((data, index) => (
-          <div key={index}>
-            <input
-              type="file"
-              name={data.inputName}
-              accept={data?.acceptType}
-              className="hidden"
-              onChange={(e) => handleChange(e, data.inputName)}
-              ref={guidelinesInputRefs.current[index]}
-            />
-            <BrandUpload
-              brandData={brand}
-              title={data.title}
-              subTitle={data.subtitle}
-              buttonName={data.buttonName}
-              inputName={data.inputName}
-              acceptType={data?.acceptType}
-              inputRef={() =>
-                guidelinesInputRefs.current[index].current.click()
-              }
-            />
-          </div>
-        ))}
+        {guidelines.length > 0 ? (
+          guidelines.map((data, index) => (
+            <div key={index}>
+              <input
+                type="file"
+                name={data.inputName}
+                accept={data?.acceptType}
+                className="hidden"
+                onChange={(e) => handleChange(e, data.inputName)}
+                ref={guidelinesInputRefs.current[index]}
+              />
+              <BrandUpload
+                brandData={brand}
+                title={data.title}
+                subTitle={data.subtitle}
+                buttonName={data.buttonName}
+                inputName={data.inputName}
+                acceptType={data?.acceptType}
+                inputRefClick={() =>
+                  guidelinesInputRefs.current[index].current.click()
+                }
+              />
+            </div>
+          ))
+        ) : (
+          <p>There is no data</p>
+        )}
       </div>
       <div className="max-w-[584px] w-full border rounded-3xl p-10">
         <div onClick={() => brandImgRef.current.click()} className="relative">
@@ -119,6 +122,7 @@ const BrandGuidelines = () => {
           </p>
         </div>
         <button
+          onClick={() => setStep(3)}
           type="submit"
           className="w-full rounded-full bg-indigo-600 text-white text-base font-semibold px-6 py-3"
         >

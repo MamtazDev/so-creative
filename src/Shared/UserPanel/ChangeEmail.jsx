@@ -1,8 +1,8 @@
-import { answers, reactions } from "../../Data/AllDatas";
-import arrowLeft from "../../assets/arrow-left.png";
-import helpQuery from "../../assets/help-ans.png";
-import open from "../../assets/open.png";
+import arrowLeft from "../../assets/arrow-left.svg";
+import helpQuery from "../../assets/help-ans.svg";
+import open from "../../assets/open.svg";
 import { Link } from "react-router-dom";
+import { answers, reactions } from "../../utils/data";
 
 const ChangeEmail = () => {
   return (
@@ -18,21 +18,29 @@ const ChangeEmail = () => {
           This article will show you how to change your account's email address.
         </p>
         <div className="flex flex-col gap-4 pb-8 border-b">
-          {answers.map((data, index) => (
-            <div key={index}>
-              <p className="text-base font-normal mb-4">
-                {index + 1}. {data}
-              </p>
-              <img src={helpQuery} alt="" />
-            </div>
-          ))}
+          {answers.length > 0 ? (
+            answers.map((data, index) => (
+              <div key={index}>
+                <p className="text-base font-normal mb-4">
+                  {index + 1}. {data}
+                </p>
+                <img src={helpQuery} alt="" />
+              </div>
+            ))
+          ) : (
+            <p>There is no data</p>
+          )}
         </div>
         <div className="flex flex-col gap-4 justify-center items-center mt-6">
           <p className="text-slate-500">Did this answer this question?</p>
           <div className="flex justify-center items-center gap-4">
-            {reactions.map((data, index) => (
-              <img key={index} src={data} alt="" />
-            ))}
+            {reactions.length > 0 ? (
+              reactions.map((data, index) => (
+                <img key={index} src={data} alt="" />
+              ))
+            ) : (
+              <p>There is no data</p>
+            )}
           </div>
           <Link
             className="flex gap-2 items-center font-medium text-base text-indigo-600"
