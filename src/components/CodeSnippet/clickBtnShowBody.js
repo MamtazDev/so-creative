@@ -1,11 +1,3 @@
-const [showProfile, setShowProfile] = useState(false); //for handing show on, show off
-useOutsideClick(profileRef, () => setShowProfile(false)); // for outside click show off
-
-{
-  showProfile && (
-    <ProfileDropdown setShowProfile={setShowProfile} profileRef={profileRef} />
-  );
-}
 
 import { Headset, SignOut, User } from "@phosphor-icons/react";
 import ProfileActive from "./ProfileActive";
@@ -22,7 +14,7 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
     {
       icon: <User className="text-state-700" size={24} />,
       title: "Account Settings",
-      function: openAccountModal,
+      
     },
     {
       icon: <Headset className="text-state-700" size={24} />,
@@ -54,7 +46,7 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
             items.map((data, index) => (
               <div
                 onClick={
-                  data?.function
+                   index === 0 && openAccountModal
                   // setShowProfile(false);
                   // setShowAccount(true);
                 }
@@ -77,3 +69,17 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
 };
 
 export default ProfileDropdown;
+
+
+
+const [showProfile, setShowProfile] = useState(false); //for handing show on, show off
+useOutsideClick(profileRef, () => setShowProfile(false)); // for outside click show off
+
+{
+  showProfile && (
+    <ProfileDropdown setShowProfile={setShowProfile} profileRef={profileRef} />
+  );
+}
+
+
+
