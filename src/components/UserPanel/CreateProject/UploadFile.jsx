@@ -30,9 +30,10 @@ const UploadFile = () => {
             upload();
           }, 500);
         } else {
+          setSelectedVideos([...selectedVideos, ...acceptedFiles]);
+          setNewSelectedVideo([]);
           setIsUploading(false);
           setUploadProgress(100);
-          setSelectedVideos([...selectedVideos, ...acceptedFiles]);
         }
       };
 
@@ -57,12 +58,12 @@ const UploadFile = () => {
       {...getRootProps({ style: dashedBoxStyle })}
       className=" text-center mb-10 rounded-xl relative"
     >
-      {isUploading && (
+      {/* {isUploading && (
         <UploadProgress
           uploadProgress={uploadProgress}
           newSelectedVideo={newSelectedVideo}
         />
-      )}
+      )} */}
       <div className="p-12  ">
         <input {...getInputProps()} />
         <img className="m-auto mb-5" src={mp4} alt="" />
@@ -71,9 +72,13 @@ const UploadFile = () => {
           Click to browse or drag & drop video files here
         </p>
       </div>
-      {selectedVideos.length > 0 && (
-        <SelectedVideo selectedVideos={selectedVideos} />
-      )}
+
+      <SelectedVideo
+        selectedVideos={selectedVideos}
+        uploadProgress={uploadProgress}
+        newSelectedVideo={newSelectedVideo}
+        isUploading={isUploading}
+      />
     </div>
   );
 };
