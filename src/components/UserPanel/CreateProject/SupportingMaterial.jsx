@@ -15,7 +15,7 @@ const SupportingMaterial = () => {
       }
     },
   });
-  console.log("pppp", file);
+
   return (
     <div className="border rounded-xl p-6">
       <FromLabel
