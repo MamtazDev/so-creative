@@ -1,36 +1,9 @@
 import React, { useState } from "react";
 import FromLabel from "./FromLabel";
-import AboutProject from "./AboutProject";
-import SupportingMaterial from "./SupportingMaterial";
-import SelectBrand from "./SelectBrand";
-import AspectRatio from "./AspectRatio";
-import AddPresenter from "./AddPresenter";
 import ExpandInputTitle from "./ExpandInputTitle";
+import { expandsDetails } from "../../../utils/data";
 
 const CreateBrief = () => {
-  const expandsDetails = [
-    {
-      title: "Tell us more about your project",
-      component: <AboutProject />,
-    },
-    {
-      title: "Supporting Materials",
-      component: <SupportingMaterial />,
-    },
-    {
-      title: "Select Brand Kit",
-      component: <SelectBrand />,
-    },
-    {
-      title: "Aspect Ratio",
-      component: <AspectRatio />,
-    },
-    {
-      title: "Add Presenter",
-      component: <AddPresenter />,
-    },
-  ];
-
   const [activeItems, setActiveItems] = useState([]);
 
   const handleOpenItem = (index) => {
@@ -47,14 +20,14 @@ const CreateBrief = () => {
         <div className="border rounded-xl p-6 mb-6">
           <div className="mb-8">
             <FromLabel
-              title="Project Title"
+              title="Project Title *"
               subtitle="eg. Sales Training Video"
             />
             <input className="brief_input" type="text" />
           </div>
           <div className="mb-8">
             <FromLabel
-              title="Video Type"
+              title="Video Type *"
               subtitle="Choose the type of video you are interested in."
             />
             <select className="brief_input">
@@ -65,7 +38,7 @@ const CreateBrief = () => {
           </div>
           <div className="mb-8">
             <FromLabel
-              title="Video Duration"
+              title="Video Duration *"
               subtitle="Select the duration of the video that suits your preferences."
             />
             <select className="brief_input">
@@ -81,14 +54,15 @@ const CreateBrief = () => {
         <div className="flex flex-col gap-6 items-center">
           {expandsDetails.map((data, index) => (
             <div className="w-full" key={index}>
-              <div onClick={() => handleOpenItem(index)}>
+              <div
+                className="cursor-pointer"
+                onClick={() => handleOpenItem(index)}
+              >
                 {!activeItems.includes(index) && (
                   <ExpandInputTitle title={data.title} />
                 )}
               </div>
-              {activeItems.includes(index) && (
-                <div className="cursor-pointer">{data.component}</div>
-              )}
+              {activeItems.includes(index) && <div>{data.component}</div>}
             </div>
           ))}
         </div>
