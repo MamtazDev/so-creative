@@ -12,6 +12,10 @@ select:focus-visible {
     outline: none;
 }
 
+input[type="radio"] {
+    accent-color: #4F46E5;
+}
+
 .sidebar .active {
     position: relative;
 }
