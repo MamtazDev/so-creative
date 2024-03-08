@@ -2,9 +2,9 @@ import { details } from "../../../utils/data";
 
 const GetStarted = () => {
   return (
-    <div className="max-w-[672px] m-auto">
+    <div>
       <p className=" text-xl font-semibold mb-5">Get Started</p>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-4 gap-6">
         {details.length > 0 ? (
           details.map((data, index) => (
             <div key={index}>
