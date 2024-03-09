@@ -41,9 +41,7 @@ const AboutProject = () => {
           rows="5"
           placeholder="Type Here..."
         ></textarea>
-        <button className="py-3 px-6 bg-indigo-600 rounded-full text-white text-base font-semibold ">
-          Continue
-        </button>
+        <button className="primary_btn">Continue</button>
       </div>
     </div>
   );

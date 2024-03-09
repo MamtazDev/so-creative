@@ -47,9 +47,7 @@ const CreateBrief = () => {
               <option value="mov">Under 15 mins</option>
             </select>
           </div>
-          <button className="py-3 px-6 bg-indigo-600 rounded-full text-white text-base font-semibold ">
-            Continue
-          </button>
+          <button className="primary_btn ">Continue</button>
         </div>
         <div className="flex flex-col gap-6 items-center">
           {expandsDetails.map((data, index) => (
