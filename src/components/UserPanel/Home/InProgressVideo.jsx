@@ -21,7 +21,7 @@ const InProgressVideo = () => {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
             <button className="absolute top-1 right-1 bg-orange-500 text-[10.5px] text-white py-[1.75px] px-[5.25px] rounded-md ">
               {data.status}

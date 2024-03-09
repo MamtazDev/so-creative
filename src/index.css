@@ -17,3 +17,22 @@
 .activity_card:last-child {
     border-bottom-width: 0;
 }
+
+
+.chat-box::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 12px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    border-radius: 12px;
+}

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
+import ChatBotV2 from "../Shared/UserPanel/ChatBotV2";
 import Header from "../Shared/UserPanel/Header";
 import Sidebar from "../Shared/UserPanel/Sidebar";
-import ChatBot from "../Shared/UserPanel/ChatBot";
 
 const UserPanelLayout = () => {
   return (
@@ -12,7 +12,8 @@ const UserPanelLayout = () => {
           <Sidebar />
           <div className="mr-8 mb-8 ml-8 p-10 bg-white rounded-3xl w-full overflow-y-auto no_scrollbar">
             <Outlet />
-            <ChatBot />
+            {/* <ChatBot /> */}
+            <ChatBotV2 />
           </div>
         </div>
       </div>
