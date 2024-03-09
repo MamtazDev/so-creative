@@ -73,9 +73,7 @@ const AspectRatio = () => {
           <input className="brief_input" type="text" placeholder="Type Here" />
         </label>
       </div>
-      <button className="mt-6 py-3 px-6 bg-indigo-600 rounded-full text-white text-base font-semibold ">
-        Continue
-      </button>
+      <button className="mt-6 primary_btn">Continue</button>
     </div>
   );
 };

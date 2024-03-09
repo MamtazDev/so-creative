@@ -31,10 +31,7 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
             <StockVideos />
             <AllAvater />
             <div className="mt-10 text-center">
-              <button
-                onClick={() => setStep(1)}
-                className=" text-base  text-white font-semibold py-3 px-6 bg-indigo-600 rounded-full"
-              >
+              <button onClick={() => setStep(1)} className=" primary_btn">
                 Save & Continue
               </button>
             </div>
