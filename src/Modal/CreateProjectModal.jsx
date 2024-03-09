@@ -6,6 +6,7 @@ import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
 import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
 import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
 import CreateBrief from "../components/UserPanel/CreateProject/CreateBrief";
+import SelectAddOns from "../components/UserPanel/CreateProject/SelectAddOns";
 
 const CreateProjectModal = ({ setShowCreateModal }) => {
   const createRef = useRef();
@@ -41,6 +42,11 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
         {step === 1 && (
           <>
             <CreateBrief setStep={setStep} />
+          </>
+        )}
+        {step === 2 && (
+          <>
+            <SelectAddOns setStep={setStep} />
           </>
         )}
       </div>

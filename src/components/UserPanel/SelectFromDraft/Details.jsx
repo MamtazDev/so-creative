@@ -93,7 +93,7 @@ const Details = ({ setStep }) => {
                 </p>
               </div>
             </div>
-            <p>0.5 credits</p>
+            <p className="text-base font-semibold">0.5 credits</p>
           </div>
           <div className="p-4 border-b flex items-center gap-2 justify-between">
             <div className="flex items-center gap-4">
@@ -107,7 +107,7 @@ const Details = ({ setStep }) => {
                 </p>
               </div>
             </div>
-            <p>1 credit</p>
+            <p className="text-base font-semibold">1 credit</p>
           </div>
           <div className="py-4 px-6  flex items-center gap-2 justify-between">
             <p className="text-base font-normal">
