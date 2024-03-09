@@ -80,14 +80,16 @@ const Sidebar = () => {
             ))}
         </div>
       </div>
-
-      <div className="flex gap-3 items-center ">
-        <img src={companyLogo} alt="" />
-        <div>
-          <p className="text-base font-semibold">Company Name</p>
-          <p className="text-xs font-normal">Free Plan</p>
+      <div>
+        <div className="flex gap-3 items-center ">
+          <img src={companyLogo} alt="" />
+          <div>
+            <p className="text-base font-semibold">Company Name</p>
+            <p className="text-xs font-normal">Free Plan</p>
+          </div>
         </div>
       </div>
+
       {showCreateModal && (
         <CreateProjectModal setShowCreateModal={setShowCreateModal} />
       )}

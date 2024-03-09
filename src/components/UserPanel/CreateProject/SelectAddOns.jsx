@@ -11,6 +11,7 @@ const SelectAddOns = ({ setStep }) => {
             className="p-4 border rounded-xl flex items-center gap-2 justify-between"
           >
             <div className="flex items-center gap-4">
+              <input type="checkbox" className="accent-indigo-600 w-5 h-5" />
               <img src={data.pic} alt="" />
               <div>
                 <p className="text-slate-800 mb-1 text-base font-semibold">

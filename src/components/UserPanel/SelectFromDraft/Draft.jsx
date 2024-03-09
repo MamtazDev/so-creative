@@ -32,7 +32,7 @@ const Draft = ({ setShowDraftModal, setStep }) => {
             key={index}
           >
             <div className="flex items-center gap-4">
-              <input className="accent-indigo-600" type="checkbox" />
+              <input className="accent-indigo-600 w-5 h-5" type="checkbox" />
               <div className="relative">
                 <img
                   className="w-[113px] h-[64px] rounded-xl"
