@@ -7,13 +7,14 @@ import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
 import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
 import CreateBrief from "../components/UserPanel/CreateProject/CreateBrief";
 import SelectAddOns from "../components/UserPanel/CreateProject/SelectAddOns";
+import CreatingProject from "./CreatingProject";
 
 const CreateProjectModal = ({ setShowCreateModal }) => {
   const createRef = useRef();
   useOutsideClick(createRef, () => setShowCreateModal(false));
   const [step, setStep] = useState(0);
   return (
-    <div className="fixed left-0 top-0 z-50 h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
+    <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
         ref={createRef}
         className="max-w-[1280px] max-h-[90vh] overflow-y-auto no_scrollbar w-full bg-white text-black p-10 rounded-2xl relative"
@@ -24,8 +25,7 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
         >
           <img src={close} alt="" />
         </button>
-
-        <Stepper step={step} />
+        {step !== 3 && <Stepper step={step} />}
         {step === 0 && (
           <div className="">
             <UploadFile />
@@ -47,6 +47,14 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
         {step === 2 && (
           <>
             <SelectAddOns setStep={setStep} />
+          </>
+        )}
+        {step === 3 && (
+          <>
+            <CreatingProject
+              setStep={setStep}
+              setShowCreateModal={setShowCreateModal}
+            />
           </>
         )}
       </div>

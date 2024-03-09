@@ -42,7 +42,9 @@ const SelectAddOns = ({ setStep }) => {
           >
             Previous Step
           </button>
-          <button className="primary_btn">Create New Project</button>
+          <button onClick={() => setStep(3)} className="primary_btn">
+            Create New Project
+          </button>
         </div>
       </div>
     </div>
