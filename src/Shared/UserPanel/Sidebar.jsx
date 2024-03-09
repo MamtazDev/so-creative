@@ -7,7 +7,7 @@ import createProject from "../../assets/create-project.svg";
 import selectDraft from "../../assets/select-draft.svg";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { menus } from "../../utils/data";
-import SelectDraft from "../../Modal/SelectDraft";
+import SelectDraft from "../../components/UserPanel/SelectFromDraft/SelectDraft";
 
 const Sidebar = () => {
   const location = useLocation();

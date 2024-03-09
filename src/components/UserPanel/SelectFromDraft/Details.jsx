@@ -6,8 +6,8 @@ import {
   FileText,
   PuzzlePiece,
 } from "@phosphor-icons/react";
-import cc from "../assets/cc.svg";
-import voice from "../assets/voice.svg";
+import cc from "../../../assets/cc.svg";
+import voice from "../../../assets/voice.svg";
 
 const Details = ({ setStep }) => {
   const [showFullText, setShowFullText] = useState(false);

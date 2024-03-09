@@ -40,7 +40,7 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
 
         {step === 1 && (
           <>
-            <CreateBrief />
+            <CreateBrief setStep={setStep} />
           </>
         )}
       </div>

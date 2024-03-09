@@ -3,7 +3,7 @@ import FromLabel from "./FromLabel";
 import ExpandInputTitle from "./ExpandInputTitle";
 import { expandsDetails } from "../../../utils/data";
 
-const CreateBrief = () => {
+const CreateBrief = ({ setStep }) => {
   const [activeItems, setActiveItems] = useState([]);
 
   const handleOpenItem = (index) => {
@@ -64,6 +64,9 @@ const CreateBrief = () => {
             </div>
           ))}
         </div>
+        <button onClick={() => setStep(2)} className=" primary_btn mt-6">
+          Save & Continue
+        </button>
       </form>
     </div>
   );

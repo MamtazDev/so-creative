@@ -1,6 +1,6 @@
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import React, { useState } from "react";
-import { videos } from "../utils/data";
+import { videos } from "../../../utils/data";
 
 const Draft = ({ setShowDraftModal, setStep }) => {
   const [visibleVideos, setVisibleVideos] = useState(9);

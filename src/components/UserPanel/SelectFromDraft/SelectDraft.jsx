@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import useOutsideClick from "../hooks/useOutsideClick";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 import Draft from "./Draft";
 import Details from "./Details";
 
