@@ -40,6 +40,11 @@ import internalInActive from "../assets/admin/internal_inactive.svg";
 import internalActive from "../assets/admin/internal_active.svg";
 import companiesInActive from "../assets/admin/companis_inactive.svg";
 import companiesActive from "../assets/admin/companis_active.svg";
+import socialVoice from "../assets/social-voice.svg";
+import cc from "../assets/cc.svg";
+import voice from "../assets/voice.svg";
+import express from "../assets/express-edit.svg";
+import strategy from "../assets/strategy.svg";
 
 export const tableHeading = [
   "Client",
@@ -635,5 +640,38 @@ export const aspectRatio = [
     pic: portrait,
     ratio: "9:16",
     name: "Portrait",
+  },
+];
+
+export const addOns = [
+  {
+    pic: socialVoice,
+    title: "Social Media Resizing",
+    subtitle: "Resize your video for different social media platforms.",
+    credit: 0.5,
+  },
+  {
+    pic: cc,
+    title: "Subtitles and SRT Files",
+    subtitle: "Spoken English videos only. Allow up to 24-48 hours.",
+    credit: 0.5,
+  },
+  {
+    pic: voice,
+    title: "Voice Over Artist",
+    subtitle: "Professional voice. Allow up to 48 hours.",
+    credit: 1,
+  },
+  {
+    pic: express,
+    title: "Express Edit",
+    subtitle: "Your video delivered on the same day",
+    credit: 1,
+  },
+  {
+    pic: strategy,
+    title: "1 hour Video Strategy Call",
+    subtitle: "Schedule a project meeting with a Creative Director",
+    credit: 1,
   },
 ];

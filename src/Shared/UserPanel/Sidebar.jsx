@@ -7,7 +7,7 @@ import createProject from "../../assets/create-project.svg";
 import selectDraft from "../../assets/select-draft.svg";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { menus } from "../../utils/data";
-import SelectDraft from "../../Modal/SelectDraft";
+import SelectDraft from "../../components/UserPanel/SelectFromDraft/SelectDraft";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -80,14 +80,16 @@ const Sidebar = () => {
             ))}
         </div>
       </div>
-
-      <div className="flex gap-3 items-center ">
-        <img src={companyLogo} alt="" />
-        <div>
-          <p className="text-base font-semibold">Company Name</p>
-          <p className="text-xs font-normal">Free Plan</p>
+      <div>
+        <div className="flex gap-3 items-center ">
+          <img src={companyLogo} alt="" />
+          <div>
+            <p className="text-base font-semibold">Company Name</p>
+            <p className="text-xs font-normal">Free Plan</p>
+          </div>
         </div>
       </div>
+
       {showCreateModal && (
         <CreateProjectModal setShowCreateModal={setShowCreateModal} />
       )}

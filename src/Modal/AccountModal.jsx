@@ -32,7 +32,7 @@ const AccountModal = ({ setShowAccount }) => {
   useOutsideClick(modalBodyRef, () => setShowAccount(false));
 
   return (
-    <div className="fixed top-0 z-50 h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
+    <div className="fixed top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
         ref={modalBodyRef}
         className="max-w-[640px] w-full bg-white text-black p-10 rounded-2xl relative"

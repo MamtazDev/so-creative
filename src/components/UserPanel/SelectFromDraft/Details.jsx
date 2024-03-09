@@ -6,10 +6,10 @@ import {
   FileText,
   PuzzlePiece,
 } from "@phosphor-icons/react";
-import cc from "../assets/cc.svg";
-import voice from "../assets/voice.svg";
+import cc from "../../../assets/cc.svg";
+import voice from "../../../assets/voice.svg";
 
-const Details = () => {
+const Details = ({ setStep }) => {
   const [showFullText, setShowFullText] = useState(false);
   const maxWords = 110;
   const text =
@@ -38,7 +38,10 @@ const Details = () => {
             Created September 1, 2023
           </p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-3 text-base font-semibold text-indigo-600 border rounded-full border-indigo-600">
+        <button
+          onClick={() => setStep(1)}
+          className="flex items-center gap-2 px-6 py-3 text-base font-semibold text-indigo-600 border rounded-full border-indigo-600"
+        >
           <CaretLeft size={24} /> Go Back
         </button>
       </div>
@@ -90,7 +93,29 @@ const Details = () => {
                 </p>
               </div>
             </div>
-            <p>0.5 credits</p>
+            <p className="text-base font-semibold">0.5 credits</p>
+          </div>
+          <div className="p-4 border-b flex items-center gap-2 justify-between">
+            <div className="flex items-center gap-4">
+              <img src={voice} alt="" />
+              <div>
+                <p className="text-slate-800 mb-1 text-base font-semibold">
+                  Voice Over Artist
+                </p>
+                <p className="text-slate-500 font-normal text-xs">
+                  Professional voice. Allow up to 48 hours.
+                </p>
+              </div>
+            </div>
+            <p className="text-base font-semibold">1 credit</p>
+          </div>
+          <div className="py-4 px-6  flex items-center gap-2 justify-between">
+            <p className="text-base font-normal">
+              Total Project Cost: <span className="font-bold">2.5 Credits</span>{" "}
+            </p>
+            <button className="text-indigo-600 text-sm font-semibold">
+              Request Credit Change
+            </button>
           </div>
         </div>
       </div>
