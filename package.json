@@ -18,11 +18,16 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+<<<<<<< HEAD
+    "react-redux": "^9.1.0",
+    "react-multi-carousel": "^2.8.4",
+=======
 
     "react-redux": "^9.1.0",
 
     "react-multi-carousel": "^2.8.4",
 
+>>>>>>> e0a08ab0abf846a4ecc06908b01d6b9951f27790
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.22.1",
     "sort-by": "^1.2.0",

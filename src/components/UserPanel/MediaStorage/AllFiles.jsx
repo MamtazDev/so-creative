@@ -4,15 +4,15 @@ import VideoCard from "./VideoCard";
 import { mediaStorage } from "../../../utils/data";
 
 const AllFiles = ({ data }) => {
-  const folders = data.folders;
-  const videos = data.files;
-  const combinedItems = data.folders ? folders.concat(videos) : data;
+  const folders = data?.folders;
+  const videos = data?.files;
+  const combinedItems = data?.folders ? folders.concat(videos) : data;
 
   const [clickedItem, setClickedItem] = useState(null);
 
   return (
     <div className="grid grid-cols-5 gap-6">
-      {combinedItems.length > 0 ? (
+      {combinedItems?.length > 0 ? (
         combinedItems.map((item, index) => (
           <div
             key={index}

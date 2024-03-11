@@ -1,13 +1,9 @@
-
 import { BASE_API_URL } from "../../config/config";
 import { timeAgo } from "../../utils/converter";
+import { useRef, useState } from "react";
 
 /* eslint-disable react/prop-types */
 const VideoCard = ({ status, name, data }) => {
-
-import { useRef, useState } from "react";
-
-const VideoCard = ({ status, name }) => {
   const videoRef = useRef(null);
   const [duration, setDuration] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -42,35 +38,11 @@ const VideoCard = ({ status, name }) => {
     }
   };
 
+  console.log(duration, "dfdfdf");
   return (
     <div className="relative  mr-6 ">
       {" "}
-
-      <div className="overflow-hidden rounded-xl max-h-[160px] h-full mb-4">
-        {/* <iframe
-          className="  rounded-xl hover:scale-110 transition-all duration-300 ease-in"
-          width="100%"
-          height="160"
-          src={`${BASE_API_URL}/${data.file}`}
-          title={data?.title}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe> */}
-
-        <video className="h-full" controls>
-          <source src={`${BASE_API_URL}/${data.file}`} />
-        </video>
-      </div>
-      <button
-        className={`${
-          status === "Draft" ? "bg-slate-800" : "bg-green-500"
-        } text-white font-semibold text-sm px-[6px] rounded-md absolute top-2 right-2`}
-      >
-        {status}
-      </button>
-
-      <div className="overflow-hidden rounded-xl h-[160px] mb-4 relative group">
+      <div className="overflow-hidden rounded-xl max-h-[160px] h-full mb-4 relative group">
         {!isPlaying && (
           <>
             <img
@@ -89,20 +61,14 @@ const VideoCard = ({ status, name }) => {
         >
           ►{" "}
         </button>
+
         <video
           ref={videoRef}
+          className="h-full"
           onLoadedMetadata={handleLoadedMetadata}
-          onPlay={handleVideoPlay}
-          onPause={handleVideoPause}
-          onTimeUpdate={handleTimeUpdate}
-          className="rounded-xl h-[160px] w-full"
           controls
         >
-          <source
-            src="https://www.grepper.com/video_uploads/1063173_GTPn4teUPe2CRY4mEeO3csjXc8X5NYy6wIeL8pMPIdW1wLzLjNQjH1V.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
+          <source src={`${BASE_API_URL}/${data?.file}`} />
         </video>
         <button
           className={`${
@@ -112,10 +78,9 @@ const VideoCard = ({ status, name }) => {
           {status}
         </button>
       </div>
-
       <p className="text-base  font-semibold mb-1">{name}</p>
       <p className="text-slate-500 text-sm font-normal">
-        {timeAgo(data.createdAt)}
+        {timeAgo(data?.createdAt)}
       </p>
     </div>
   );
