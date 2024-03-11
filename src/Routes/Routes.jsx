@@ -11,6 +11,7 @@ import Login from "../pages/Auth/Login";
 import Folder from "../pages/UserPanel/Folder";
 import UserHome from "../pages/UserPanel/UserHome";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
+import InternalUsers from "../pages/AdminPanel/InternalUsers";
 
 export const router = createBrowserRouter([
   // {
@@ -86,6 +87,17 @@ export const router = createBrowserRouter([
       {
         path: "/editor/clients",
         element: <EditorAllClients />,
+      },
+    ],
+  },
+
+  {
+    path: "/internal-users",
+    element: <EditorPanelLayout />,
+    children: [
+      {
+        path: "/internal-users",
+        element: <InternalUsers />,
       },
     ],
   },

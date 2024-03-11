@@ -1,4 +1,4 @@
-import creating from "../../../assets/creating.svg";
+import CreatingBrand from "../../../Shared/UserPanel/CreatingBrand";
 import created from "../../../assets/created.svg";
 import useLoading from "../../../hooks/useLoading";
 import { Plus } from "@phosphor-icons/react";
@@ -8,10 +8,7 @@ const Creating = () => {
   return (
     <div className="h-full flex flex-col items-center justify-center">
       {isLoading ? (
-        <>
-          <img className="mb-6" src={creating} alt="" />
-          <p className="text-xl font-bold">Creating your brand...</p>
-        </>
+        <CreatingBrand title="Creating your brand..." />
       ) : (
         <>
           <img className="mb-10" src={created} alt="" />

@@ -29,7 +29,7 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
     <div>
       <div
         ref={profileRef}
-        className="fixed z-50 top-[84px] right-6  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[320px]"
+        className="fixed z-[9999] top-[84px] right-6  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[320px]"
       >
         <div className="flex items-center gap-3.5 p-5 border-b">
           <ProfileActive />

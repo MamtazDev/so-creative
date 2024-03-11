@@ -1,3 +1,9 @@
+import AboutProject from "../components/UserPanel/CreateProject/AboutProject";
+import SupportingMaterial from "../components/UserPanel/CreateProject/SupportingMaterial";
+import SelectBrand from "../components/UserPanel/CreateProject/SelectBrand";
+import AspectRatio from "../components/UserPanel/CreateProject/AspectRatio";
+import AddPresenter from "../components/UserPanel/CreateProject/AddPresenter";
+
 import accepted from "../assets/accepted.svg";
 import access from "../assets/access.svg";
 import alert from "../assets/alert.svg";
@@ -25,8 +31,20 @@ import upload from "../assets/upload.svg";
 import upset from "../assets/upset.svg";
 import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
+import landscape from "../assets/landscape.svg";
+import square from "../assets/square.svg";
+import portrait from "../assets/portrait.svg";
 import taskIcon from "../assets/editor_panel/newproject_icon.svg";
 import taskIcon2 from "../assets/editor_panel/inprogress.svg";
+import internalInActive from "../assets/admin/internal_inactive.svg";
+import internalActive from "../assets/admin/internal_active.svg";
+import companiesInActive from "../assets/admin/companis_inactive.svg";
+import companiesActive from "../assets/admin/companis_active.svg";
+import socialVoice from "../assets/social-voice.svg";
+import cc from "../assets/cc.svg";
+import voice from "../assets/voice.svg";
+import express from "../assets/express-edit.svg";
+import strategy from "../assets/strategy.svg";
 
 export const tableHeading = [
   "Client",
@@ -50,6 +68,13 @@ export const clientTableHeading = [
   "Total Duration",
   "Last Project Status",
   "Last Activity",
+];
+
+export const internalTableHeading = [
+  "Name",
+  "Joined",
+  "Last Active",
+  "User Role",
 ];
 
 export const insightsCardData = [
@@ -115,6 +140,19 @@ export const RecentActivites = [
   },
 ];
 
+export const internalUserData = [
+  {
+    clientImg: clientImg1,
+    clientName: "Xavier Davis",
+    projectName: "Product Showcase Video",
+    projectCount: 5,
+    assignee: "Shawn Mahbub",
+    status: "In Progress",
+    duration: 4,
+    dateCreated: "September 10, 2023",
+  },
+];
+
 export const menus = [
   {
     type: "user",
@@ -170,6 +208,20 @@ export const menus = [
     activePic: clientIconActive,
     title: "Clients",
     path: "/editor/clients",
+  },
+  {
+    type: "admin",
+    pic: internalInActive,
+    activePic: internalActive,
+    title: "Internal Users",
+    path: "/internal-users",
+  },
+  {
+    type: "admin",
+    pic: companiesInActive,
+    activePic: companiesActive,
+    title: "Companies",
+    path: "/internal-users/companies",
   },
 ];
 
@@ -548,4 +600,78 @@ export const createProjectStepper = [
   "Upload Files",
   "Create Brief",
   "Select Add ons",
+];
+
+export const expandsDetails = [
+  {
+    title: "Tell us more about your project",
+    component: <AboutProject />,
+  },
+  {
+    title: "Supporting Materials",
+    component: <SupportingMaterial />,
+  },
+  {
+    title: "Select Brand Kit",
+    component: <SelectBrand />,
+  },
+  {
+    title: "Aspect Ratio",
+    component: <AspectRatio />,
+  },
+  {
+    title: "Add Presenter",
+    component: <AddPresenter />,
+  },
+];
+
+export const aspectRatio = [
+  {
+    pic: landscape,
+    ratio: "16:9",
+    name: "Landscape",
+  },
+  {
+    pic: square,
+    ratio: "1:1",
+    name: "Square",
+  },
+  {
+    pic: portrait,
+    ratio: "9:16",
+    name: "Portrait",
+  },
+];
+
+export const addOns = [
+  {
+    pic: socialVoice,
+    title: "Social Media Resizing",
+    subtitle: "Resize your video for different social media platforms.",
+    credit: 0.5,
+  },
+  {
+    pic: cc,
+    title: "Subtitles and SRT Files",
+    subtitle: "Spoken English videos only. Allow up to 24-48 hours.",
+    credit: 0.5,
+  },
+  {
+    pic: voice,
+    title: "Voice Over Artist",
+    subtitle: "Professional voice. Allow up to 48 hours.",
+    credit: 1,
+  },
+  {
+    pic: express,
+    title: "Express Edit",
+    subtitle: "Your video delivered on the same day",
+    credit: 1,
+  },
+  {
+    pic: strategy,
+    title: "1 hour Video Strategy Call",
+    subtitle: "Schedule a project meeting with a Creative Director",
+    credit: 1,
+  },
 ];

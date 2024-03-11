@@ -7,16 +7,14 @@ body {
 }
 
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+select:focus-visible {
     outline: none;
 }
 
-/* .gradient_text {
-    background: var(--Linear-1, linear-gradient(121deg, #C67CFF -1.44%, #3A65FF 101.49%));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-} */
+input[type="radio"] {
+    accent-color: #4F46E5;
+}
 
 .sidebar .active {
     position: relative;
@@ -36,4 +34,14 @@ textarea:focus-visible {
 
 .no_scrollbar::-webkit-scrollbar {
     display: none;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 20px;
+    background-image: url('../src/assets/select-arrow.svg');
+    background-position: right 2% center;
+    background-repeat: no-repeat;
 }

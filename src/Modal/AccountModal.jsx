@@ -32,7 +32,7 @@ const AccountModal = ({ setShowAccount }) => {
   useOutsideClick(modalBodyRef, () => setShowAccount(false));
 
   return (
-    <div className="fixed top-0 z-50 h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
+    <div className="fixed top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
         ref={modalBodyRef}
         className="max-w-[640px] w-full bg-white text-black p-10 rounded-2xl relative"
@@ -49,7 +49,9 @@ const AccountModal = ({ setShowAccount }) => {
             <p className="text-2xl font-semibold mb-10">Account Settings</p>
             <form onSubmit={handleSubmit}>
               <div
-                onClick={() => brandImgRef.current.click()}
+                onClick={() => {
+                  brandImgRef.current.click();
+                }}
                 className="relative"
               >
                 <input
@@ -62,7 +64,7 @@ const AccountModal = ({ setShowAccount }) => {
                 />
 
                 <img
-                  className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer object-contain"
+                  className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer object-cover"
                   src={
                     inputData?.image
                       ? URL.createObjectURL(inputData?.image)

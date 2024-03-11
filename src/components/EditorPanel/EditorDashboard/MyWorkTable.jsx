@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { CaretRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Link, useLocation } from "react-router-dom";
+import Loading from "../../../Shared/Loading";
 import {
   MyWorkTableData,
   clientTableHeading,
@@ -12,6 +14,8 @@ import {
 } from "../../../utils/data";
 import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 import EditorPagination from "./EditorPagination";
+import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
+import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
@@ -35,31 +39,23 @@ const MyWorkTable = ({ filteredData }) => {
       }
     },
   });
-
   const handleUploadClick = () => {
     document.getElementById("fileInput").click();
   };
-
   const handlePopup = () => {
     setModalPopup(!modalPopup);
   };
-
   const handeJobAction = () => {
     setJobAction(!jobAction);
   };
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-
   const paginatedData = filteredData?.slice(startIndex, endIndex);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   //repeted the data
   const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
 
@@ -69,65 +65,15 @@ const MyWorkTable = ({ filteredData }) => {
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
           <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
             <table className="min-w-full leading-normal myworktable">
-              <thead>
-                <tr>
-                  {tableHeading.length > 0 ? (
-                    tableHeading.map((tableHadingName, index) => (
-                      <th
-                        className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                        key={index}>
-                        {tableHadingName}
-                      </th>
-                    ))
-                  ) : (
-                    <p>There is no data</p>
-                  )}
-                </tr>
-              </thead>
-
+              <TableHead tableHeading={tableHeading} />
               <tbody>
                 {repeatedData.slice(0, 5).map((tableDataInfo, index) => (
-                  <tr
+                  <TableBody
+                    tableDataInfo={tableDataInfo}
                     key={index}
-                    className="hover:bg-indigo-100 hover:cursor-pointer"
-                    onClick={handlePopup}>
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 w-8 h-8">
-                          <img
-                            className="w-full h-full rounded-full"
-                            src={tableDataInfo.clientImg}
-                            alt="img"
-                          />
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
-                            {tableDataInfo.clientName}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                        {tableDataInfo.projectName}
-                      </p>
-                    </td>
-
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                        {tableDataInfo.duration} days
-                      </p>
-                    </td>
-
-                    <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
-                      <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                        {tableDataInfo.dateCreated} <CaretRight size={20} />
-                      </p>
-                    </td>
-                  </tr>
+                    handlePopup={handlePopup}
+                  />
                 ))}
-
                 <tr>
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm"></td>
 
@@ -166,22 +112,7 @@ const MyWorkTable = ({ filteredData }) => {
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
             <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
               <table className="min-w-full leading-normal myworktable">
-                <thead>
-                  <tr>
-                    {tableHeadingTwo.length > 0 ? (
-                      tableHeadingTwo.map((tableHadingName, index) => (
-                        <th
-                          className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                          key={index}>
-                          {tableHadingName}
-                        </th>
-                      ))
-                    ) : (
-                      <p>There is no data</p>
-                    )}
-                  </tr>
-                </thead>
-
+                <TableHead tableHeading={tableHeadingTwo} />
                 <tbody>
                   {paginatedData.map((tableDataInfo, index) => (
                     <tr
@@ -283,17 +214,7 @@ const MyWorkTable = ({ filteredData }) => {
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
             <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
               <table className="min-w-full leading-normal myworktable">
-                <thead>
-                  <tr>
-                    {clientTableHeading.map((tableHadingName, index) => (
-                      <th
-                        className="px-5 py-3 border-b border-gray-200 text-left text-sm font-semibold text-slate-900 tracking-wider"
-                        key={index}>
-                        {tableHadingName}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
+                <TableHead tableHeading={clientTableHeading} />
 
                 <tbody>
                   {paginatedData?.map((tableDataInfo, index) => (

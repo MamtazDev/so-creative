@@ -11,7 +11,7 @@ const Help = ({ setShowHelp, helpRef }) => {
   return (
     <div
       ref={helpRef}
-      className="fixed z-50 top-[84px] right-[210px]  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[448px]"
+      className="fixed z-[9999] top-[84px] right-[210px]  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[448px]"
     >
       <div className="p-6 border-b flex items-start justify-between gap-2">
         <div className="flex items-center gap-3">
