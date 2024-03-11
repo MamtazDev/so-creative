@@ -1,7 +1,7 @@
 import React from "react";
-import useLoading from "../hooks/useLoading";
-import CreatingBrand from "../Shared/UserPanel/CreatingBrand";
-import created from "../assets/project-created.svg";
+import useLoading from "../../../hooks/useLoading";
+import CreatingBrand from "../../../Shared/UserPanel/CreatingBrand";
+import created from "../../../assets/project-created.svg";
 import { Link } from "react-router-dom";
 
 const CreatingProject = ({ setShowCreateModal }) => {

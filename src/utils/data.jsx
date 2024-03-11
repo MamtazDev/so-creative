@@ -45,6 +45,15 @@ import cc from "../assets/cc.svg";
 import voice from "../assets/voice.svg";
 import express from "../assets/express-edit.svg";
 import strategy from "../assets/strategy.svg";
+import business from "../assets/business-plan.svg";
+import enterprise from "../assets/enterprise-plan.svg";
+
+import {
+  BellSimpleRinging,
+  GearSix,
+  Notebook,
+  Users,
+} from "@phosphor-icons/react";
 
 export const tableHeading = [
   "Client",
@@ -673,5 +682,39 @@ export const addOns = [
     title: "1 hour Video Strategy Call",
     subtitle: "Schedule a project meeting with a Creative Director",
     credit: 1,
+  },
+];
+
+export const workspaceMenu = [
+  {
+    icon: <GearSix size={24} />,
+    title: "Team Settings",
+  },
+  {
+    icon: <Users size={24} />,
+    title: "Collaborators",
+  },
+  {
+    icon: <Notebook size={24} />,
+    title: "Team Billing",
+  },
+  {
+    icon: <BellSimpleRinging size={24} />,
+    title: "Notifications",
+  },
+];
+
+export const plans = [
+  {
+    pic: business,
+    title: "Business Plan",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
+  },
+  {
+    pic: enterprise,
+    title: "Enterprise Plan",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
   },
 ];

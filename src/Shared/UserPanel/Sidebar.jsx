@@ -8,6 +8,7 @@ import selectDraft from "../../assets/select-draft.svg";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { menus } from "../../utils/data";
 import SelectDraft from "../../components/UserPanel/SelectFromDraft/SelectDraft";
+import TeamSettingModal from "../../Modal/TeamSettingModal";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const Sidebar = () => {
   const [show, setShow] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showDraftModal, setShowDraftModal] = useState(false);
+  const [showTeamModal, setShowTeamModal] = useState(false);
   useOutsideClick(showRef, () => setShow(false));
 
   return (
@@ -81,6 +83,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div>
+        <button onClick={() => setShowTeamModal(true)}>Team Settings</button>
         <div className="flex gap-3 items-center ">
           <img src={companyLogo} alt="" />
           <div>
@@ -94,6 +97,7 @@ const Sidebar = () => {
         <CreateProjectModal setShowCreateModal={setShowCreateModal} />
       )}
       {showDraftModal && <SelectDraft setShowDraftModal={setShowDraftModal} />}
+      {showTeamModal && <TeamSettingModal />}
     </aside>
   );
 };
