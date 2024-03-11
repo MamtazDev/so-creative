@@ -39,7 +39,8 @@ const RecentVideos = ({ data }) => {
           <img src={arrow} alt="" />
         </Link>
       </div>
-      {/* <div className="grid grid-cols-5 gap-6"> */}
+
+    
       <Carousel swipeable={true} responsive={responsive}>
         {videos.length > 0 ? (
           videos.map((data, index) => (
