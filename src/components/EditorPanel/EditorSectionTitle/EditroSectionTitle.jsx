@@ -1,5 +1,4 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const EditroSectionTitle = ({ filter, handleFilterChange }) => {
   const route = useLocation();
@@ -53,4 +52,4 @@ const EditroSectionTitle = ({ filter, handleFilterChange }) => {
   );
 };
 
-export default EditroSectionTitle
+export default EditroSectionTitle;

@@ -7,12 +7,14 @@ import createProject from "../../assets/create-project.svg";
 import selectDraft from "../../assets/select-draft.svg";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { menus } from "../../utils/data";
+import SelectDraft from "../../components/UserPanel/SelectFromDraft/SelectDraft";
 
 const Sidebar = () => {
   const location = useLocation();
   const showRef = useRef();
   const [show, setShow] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showDraftModal, setShowDraftModal] = useState(false);
   useOutsideClick(showRef, () => setShow(false));
 
   return (
@@ -21,7 +23,7 @@ const Sidebar = () => {
         <div className="relative">
           <button
             onClick={() => setShow(!show)}
-            className="bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 ease-in flex gap-2 items-center justify-center mb-8 text-base text-white font-semibold rounded-full w-full py-3 px-6 "
+            className=" flex gap-2 items-center justify-center mb-8  w-full primary_btn "
           >
             <Plus size={24} />
             New Project
@@ -41,7 +43,13 @@ const Sidebar = () => {
                 <img src={createProject} alt="" />
                 Create Project
               </button>
-              <button className="flex gap-3.5 items-center text-base font-medium">
+              <button
+                onClick={() => {
+                  setShowDraftModal(true);
+                  setShow(false);
+                }}
+                className="flex gap-3.5 items-center text-base font-medium"
+              >
                 <img src={selectDraft} alt="" />
                 Select Drafts
               </button>
@@ -72,17 +80,20 @@ const Sidebar = () => {
             ))}
         </div>
       </div>
-
-      <div className="flex gap-3 items-center ">
-        <img src={companyLogo} alt="" />
-        <div>
-          <p className="text-base font-semibold">Company Name</p>
-          <p className="text-xs font-normal">Free Plan</p>
+      <div>
+        <div className="flex gap-3 items-center ">
+          <img src={companyLogo} alt="" />
+          <div>
+            <p className="text-base font-semibold">Company Name</p>
+            <p className="text-xs font-normal">Free Plan</p>
+          </div>
         </div>
       </div>
+
       {showCreateModal && (
         <CreateProjectModal setShowCreateModal={setShowCreateModal} />
       )}
+      {showDraftModal && <SelectDraft setShowDraftModal={setShowDraftModal} />}
     </aside>
   );
 };
