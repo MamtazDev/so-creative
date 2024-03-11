@@ -3,10 +3,12 @@ import FolderCard from "./FolderCard";
 import VideoCard from "./VideoCard";
 import { mediaStorage } from "../../../utils/data";
 
-const AllFiles = () => {
-  const folders = mediaStorage.filter((item) => item.folder);
-  const videos = mediaStorage.filter((item) => item.video);
-  const combinedItems = folders.concat(videos);
+const AllFiles = ({ data }) => {
+  const folders = data.folders;
+  const videos = data.files;
+  const combinedItems = data.folders ? folders.concat(videos) : data;
+
+  const [clickedItem, setClickedItem] = useState(null);
 
   return (
     <div className="grid grid-cols-5 gap-6">
@@ -14,10 +16,29 @@ const AllFiles = () => {
         combinedItems.map((item, index) => (
           <div
             key={index}
-            className="border p-10 rounded-xl hover:shadow hover:bg-slate-50 transition-all duration-300 ease-in"
+            className="border p-10 rounded-xl  hover:bg-slate-50 transition-all duration-300 ease-in"
           >
-            {item.folder && <FolderCard folder={item.folder} />}
-            {item.video && <VideoCard video={item.video} />}
+            {item.folderData && (
+              <FolderCard
+                folder={item.folderData}
+                setClickedItem={setClickedItem}
+                clickedItem={clickedItem}
+              />
+            )}
+            {item.fileData && (
+              <VideoCard
+                video={item.fileData}
+                setClickedItem={setClickedItem}
+                clickedItem={clickedItem}
+              />
+            )}
+            {!item.fileData && !item.folderData && (
+              <VideoCard
+                video={item}
+                setClickedItem={setClickedItem}
+                clickedItem={clickedItem}
+              />
+            )}
           </div>
         ))
       ) : (
