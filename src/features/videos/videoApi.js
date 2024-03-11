@@ -30,6 +30,14 @@ export const videoApi = apiSlice.injectEndpoints({
       query: () => "/api/v1/medias/getUserAllFiles",
       providesTags: ["Videos"],
     }),
+    updateFolder: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/api/v1/medias/updateFolder/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["Drives"],
+    }),
   }),
 });
 
@@ -39,4 +47,5 @@ export const {
   useGetUserDriveQuery,
   useGetFolderFileQuery,
   useGetUserAllFilesQuery,
+  useUpdateFolderMutation,
 } = videoApi;

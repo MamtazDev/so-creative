@@ -1,15 +1,26 @@
 import React from "react";
 import Swal from "sweetalert2";
-import { useCreateFolderMutation } from "../features/videos/videoApi";
+import {
+  useCreateFolderMutation,
+  useUpdateFolderMutation,
+} from "../features/videos/videoApi";
 
-const CreateFolderModal = ({ setOpenCreateFolderModal }) => {
+const CreateFolderModal = ({
+  setOpenCreateFolderModal,
+  folderTitle,
+  clickedItem,
+  setClickedItem,
+}) => {
   const [createFolder, { isLoading }] = useCreateFolderMutation();
+  const [updateFolder, { isLoading: updating }] = useUpdateFolderMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const title = e.target.title.value;
     try {
-      const res = await createFolder({ title: title });
+      const res = folderTitle
+        ? await updateFolder({ id: clickedItem, data: { title: title } })
+        : await createFolder({ title: title });
 
       if (res?.error?.error) {
         Swal.fire({
@@ -27,6 +38,7 @@ const CreateFolderModal = ({ setOpenCreateFolderModal }) => {
       }
       if (res?.data?.success) {
         setOpenCreateFolderModal(false);
+        folderTitle && setClickedItem(null);
       }
     } catch (error) {
       Swal.fire({
@@ -42,6 +54,7 @@ const CreateFolderModal = ({ setOpenCreateFolderModal }) => {
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
@@ -65,6 +78,7 @@ const CreateFolderModal = ({ setOpenCreateFolderModal }) => {
                       name="title"
                       type="text"
                       required
+                      defaultValue={folderTitle ? folderTitle : ""}
                       className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -75,14 +89,17 @@ const CreateFolderModal = ({ setOpenCreateFolderModal }) => {
               <button
                 type="submit"
                 className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto"
-                disabled={isLoading}
+                disabled={isLoading || updating}
               >
-                Create
+                {folderTitle ? "Update" : "Create"}
               </button>
               <button
                 type="button"
                 className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                onClick={() => setOpenCreateFolderModal(false)}
+                onClick={() => {
+                  folderTitle && setClickedItem(null);
+                  setOpenCreateFolderModal(false);
+                }}
               >
                 Cancel
               </button>

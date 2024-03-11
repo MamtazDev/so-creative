@@ -2,6 +2,8 @@ import { DotsThreeOutline, NotePencil } from "@phosphor-icons/react";
 import folderIcon from "../../../assets/folder.svg";
 import { formatFileSize } from "../../../utils/converter";
 import { useNavigate } from "react-router";
+import CreateFolderModal from "../../../Modal/CreateFolderModal";
+import { useState } from "react";
 
 const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
   const navigate = useNavigate();
@@ -14,6 +16,10 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
       setClickedItem(id);
     }
   };
+
+  const [openEditFolderModal, setEditFolderModal] = useState(false);
+  const [title, setTitle] = useState(null);
+
   return (
     <div
       className="text-center relative cursor-pointer"
@@ -31,7 +37,13 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
           className="absolute top-0 -right-6 bg-indigo-50 p-2 shadow rounded-sm "
           onClick={(e) => e.stopPropagation()}
         >
-          <button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setEditFolderModal(true);
+              setTitle(folder.title);
+            }}
+          >
             <NotePencil className="text-indigo-600" size={20} weight="fill" />
           </button>
         </div>
@@ -42,6 +54,14 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
       <p className="text-slate-400 text-xs">
         {formatFileSize(folder?.folderSize)}
       </p>
+      {openEditFolderModal && (
+        <CreateFolderModal
+          setOpenCreateFolderModal={setEditFolderModal}
+          title={title}
+          clickedItem={clickedItem}
+          setClickedItem={setClickedItem}
+        />
+      )}
     </div>
   );
 };

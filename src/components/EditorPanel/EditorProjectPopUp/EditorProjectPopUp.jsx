@@ -36,7 +36,7 @@ const EditorProjectPopUp = ({
   const toggleExpanded = () => {
     setExpanded(!expanded);
   };
-    useOutsideClick(modalOut, () => setModalPopup(false));
+  useOutsideClick(modalOut, () => setModalPopup(false));
 
   return (
     <div className="absolute top-0 left-0 w-full h-screen bg-black/50 backdrop-blur-sm">
@@ -343,9 +343,9 @@ const EditorProjectPopUp = ({
                         </div>
                       </div>
                       <div className="addons_items_right">
-                        <h3 className="text-sm font-semibold text-indigo-600">
+                        <Link to={""} className="text-sm font-semibold text-indigo-600">
                           Request Credit Change
-                        </h3>
+                        </Link>
                       </div>
                     </div>
                   </div>

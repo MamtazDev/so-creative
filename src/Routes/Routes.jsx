@@ -1,17 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../Layouts/MainLayout";
 import UserPanelLayout from "../Layouts/UserPanelLayout";
+import EditorAllClients from "../pages/EditorPanel/EditorAllClients";
 import EditorAllProjects from "../pages/EditorPanel/EditorAllProjects";
 import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
-import UserHome from "../pages/UserPanel/UserHome";
 import AllVideos from "../pages/UserPanel/AllVideos";
-import Home from "../pages/Website/Home";
-import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
 import BrandKit from "../pages/UserPanel/BrandKit";
 import MediaStorage from "../pages/UserPanel/MediaStorage";
 import Register from "../pages/Auth/Register";
 import Login from "../pages/Auth/Login";
 import Folder from "../pages/UserPanel/Folder";
+import UserHome from "../pages/UserPanel/UserHome";
+import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
 
 export const router = createBrowserRouter([
   // {
@@ -86,7 +85,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/editor/clients",
-        element: <EditorAllProjects />,
+        element: <EditorAllClients />,
       },
     ],
   },

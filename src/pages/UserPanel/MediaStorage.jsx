@@ -30,6 +30,9 @@ const MediaStorage = () => {
       {openCreateFolderModal && (
         <CreateFolderModal
           setOpenCreateFolderModal={setOpenCreateFolderModal}
+          folderTitle={null}
+          clickedItem={null}
+          setClickedItem={null}
         />
       )}
       {openUploadVideo && (

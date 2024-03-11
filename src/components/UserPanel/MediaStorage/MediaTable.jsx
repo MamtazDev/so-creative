@@ -1,7 +1,12 @@
 import React from "react";
 import mp4 from "../../../assets/mp4.svg";
 import folder from "../../../assets/folder.svg";
-import { DotsThreeOutline } from "@phosphor-icons/react";
+import {
+  DotsThreeOutline,
+  DownloadSimple,
+  NotePencil,
+  Trash,
+} from "@phosphor-icons/react";
 import { mediaStorage } from "../../../utils/data";
 import { formatFileSize, timeAgo } from "../../../utils/converter";
 import { Link } from "react-router-dom";
@@ -76,11 +81,34 @@ const MediaTable = ({ data }) => {
                   {data.title && <span>{timeAgo(data.updatedAt)}</span>}
                 </td>
                 <td>
-                  <DotsThreeOutline
-                    className="text-slate-500"
-                    size={20}
-                    weight="fill"
-                  />
+                  {data.folderData ? (
+                    <div className="flex justify-center">
+                      <button>
+                        <NotePencil
+                          className="text-indigo-600"
+                          size={20}
+                          weight="fill"
+                        />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex  items-center gap-2 justify-center">
+                      <button>
+                        <Trash
+                          className="text-red-600"
+                          size={20}
+                          weight="fill"
+                        />
+                      </button>
+                      <button>
+                        <DownloadSimple
+                          className="text-indigo-600"
+                          size={20}
+                          weight="fill"
+                        />
+                      </button>
+                    </div>
+                  )}
                 </td>
               </tr>
             ))

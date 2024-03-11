@@ -17,17 +17,21 @@ const EditorPagination = ({
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`${ currentPage > 1
+          className={`${
+            currentPage > 1
               ? "flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
               : "flex items-center text-base font-medium border border-slate-200 px-3 py-1 rounded-full gap-2"
           }`}
           title="Previous">
-          <CaretLeft className={`${  currentPage > 1 ? "text-indigo-600" : "text-slate-200"
+          <CaretLeft
+            className={`${
+              currentPage > 1 ? "text-indigo-600" : "text-slate-200"
             }`}
             size={16}
           />
           <span
-            className={`${ currentPage > 1 ? "text-indigo-600" : "text-slate-200"
+            className={`${
+              currentPage > 1 ? "text-indigo-600" : "text-slate-200"
             }`}>
             Previous
           </span>
@@ -60,10 +64,28 @@ const EditorPagination = ({
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={endIndex >= filteredData.length}
-          className="flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
+          className={`${
+            endIndex >= filteredData.length
+              ? "flex items-center text-base font-medium border border-slate-200 px-3 py-1 rounded-full gap-2"
+              : "flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
+          }`}
           title="Next">
-          <span className="text-indigo-600">Next</span>
-          <CaretRight className="text-indigo-600" size={16} />
+          <span
+            className={`${
+              endIndex >= filteredData.length
+                ? "text-slate-200"
+                : "text-indigo-600"
+            }`}>
+            Next
+          </span>
+          <CaretRight
+            className={`${
+              endIndex >= filteredData.length
+                ? "text-slate-200"
+                : "text-indigo-600"
+            }`}
+            size={16}
+          />
         </button>
       </nav>
     </div>

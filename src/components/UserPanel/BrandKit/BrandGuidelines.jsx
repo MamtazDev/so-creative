@@ -38,7 +38,6 @@ const BrandGuidelines = ({ setStep }) => {
     }));
   };
 
-  console.log("data:", brand);
   return (
     <form
       onSubmit={handleSubmit}

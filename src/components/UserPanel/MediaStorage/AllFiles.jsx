@@ -14,7 +14,10 @@ const AllFiles = ({ data }) => {
     <div className="grid grid-cols-5 gap-6">
       {combinedItems.length > 0 ? (
         combinedItems.map((item, index) => (
-          <div key={index} className="border p-10 rounded-xl">
+          <div
+            key={index}
+            className="border p-10 rounded-xl  hover:bg-slate-50 transition-all duration-300 ease-in"
+          >
             {item.folderData && (
               <FolderCard
                 folder={item.folderData}

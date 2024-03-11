@@ -13,7 +13,7 @@ import {
 import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 import EditorPagination from "./EditorPagination";
 
-const MyWorkTable = ({ filteredData, repeatedData }) => {
+const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
   const [modalPopup, setModalPopup] = useState(false);
   const [jobAction, setJobAction] = useState(false);
@@ -60,6 +60,9 @@ const MyWorkTable = ({ filteredData, repeatedData }) => {
     setCurrentPage(pageNumber);
   };
 
+  //repeted the data
+  const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
+
   return (
     <>
       {route.pathname === "/editor" && (
@@ -83,7 +86,7 @@ const MyWorkTable = ({ filteredData, repeatedData }) => {
               </thead>
 
               <tbody>
-                {MyWorkTableData.slice(0, 5).map((tableDataInfo, index) => (
+                {repeatedData.slice(0, 5).map((tableDataInfo, index) => (
                   <tr
                     key={index}
                     className="hover:bg-indigo-100 hover:cursor-pointer"

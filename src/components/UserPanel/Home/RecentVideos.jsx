@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import VideoCard from "../../../Shared/UserPanel/VideoCard";
 import arrow from "../../../assets/arrow-right.svg";
 import { videos } from "../../../utils/data";
+import { truncateFilename } from "../../../utils/converter";
 
-const RecentVideos = () => {
+const RecentVideos = ({ data }) => {
   return (
     <div className="mb-24">
       <div className="flex items-center gap-4 justify-between mb-6">
@@ -17,11 +18,16 @@ const RecentVideos = () => {
         </Link>
       </div>
       <div className="grid grid-cols-5 gap-6">
-        {videos.length > 0 ? (
-          videos
+        {data.length > 0 ? (
+          data
             .slice(0, 5)
             .map((data, index) => (
-              <VideoCard key={index} name={data.name} status={data.status} />
+              <VideoCard
+                key={index}
+                data={data}
+                name={truncateFilename(data.title)}
+                status={data.status}
+              />
             ))
         ) : (
           <p>There is no data</p>
