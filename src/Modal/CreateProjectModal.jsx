@@ -7,8 +7,7 @@ import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
 import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
 import CreateBrief from "../components/UserPanel/CreateProject/CreateBrief";
 import SelectAddOns from "../components/UserPanel/CreateProject/SelectAddOns";
-import CreatingProject from "./CreatingProject";
-
+import CreatingProject from "../components/UserPanel/CreateProject/CreatingProject";
 const CreateProjectModal = ({ setShowCreateModal }) => {
   const createRef = useRef();
   useOutsideClick(createRef, () => setShowCreateModal(false));
