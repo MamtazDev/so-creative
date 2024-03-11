@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import WorkspaceSidebar from "../components/UserPanel/TeamSettings/WorkspaceSidebar";
 import TeamSettings from "../components/UserPanel/TeamSettings/TeamSettings";
 import InvitePeople from "../components/UserPanel/TeamSettings/InvitePeople";
+import TeamBilling from "../components/UserPanel/TeamSettings/TeamBilling";
 
 const TeamSettingModal = () => {
   const [step, setStep] = useState(0);
@@ -15,7 +16,7 @@ const TeamSettingModal = () => {
           <div className="p-6 w-full">
             {step === 0 && <TeamSettings />}
             {step === 1 && <InvitePeople />}
-            {step === 2 && <div>conpany3</div>}
+            {step === 2 && <TeamBilling />}
             {step === 3 && <div>conpany4</div>}
           </div>
         </div>
