@@ -4,7 +4,7 @@ export const videoApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createFolder: builder.mutation({
       query: (data) => ({
-        url: "/api/v1/medias/createFolder",
+        url: "/v1/drive/createFolder",
         method: "POST",
         body: data,
       }),
@@ -12,27 +12,27 @@ export const videoApi = apiSlice.injectEndpoints({
     }),
     addFile: builder.mutation({
       query: (data) => ({
-        url: "/api/v1/medias/addFile",
+        url: "/v1/drive/addFile",
         method: "POST",
         body: data,
       }),
       invalidatesTags: ["Videos", "Drives", "Folders"],
     }),
     getUserDrive: builder.query({
-      query: () => "/api/v1/medias/getUserDrive",
+      query: () => "/v1/drive/getUserDrive",
       providesTags: ["Drives"],
     }),
     getFolderFile: builder.query({
-      query: (id) => `/api/v1/medias/getFolderFile/${id}`,
+      query: (id) => `/v1/drive/getFolderFile/${id}`,
       providesTags: ["Folders"],
     }),
     getUserAllFiles: builder.query({
-      query: () => "/api/v1/medias/getUserAllFiles",
+      query: () => "/v1/drive/getUserAllFiles",
       providesTags: ["Videos"],
     }),
     updateFolder: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/api/v1/medias/updateFolder/${id}`,
+        url: `/v1/drive/updateFolder/${id}`,
         method: "PATCH",
         body: data,
       }),
