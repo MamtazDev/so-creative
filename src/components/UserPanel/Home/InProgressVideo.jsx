@@ -9,7 +9,7 @@ const InProgressVideo = ({ data }) => {
 
   return (
     <div className="grid grid-cols-4 gap-6 mb-10">
-      {data.length > 0 ? (
+      {data?.length > 0 ? (
         data.slice(0, 3).map((d, index) => (
           <div
             key={index}

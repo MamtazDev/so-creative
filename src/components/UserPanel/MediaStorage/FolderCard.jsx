@@ -57,7 +57,7 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
       {openEditFolderModal && (
         <CreateFolderModal
           setOpenCreateFolderModal={setEditFolderModal}
-          title={title}
+          folderTitle={title}
           clickedItem={clickedItem}
           setClickedItem={setClickedItem}
         />
