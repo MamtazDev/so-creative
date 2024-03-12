@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import VideoCard from "../../../Shared/UserPanel/VideoCard";
 import arrow from "../../../assets/arrow-right.svg";
 import { videos } from "../../../utils/data";
+import { truncateFilename } from "../../../utils/converter";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const RecentVideos = () => {
+const RecentVideos = ({ data }) => {
+
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -36,7 +39,8 @@ const RecentVideos = () => {
           <img src={arrow} alt="" />
         </Link>
       </div>
-      {/* <div className="grid grid-cols-5 gap-6"> */}
+
+    
       <Carousel swipeable={true} responsive={responsive}>
         {videos.length > 0 ? (
           videos.map((data, index) => (

@@ -1,51 +1,47 @@
 import { useState } from "react";
 import AllFiles from "../../components/UserPanel/MediaStorage/AllFiles";
-import MediaHeader from "../../components/UserPanel/MediaStorage/MediaHeader";
 import MediaTable from "../../components/UserPanel/MediaStorage/MediaTable";
 import Loading from "../../Shared/Loading";
-import CreateFolderModal from "../../Modal/CreateFolderModal";
-import { useGetUserDriveQuery } from "../../features/videos/videoApi";
+import {
+  useGetFolderFileQuery,
+  useGetUserDriveQuery,
+} from "../../features/videos/videoApi";
 import UploadVideoModal from "../../Modal/UploadVideoModal";
+import FolderHeader from "../../components/UserPanel/MediaStorage/MeadiaFolder/FolderHeader";
+import { useParams } from "react-router";
 
-const MediaStorage = () => {
+const Folder = () => {
   const [selectedComponent, setSelectedComponent] = useState("folder");
 
   const handleComponentChange = (filter) => {
     setSelectedComponent(filter);
   };
-  const [openCreateFolderModal, setOpenCreateFolderModal] = useState(false);
-  const [openUploadVideo, setOpedUploadVideoModal] = useState(false);
 
-  const { data, isLoading: getingDrive } = useGetUserDriveQuery();
+  const [openUploadVideo, setOpedUploadVideoModal] = useState(false);
+  const { id } = useParams();
+  const { data, isLoading } = useGetFolderFileQuery(id);
 
   return (
     <div className="h-full">
-      <MediaHeader
+      <FolderHeader
         selectedComponent={selectedComponent}
         handleComponentChange={handleComponentChange}
-        setOpenCreateFolderModal={setOpenCreateFolderModal}
         setOpedUploadVideoModal={setOpedUploadVideoModal}
+        title={data?.title}
       />
-      {openCreateFolderModal && (
-        <CreateFolderModal
-          setOpenCreateFolderModal={setOpenCreateFolderModal}
-          folderTitle={null}
-          clickedItem={null}
-          setClickedItem={null}
-        />
-      )}
+
       {openUploadVideo && (
         <UploadVideoModal setOpedUploadVideoModal={setOpedUploadVideoModal} />
       )}
 
-      {getingDrive ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <>
           {selectedComponent === "folder" ? (
-            <AllFiles data={data} />
+            <AllFiles data={data.files} />
           ) : (
-            <MediaTable data={data} />
+            <MediaTable data={data.files} />
           )}
         </>
       )}
@@ -53,4 +49,4 @@ const MediaStorage = () => {
   );
 };
 
-export default MediaStorage;
+export default Folder;

@@ -6,6 +6,9 @@ import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
 import AllVideos from "../pages/UserPanel/AllVideos";
 import BrandKit from "../pages/UserPanel/BrandKit";
 import MediaStorage from "../pages/UserPanel/MediaStorage";
+import Register from "../pages/Auth/Register";
+import Login from "../pages/Auth/Login";
+import Folder from "../pages/UserPanel/Folder";
 import UserHome from "../pages/UserPanel/UserHome";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
 import InternalUsers from "../pages/AdminPanel/InternalUsers";
@@ -30,6 +33,22 @@ export const router = createBrowserRouter([
         path: "/",
         element: <UserHome />,
       },
+    ],
+  },
+
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+
+  {
+    path: "/user",
+    element: <UserPanelLayout />,
+    children: [
       {
         path: "/user",
         element: <UserHome />,
@@ -41,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/media-storage",
         element: <MediaStorage />,
+      },
+      {
+        path: "/user/media-storage/folder/:id",
+        element: <Folder />,
       },
       {
         path: "/user/brand-kit",

@@ -45,6 +45,17 @@ import cc from "../assets/cc.svg";
 import voice from "../assets/voice.svg";
 import express from "../assets/express-edit.svg";
 import strategy from "../assets/strategy.svg";
+import business from "../assets/business-plan.svg";
+import enterprise from "../assets/enterprise-plan.svg";
+import email from "../assets/email-notification.svg";
+import slack from "../assets/slack-notification.svg";
+
+import {
+  BellSimpleRinging,
+  GearSix,
+  Notebook,
+  Users,
+} from "@phosphor-icons/react";
 
 export const tableHeading = [
   "Client",
@@ -673,5 +684,65 @@ export const addOns = [
     title: "1 hour Video Strategy Call",
     subtitle: "Schedule a project meeting with a Creative Director",
     credit: 1,
+  },
+];
+
+export const workspaceMenu = [
+  {
+    icon: <GearSix size={24} />,
+    title: "Team Settings",
+  },
+  {
+    icon: <Users size={24} />,
+    title: "Collaborators",
+  },
+  {
+    icon: <Notebook size={24} />,
+    title: "Team Billing",
+  },
+  {
+    icon: <BellSimpleRinging size={24} />,
+    title: "Notifications",
+  },
+];
+
+export const plans = [
+  {
+    pic: business,
+    title: "Business Plan",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
+  },
+  {
+    pic: enterprise,
+    title: "Enterprise Plan",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
+  },
+];
+
+export const notificationSettings = [
+  {
+    pic: email,
+    title: "Email Notifications",
+    subtitle: "Send me notification via email when someone...",
+    options: [
+      "Assigns you to an project",
+      "Mentions y ou in a post or reply ",
+      "Write an updates on a project that you’re working",
+      "Replies to a conversation you’re part of",
+    ],
+  },
+  {
+    pic: slack,
+    title: "Slack Notifications",
+    subtitle:
+      "Get a slack notification when someone assigns or mentions you in an update.",
+    options: [
+      "Assigns you to an project",
+      "Mentions y ou in a post or reply ",
+      "Write an updates on a project that you’re working",
+      "Replies to a conversation you’re part of",
+    ],
   },
 ];
