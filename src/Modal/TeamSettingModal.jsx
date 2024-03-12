@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import WorkspaceSidebar from "../components/UserPanel/TeamSettings/WorkspaceSidebar";
 import TeamSettings from "../components/UserPanel/TeamSettings/TeamSettings";
 import InvitePeople from "../components/UserPanel/TeamSettings/InvitePeople";
 import TeamBilling from "../components/UserPanel/TeamSettings/TeamBilling";
 import Notifications from "../components/UserPanel/TeamSettings/Notifications";
+import useOutsideClick from "../hooks/useOutsideClick";
 
-const TeamSettingModal = () => {
+const TeamSettingModal = ({ setShowTeamModal }) => {
   const [step, setStep] = useState(0);
+  const modalRef = useRef();
+  useOutsideClick(modalRef, () => setShowTeamModal(false));
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
-      <div className="max-w-[768px] h-[85vh] overflow-y-auto no_scrollbar w-full bg-white text-black  rounded-2xl relative">
+      <div
+        ref={modalRef}
+        className="max-w-[768px] h-[85vh] overflow-y-auto no_scrollbar w-full bg-white text-black  rounded-2xl relative"
+      >
         <div className="flex h-full">
           <div className="p-6 border-r h-full flex-shrink-0">
             <WorkspaceSidebar setStep={setStep} step={step} />

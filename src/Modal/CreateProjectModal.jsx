@@ -9,9 +9,9 @@ import CreateBrief from "../components/UserPanel/CreateProject/CreateBrief";
 import SelectAddOns from "../components/UserPanel/CreateProject/SelectAddOns";
 import CreatingProject from "../components/UserPanel/CreateProject/CreatingProject";
 const CreateProjectModal = ({ setShowCreateModal }) => {
+  const [step, setStep] = useState(0);
   const createRef = useRef();
   useOutsideClick(createRef, () => setShowCreateModal(false));
-  const [step, setStep] = useState(0);
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
