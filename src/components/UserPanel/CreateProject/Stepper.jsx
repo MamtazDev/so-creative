@@ -11,7 +11,7 @@ const Stepper = ({ step }) => {
         >
           <button
             className={`${
-              step === index ? "text-white bg-indigo-600" : "bg-slate-200 "
+              step >= index ? "text-white bg-indigo-600" : "bg-slate-200 "
             } flex-shrink-0  w-7 h-7 rounded-full shadow-sm text-xs font-medium`}
           >
             {index + 1}
