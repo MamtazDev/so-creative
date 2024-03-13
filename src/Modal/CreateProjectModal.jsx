@@ -10,10 +10,13 @@ import CreatingProject from "../components/UserPanel/CreateProject/CreatingProje
 import { useDispatch, useSelector } from "react-redux";
 import { setStep } from "../features/project/projectSlice";
 const CreateProjectModal = ({ setShowCreateModal }) => {
+  const [step, setStep] = useState(0);
   const createRef = useRef();
+
   // useOutsideClick(createRef, () => setShowCreateModal(false));
   const { projectId, step } = useSelector((state) => state.project);
   const dispatch = useDispatch();
+
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div

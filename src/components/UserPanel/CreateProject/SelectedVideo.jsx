@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SelectedVideo = ({
   selectedVideos,
@@ -6,6 +6,16 @@ const SelectedVideo = ({
   newSelectedVideo,
   isUploading,
 }) => {
+  const [animationInProgress, setAnimationInProgress] = useState(false);
+
+  useEffect(() => {
+    if (isUploading) {
+      setAnimationInProgress(true);
+    } else {
+      setAnimationInProgress(false);
+    }
+  }, [isUploading]);
+
   return (
     <div
       className={`text-start ${
@@ -30,6 +40,7 @@ const SelectedVideo = ({
         <div>
           {isUploading && (
             <div>
+
               <div className="">
                 <div className="h-[108px]  relative">
                   <video className="rounded-xl w-full h-full" controls>
@@ -52,6 +63,7 @@ const SelectedVideo = ({
                     {uploadProgress}%
                   </p>
                 </div>
+
               </div>
               <p className="text-sm font-medium mt-4">
                 {newSelectedVideo[0].name}

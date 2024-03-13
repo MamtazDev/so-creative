@@ -12,6 +12,7 @@ import Folder from "../pages/UserPanel/Folder";
 import UserHome from "../pages/UserPanel/UserHome";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
 import InternalUsers from "../pages/AdminPanel/InternalUsers";
+import VideoDetails from "../pages/UserPanel/VideoDetails";
 
 export const router = createBrowserRouter([
   // {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/all-videos",
         element: <AllVideos />,
+      },
+      {
+        path: "/user/video-details",
+        element: <VideoDetails />,
       },
       {
         path: "/user/media-storage",

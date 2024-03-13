@@ -58,7 +58,7 @@ const CreateFolderModal = ({
     >
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-      <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div className="fixed inset-0 z-10 w-screen overflow-y-auto no_scrollbar">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <form
             onSubmit={handleSubmit}

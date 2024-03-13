@@ -97,7 +97,9 @@ const Sidebar = () => {
         <CreateProjectModal setShowCreateModal={setShowCreateModal} />
       )}
       {showDraftModal && <SelectDraft setShowDraftModal={setShowDraftModal} />}
-      {showTeamModal && <TeamSettingModal />}
+      {showTeamModal && (
+        <TeamSettingModal setShowTeamModal={setShowTeamModal} />
+      )}
     </aside>
   );
 };
