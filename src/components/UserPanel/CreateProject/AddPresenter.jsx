@@ -3,11 +3,16 @@ import FromLabel from "./FromLabel";
 import camera from "../../../assets/camera.svg";
 import brandInput from "../../../assets/brand-img.svg";
 import { Plus } from "@phosphor-icons/react";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { setStep } from "../../../features/project/projectSlice";
 
-const AddPresenter = () => {
+const AddPresenter = ({ save, isLoading, projectData }) => {
   const [inputData, setInputData] = useState({});
   const brandImgRef = useRef();
   const maxLength = 500;
+
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +27,40 @@ const AddPresenter = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleContinue = async () => {
+    try {
+      const res = await save({
+        projectId: projectData?._id,
+        presenter: inputData?.name,
+      });
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        // push("/dashboard");
+        dispatch(setStep(2));
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
   };
 
   return (
@@ -110,14 +149,18 @@ const AddPresenter = () => {
             /{maxLength} Characters
           </p>
         </div>
+
         <button
-          disabled={!inputData?.image || !inputData?.name || !inputData?.title}
-          type="submit"
-          className={` rounded-full bg-indigo-600  text-white text-base font-semibold px-6 py-3`}
+          disabled={
+            !inputData?.image ||
+            !inputData?.name ||
+            !inputData?.title ||
+            isLoading
+          }
+          className="primary_btn disabled:bg-indigo-300"
+          onClick={handleContinue}
         >
-          {inputData?.image && inputData?.name && !inputData?.title
-            ? "https://localhost/overview_exam_progress.php "
-            : "Continue"}
+          {isLoading ? "Loading..." : "Save & Continue"}
         </button>
       </form>
     </div>

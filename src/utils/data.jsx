@@ -615,22 +615,7 @@ export const createProjectStepper = [
 
 export const expandsDetails = [
   {
-    title: "Tell us more about your project",
-    component: <AboutProject />,
-  },
-  {
-    title: "Supporting Materials",
-    component: <SupportingMaterial />,
-  },
-  {
-    title: "Select Brand Kit",
-    component: <SelectBrand />,
-  },
-  {
-    title: "Aspect Ratio",
-    component: <AspectRatio />,
-  },
-  {
+    id: 5,
     title: "Add Presenter",
     component: <AddPresenter />,
   },
