@@ -1,7 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { addOns } from "../../../utils/data";
+import { useSelector } from "react-redux";
+import {
+  useAddOrUpdateProjectMutation,
+  useGetProjectDetailsQuery,
+} from "../../../features/project/projectApi";
+import Swal from "sweetalert2";
 
-const SelectAddOns = ({ setStep }) => {
+const SelectAddOns = () => {
+  const { projectId } = useSelector((state) => state.project);
+
+  const [addOrUpdateProject, { isLoading }] = useAddOrUpdateProjectMutation();
+
+  const [projectAddons, setAddProjectOns] = useState([]);
+
+  const handleClick = (value) => {
+    const isExist = projectAddons.find((i) => i.name === value.title);
+    if (isExist) {
+      const newProjectAddOns = projectAddons.filter(i.name !== value.title);
+      setAddProjectOns(newProjectAddOns);
+    } else {
+      setAddProjectOns([
+        ...projectAddons,
+        {
+          name: value.title,
+          description: value.subtitle,
+          credit: value.credit,
+        },
+      ]);
+    }
+  };
+
+  const handleContinue = async (activeBrif) => {
+    try {
+      const formData = new FormData();
+
+      files.forEach((i) => formData.append("supportive", i));
+      formData.append("projectId", projectData?._id);
+      const res = await addOrUpdateProject(formData);
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        // push("/dashboard");
+
+        !editing && activeBrif && dispatch(setActiveBrif(activeBrif));
+        setEditing(false);
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
+  };
+
   return (
     <div className="max-w-[768px] m-auto">
       <div className="flex flex-col gap-4 mb-4">
@@ -9,9 +75,14 @@ const SelectAddOns = ({ setStep }) => {
           <div
             key={index}
             className="p-4 border rounded-xl flex items-center gap-2 justify-between"
+            onClick={() => handleClick(data)}
           >
             <div className="flex items-center gap-4">
-              <input type="checkbox" className="accent-indigo-600 w-5 h-5" />
+              <input
+                type="checkbox"
+                className="accent-indigo-600 w-5 h-5"
+                checked={projectAddons.name === data.title}
+              />
               <img src={data.pic} alt="" />
               <div>
                 <p className="text-slate-800 mb-1 text-base font-semibold">
