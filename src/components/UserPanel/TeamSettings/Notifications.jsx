@@ -22,7 +22,10 @@ const Notifications = () => {
       <div>
         {notificationSettings.map((data, index) => (
           <div key={index}>
-            <div className="flex items-start gap-4 justify-between border rounded-2xl p-5 mb-3">
+            <div
+              onClick={() => toggleOptions(index)}
+              className="flex cursor-pointer items-start gap-4 justify-between border rounded-2xl p-5 mb-3"
+            >
               <div className="flex items-start gap-2">
                 <img src={data.pic} alt="" />
                 <div>
@@ -32,7 +35,7 @@ const Notifications = () => {
                   </p>
                 </div>
               </div>
-              <button onClick={() => toggleOptions(index)}>
+              <button>
                 <CaretDown size={24} />
               </button>
             </div>
