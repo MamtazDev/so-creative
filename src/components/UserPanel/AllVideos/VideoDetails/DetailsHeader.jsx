@@ -2,7 +2,7 @@ import { CaretRight } from "@phosphor-icons/react";
 import aveter1 from "../../.././../assets/aveter1.svg";
 import aveter2 from "../../.././../assets/aveter2.svg";
 
-const DetailsHeader = () => {
+const DetailsHeader = ({ setShowExperienceModal }) => {
   return (
     <div className="flex items-center justify-between gap-4 mb-10">
       <div className="flex items-center gap-1 text-xl font-bold">
@@ -21,7 +21,10 @@ const DetailsHeader = () => {
         <button className="bg-indigo-600 text-white py-2.5 px-[30px]  rounded-full text-sm font-semibold ">
           Share
         </button>
-        <button className="bg-green-500 text-white py-2.5 px-[30px]  rounded-full text-sm font-semibold ">
+        <button
+          onClick={() => setShowExperienceModal(true)}
+          className="bg-green-500 text-white py-2.5 px-[30px]  rounded-full text-sm font-semibold "
+        >
           Approve
         </button>
       </div>
