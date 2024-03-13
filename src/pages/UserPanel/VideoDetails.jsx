@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DetailsHeader from "../../components/UserPanel/AllVideos/VideoDetails/DetailsHeader";
 import Details from "../../components/UserPanel/AllVideos/VideoDetails/Details";
 import ExperienceModal from "../../Modal/ExperienceModal";
+import VideoComments from "../../components/UserPanel/AllVideos/VideoDetails/VideoComments";
 
 const VideoDetails = () => {
   const [showExperienceModal, setShowExperienceModal] = useState(false);
@@ -12,6 +13,7 @@ const VideoDetails = () => {
         <div className="col-span-2">
           <Details />
         </div>
+        <VideoComments />
       </div>
       {showExperienceModal && (
         <ExperienceModal setShowExperienceModal={setShowExperienceModal} />
