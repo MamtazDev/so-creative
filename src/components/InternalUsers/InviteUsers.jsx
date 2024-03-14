@@ -13,6 +13,7 @@ const InviteUsers = ({ setShowInviteUser }) => {
     }
   };
   useOutsideClick(userRef, () => setShowInviteUser(false));
+
   return (
     <div
       ref={userRef}
@@ -55,7 +56,16 @@ const InviteUsers = ({ setShowInviteUser }) => {
           )
         )}
       </div>
-      <button className="primary_btn w-full">Invite</button>
+      <button className="primary_btn w-full">
+        {selectIndex === 1 ? (
+          <div className="flex items-center justify-center gap-2">
+            {" "}
+            <LinkSimple size={20} /> Copy Link
+          </div>
+        ) : (
+          "Invite"
+        )}
+      </button>
     </div>
   );
 };

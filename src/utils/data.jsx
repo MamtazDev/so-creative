@@ -178,7 +178,7 @@ export const internalUserData = [
     clientName: "Brooklyn Simmons",
     joined: "September 10, 2023",
     lastActive: "September 10, 2023",
-    role: "Editor ",
+    role: "Editor",
   },
 ];
 

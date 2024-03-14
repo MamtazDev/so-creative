@@ -1,17 +1,21 @@
 import { CaretRight } from "@phosphor-icons/react";
 import { internalTableHeading, internalUserData } from "../../utils/data";
 import TableHead from "../Shared/TableComponent/TableHead/TableHead";
+import { useState } from "react";
+import InternalUserModal from "../../Modal/InternalUserModal";
 
-const InternalTable = () => {
+const InternalTable = ({ filteredData }) => {
+  const [userModal, setUserModal] = useState(false);
   return (
     <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
       <table className="min-w-full leading-normal myworktable">
         <TableHead tableHeading={internalTableHeading} />
 
         <tbody>
-          {internalUserData?.map((tableDataInfo, index) => (
+          {filteredData?.map((tableDataInfo, index) => (
             <tr
               key={index}
+              onClick={() => setUserModal(true)}
               className="hover:bg-indigo-100 hover:cursor-pointer"
             >
               <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
@@ -59,6 +63,7 @@ const InternalTable = () => {
           ))}
         </tbody>
       </table>
+      {userModal && <InternalUserModal setUserModal={setUserModal} />}
     </div>
   );
 };
