@@ -3,10 +3,11 @@ import EditorPagination from "../../EditorPanel/EditorDashboard/EditorPagination
 import { CaretRight } from "@phosphor-icons/react";
 import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
 import { clientTableHeading } from "../../../utils/data";
+import CompanyModal from "../../../Modal/CompanyModal";
 
 const AllClients = ({ filteredData }) => {
-  console.log(filteredData, "filteredData");
   const [currentPage, setCurrentPage] = useState(1);
+  const [showModal, setShowModal] = useState(false);
   const itemsPerPage = 7;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -25,7 +26,7 @@ const AllClients = ({ filteredData }) => {
             <tr
               key={index}
               className="hover:bg-indigo-100 hover:cursor-pointer"
-              //   onClick={handlePopup}
+              onClick={() => setShowModal(true)}
             >
               <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                 <div className="flex items-center">
@@ -90,6 +91,8 @@ const AllClients = ({ filteredData }) => {
         itemsPerPage={itemsPerPage}
         endIndex={endIndex}
       />
+
+      {showModal && <CompanyModal setShowModal={setShowModal} />}
     </div>
   );
 };

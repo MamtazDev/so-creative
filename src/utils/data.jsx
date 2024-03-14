@@ -53,6 +53,7 @@ import slack from "../assets/slack-notification.svg";
 import {
   BellSimpleRinging,
   GearSix,
+  NewspaperClipping,
   Notebook,
   Users,
 } from "@phosphor-icons/react";
@@ -711,6 +712,16 @@ export const workspaceMenu = [
   {
     icon: <BellSimpleRinging size={24} />,
     title: "Notifications",
+  },
+];
+export const companyMenu = [
+  {
+    icon: <Users size={24} />,
+    title: "Team Members",
+  },
+  {
+    icon: <NewspaperClipping size={24} />,
+    title: "Plans & Billing",
   },
 ];
 
