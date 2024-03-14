@@ -12,6 +12,8 @@ const ProjectMaterials = ({ save, isLoading, projectData }) => {
       save={save}
       isLoading={isLoading}
       projectData={projectData}
+      editing={editing}
+      setEditing={setEditing}
     />
   ) : editing ? (
     <SupportingMaterial
