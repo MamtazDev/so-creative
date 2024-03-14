@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import Stepper from "../components/UserPanel/CreateProject/Stepper";
-import useOutsideClick from "../hooks/useOutsideClick";
 import close from "../assets/close.svg";
 import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
 import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
@@ -8,10 +7,16 @@ import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
 import CreateBrief from "../components/UserPanel/CreateProject/CreateBrief";
 import SelectAddOns from "../components/UserPanel/CreateProject/SelectAddOns";
 import CreatingProject from "../components/UserPanel/CreateProject/CreatingProject";
+import { useDispatch, useSelector } from "react-redux";
+import { setStep } from "../features/project/projectSlice";
 const CreateProjectModal = ({ setShowCreateModal }) => {
-  const [step, setStep] = useState(0);
+  // const [step, setStep] = useState(0);
   const createRef = useRef();
-  useOutsideClick(createRef, () => setShowCreateModal(false));
+
+  // useOutsideClick(createRef, () => setShowCreateModal(false));
+  const { projectId, step } = useSelector((state) => state.project);
+  const dispatch = useDispatch();
+
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
@@ -31,7 +36,11 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
             <StockVideos />
             <AllAvater />
             <div className="mt-10 text-center">
-              <button onClick={() => setStep(1)} className=" primary_btn">
+              <button
+                disabled={!projectId}
+                onClick={() => dispatch(setStep(1))}
+                className=" primary_btn disabled:bg-indigo-300"
+              >
                 Save & Continue
               </button>
             </div>
@@ -40,20 +49,17 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
 
         {step === 1 && (
           <>
-            <CreateBrief setStep={setStep} />
+            <CreateBrief />
           </>
         )}
         {step === 2 && (
           <>
-            <SelectAddOns setStep={setStep} />
+            <SelectAddOns />
           </>
         )}
         {step === 3 && (
           <>
-            <CreatingProject
-              setStep={setStep}
-              setShowCreateModal={setShowCreateModal}
-            />
+            <CreatingProject setShowCreateModal={setShowCreateModal} />
           </>
         )}
       </div>

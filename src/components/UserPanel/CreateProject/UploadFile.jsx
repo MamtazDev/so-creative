@@ -3,6 +3,10 @@ import { useDropzone } from "react-dropzone";
 import mp4 from "../../../assets/mp4.svg";
 import SelectedVideo from "./SelectedVideo";
 import UploadProgress from "./UploadProgress";
+import { BASE_API_URL } from "../../../config/config";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setProjectId } from "../../../features/project/projectSlice";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
@@ -10,6 +14,9 @@ const UploadFile = () => {
   const [isDragActive, setIsDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+
+  const { accessToken } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -20,20 +27,36 @@ const UploadFile = () => {
       setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
 
-      let progress = 0;
-      const upload = () => {
-        if (progress < 100) {
-          setTimeout(() => {
-            progress += Math.random() * 10;
-            progress = Math.min(progress, 100);
-            setUploadProgress(Math.floor(progress));
-            upload();
-          }, 500);
-        } else {
-          setSelectedVideos([...selectedVideos, ...acceptedFiles]);
-          setNewSelectedVideo([]);
-          setIsUploading(false);
-          setUploadProgress(100);
+      const formData = new FormData();
+
+      formData.append("file", acceptedFiles[0]);
+
+      const upload = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_API_URL}/v1/project/add`,
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+              onUploadProgress: (e) => {
+                const progress = Math.floor((e.loaded / e.total) * 100);
+
+                setUploadProgress(progress);
+                // setIsUploading(false);
+              },
+            }
+          );
+
+          const data = response.data;
+          if (data.success) {
+            dispatch(setProjectId(data.data._id));
+          }
+        } catch (error) {
+          console.log(error);
+          // setIsUploading(false);
         }
       };
 
