@@ -36,7 +36,7 @@ input[type="radio"] {
     display: none;
 }
 
-select {
+select.special {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

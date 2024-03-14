@@ -30,7 +30,7 @@ const CreateBrief = ({ setStep }) => {
               title="Video Type *"
               subtitle="Choose the type of video you are interested in."
             />
-            <select className="brief_input">
+            <select className="special brief_input">
               <option selected>Please Select</option>
               <option value="mp4">MP4</option>
               <option value="mov">MOV</option>
@@ -41,7 +41,7 @@ const CreateBrief = ({ setStep }) => {
               title="Video Duration *"
               subtitle="Select the duration of the video that suits your preferences."
             />
-            <select className="brief_input">
+            <select className="special brief_input">
               <option selected>Under 5 mins</option>
               <option value="mp4">Under 10 mins</option>
               <option value="mov">Under 15 mins</option>
