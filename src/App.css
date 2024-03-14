@@ -36,12 +36,12 @@ input[type="radio"] {
   display: none;
 }
 
-select {
+select.special {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   padding-right: 20px;
-  background-image: url("../src/assets/select-arrow.svg");
+  background-image: url('../src/assets/select-arrow.svg');
   background-position: right 2% center;
   background-repeat: no-repeat;
 }

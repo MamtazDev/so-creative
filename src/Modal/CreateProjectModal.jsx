@@ -10,6 +10,7 @@ import CreatingProject from "../components/UserPanel/CreateProject/CreatingProje
 import { useDispatch, useSelector } from "react-redux";
 import { setStep } from "../features/project/projectSlice";
 const CreateProjectModal = ({ setShowCreateModal }) => {
+
   const createRef = useRef();
 
   // useOutsideClick(createRef, () => setShowCreateModal(false));

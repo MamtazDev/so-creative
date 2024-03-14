@@ -154,13 +154,31 @@ export const RecentActivites = [
 export const internalUserData = [
   {
     clientImg: clientImg1,
-    clientName: "Xavier Davis",
-    projectName: "Product Showcase Video",
-    projectCount: 5,
-    assignee: "Shawn Mahbub",
-    status: "In Progress",
-    duration: 4,
-    dateCreated: "September 10, 2023",
+    clientName: "James Daher",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Admin",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Marvin McKinney",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Admin",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Darrell Steward",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Account Manager",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Brooklyn Simmons",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Editor ",
   },
 ];
 
