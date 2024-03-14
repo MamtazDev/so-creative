@@ -659,30 +659,35 @@ export const aspectRatio = [
 
 export const addOns = [
   {
+    id: 1,
     pic: socialVoice,
     title: "Social Media Resizing",
     subtitle: "Resize your video for different social media platforms.",
     credit: 0.5,
   },
   {
+    id: 2,
     pic: cc,
     title: "Subtitles and SRT Files",
     subtitle: "Spoken English videos only. Allow up to 24-48 hours.",
     credit: 0.5,
   },
   {
+    id: 3,
     pic: voice,
     title: "Voice Over Artist",
     subtitle: "Professional voice. Allow up to 48 hours.",
     credit: 1,
   },
   {
+    id: 4,
     pic: express,
     title: "Express Edit",
     subtitle: "Your video delivered on the same day",
     credit: 1,
   },
   {
+    id: 5,
     pic: strategy,
     title: "1 hour Video Strategy Call",
     subtitle: "Schedule a project meeting with a Creative Director",
