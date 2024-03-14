@@ -17,7 +17,8 @@ const RecentWorks = () => {
           {[1, 2, 3, 4, 5, 6].map((index) => (
             <tr key={index} className="text-sm font-normal">
               <td className="border-t p-4 flex items-center gap-3 font-semibold">
-                <img src={aveter} alt="" /> Xavier Davis
+                <img className="w-10 h-10 rounded-full" src={aveter} alt="" />{" "}
+                Xavier Davis
               </td>
               <td className="border-t">Product Showcase Video</td>
               <td className="border-t">4 days</td>

@@ -12,8 +12,8 @@ const DetailsHeader = ({ setShowExperienceModal }) => {
       </div>
       <div className="flex items-center gap-3.5">
         <div className="flex items-center">
-          <img src={aveter1} alt="" />
-          <img className="-ml-3" src={aveter2} alt="" />
+          <img className="h-10 w-10 rounded-full" src={aveter1} alt="" />
+          <img className="-ml-3 h-10 w-10 rounded-full" src={aveter2} alt="" />
           <button className="bg-slate-900 rounded-full w-10 h-10 border-2 border-white -ml-3 text-white text-base font-semibold">
             +2
           </button>

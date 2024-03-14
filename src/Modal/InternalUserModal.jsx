@@ -9,7 +9,7 @@ const InternalUserModal = ({ setUserModal }) => {
       <div className="max-w-[1152px] max-h-[90vh] overflow-y-auto no_scrollbar w-full bg-white text-black rounded-2xl relative">
         <div className="flex justify-between gap-4 p-6 border-b">
           <div className="flex items-center gap-3">
-            <img src={aveter} alt="" />
+            <img className="h-10 w-10 rounded-full" src={aveter} alt="" />
             <div>
               <p className="text-lg font-semibold">Brooklyn Simmons</p>
               <p className="text-slate-600 text-sm font-normal">
