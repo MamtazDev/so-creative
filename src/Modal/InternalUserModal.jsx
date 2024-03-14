@@ -1,7 +1,7 @@
 import InsightsCard from "../components/EditorPanel/EditorDashboard/InsightsCard";
 import close from "../assets/close.svg";
 import aveter from "../assets/aveter1.svg";
-import RecentWorks from "../components/InternalUsers/RecentWorks";
+import RecentWorks from "../components/AdminPanel/InternalUsers/RecentWorks";
 
 const InternalUserModal = ({ setUserModal }) => {
   return (

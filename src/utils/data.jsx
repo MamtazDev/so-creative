@@ -243,14 +243,14 @@ export const menus = [
     pic: internalInActive,
     activePic: internalActive,
     title: "Internal Users",
-    path: "/internal-users",
+    path: "/admin/internal-users",
   },
   {
     type: "admin",
     pic: companiesInActive,
     activePic: companiesActive,
     title: "Companies",
-    path: "/internal-users/companies",
+    path: "/admin/companies",
   },
 ];
 

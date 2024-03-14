@@ -1,7 +1,8 @@
 import { useState } from "react";
-import InternalSectionTitle from "../../components/InternalUsers/InternalSectionTitle";
-import InternalTable from "../../components/InternalUsers/InternalTable";
+
 import { internalUserData } from "../../utils/data";
+import InternalSectionTitle from "../../components/AdminPanel/InternalUsers/InternalSectionTitle";
+import InternalTable from "../../components/AdminPanel/InternalUsers/InternalTable";
 
 const InternalUsers = () => {
   const [filter, setFilter] = useState("All");

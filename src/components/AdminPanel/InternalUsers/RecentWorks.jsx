@@ -1,5 +1,5 @@
 import { CaretRight } from "@phosphor-icons/react";
-import aveter from "../../assets/aveter1.svg";
+import aveter from "../../../assets/aveter1.svg";
 
 const RecentWorks = () => {
   return (

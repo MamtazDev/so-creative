@@ -1,8 +1,10 @@
 import { CaretRight } from "@phosphor-icons/react";
-import { internalTableHeading, internalUserData } from "../../utils/data";
-import TableHead from "../Shared/TableComponent/TableHead/TableHead";
+
 import { useState } from "react";
-import InternalUserModal from "../../Modal/InternalUserModal";
+
+import { internalTableHeading } from "../../../utils/data";
+import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
+import InternalUserModal from "../../../Modal/InternalUserModal";
 
 const InternalTable = ({ filteredData }) => {
   const [userModal, setUserModal] = useState(false);

@@ -1,6 +1,6 @@
 import { LinkSimple } from "@phosphor-icons/react";
 import React, { useRef, useState } from "react";
-import useOutsideClick from "../../hooks/useOutsideClick";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const InviteUsers = ({ setShowInviteUser }) => {
   const [selectIndex, setSelectIndex] = useState(null);
