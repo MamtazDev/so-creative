@@ -5,11 +5,16 @@ import AllVideoFileLayout from "../../components/UserPanel/AllVideos/AllVideoFil
 import { videos } from "../../utils/data";
 import useLoading from "../../hooks/useLoading";
 import Loading from "../../Shared/Loading";
+import { useGetUserAllFilesQuery } from "../../features/videos/videoApi";
 
 const AllVideos = () => {
   const [filteredVideos, setFilteredVideos] = useState(videos);
   const [selectedComponent, setSelectedComponent] = useState("folder");
-  const { isLoading } = useLoading();
+  // const { isLoading } = useLoading();
+
+  const { data, isLoading } = useGetUserAllFilesQuery();
+
+  console.log(data, "ddd");
 
   const handleFilterChange = (filter) => {
     if (filter === "Videos") {
@@ -34,7 +39,7 @@ const AllVideos = () => {
       ) : (
         <>
           {selectedComponent === "folder" ? (
-            <AllVideo filteredVideos={filteredVideos} />
+            <AllVideo filteredVideos={data} />
           ) : (
             <AllVideoFileLayout filteredVideos={filteredVideos} />
           )}

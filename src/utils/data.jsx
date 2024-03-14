@@ -1,3 +1,9 @@
+import AboutProject from "../components/UserPanel/CreateProject/AboutProject";
+import SupportingMaterial from "../components/UserPanel/CreateProject/SupportingMaterial";
+import SelectBrand from "../components/UserPanel/CreateProject/SelectBrand";
+import AspectRatio from "../components/UserPanel/CreateProject/AspectRatio";
+import AddPresenter from "../components/UserPanel/CreateProject/AddPresenter";
+
 import accepted from "../assets/accepted.svg";
 import access from "../assets/access.svg";
 import alert from "../assets/alert.svg";
@@ -25,12 +31,31 @@ import upload from "../assets/upload.svg";
 import upset from "../assets/upset.svg";
 import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
+import landscape from "../assets/landscape.svg";
+import square from "../assets/square.svg";
+import portrait from "../assets/portrait.svg";
 import taskIcon from "../assets/editor_panel/newproject_icon.svg";
 import taskIcon2 from "../assets/editor_panel/inprogress.svg";
-import internalInActive from "../assets/admin/internal_inactive.svg"
-import internalActive from "../assets/admin/internal_active.svg"
+import internalInActive from "../assets/admin/internal_inactive.svg";
+import internalActive from "../assets/admin/internal_active.svg";
 import companiesInActive from "../assets/admin/companis_inactive.svg";
 import companiesActive from "../assets/admin/companis_active.svg";
+import socialVoice from "../assets/social-voice.svg";
+import cc from "../assets/cc.svg";
+import voice from "../assets/voice.svg";
+import express from "../assets/express-edit.svg";
+import strategy from "../assets/strategy.svg";
+import business from "../assets/business-plan.svg";
+import enterprise from "../assets/enterprise-plan.svg";
+import email from "../assets/email-notification.svg";
+import slack from "../assets/slack-notification.svg";
+
+import {
+  BellSimpleRinging,
+  GearSix,
+  Notebook,
+  Users,
+} from "@phosphor-icons/react";
 
 export const tableHeading = [
   "Client",
@@ -54,6 +79,13 @@ export const clientTableHeading = [
   "Total Duration",
   "Last Project Status",
   "Last Activity",
+];
+
+export const internalTableHeading = [
+  "Name",
+  "Joined",
+  "Last Active",
+  "User Role",
 ];
 
 export const insightsCardData = [
@@ -119,6 +151,37 @@ export const RecentActivites = [
   },
 ];
 
+export const internalUserData = [
+  {
+    clientImg: clientImg1,
+    clientName: "James Daher",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Admin",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Marvin McKinney",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Admin",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Darrell Steward",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Account Manager",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Brooklyn Simmons",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Editor ",
+  },
+];
+
 export const menus = [
   {
     type: "user",
@@ -180,14 +243,14 @@ export const menus = [
     pic: internalInActive,
     activePic: internalActive,
     title: "Internal Users",
-    path: "/admin",
+    path: "/internal-users",
   },
   {
     type: "admin",
     pic: companiesInActive,
     activePic: companiesActive,
     title: "Companies",
-    path: "/admin/companies",
+    path: "/internal-users/companies",
   },
 ];
 
@@ -566,4 +629,128 @@ export const createProjectStepper = [
   "Upload Files",
   "Create Brief",
   "Select Add ons",
+];
+
+export const expandsDetails = [
+  {
+    id: 5,
+    title: "Add Presenter",
+    component: <AddPresenter />,
+  },
+];
+
+export const aspectRatio = [
+  {
+    pic: landscape,
+    ratio: "16:9",
+    name: "Landscape",
+  },
+  {
+    pic: square,
+    ratio: "1:1",
+    name: "Square",
+  },
+  {
+    pic: portrait,
+    ratio: "9:16",
+    name: "Portrait",
+  },
+];
+
+export const addOns = [
+  {
+    id: 1,
+    pic: socialVoice,
+    title: "Social Media Resizing",
+    subtitle: "Resize your video for different social media platforms.",
+    credit: 0.5,
+  },
+  {
+    id: 2,
+    pic: cc,
+    title: "Subtitles and SRT Files",
+    subtitle: "Spoken English videos only. Allow up to 24-48 hours.",
+    credit: 0.5,
+  },
+  {
+    id: 3,
+    pic: voice,
+    title: "Voice Over Artist",
+    subtitle: "Professional voice. Allow up to 48 hours.",
+    credit: 1,
+  },
+  {
+    id: 4,
+    pic: express,
+    title: "Express Edit",
+    subtitle: "Your video delivered on the same day",
+    credit: 1,
+  },
+  {
+    id: 5,
+    pic: strategy,
+    title: "1 hour Video Strategy Call",
+    subtitle: "Schedule a project meeting with a Creative Director",
+    credit: 1,
+  },
+];
+
+export const workspaceMenu = [
+  {
+    icon: <GearSix size={24} />,
+    title: "Team Settings",
+  },
+  {
+    icon: <Users size={24} />,
+    title: "Collaborators",
+  },
+  {
+    icon: <Notebook size={24} />,
+    title: "Team Billing",
+  },
+  {
+    icon: <BellSimpleRinging size={24} />,
+    title: "Notifications",
+  },
+];
+
+export const plans = [
+  {
+    pic: business,
+    title: "Business Plan",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
+  },
+  {
+    pic: enterprise,
+    title: "Enterprise Plan",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
+  },
+];
+
+export const notificationSettings = [
+  {
+    pic: email,
+    title: "Email Notifications",
+    subtitle: "Send me notification via email when someone...",
+    options: [
+      "Assigns you to an project",
+      "Mentions y ou in a post or reply ",
+      "Write an updates on a project that you’re working",
+      "Replies to a conversation you’re part of",
+    ],
+  },
+  {
+    pic: slack,
+    title: "Slack Notifications",
+    subtitle:
+      "Get a slack notification when someone assigns or mentions you in an update.",
+    options: [
+      "Assigns you to an project",
+      "Mentions y ou in a post or reply ",
+      "Write an updates on a project that you’re working",
+      "Replies to a conversation you’re part of",
+    ],
+  },
 ];

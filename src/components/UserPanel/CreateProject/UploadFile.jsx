@@ -2,12 +2,21 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import mp4 from "../../../assets/mp4.svg";
 import SelectedVideo from "./SelectedVideo";
+import UploadProgress from "./UploadProgress";
+import { BASE_API_URL } from "../../../config/config";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setProjectId } from "../../../features/project/projectSlice";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
+  const [newSelectedVideo, setNewSelectedVideo] = useState([]);
   const [isDragActive, setIsDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+
+  const { accessToken } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -15,25 +24,45 @@ const UploadFile = () => {
       "video/mov": [".mov"],
     },
     onDrop: (acceptedFiles) => {
+      setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
-      let progress = 0;
 
-      const upload = () => {
-        if (progress < 100) {
-          setTimeout(() => {
-            progress += Math.random() * 10;
-            setUploadProgress(progress);
-            upload();
-          }, 500);
-        } else {
-          setIsUploading(false);
-          setUploadProgress(0);
-          setSelectedVideos([...selectedVideos, ...acceptedFiles]);
+      const formData = new FormData();
+
+      formData.append("file", acceptedFiles[0]);
+
+      const upload = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_API_URL}/v1/project/add`,
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+              onUploadProgress: (e) => {
+                const progress = Math.floor((e.loaded / e.total) * 100);
+
+                setUploadProgress(progress);
+                // setIsUploading(false);
+              },
+            }
+          );
+
+          const data = response.data;
+          if (data.success) {
+            dispatch(setProjectId(data.data._id));
+          }
+        } catch (error) {
+          console.log(error);
+          // setIsUploading(false);
         }
       };
 
       upload();
     },
+    multiple: false,
     onDragEnter: () => {
       setIsDragActive(true);
     },
@@ -50,19 +79,14 @@ const UploadFile = () => {
   return (
     <div
       {...getRootProps({ style: dashedBoxStyle })}
-      className=" text-center mb-10 rounded-xl"
+      className=" text-center mb-10 rounded-xl relative"
     >
-      {isUploading && (
-        <div>
-          <div className="bg-indigo-50 h-2 rounded-md">
-            <div
-              style={{ width: `${uploadProgress}%` }}
-              className="bg-indigo-600 rounded-md h-2"
-            ></div>
-          </div>
-          <p>{uploadProgress}%</p>
-        </div>
-      )}
+      {/* {isUploading && (
+        <UploadProgress
+          uploadProgress={uploadProgress}
+          newSelectedVideo={newSelectedVideo}
+        />
+      )} */}
       <div className="p-12  ">
         <input {...getInputProps()} />
         <img className="m-auto mb-5" src={mp4} alt="" />
@@ -71,9 +95,13 @@ const UploadFile = () => {
           Click to browse or drag & drop video files here
         </p>
       </div>
-      {selectedVideos.length > 0 && (
-        <SelectedVideo selectedVideos={selectedVideos} />
-      )}
+
+      <SelectedVideo
+        selectedVideos={selectedVideos}
+        uploadProgress={uploadProgress}
+        newSelectedVideo={newSelectedVideo}
+        isUploading={isUploading}
+      />
     </div>
   );
 };

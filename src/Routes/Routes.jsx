@@ -6,9 +6,13 @@ import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
 import AllVideos from "../pages/UserPanel/AllVideos";
 import BrandKit from "../pages/UserPanel/BrandKit";
 import MediaStorage from "../pages/UserPanel/MediaStorage";
+import Register from "../pages/Auth/Register";
+import Login from "../pages/Auth/Login";
+import Folder from "../pages/UserPanel/Folder";
 import UserHome from "../pages/UserPanel/UserHome";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
-import AdminDashboard from "../pages/AdminPanel/AdminDashboard";
+import InternalUsers from "../pages/AdminPanel/InternalUsers";
+import VideoDetails from "../pages/UserPanel/VideoDetails";
 
 export const router = createBrowserRouter([
   // {
@@ -30,6 +34,22 @@ export const router = createBrowserRouter([
         path: "/",
         element: <UserHome />,
       },
+    ],
+  },
+
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+
+  {
+    path: "/user",
+    element: <UserPanelLayout />,
+    children: [
       {
         path: "/user",
         element: <UserHome />,
@@ -39,8 +59,16 @@ export const router = createBrowserRouter([
         element: <AllVideos />,
       },
       {
+        path: "/user/video-details",
+        element: <VideoDetails />,
+      },
+      {
         path: "/user/media-storage",
         element: <MediaStorage />,
+      },
+      {
+        path: "/user/media-storage/folder/:id",
+        element: <Folder />,
       },
       {
         path: "/user/brand-kit",
@@ -69,12 +97,12 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/admin",
+    path: "/internal-users",
     element: <EditorPanelLayout />,
     children: [
       {
-        path: "/admin",
-        element: <AdminDashboard />,
+        path: "/internal-users",
+        element: <InternalUsers />,
       },
     ],
   },

@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import search from "../../assets/search.svg";
 import message from "../../assets/message-question.svg";
+import help from "../../assets/help-black.svg";
 import notification from "../../assets/notification.svg";
+import notificationActive from "../../assets/notification-active.svg";
 import { useRef, useState } from "react";
 import Notification from "./Notification";
 import Credit from "./Credit";
@@ -54,9 +56,11 @@ const Header = () => {
 
           <button
             onClick={() => setShowHelp(!showHelp)}
-            className="bg-slate-900 hover:bg-slate-600 transition-all duration-300 ease-in rounded-full p-3"
+            className={`${
+              showHelp ? "bg-slate-900" : "bg-white"
+            }  rounded-full p-3`}
           >
-            <img src={message} alt="" />
+            <img src={showHelp ? message : help} alt="" />
           </button>
           <div
             // ref={notifyButtonref}
@@ -67,8 +71,15 @@ const Header = () => {
               8
             </button>
 
-            <button className="bg-white  hover:bg-indigo-100 transition-all duration-300 ease-in rounded-full p-3">
-              <img src={notification} alt="" />
+            <button
+              className={`${
+                showNotification ? "bg-slate-900" : "bg-white"
+              }  rounded-full p-3`}
+            >
+              <img
+                src={showNotification ? notificationActive : notification}
+                alt=""
+              />
             </button>
           </div>
           <div onClick={() => setShowProfile(!showProfile)}>

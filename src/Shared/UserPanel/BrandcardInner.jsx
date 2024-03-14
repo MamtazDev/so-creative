@@ -15,7 +15,10 @@ const BrandcardInner = ({ data }) => {
         <p className="text-sm font-semibold mb-1">
           {truncatedFileName}.{fileExtension}
         </p>
-        <p className="text-xs font-normal">{data.size / 1000}KB</p>
+        <p className="text-xs font-normal">
+          {" "}
+          {(data.size / (1024 * 1024)).toFixed(2)} MB
+        </p>
       </div>
     </div>
   );

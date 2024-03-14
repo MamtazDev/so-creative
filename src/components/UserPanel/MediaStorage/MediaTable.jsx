@@ -8,11 +8,15 @@ import {
   Trash,
 } from "@phosphor-icons/react";
 import { mediaStorage } from "../../../utils/data";
+import { formatFileSize, timeAgo } from "../../../utils/converter";
+import { Link } from "react-router-dom";
 
-const MediaTable = () => {
-  const folders = mediaStorage.filter((item) => item.folder);
-  const videos = mediaStorage.filter((item) => item.video);
-  const combinedItems = folders.concat(videos);
+const MediaTable = ({ data }) => {
+  const folders = data.folders;
+  const videos = data.files;
+  const combinedItems = data.folders ? folders.concat(videos) : data;
+  console.log(combinedItems, "dfjkdfj");
+
   return (
     <div>
       <table
@@ -36,23 +40,59 @@ const MediaTable = () => {
               <tr className="text-base font-semibold" key={index}>
                 <td>
                   <div className="flex gap-4 items-center">
-                    <img src={data.folder ? folder : mp4} alt="" />
-                    <p>{data.folder ? "Folder Title" : "filename.mp4"}</p>
+                    {data.folderData && (
+                      <Link
+                        to={`/user/media-storage/folder/${data.folderData._id}`}
+                      >
+                        <img src={folder} alt="" />
+                      </Link>
+                    )}
+                    {data.fileData && <img src={mp4} alt="" />}
+                    {data.title && <img src={mp4} alt="" />}
+                    {data.folderData && (
+                      <p>
+                        <Link
+                          to={`/user/media-storage/folder/${data.folderData._id}`}
+                        >
+                          {data.folderData.title}
+                        </Link>
+                      </p>
+                    )}
+                    {data.fileData && <p>{data.fileData.title}</p>}
+                    {data.title && <p>{data.title}</p>}
                   </div>
                 </td>
-                <td>1.26 GB</td>
-                <td>1 day ago</td>
                 <td>
-                  {data.folder ? (
-                    <button>
-                      <NotePencil
-                        className="text-indigo-600"
-                        size={20}
-                        weight="fill"
-                      />
-                    </button>
+                  {data.folderData && (
+                    <span>{formatFileSize(data.folderData.folderSize)}</span>
+                  )}
+                  {data.fileData && (
+                    <span>{formatFileSize(data.fileData.fileSize)}</span>
+                  )}
+                  {data.title && <span>{formatFileSize(data.fileSize)}</span>}
+                </td>
+                <td>
+                  {data.folderData && (
+                    <span>{timeAgo(data.folderData.updatedAt)}</span>
+                  )}
+                  {data.fileData && (
+                    <span>{timeAgo(data.fileData.updatedAt)}</span>
+                  )}
+                  {data.title && <span>{timeAgo(data.updatedAt)}</span>}
+                </td>
+                <td>
+                  {data.folderData ? (
+                    <div className="flex justify-center">
+                      <button>
+                        <NotePencil
+                          className="text-indigo-600"
+                          size={20}
+                          weight="fill"
+                        />
+                      </button>
+                    </div>
                   ) : (
-                    <div className="flex  items-center gap-2">
+                    <div className="flex  items-center gap-2 justify-center">
                       <button>
                         <Trash
                           className="text-red-600"

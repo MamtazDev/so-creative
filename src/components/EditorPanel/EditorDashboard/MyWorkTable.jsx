@@ -25,8 +25,8 @@ const MyWorkTable = ({ filteredData }) => {
   const [thumbnail, setThumbnail] = useState(null);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/png": [".png"],
-      "text/html": [".html", ".htm"],
+      "video/mp4": [".mp4"],
+      "video/mov": [".mov"],
     },
     onDrop: (acceptedFiles) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
@@ -39,31 +39,23 @@ const MyWorkTable = ({ filteredData }) => {
       }
     },
   });
-
   const handleUploadClick = () => {
     document.getElementById("fileInput").click();
   };
-
   const handlePopup = () => {
     setModalPopup(!modalPopup);
   };
-
   const handeJobAction = () => {
     setJobAction(!jobAction);
   };
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-
   const paginatedData = filteredData?.slice(startIndex, endIndex);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   //repeted the data
   const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
 
@@ -88,7 +80,8 @@ const MyWorkTable = ({ filteredData }) => {
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
                     <Link
                       to={"/editor/all-projects"}
-                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3">
+                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
+                    >
                       All Projects <CaretRight size={20} />
                     </Link>
                   </td>
@@ -126,7 +119,8 @@ const MyWorkTable = ({ filteredData }) => {
                     <tr
                       key={index}
                       className="hover:bg-indigo-100 hover:cursor-pointer"
-                      onClick={handlePopup}>
+                      onClick={handlePopup}
+                    >
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-8 h-8">
@@ -159,7 +153,8 @@ const MyWorkTable = ({ filteredData }) => {
                       <td
                         className={
                           "px-4 py-4 border-b border-[#e5e5e5b3] text-sm"
-                        }>
+                        }
+                      >
                         <p
                           className={`${
                             tableDataInfo.status === "In Progress" &&
@@ -170,7 +165,8 @@ const MyWorkTable = ({ filteredData }) => {
                           } ${
                             tableDataInfo.status === "New Project" &&
                             "text-sm font-normal text-white bg-red-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
-                          }`}>
+                          }`}
+                        >
                           {tableDataInfo.status}
                         </p>
                       </td>
@@ -222,8 +218,6 @@ const MyWorkTable = ({ filteredData }) => {
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
             <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
               <table className="min-w-full leading-normal myworktable">
-
-
                 <TableHead tableHeading={clientTableHeading} />
 
                 <tbody>
@@ -231,7 +225,8 @@ const MyWorkTable = ({ filteredData }) => {
                     <tr
                       key={index}
                       className="hover:bg-indigo-100 hover:cursor-pointer"
-                      onClick={handlePopup}>
+                      onClick={handlePopup}
+                    >
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-8 h-8">
@@ -264,7 +259,8 @@ const MyWorkTable = ({ filteredData }) => {
                       <td
                         className={
                           "px-4 py-4 border-b border-[#e5e5e5b3] text-sm"
-                        }>
+                        }
+                      >
                         <p
                           className={`${
                             tableDataInfo.status === "In Progress" &&
@@ -275,7 +271,8 @@ const MyWorkTable = ({ filteredData }) => {
                           } ${
                             tableDataInfo.status === "New Project" &&
                             "text-sm font-normal text-white bg-red-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
-                          }`}>
+                          }`}
+                        >
                           {tableDataInfo.status}
                         </p>
                       </td>
