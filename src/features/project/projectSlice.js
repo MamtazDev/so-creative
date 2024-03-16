@@ -5,6 +5,8 @@ const initialState = {
   step: 0,
   activeBrif: undefined,
   projectCrating: false,
+  selectedProject: undefined,
+  showCretedModal: false,
 };
 
 const projectSlice = createSlice({
@@ -23,9 +25,21 @@ const projectSlice = createSlice({
     setProjectCreating: (state, action) => {
       state.projectCrating = action.payload;
     },
+    setSelectedProject: (state, action) => {
+      state.selectedProject = action.payload;
+    },
+    setShowCreateModal: (state, action) => {
+      state.showCretedModal = action.payload;
+    },
   },
 });
 
-export const { setProjectId, setStep, setActiveBrif, setProjectCreating } =
-  projectSlice.actions;
+export const {
+  setProjectId,
+  setStep,
+  setActiveBrif,
+  setProjectCreating,
+  setSelectedProject,
+  setShowCreateModal,
+} = projectSlice.actions;
 export default projectSlice.reducer;

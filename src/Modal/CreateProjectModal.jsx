@@ -11,10 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setActiveBrif,
   setProjectId,
+  setShowCreateModal,
   setStep,
 } from "../features/project/projectSlice";
 import CreatingBrand from "../Shared/UserPanel/CreatingBrand";
-const CreateProjectModal = ({ setShowCreateModal }) => {
+const CreateProjectModal = () => {
   const createRef = useRef();
 
   const { projectId, step, projectCrating } = useSelector(
@@ -26,7 +27,7 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
     dispatch(setProjectId(undefined));
     dispatch(setStep(0));
     dispatch(setActiveBrif(undefined));
-    setShowCreateModal(false);
+    dispatch(setShowCreateModal(false));
   };
 
   return (
@@ -74,7 +75,7 @@ const CreateProjectModal = ({ setShowCreateModal }) => {
           )}
           {step === 3 && (
             <>
-              <CreatingProject setShowCreateModal={setShowCreateModal} />
+              <CreatingProject />
             </>
           )}
         </div>

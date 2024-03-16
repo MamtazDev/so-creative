@@ -39,8 +39,6 @@ const SelectAddOns = () => {
     }
   };
 
-  console.log(projectAddons, "projectAddons");
-
   const handleContinue = async () => {
     dispatch(setProjectCreating(true));
     try {
@@ -60,6 +58,7 @@ const SelectAddOns = () => {
         }
       });
       formData.append("projectId", projectId);
+      formData.append("status", "In Progress");
       const res = await addOrUpdateProject(formData);
 
       if (res?.error?.error) {

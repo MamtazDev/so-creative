@@ -7,14 +7,14 @@ import {
   setStep,
 } from "../../../features/project/projectSlice";
 
-const CreatingProject = ({ setShowCreateModal }) => {
+const CreatingProject = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(setProjectId(undefined));
     dispatch(setStep(0));
     dispatch(setActiveBrif(undefined));
-    setShowCreateModal(false);
+    dispatch(setShowCreateModal(false));
   };
   return (
     <div className="min-h-[90vh] h-full flex flex-col items-center justify-center">

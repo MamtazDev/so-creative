@@ -9,15 +9,19 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import { menus } from "../../utils/data";
 import SelectDraft from "../../components/UserPanel/SelectFromDraft/SelectDraft";
 import TeamSettingModal from "../../Modal/TeamSettingModal";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowCreateModal } from "../../features/project/projectSlice";
 
 const Sidebar = () => {
   const location = useLocation();
   const showRef = useRef();
   const [show, setShow] = useState(false);
-  const [showCreateModal, setShowCreateModal] = useState(false);
+
   const [showDraftModal, setShowDraftModal] = useState(false);
   const [showTeamModal, setShowTeamModal] = useState(false);
   useOutsideClick(showRef, () => setShow(false));
+  const { showCretedModal } = useSelector((state) => state.project);
+  const dispatch = useDispatch();
 
   return (
     <aside className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
@@ -37,7 +41,7 @@ const Sidebar = () => {
             >
               <button
                 onClick={() => {
-                  setShowCreateModal(true);
+                  dispatch(setShowCreateModal(true));
                   setShow(false);
                 }}
                 className="flex gap-3.5 items-center text-base font-medium mb-6"
@@ -99,9 +103,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {showCreateModal && (
-        <CreateProjectModal setShowCreateModal={setShowCreateModal} />
-      )}
+      {showCretedModal && <CreateProjectModal />}
       {showDraftModal && <SelectDraft setShowDraftModal={setShowDraftModal} />}
       {showTeamModal && (
         <TeamSettingModal setShowTeamModal={setShowTeamModal} />
