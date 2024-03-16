@@ -1,4 +1,4 @@
-import { Plus } from "@phosphor-icons/react";
+import { Notebook, Plus } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import CreateProjectModal from "../../Modal/CreateProjectModal";
@@ -83,8 +83,14 @@ const Sidebar = () => {
         </div>
       </div>
       <div>
-        <button onClick={() => setShowTeamModal(true)}>Team Settings</button>
-        <div className="flex gap-3 items-center ">
+        <button
+          className=" rounded-full  py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in"
+          onClick={() => setShowTeamModal(true)}
+        >
+          <Notebook size={24} />
+          Team Settings
+        </button>
+        <div className="flex gap-3 items-center border-t pt-5 ">
           <img src={companyLogo} alt="" />
           <div>
             <p className="text-base font-semibold">Company Name</p>

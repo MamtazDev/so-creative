@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { CaretRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";

@@ -53,6 +53,7 @@ import slack from "../assets/slack-notification.svg";
 import {
   BellSimpleRinging,
   GearSix,
+  NewspaperClipping,
   Notebook,
   Users,
 } from "@phosphor-icons/react";
@@ -178,7 +179,7 @@ export const internalUserData = [
     clientName: "Brooklyn Simmons",
     joined: "September 10, 2023",
     lastActive: "September 10, 2023",
-    role: "Editor ",
+    role: "Editor",
   },
 ];
 
@@ -243,14 +244,14 @@ export const menus = [
     pic: internalInActive,
     activePic: internalActive,
     title: "Internal Users",
-    path: "/internal-users",
+    path: "/admin/internal-users",
   },
   {
     type: "admin",
     pic: companiesInActive,
     activePic: companiesActive,
     title: "Companies",
-    path: "/internal-users/companies",
+    path: "/admin/companies",
   },
 ];
 
@@ -711,6 +712,16 @@ export const workspaceMenu = [
   {
     icon: <BellSimpleRinging size={24} />,
     title: "Notifications",
+  },
+];
+export const companyMenu = [
+  {
+    icon: <Users size={24} />,
+    title: "Team Members",
+  },
+  {
+    icon: <NewspaperClipping size={24} />,
+    title: "Plans & Billing",
   },
 ];
 

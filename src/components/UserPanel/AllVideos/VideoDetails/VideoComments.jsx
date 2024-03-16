@@ -44,7 +44,11 @@ const VideoComments = () => {
             {comments.map((comment, index) => (
               <div className="activity_card flex gap-2 " key={index}>
                 <div className="left_activity_card">
-                  <img src={aveter} alt="activity_img" />
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src={aveter}
+                    alt="activity_img"
+                  />
                 </div>
                 <div className="right_activity_card">
                   <h3 className="text-base font-semibold text-slate-900 pb-3">
