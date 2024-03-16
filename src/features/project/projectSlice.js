@@ -4,6 +4,7 @@ const initialState = {
   projectId: undefined,
   step: 0,
   activeBrif: undefined,
+  projectCrating: false,
 };
 
 const projectSlice = createSlice({
@@ -19,8 +20,12 @@ const projectSlice = createSlice({
     setActiveBrif: (state, action) => {
       state.activeBrif = action.payload;
     },
+    setProjectCreating: (state, action) => {
+      state.projectCrating = action.payload;
+    },
   },
 });
 
-export const { setProjectId, setStep, setActiveBrif } = projectSlice.actions;
+export const { setProjectId, setStep, setActiveBrif, setProjectCreating } =
+  projectSlice.actions;
 export default projectSlice.reducer;
