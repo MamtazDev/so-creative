@@ -14,7 +14,8 @@ const MainLayout = () => {
           <Sidebar user={user} />
           <div className="mr-8 mb-8 ml-8 p-10 bg-white rounded-3xl w-full overflow-y-auto no_scrollbar">
             <Outlet />
-            {user?.role === "USER" && <ChatBot />}
+            {/* {user?.role === "USER" && <ChatBot />} */}
+            <ChatBot />
           </div>
         </div>
       </div>

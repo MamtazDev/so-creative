@@ -66,7 +66,7 @@ const Sidebar = ({ user }) => {
         <div className="flex flex-col gap-1">
           {menus.length > 0 &&
             menus
-              .filter((i) => i.type === user?.role)
+              // .filter((i) => i.type === user?.role)
               .map((data, index) => (
                 <Link
                   to={data.path}
