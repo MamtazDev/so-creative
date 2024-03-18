@@ -235,10 +235,6 @@ const UploadFile = () => {
           ></iframe>:<p>Video procession going on...</p>}
         </div>
       }
-
-
-
-
     </div>
   );
 };
