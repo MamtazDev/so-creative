@@ -2,18 +2,31 @@ import { Headset, SignOut, User } from "@phosphor-icons/react";
 import ProfileActive from "./ProfileActive";
 import { useState } from "react";
 import AccountModal from "../../Modal/AccountModal";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { userLoggedOut } from "../../features/auth/authSlice";
+import Cookies from "js-cookie";
 
 const ProfileDropdown = ({ setShowProfile, profileRef }) => {
   const [showAccount, setShowAccount] = useState(false);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const openAccountModal = () => {
     setShowAccount(true);
+  };
+
+  const handleLogout = () => {
+    dispatch(userLoggedOut());
+    Cookies.remove("soCreativeAuth");
+    navigate("/");
   };
   const items = [
     {
       icon: <User className="text-state-700" size={24} />,
       title: "Account Settings",
-      function: openAccountModal,
+      event: openAccountModal,
     },
     {
       icon: <Headset className="text-state-700" size={24} />,
@@ -22,6 +35,7 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
     {
       icon: <SignOut className="text-state-700" size={24} />,
       title: "Logout ",
+      event: handleLogout,
     },
   ];
 
@@ -45,7 +59,7 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
             items.map((data, index) => (
               <div
                 onClick={
-                  data?.function
+                  data?.event
                   // setShowProfile(false);
                   // setShowAccount(true);
                 }

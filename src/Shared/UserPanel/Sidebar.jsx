@@ -12,7 +12,7 @@ import TeamSettingModal from "../../Modal/TeamSettingModal";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowCreateModal } from "../../features/project/projectSlice";
 
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   const location = useLocation();
   const showRef = useRef();
   const [show, setShow] = useState(false);
@@ -65,43 +65,49 @@ const Sidebar = () => {
 
         <div className="flex flex-col gap-1">
           {menus.length > 0 &&
-            menus.map((data, index) => (
-              <Link
-                to={data.path}
-                className={`${
-                  location.pathname === data.path
-                    ? "active bg-white text-indigo-600"
-                    : ""
-                } rounded-full py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in`}
-                key={index}
-              >
-                <img
-                  src={
-                    location.pathname === data.path ? data.activePic : data.pic
-                  }
-                  alt=""
-                />
-                {data.title}
-              </Link>
-            ))}
+            menus
+              .filter((i) => i.type === user?.role)
+              .map((data, index) => (
+                <Link
+                  to={data.path}
+                  className={`${
+                    location.pathname === data.path
+                      ? "active bg-white text-indigo-600"
+                      : ""
+                  } rounded-full py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in`}
+                  key={index}
+                >
+                  <img
+                    src={
+                      location.pathname === data.path
+                        ? data.activePic
+                        : data.pic
+                    }
+                    alt=""
+                  />
+                  {data.title}
+                </Link>
+              ))}
         </div>
       </div>
-      <div>
-        <button
-          className=" rounded-full  py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in"
-          onClick={() => setShowTeamModal(true)}
-        >
-          <Notebook size={24} />
-          Team Settings
-        </button>
-        <div className="flex gap-3 items-center border-t pt-5 ">
-          <img src={companyLogo} alt="" />
-          <div>
-            <p className="text-base font-semibold">Company Name</p>
-            <p className="text-xs font-normal">Free Plan</p>
+      {user?.role === "USER" && (
+        <div>
+          <button
+            className=" rounded-full  py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in"
+            onClick={() => setShowTeamModal(true)}
+          >
+            <Notebook size={24} />
+            Team Settings
+          </button>
+          <div className="flex gap-3 items-center border-t pt-5 ">
+            <img src={companyLogo} alt="" />
+            <div>
+              <p className="text-base font-semibold">Company Name</p>
+              <p className="text-xs font-normal">Free Plan</p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {showCretedModal && <CreateProjectModal />}
       {showDraftModal && <SelectDraft setShowDraftModal={setShowDraftModal} />}

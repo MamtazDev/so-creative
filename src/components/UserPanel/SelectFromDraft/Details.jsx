@@ -49,6 +49,9 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
       dispatch(setActiveBrif("materials"));
       return;
     }
+    // else if (){
+      
+    // }
   };
   return (
     <div>

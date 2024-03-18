@@ -39,7 +39,14 @@ const Login = () => {
         });
       }
       if (res?.data?.success) {
-        navigate("/user");
+        // navigate("/user");
+        const from =
+          res.data.user.role === "USER"
+            ? "/user"
+            : res.data.user.role === "EDITOR"
+            ? "/editor"
+            : "/admin/internal-users";
+        navigate(from, { replace: true });
       }
     } catch (error) {
       Swal.fire({

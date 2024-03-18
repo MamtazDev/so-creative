@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import UserPanelLayout from "../Layouts/UserPanelLayout";
 import EditorAllClients from "../pages/EditorPanel/EditorAllClients";
 import EditorAllProjects from "../pages/EditorPanel/EditorAllProjects";
 import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
@@ -10,46 +9,40 @@ import Register from "../pages/Auth/Register";
 import Login from "../pages/Auth/Login";
 import Folder from "../pages/UserPanel/Folder";
 import UserHome from "../pages/UserPanel/UserHome";
-import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
 import VideoDetails from "../pages/UserPanel/VideoDetails";
 import InternalUsers from "../pages/AdminPanel/InternalUsers";
 import Companies from "../pages/AdminPanel/Companies";
+import PublicRoute from "../components/Route/PublicRoute";
+import UserRoute from "../components/Route/UserRoute";
+import EditorRoute from "../components/Route/EditorRoute";
+import AdminRoute from "../components/Route/AdminRoute";
+import MainLayout from "../Layouts/MainLayout";
 
 export const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <MainLayout />,
-  //   children: [
-  //     {
-  //       path: "/",
-  //       element: <Home />,
-  //     },
-  //   ],
-  // },
-
   {
     path: "/",
-    element: <UserPanelLayout />,
-    children: [
-      {
-        path: "/",
-        element: <UserHome />,
-      },
-    ],
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    ),
   },
-
   {
     path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
+    element: (
+      <PublicRoute>
+        <Register />
+      </PublicRoute>
+    ),
   },
 
   {
     path: "/user",
-    element: <UserPanelLayout />,
+    element: (
+      <UserRoute>
+        <MainLayout />
+      </UserRoute>
+    ),
     children: [
       {
         path: "/user",
@@ -80,7 +73,11 @@ export const router = createBrowserRouter([
 
   {
     path: "/editor",
-    element: <EditorPanelLayout />,
+    element: (
+      <EditorRoute>
+        <MainLayout />
+      </EditorRoute>
+    ),
     children: [
       {
         path: "/editor",
@@ -99,7 +96,11 @@ export const router = createBrowserRouter([
 
   {
     path: "/admin",
-    element: <EditorPanelLayout />,
+    element: (
+      <AdminRoute>
+        <MainLayout />
+      </AdminRoute>
+    ),
     children: [
       {
         path: "/admin/internal-users",
