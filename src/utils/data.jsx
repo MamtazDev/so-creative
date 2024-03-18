@@ -478,6 +478,7 @@ export const guidelines = [
     title: "Image Assets",
     subtitle:
       "Add brand images and custom watermarks and use them across your projects.",
+    acceptType: "image/*",
     inputName: "images",
   },
   {
