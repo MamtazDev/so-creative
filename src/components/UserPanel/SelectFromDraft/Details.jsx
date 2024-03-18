@@ -36,22 +36,35 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
   const handleSelectDraft = () => {
     dispatch(setProjectId(selectedProject?._id));
     dispatch(setShowCreateModal(true));
-    dispatch(setStep(1));
+
     setShowDraftModal(false);
 
     if (!selectedProject?.description) {
+      dispatch(setStep(1));
       dispatch(setActiveBrif("description"));
       return;
     } else if (
       !selectedProject?.supportiveMaterials ||
       selectedProject?.supportiveMaterials.length === 0
     ) {
+      dispatch(setStep(1));
       dispatch(setActiveBrif("materials"));
       return;
+    } else if (!selectedProject?.brandKit) {
+      dispatch(setStep(1));
+      dispatch(setActiveBrif("brandKit"));
+      return;
+    } else if (!selectedProject?.aspectRatio) {
+      dispatch(setStep(1));
+      dispatch(setActiveBrif("ratio"));
+      return;
+    } else if (!selectedProject?.presenter) {
+      dispatch(setStep(1));
+      dispatch(setActiveBrif("presenter"));
+      return;
+    } else {
+      dispatch(setStep(2));
     }
-    // else if (){
-      
-    // }
   };
   return (
     <div>
