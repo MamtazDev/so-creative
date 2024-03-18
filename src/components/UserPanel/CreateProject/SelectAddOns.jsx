@@ -58,7 +58,7 @@ const SelectAddOns = () => {
         }
       });
       formData.append("projectId", projectId);
-      formData.append("status", "In Progress");
+      formData.append("status", "Pending");
       const res = await addOrUpdateProject(formData);
 
       if (res?.error?.error) {

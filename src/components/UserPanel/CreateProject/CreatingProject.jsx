@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   setActiveBrif,
   setProjectId,
+  setShowCreateModal,
   setStep,
 } from "../../../features/project/projectSlice";
 

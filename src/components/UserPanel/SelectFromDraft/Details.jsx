@@ -13,6 +13,7 @@ import { DateConverter } from "../../../utils/converter";
 import {
   setActiveBrif,
   setProjectId,
+  setSelectedProject,
   setShowCreateModal,
   setStep,
 } from "../../../features/project/projectSlice";
@@ -22,9 +23,6 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
   const { selectedProject } = useSelector((state) => state.project);
   const dispatch = useDispatch();
   const maxWords = 110;
-  const text =
-    " This project aims to create a video series focusing on impactful sales strategies for businesses of all sizes. The series will leverage your on-demand video editing service to showcase its capabilities and attract potential clients, while providing valuable and actionable sales advice. <br /> <br /> To achieve your project goals, a multifaceted approach blending  content marketing, social media engagement, and strategic partnerships is essential. Crafting informative blog posts, videos, and social media content showcasing the benefits of your on-demand video editing service will help increase brand awareness and position your company as thought leaders in the sales and marketing realm. Implementing targeted advertising campaigns to reach potential clients and offering valuable resources such as eBooks or webinars on leveraging video editing for sales enhancement will generate leads and conversions. Collaborating with industry influencers and participating in relevant events or webinars will further solidify your company's reputation and expand your reach within the sales and marketing community.";
-
   const truncateText = (text, maxWords) => {
     const words = text?.split(" ");
     if (words.length > maxWords) {
@@ -83,7 +81,10 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
           </p>
         </div>
         <button
-          onClick={() => setStep(1)}
+          onClick={() => {
+            dispatch(setSelectedProject(undefined));
+            setModalStep(1);
+          }}
           className="flex items-center gap-2 px-6 py-3 text-base font-semibold text-indigo-600 border rounded-full border-indigo-600"
         >
           <CaretLeft size={24} /> Go Back
