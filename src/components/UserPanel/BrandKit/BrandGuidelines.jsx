@@ -47,14 +47,24 @@ const BrandGuidelines = ({ setStep }) => {
         {guidelines.length > 0 ? (
           guidelines.map((data, index) => (
             <div key={index}>
-              <input
-                type="file"
-                name={data.inputName}
-                accept={data?.acceptType}
-                className="hidden"
-                onChange={(e) => handleChange(e, data.inputName)}
-                ref={guidelinesInputRefs.current[index]}
-              />
+              {data.inputName === "colors" ? (
+                <input
+                  type="color"
+                  className="h-0 w-0 border-0 hidden"
+                  onChange={(e) => handleChange(e, data.inputName)}
+                  ref={guidelinesInputRefs.current[index]}
+                />
+              ) : (
+                <input
+                  type="file"
+                  name={data.inputName}
+                  accept={data?.acceptType}
+                  className="hidden"
+                  onChange={(e) => handleChange(e, data.inputName)}
+                  ref={guidelinesInputRefs.current[index]}
+                />
+              )}
+
               <BrandUpload
                 brandData={brand}
                 title={data.title}
@@ -83,7 +93,7 @@ const BrandGuidelines = ({ setStep }) => {
           />
 
           <img
-            className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer object-contain"
+            className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer object-cover"
             src={brandImg ? URL.createObjectURL(brandImg) : brandInput}
             alt=""
           />
