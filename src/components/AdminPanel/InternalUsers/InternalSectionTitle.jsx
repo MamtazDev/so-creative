@@ -31,7 +31,7 @@ const InternalSectionTitle = ({ filter, handleFilterChange }) => {
 
             <button
               className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
-                filter === "Active" && "bg-white text-text-slate-600"
+                filter === "Admin" && "bg-white text-text-slate-600"
               }`}
               onClick={() => handleFilterChange("Admin")}
             >
@@ -40,7 +40,7 @@ const InternalSectionTitle = ({ filter, handleFilterChange }) => {
 
             <button
               className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
-                filter === "Completed" && "bg-white text-text-slate-600"
+                filter === "Account Manager" && "bg-white text-text-slate-600"
               }`}
               onClick={() => handleFilterChange("Account Manager")}
             >
@@ -49,7 +49,7 @@ const InternalSectionTitle = ({ filter, handleFilterChange }) => {
 
             <button
               className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
-                filter === "Completed" && "bg-white text-text-slate-600"
+                filter === "Editor" && "bg-white text-text-slate-600"
               }`}
               onClick={() => handleFilterChange("Editor")}
             >

@@ -37,7 +37,7 @@ const BrandGuidelines = ({ setStep }) => {
       [fieldName]: [...(prevState[fieldName] || []), file],
     }));
   };
-
+  console.log("brand-kit", brand);
   return (
     <form
       onSubmit={handleSubmit}

@@ -11,8 +11,9 @@ import Login from "../pages/Auth/Login";
 import Folder from "../pages/UserPanel/Folder";
 import UserHome from "../pages/UserPanel/UserHome";
 import EditorPanelLayout from "./../Layouts/EditorPanelLayout";
-import InternalUsers from "../pages/AdminPanel/InternalUsers";
 import VideoDetails from "../pages/UserPanel/VideoDetails";
+import InternalUsers from "../pages/AdminPanel/InternalUsers";
+import Companies from "../pages/AdminPanel/Companies";
 
 export const router = createBrowserRouter([
   // {
@@ -97,12 +98,16 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/internal-users",
+    path: "/admin",
     element: <EditorPanelLayout />,
     children: [
       {
-        path: "/internal-users",
+        path: "/admin/internal-users",
         element: <InternalUsers />,
+      },
+      {
+        path: "/admin/companies",
+        element: <Companies />,
       },
     ],
   },
