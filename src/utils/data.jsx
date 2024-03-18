@@ -185,7 +185,7 @@ export const internalUserData = [
 
 export const menus = [
   {
-    type: "user",
+    type: "USER",
     pic: home,
     activePic: homeActive,
     title: "Home",
@@ -193,7 +193,7 @@ export const menus = [
   },
 
   {
-    type: "user",
+    type: "USER",
     pic: video,
     activePic: videoActive,
     title: "All Videos",
@@ -201,7 +201,7 @@ export const menus = [
   },
 
   {
-    type: "user",
+    type: "USER",
     pic: media,
     activePic: mediaActive,
     title: "Media Storage",
@@ -209,7 +209,7 @@ export const menus = [
   },
 
   {
-    type: "user",
+    type: "USER",
     pic: brand,
     activePic: brandActive,
     title: "Brand Kit",
@@ -217,7 +217,7 @@ export const menus = [
   },
 
   {
-    type: "editor",
+    type: "EDITOR",
     pic: dashboardIcon,
     activePic: dashboardIconActive,
     title: "Dashboard",
@@ -225,7 +225,7 @@ export const menus = [
   },
 
   {
-    type: "editor",
+    type: "EDITOR",
     pic: myTasksIcon,
     activePic: myTasksIconActive,
     title: "My Tasks",
@@ -233,21 +233,21 @@ export const menus = [
   },
 
   {
-    type: "editor",
+    type: "EDITOR",
     pic: clientIcon,
     activePic: clientIconActive,
     title: "Clients",
     path: "/editor/clients",
   },
   {
-    type: "admin",
+    type: "ADMIN",
     pic: internalInActive,
     activePic: internalActive,
     title: "Internal Users",
     path: "/admin/internal-users",
   },
   {
-    type: "admin",
+    type: "ADMIN",
     pic: companiesInActive,
     activePic: companiesActive,
     title: "Companies",

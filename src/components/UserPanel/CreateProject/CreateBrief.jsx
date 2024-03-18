@@ -15,22 +15,12 @@ import ProjectRatio from "./CreateBrief/ProjectRatio";
 import ProjectPresenter from "./CreateBrief/ProjectPresenter";
 
 const CreateBrief = () => {
-  const [activeItems, setActiveItems] = useState([]);
-
   const { projectId } = useSelector((state) => state.project);
 
   const [addOrUpdateProject, { isLoading }] = useAddOrUpdateProjectMutation();
 
   const { data } = useGetProjectDetailsQuery(projectId);
 
-  const handleOpenItem = (index) => {
-    if (activeItems.includes(index)) {
-      const newItems = activeItems.filter((i) => i !== index);
-      setActiveItems(newItems);
-    } else {
-      setActiveItems([...activeItems, index]);
-    }
-  };
   return (
     <div className="max-w-[640px] w-full m-auto ">
       <div>

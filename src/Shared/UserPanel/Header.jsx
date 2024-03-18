@@ -13,7 +13,7 @@ import ProfileActive from "./ProfileActive";
 import ProfileDropdown from "./ProfileDropdown";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-const Header = () => {
+const Header = ({ user }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showCredit, setShowCredit] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
@@ -47,21 +47,25 @@ const Header = () => {
         </div>
 
         <div className="w-full flex justify-end items-center gap-4">
-          <button
-            onClick={() => setShowCredit(!showCredit)}
-            className="bg-gradient-to-r from-purple-500 to-indigo-900 text-transparent bg-clip-text whitespace-nowrap hover:text-indigo-600 hover:border-indigo-600 transition-all duration-300 ease-in gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF]"
-          >
-            6 Credits Remaining
-          </button>
+          {user?.role === "USER" && (
+            <button
+              onClick={() => setShowCredit(!showCredit)}
+              className="bg-gradient-to-r from-purple-500 to-indigo-900 text-transparent bg-clip-text whitespace-nowrap hover:text-indigo-600 hover:border-indigo-600 transition-all duration-300 ease-in gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF]"
+            >
+              6 Credits Remaining
+            </button>
+          )}
 
-          <button
-            onClick={() => setShowHelp(!showHelp)}
-            className={`${
-              showHelp ? "bg-slate-900" : "bg-white"
-            }  rounded-full p-3`}
-          >
-            <img src={showHelp ? message : help} alt="" />
-          </button>
+          {user?.role === "USER" && (
+            <button
+              onClick={() => setShowHelp(!showHelp)}
+              className={`${
+                showHelp ? "bg-slate-900" : "bg-white"
+              }  rounded-full p-3`}
+            >
+              <img src={showHelp ? message : help} alt="" />
+            </button>
+          )}
           <div
             // ref={notifyButtonref}
             onClick={() => setShowNotification(!showNotification)}

@@ -48,3 +48,29 @@ export function timeAgo(dateString) {
   }
   return `${Math.floor(seconds)} seconds ago`;
 }
+
+export const DateConverter = (dateString) => {
+  const inputDate = new Date(dateString);
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const month = months[inputDate.getMonth()];
+  const day = inputDate.getDate();
+  const year = inputDate.getFullYear();
+
+  const formattedDate = `${month} ${day}, ${year}`;
+  return formattedDate;
+};

@@ -22,7 +22,7 @@ const ProjectBrandKit = ({ save, isLoading, projectData }) => {
       editing={editing}
       setEditing={setEditing}
     />
-  ) : projectData?.supportiveMaterials.length > 0 ? (
+  ) : projectData?.brandKit ? (
     <ProjectBrandInfo brandKit={projectData.brandKit} setEditing={setEditing} />
   ) : (
     <ExpandInputTitle title={"Select Brand Kit"} />
