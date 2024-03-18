@@ -17,6 +17,8 @@ const UploadFile = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [vimeoVideoInfo, setVimeoVideoInfo] = useState(null)
 
+  const [isVimeoProcessDone, setIsVimeoProcessDone] = useState(false)
+
   const { accessToken } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -30,98 +32,130 @@ const UploadFile = () => {
       setIsUploading(true);
 
       /* ================ 17-03-2024 Start =============== */
-      const selectedFile = acceptedFiles[0]
+      // const selectedFile = acceptedFiles[0]
 
-      const uplaod = async () => {
-        try {
-          const res = await fetch(`${BASE_API_URL}/v1/vimeo/create-video-instant`, {
-            method: "POST",
-            body: JSON.stringify({ size: selectedFile.size }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+      // const uplaod = async () => {
+      //   try {
+      //     const res = await fetch(`${BASE_API_URL}/v1/vimeo/create-video-instant`, {
+      //       method: "POST",
+      //       body: JSON.stringify({ size: selectedFile.size }),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     });
 
-          const result = await res.json();
+      //     const result = await res.json();
 
-          console.log(result.data);
+      //     console.log(result.data);
 
-          const { upload_link } = result.data
+      //     const { upload_link } = result.data
 
-          console.log("upload_link", upload_link);
+      //     console.log("upload_link", upload_link);
 
-          const tusUpload = new tus.Upload(selectedFile, {
-            endpoint: upload_link,
-            uploadUrl: upload_link,
-            onError: (error) => {
-              console.error("Failed to upload", error);
+      //     const tusUpload = new tus.Upload(selectedFile, {
+      //       endpoint: upload_link,
+      //       uploadUrl: upload_link,
+      //       onProgress: (bytesUploaded, bytesTotal) => {
+      //         const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+
+      //         console.log(`${percentage}% uploaded`);
+      //         setUploadProgress(percentage);
+      //       },
+
+      //       onError: (error) => {
+      //         console.error("Failed to upload", error);
+      //         alert("There is an issue with uploading video.")
+
+      //         // Handle error
+      //       },
+
+      //       onSuccess: () => {
+      //         console.log("Upload finished");
+      //         setVimeoVideoInfo(result.data);
+      //         setUploadProgress(0);
+
+      //         console.log("Uploaded finished data:", result.data);
+
+      //         setIsVimeoProcessDone(true)
+
+      //         // Handle successful upload
+      //         const url = result.data.link;
+      //         const regex = /vimeo\.com\/(\d+)/;
+      //         const videoId = url.match(regex);
               
-              // Handle error
-            },
-            onProgress: (bytesUploaded, bytesTotal) => {
-              const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+      //         console.log("video id", videoId[1])
+      //          // Interval to check if the process is done
+      //         const interval = setInterval(async() => {
+                
 
-              console.log(`${percentage}% uploaded`);
-              setUploadProgress(percentage);
-            },
-            onSuccess: () => {
-              console.log("Upload finished");
-              setVimeoVideoInfo(result.data);
-              setUploadProgress(0);
+      //           const res = await fetch(`${BASE_API_URL}/v1/vimeo/${videoId[1]}?fields=transcode.status,download,upload.status,is_playable`, {
+      //             method: "GET",
+      //             headers: {
+      //               "Content-Type": "application/json",
+      //             },
+      //           });
+      
+      //           const result = await res.json();
+      
+      //           console.log("check the video processing is done or not, ",result.data.is_playable);
 
 
-              
+      //           // Check if the process is done
+      //           if (result.data.is_playable) {
+      //             setIsVimeoProcessDone(false)
+      //             clearInterval(interval); // Clear the interval once process is done
+                 
+      //           }
+      //         }, 1000); 
+      //       },
+      //     });
 
-              // Handle successful upload
-            },
-          });
+      //     tusUpload.start();
+      //   } catch (error) {
+      //     console.error("Error uploading file:", error);
+      //   }
+      // }
 
-          tusUpload.start();
-        } catch (error) {
-          console.error("Error uploading file:", error);
-        }
-      }
-
-      uplaod();
+      // uplaod();
 
 
 
       /* ================ 17-03-2024 End =============== */
 
-      // const formData = new FormData();
+      const formData = new FormData();
 
-      // formData.append("file", acceptedFiles[0]);
+      formData.append("file", acceptedFiles[0]);
 
-      // const upload = async () => {
-      //   try {
-      //     const response = await axios.post(
-      //       `${BASE_API_URL}/v1/project/add`,
-      //       formData,
-      //       {
-      //         headers: {
-      //           Authorization: `Bearer ${accessToken}`,
-      //           "Content-Type": "multipart/form-data",
-      //         },
-      //         onUploadProgress: (e) => {
-      //           const progress = Math.floor((e.loaded / e.total) * 100);
+      const upload = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_API_URL}/v1/project/add`,
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+              onUploadProgress: (e) => {
+                const progress = Math.floor((e.loaded / e.total) * 100);
 
-      //           setUploadProgress(progress);
-      //           // setIsUploading(false);
-      //         },
-      //       }
-      //     );
+                setUploadProgress(progress);
+                // setIsUploading(false);
+              },
+            }
+          );
 
-      //     const data = response.data;
-      //     if (data.success) {
-      //       dispatch(setProjectId(data.data._id));
-      //     }
-      //   } catch (error) {
-      //     console.log(error);
-      //     // setIsUploading(false);
-      //   }
-      // };
+          const data = response.data;
+          if (data.success) {
+            dispatch(setProjectId(data.data._id));
+          }
+        } catch (error) {
+          console.log(error);
+          // setIsUploading(false);
+        }
+      };
 
-      // upload();
+      upload();
     },
     multiple: false,
     onDragEnter: () => {
@@ -136,6 +170,8 @@ const UploadFile = () => {
     border: isDragActive ? "1px dashed #4F46E5 " : "1px dashed #E2E8F0",
     background: isDragActive ? "#EEF2FF" : "",
   };
+
+
 
   return (
     <div
@@ -176,15 +212,16 @@ const UploadFile = () => {
           uploadProgress={uploadProgress}
           newSelectedVideo={newSelectedVideo}
           isUploading={isUploading}
-        /> : <div className="text-start border-dashed p-6 border-t">
-          <iframe
+        /> : 
+        <div className="text-start border-dashed p-6 border-t">
+          {! isVimeoProcessDone ? <iframe
             title="vimeo-player"
             src={vimeoVideoInfo.player_embed_url}
             // src={"https://player.vimeo.com/video/924296735?h=704de352d"}
             width="220"
-            // height="180" 
+            height="180" 
             allowFullScreen
-          ></iframe>
+          ></iframe>:<p>Video procession going on...</p>}
         </div>
       }
 
