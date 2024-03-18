@@ -18,7 +18,8 @@ const EditroSectionTitle = ({ filter, handleFilterChange }) => {
             className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
               filter === "All" && "bg-white text-text-slate-600"
             }`}
-            onClick={() => handleFilterChange("All")}>
+            onClick={() => handleFilterChange("All")}
+          >
             All
           </button>
 
@@ -26,7 +27,8 @@ const EditroSectionTitle = ({ filter, handleFilterChange }) => {
             className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
               filter === "Active" && "bg-white text-text-slate-600"
             }`}
-            onClick={() => handleFilterChange("Active")}>
+            onClick={() => handleFilterChange("Active")}
+          >
             Active
           </button>
 
@@ -34,16 +36,14 @@ const EditroSectionTitle = ({ filter, handleFilterChange }) => {
             className={`text-xs font-medium text-slate-600 py-[6px] px-[10px] rounded-full ${
               filter === "Completed" && "bg-white text-text-slate-600"
             }`}
-            onClick={() => handleFilterChange("Completed")}>
+            onClick={() => handleFilterChange("Completed")}
+          >
             Completed
           </button>
         </div>
 
         <div className="sorting_dropdown bg-slate-100 rounded-full p-1">
-          <select
-            name=""
-            id=""
-            className="text-xs font-medium text-slate-900 focus:outline-none outline-none p-2 rounded-full">
+          <select className="text-xs font-medium min-w-[167px] text-slate-900 focus:outline-none outline-none p-2 rounded-full">
             <option value="">Sort by: Last Modified</option>
           </select>
         </div>

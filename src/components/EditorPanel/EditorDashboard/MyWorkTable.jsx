@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { CaretRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -25,8 +22,8 @@ const MyWorkTable = ({ filteredData }) => {
   const [thumbnail, setThumbnail] = useState(null);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/png": [".png"],
-      "text/html": [".html", ".htm"],
+      "video/mp4": [".mp4"],
+      "video/mov": [".mov"],
     },
     onDrop: (acceptedFiles) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
@@ -80,7 +77,8 @@ const MyWorkTable = ({ filteredData }) => {
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
                     <Link
                       to={"/editor/all-projects"}
-                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3">
+                      className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
+                    >
                       All Projects <CaretRight size={20} />
                     </Link>
                   </td>
@@ -118,7 +116,8 @@ const MyWorkTable = ({ filteredData }) => {
                     <tr
                       key={index}
                       className="hover:bg-indigo-100 hover:cursor-pointer"
-                      onClick={handlePopup}>
+                      onClick={handlePopup}
+                    >
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-8 h-8">
@@ -151,7 +150,8 @@ const MyWorkTable = ({ filteredData }) => {
                       <td
                         className={
                           "px-4 py-4 border-b border-[#e5e5e5b3] text-sm"
-                        }>
+                        }
+                      >
                         <p
                           className={`${
                             tableDataInfo.status === "In Progress" &&
@@ -162,7 +162,8 @@ const MyWorkTable = ({ filteredData }) => {
                           } ${
                             tableDataInfo.status === "New Project" &&
                             "text-sm font-normal text-white bg-red-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
-                          }`}>
+                          }`}
+                        >
                           {tableDataInfo.status}
                         </p>
                       </td>
@@ -221,7 +222,8 @@ const MyWorkTable = ({ filteredData }) => {
                     <tr
                       key={index}
                       className="hover:bg-indigo-100 hover:cursor-pointer"
-                      onClick={handlePopup}>
+                      onClick={handlePopup}
+                    >
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-8 h-8">
@@ -254,7 +256,8 @@ const MyWorkTable = ({ filteredData }) => {
                       <td
                         className={
                           "px-4 py-4 border-b border-[#e5e5e5b3] text-sm"
-                        }>
+                        }
+                      >
                         <p
                           className={`${
                             tableDataInfo.status === "In Progress" &&
@@ -265,7 +268,8 @@ const MyWorkTable = ({ filteredData }) => {
                           } ${
                             tableDataInfo.status === "New Project" &&
                             "text-sm font-normal text-white bg-red-500 inline p-1 px-3 rounded-full whitespace-no-wrap"
-                          }`}>
+                          }`}
+                        >
                           {tableDataInfo.status}
                         </p>
                       </td>

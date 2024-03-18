@@ -1,6 +1,11 @@
 import { Plus } from "@phosphor-icons/react";
+import { useState } from "react";
 
 const FirstBrand = ({ setStep }) => {
+  const [allBrandKit, setAllBrandKit] = useState([])
+
+
+
   return (
     <div className="flex flex-col justify-center items-center h-full">
       <p className="text-xl font-bold mb-2">Create Your First Brand</p>

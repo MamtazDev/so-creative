@@ -1,9 +1,10 @@
 import CreatingBrand from "../../../Shared/UserPanel/CreatingBrand";
 import created from "../../../assets/created.svg";
+import { setStep } from "../../../features/project/projectSlice";
 import useLoading from "../../../hooks/useLoading";
 import { Plus } from "@phosphor-icons/react";
 
-const Creating = () => {
+const Creating = ({ setStep }) => {
   const { isLoading } = useLoading();
   return (
     <div className="h-full flex flex-col items-center justify-center">
@@ -24,7 +25,10 @@ const Creating = () => {
             <button className="border border-indigo-600 rounded-full py-3 px-6 flex items-center gap-2 text-indigo-600 text-base font-semibold">
               <Plus size={20} /> Add New
             </button>
-            <button className="border border-indigo-600 bg-indigo-600 rounded-full py-3 px-6 f text-white text-base font-semibold">
+            <button
+              onClick={() => setStep(4)}
+              className="border border-indigo-600 bg-indigo-600 rounded-full py-3 px-6 f text-white text-base font-semibold"
+            >
               Continue
             </button>
           </div>

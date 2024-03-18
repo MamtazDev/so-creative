@@ -20,11 +20,13 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const role = form.role.value;
 
     const data = {
       name,
       email,
       password,
+      role,
     };
     if (!passwordRegex.test(password)) {
       Swal.fire({
@@ -53,7 +55,13 @@ const Register = () => {
         });
       }
       if (res?.data?.success) {
-        navigate("/user");
+        const from =
+          res.data.user.role === "USER"
+            ? "/user"
+            : res.data.user.role === "EDITOR"
+            ? "/editor"
+            : "/admin/internal-users";
+        navigate(from, { replace: true });
       }
     } catch (error) {
       Swal.fire({
@@ -141,13 +149,35 @@ const Register = () => {
               />
             </div>
           </div>
+          <div>
+            <div className="flex items-center justify-between">
+              <label
+                for="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Role
+              </label>
+            </div>
+            <div className="mt-2">
+              <select
+                className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                name="role"
+              >
+                <option selected disabled value="USER">
+                  Choose a role
+                </option>
+                <option value="USER">User</option>
+                <option value="EDITOR">Editor</option>
+              </select>
+            </div>
+          </div>
 
           <div>
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign in
+              Register
             </button>
           </div>
         </form>
@@ -155,7 +185,7 @@ const Register = () => {
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?
           <Link
-            to="/login"
+            to="/"
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >
             Login

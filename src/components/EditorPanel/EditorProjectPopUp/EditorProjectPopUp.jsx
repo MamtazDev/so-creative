@@ -43,7 +43,8 @@ const EditorProjectPopUp = ({
       <div className="flex justify-center items-center h-screen">
         <div
           ref={modalOut}
-          className="w-[1150px] bg-white rounded-3xl overflow-y-scroll">
+          className="w-[1150px] bg-white rounded-3xl overflow-y-scroll no_scrollbar"
+        >
           <div className="modal_header border-b border-b-black/10 p-6 flex justify-between items-center">
             <div className="project_info flex gap-3">
               <div className="left">
@@ -72,12 +73,14 @@ const EditorProjectPopUp = ({
                 <>
                   <button
                     onClick={handlePopup}
-                    className="text-base font-semibold text-red-600 border border-red-600 py-3 px-6 rounded-full">
+                    className="text-base font-semibold text-red-600 border border-red-600 py-3 px-6 rounded-full"
+                  >
                     Decline Job
                   </button>
                   <button
                     onClick={handeJobAction}
-                    className="text-base font-semibold text-white bg-indigo-600 border border-indigo-600 py-3 px-6 rounded-full">
+                    className="text-base font-semibold text-white bg-indigo-600 border border-indigo-600 py-3 px-6 rounded-full"
+                  >
                     Accept Job
                   </button>
                 </>
@@ -90,8 +93,9 @@ const EditorProjectPopUp = ({
           </div>
           <div
             className={`modal_description p-10 h-[640px] ${
-              jobAction === true && "overflow-y-scroll"
-            }`}>
+              jobAction === true && "overflow-y-scroll no_scrollbar"
+            }`}
+          >
             <div className="grid grid-cols-12 gap-10">
               <div className="col-span-7">
                 {jobAction === true && (
@@ -121,7 +125,7 @@ const EditorProjectPopUp = ({
                             id="fileInput"
                             type="file"
                             {...getInputProps()}
-                            style={{ display: "none" }}
+                            // style={{ display: "none" }}
                           />
                         </div>
                         {file ? (
@@ -264,7 +268,8 @@ const EditorProjectPopUp = ({
                     <div className="see_more flex justify-center py-4">
                       <button
                         onClick={toggleExpanded}
-                        className="text-indigo-600 text-sm font-semibold flex items-center gap-2">
+                        className="text-indigo-600 text-sm font-semibold flex items-center gap-2"
+                      >
                         {expanded ? "Show Less" : "Show More"}
                         {expanded ? (
                           <CaretUp
@@ -343,7 +348,10 @@ const EditorProjectPopUp = ({
                         </div>
                       </div>
                       <div className="addons_items_right">
-                        <Link to={""} className="text-sm font-semibold text-indigo-600">
+                        <Link
+                          to={""}
+                          className="text-sm font-semibold text-indigo-600"
+                        >
                           Request Credit Change
                         </Link>
                       </div>

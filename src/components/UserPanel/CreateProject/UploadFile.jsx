@@ -3,6 +3,11 @@ import { useDropzone } from "react-dropzone";
 import mp4 from "../../../assets/mp4.svg";
 import SelectedVideo from "./SelectedVideo";
 import UploadProgress from "./UploadProgress";
+import { BASE_API_URL } from "../../../config/config";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setProjectId } from "../../../features/project/projectSlice";
+import * as tus from "tus-js-client";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
@@ -10,6 +15,10 @@ const UploadFile = () => {
   const [isDragActive, setIsDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [vimeoVideoInfo, setVimeoVideoInfo] = useState(null)
+
+  const { accessToken } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -20,24 +29,99 @@ const UploadFile = () => {
       setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
 
-      let progress = 0;
-      const upload = () => {
-        if (progress < 100) {
-          setTimeout(() => {
-            progress += Math.random() * 10;
-            progress = Math.min(progress, 100);
-            setUploadProgress(Math.floor(progress));
-            upload();
-          }, 500);
-        } else {
-          setSelectedVideos([...selectedVideos, ...acceptedFiles]);
-          setNewSelectedVideo([]);
-          setIsUploading(false);
-          setUploadProgress(100);
-        }
-      };
+      /* ================ 17-03-2024 Start =============== */
+      const selectedFile = acceptedFiles[0]
 
-      upload();
+      const uplaod = async () => {
+        try {
+          const res = await fetch(`${BASE_API_URL}/v1/vimeo/create-video-instant`, {
+            method: "POST",
+            body: JSON.stringify({ size: selectedFile.size }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          const result = await res.json();
+
+          console.log(result.data);
+
+          const { upload_link } = result.data
+
+          console.log("upload_link", upload_link);
+
+          const tusUpload = new tus.Upload(selectedFile, {
+            endpoint: upload_link,
+            uploadUrl: upload_link,
+            onError: (error) => {
+              console.error("Failed to upload", error);
+              
+              // Handle error
+            },
+            onProgress: (bytesUploaded, bytesTotal) => {
+              const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+
+              console.log(`${percentage}% uploaded`);
+              setUploadProgress(percentage);
+            },
+            onSuccess: () => {
+              console.log("Upload finished");
+              setVimeoVideoInfo(result.data);
+              setUploadProgress(0);
+
+
+              
+
+              // Handle successful upload
+            },
+          });
+
+          tusUpload.start();
+        } catch (error) {
+          console.error("Error uploading file:", error);
+        }
+      }
+
+      uplaod();
+
+
+
+      /* ================ 17-03-2024 End =============== */
+
+      // const formData = new FormData();
+
+      // formData.append("file", acceptedFiles[0]);
+
+      // const upload = async () => {
+      //   try {
+      //     const response = await axios.post(
+      //       `${BASE_API_URL}/v1/project/add`,
+      //       formData,
+      //       {
+      //         headers: {
+      //           Authorization: `Bearer ${accessToken}`,
+      //           "Content-Type": "multipart/form-data",
+      //         },
+      //         onUploadProgress: (e) => {
+      //           const progress = Math.floor((e.loaded / e.total) * 100);
+
+      //           setUploadProgress(progress);
+      //           // setIsUploading(false);
+      //         },
+      //       }
+      //     );
+
+      //     const data = response.data;
+      //     if (data.success) {
+      //       dispatch(setProjectId(data.data._id));
+      //     }
+      //   } catch (error) {
+      //     console.log(error);
+      //     // setIsUploading(false);
+      //   }
+      // };
+
+      // upload();
     },
     multiple: false,
     onDragEnter: () => {
@@ -64,7 +148,7 @@ const UploadFile = () => {
           newSelectedVideo={newSelectedVideo}
         />
       )} */}
-      <div className="p-12  ">
+      <div className="p-12 hover:cursor-pointer">
         <input {...getInputProps()} />
         <img className="m-auto mb-5" src={mp4} alt="" />
         <p className="text-lg font-semibold mb-1">Upload a File or</p>
@@ -73,12 +157,40 @@ const UploadFile = () => {
         </p>
       </div>
 
-      <SelectedVideo
-        selectedVideos={selectedVideos}
-        uploadProgress={uploadProgress}
-        newSelectedVideo={newSelectedVideo}
-        isUploading={isUploading}
-      />
+      {/* <iframe
+        title="vimeo-player"
+        // src={vimeoVideoInfo.player_embed_url}
+        src={"https://player.vimeo.com/video/924296735?h=704de352d"}
+        width="600"
+        height="340"
+        allowFullScreen
+      ></iframe>
+
+      <div class="video-container">
+        <iframe src="https://player.vimeo.com/video/924296735?controls=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <a class="download-button" href="https://vimeo.com/924296735/download">Download</a>
+      </div> */}
+      {
+        !vimeoVideoInfo ? <SelectedVideo
+          selectedVideos={selectedVideos}
+          uploadProgress={uploadProgress}
+          newSelectedVideo={newSelectedVideo}
+          isUploading={isUploading}
+        /> : <div className="text-start border-dashed p-6 border-t">
+          <iframe
+            title="vimeo-player"
+            src={vimeoVideoInfo.player_embed_url}
+            // src={"https://player.vimeo.com/video/924296735?h=704de352d"}
+            width="220"
+            // height="180" 
+            allowFullScreen
+          ></iframe>
+        </div>
+      }
+
+
+
+
     </div>
   );
 };

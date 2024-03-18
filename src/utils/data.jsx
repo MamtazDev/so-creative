@@ -53,6 +53,7 @@ import slack from "../assets/slack-notification.svg";
 import {
   BellSimpleRinging,
   GearSix,
+  NewspaperClipping,
   Notebook,
   Users,
 } from "@phosphor-icons/react";
@@ -154,19 +155,37 @@ export const RecentActivites = [
 export const internalUserData = [
   {
     clientImg: clientImg1,
-    clientName: "Xavier Davis",
-    projectName: "Product Showcase Video",
-    projectCount: 5,
-    assignee: "Shawn Mahbub",
-    status: "In Progress",
-    duration: 4,
-    dateCreated: "September 10, 2023",
+    clientName: "James Daher",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Admin",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Marvin McKinney",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Admin",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Darrell Steward",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Account Manager",
+  },
+  {
+    clientImg: clientImg1,
+    clientName: "Brooklyn Simmons",
+    joined: "September 10, 2023",
+    lastActive: "September 10, 2023",
+    role: "Editor",
   },
 ];
 
 export const menus = [
   {
-    type: "user",
+    type: "USER",
     pic: home,
     activePic: homeActive,
     title: "Home",
@@ -174,7 +193,7 @@ export const menus = [
   },
 
   {
-    type: "user",
+    type: "USER",
     pic: video,
     activePic: videoActive,
     title: "All Videos",
@@ -182,7 +201,7 @@ export const menus = [
   },
 
   {
-    type: "user",
+    type: "USER",
     pic: media,
     activePic: mediaActive,
     title: "Media Storage",
@@ -190,7 +209,7 @@ export const menus = [
   },
 
   {
-    type: "user",
+    type: "USER",
     pic: brand,
     activePic: brandActive,
     title: "Brand Kit",
@@ -198,7 +217,7 @@ export const menus = [
   },
 
   {
-    type: "editor",
+    type: "EDITOR",
     pic: dashboardIcon,
     activePic: dashboardIconActive,
     title: "Dashboard",
@@ -206,7 +225,7 @@ export const menus = [
   },
 
   {
-    type: "editor",
+    type: "EDITOR",
     pic: myTasksIcon,
     activePic: myTasksIconActive,
     title: "My Tasks",
@@ -214,25 +233,25 @@ export const menus = [
   },
 
   {
-    type: "editor",
+    type: "EDITOR",
     pic: clientIcon,
     activePic: clientIconActive,
     title: "Clients",
     path: "/editor/clients",
   },
   {
-    type: "admin",
+    type: "ADMIN",
     pic: internalInActive,
     activePic: internalActive,
     title: "Internal Users",
-    path: "/internal-users",
+    path: "/admin/internal-users",
   },
   {
-    type: "admin",
+    type: "ADMIN",
     pic: companiesInActive,
     activePic: companiesActive,
     title: "Companies",
-    path: "/internal-users/companies",
+    path: "/admin/companies",
   },
 ];
 
@@ -459,6 +478,7 @@ export const guidelines = [
     title: "Image Assets",
     subtitle:
       "Add brand images and custom watermarks and use them across your projects.",
+    acceptType: "image/*",
     inputName: "images",
   },
   {
@@ -615,22 +635,7 @@ export const createProjectStepper = [
 
 export const expandsDetails = [
   {
-    title: "Tell us more about your project",
-    component: <AboutProject />,
-  },
-  {
-    title: "Supporting Materials",
-    component: <SupportingMaterial />,
-  },
-  {
-    title: "Select Brand Kit",
-    component: <SelectBrand />,
-  },
-  {
-    title: "Aspect Ratio",
-    component: <AspectRatio />,
-  },
-  {
+    id: 5,
     title: "Add Presenter",
     component: <AddPresenter />,
   },
@@ -656,30 +661,35 @@ export const aspectRatio = [
 
 export const addOns = [
   {
+    id: 1,
     pic: socialVoice,
     title: "Social Media Resizing",
     subtitle: "Resize your video for different social media platforms.",
     credit: 0.5,
   },
   {
+    id: 2,
     pic: cc,
     title: "Subtitles and SRT Files",
     subtitle: "Spoken English videos only. Allow up to 24-48 hours.",
     credit: 0.5,
   },
   {
+    id: 3,
     pic: voice,
     title: "Voice Over Artist",
     subtitle: "Professional voice. Allow up to 48 hours.",
     credit: 1,
   },
   {
+    id: 4,
     pic: express,
     title: "Express Edit",
     subtitle: "Your video delivered on the same day",
     credit: 1,
   },
   {
+    id: 5,
     pic: strategy,
     title: "1 hour Video Strategy Call",
     subtitle: "Schedule a project meeting with a Creative Director",
@@ -703,6 +713,16 @@ export const workspaceMenu = [
   {
     icon: <BellSimpleRinging size={24} />,
     title: "Notifications",
+  },
+];
+export const companyMenu = [
+  {
+    icon: <Users size={24} />,
+    title: "Team Members",
+  },
+  {
+    icon: <NewspaperClipping size={24} />,
+    title: "Plans & Billing",
   },
 ];
 
