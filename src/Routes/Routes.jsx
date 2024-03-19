@@ -40,9 +40,9 @@ export const router = createBrowserRouter([
   {
     path: "/user",
     element: (
-      <UserRoute>
-        <MainLayout />
-      </UserRoute>
+      // <UserRoute>
+      <MainLayout />
+      // </UserRoute>
     ),
     children: [
       {
@@ -79,9 +79,9 @@ export const router = createBrowserRouter([
   {
     path: "/editor",
     element: (
-      <EditorRoute>
-        <MainLayout />
-      </EditorRoute>
+      // <EditorRoute>
+      <MainLayout />
+      // </EditorRoute>
     ),
     children: [
       {
@@ -102,9 +102,9 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <AdminRoute>
-        <MainLayout />
-      </AdminRoute>
+      // <AdminRoute>
+      <MainLayout />
+      // </AdminRoute>
     ),
     children: [
       {
