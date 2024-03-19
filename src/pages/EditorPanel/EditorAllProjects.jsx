@@ -4,14 +4,17 @@ import MyWorkTable from "../../components/EditorPanel/EditorDashboard/MyWorkTabl
 import EditroSectionTitle from "../../components/EditorPanel/EditorSectionTitle/EditroSectionTitle";
 import useLoading from "../../hooks/useLoading";
 import { MyWorkTableData } from "../../utils/data";
+import { useGetAllProjectsQuery } from "../../features/project/projectApi";
 
 const EditorAllProjects = () => {
-  const { isLoading } = useLoading();
   const [filter, setFilter] = useState("All");
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
 
+  const { data, isLoading } = useGetAllProjectsQuery("");
+
+  console.log(data, "datatkjk");
   const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
 
   const filteredData = repeatedData.filter((item) =>
@@ -34,10 +37,7 @@ const EditorAllProjects = () => {
             handleFilterChange={handleFilterChange}
           />
 
-          <MyWorkTable
-            filteredData={filteredData}
-            repeatedData={repeatedData}
-          />
+          <MyWorkTable filteredData={data} repeatedData={repeatedData} />
         </>
       )}
     </>

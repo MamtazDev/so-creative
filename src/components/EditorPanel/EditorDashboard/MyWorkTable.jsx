@@ -112,7 +112,7 @@ const MyWorkTable = ({ filteredData }) => {
               <table className="min-w-full leading-normal myworktable">
                 <TableHead tableHeading={tableHeadingTwo} />
                 <tbody>
-                  {paginatedData.map((tableDataInfo, index) => (
+                  {paginatedData?.map((tableDataInfo, index) => (
                     <tr
                       key={index}
                       className="hover:bg-indigo-100 hover:cursor-pointer"
@@ -129,7 +129,7 @@ const MyWorkTable = ({ filteredData }) => {
                           </div>
                           <div className="ml-3">
                             <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap cursor-pointer">
-                              {tableDataInfo.clientName}
+                              {tableDataInfo.creator.name}
                             </p>
                           </div>
                         </div>
@@ -137,13 +137,15 @@ const MyWorkTable = ({ filteredData }) => {
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                          {tableDataInfo.projectName}
+                          {tableDataInfo.projectTitle}
                         </p>
                       </td>
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                          {tableDataInfo.assignee}
+                          {tableDataInfo?.editor?.name
+                            ? tableDataInfo?.editor?.name
+                            : "N/A"}
                         </p>
                       </td>
 
@@ -170,7 +172,7 @@ const MyWorkTable = ({ filteredData }) => {
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                          {tableDataInfo.duration} days
+                          4 days
                         </p>
                       </td>
 

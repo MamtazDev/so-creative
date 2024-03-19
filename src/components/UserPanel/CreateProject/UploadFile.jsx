@@ -16,6 +16,7 @@ const UploadFile = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
 
   const { accessToken } = useSelector((state) => state.auth);
+  const { projectId } = useSelector((state) => state.project);
   const dispatch = useDispatch();
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -29,7 +30,9 @@ const UploadFile = () => {
 
       const formData = new FormData();
 
-      formData.append("file", acceptedFiles[0]);
+      formData.append("video", acceptedFiles[0]);
+      formData.append("title", acceptedFiles[0]?.name);
+      projectId && formData.append("projectId", projectId);
 
       const upload = async () => {
         try {
@@ -43,9 +46,9 @@ const UploadFile = () => {
               },
               onUploadProgress: (e) => {
                 const progress = Math.floor((e.loaded / e.total) * 100);
-
+                setSelectedVideos([...selectedVideos, acceptedFiles[0]]);
                 setUploadProgress(progress);
-                // setIsUploading(false);
+                setIsUploading(false);
               },
             }
           );
@@ -56,7 +59,7 @@ const UploadFile = () => {
           }
         } catch (error) {
           console.log(error);
-          // setIsUploading(false);
+          setIsUploading(false);
         }
       };
 

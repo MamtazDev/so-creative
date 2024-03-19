@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { addOns } from "../../../utils/data";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  useAddOrUpdateProjectMutation,
   useGetProjectDetailsQuery,
+  useUpdateProjectMutation,
 } from "../../../features/project/projectApi";
 import Swal from "sweetalert2";
 import {
@@ -15,7 +15,7 @@ const SelectAddOns = () => {
   const { projectId } = useSelector((state) => state.project);
   const dispatch = useDispatch();
 
-  const [addOrUpdateProject, { isLoading }] = useAddOrUpdateProjectMutation();
+  const [updateProject, { isLoading }] = useUpdateProjectMutation();
 
   const [projectAddons, setAddProjectOns] = useState([]);
   const { data: projectData } = useGetProjectDetailsQuery(projectId);
@@ -59,7 +59,7 @@ const SelectAddOns = () => {
       });
       formData.append("projectId", projectId);
       formData.append("status", "Pending");
-      const res = await addOrUpdateProject(formData);
+      const res = await updateProject(formData);
 
       if (res?.error?.error) {
         Swal.fire({

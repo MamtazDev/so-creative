@@ -191,6 +191,13 @@ export const menus = [
     title: "Home",
     path: "/user",
   },
+  {
+    type: "USER",
+    pic: video,
+    activePic: videoActive,
+    title: "Projects",
+    path: "/user/projects",
+  },
 
   {
     type: "USER",
@@ -229,6 +236,13 @@ export const menus = [
     pic: myTasksIcon,
     activePic: myTasksIconActive,
     title: "My Tasks",
+    path: "/editor/my-projects",
+  },
+  {
+    type: "EDITOR",
+    pic: myTasksIcon,
+    activePic: myTasksIconActive,
+    title: "All Tasks",
     path: "/editor/all-projects",
   },
 

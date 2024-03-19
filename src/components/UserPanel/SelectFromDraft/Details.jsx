@@ -12,13 +12,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { DateConverter } from "../../../utils/converter";
 import {
   setActiveBrif,
+  setDraftStep,
   setProjectId,
   setSelectedProject,
   setShowCreateModal,
+  setShowDraftModal,
   setStep,
 } from "../../../features/project/projectSlice";
 
-const Details = ({ setModalStep, setShowDraftModal }) => {
+const Details = ({ setModalStep }) => {
   const [showFullText, setShowFullText] = useState(false);
   const { selectedProject } = useSelector((state) => state.project);
   const dispatch = useDispatch();
@@ -35,8 +37,8 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
     dispatch(setProjectId(selectedProject?._id));
     dispatch(setShowCreateModal(true));
 
-    setShowDraftModal(false);
-
+    dispatch(setShowDraftModal(false));
+    dispatch(setDraftStep(1));
     if (!selectedProject?.description) {
       dispatch(setStep(1));
       dispatch(setActiveBrif("description"));
@@ -83,7 +85,7 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
         <button
           onClick={() => {
             dispatch(setSelectedProject(undefined));
-            setModalStep(1);
+            dispatch(setDraftStep(1));
           }}
           className="flex items-center gap-2 px-6 py-3 text-base font-semibold text-indigo-600 border rounded-full border-indigo-600"
         >
