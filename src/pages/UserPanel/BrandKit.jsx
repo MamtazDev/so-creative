@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FirstBrand from "../../components/UserPanel/BrandKit/FirstBrand";
 import BrandGuidelines from "../../components/UserPanel/BrandKit/BrandGuidelines";
 import Creating from "../../components/UserPanel/BrandKit/Creating";
@@ -16,6 +16,10 @@ const BrandKit = () => {
 
   const [addNewBrand, setAddNewBrand] = useState(false)
 
+  useEffect(()=> {
+    setAllBrandkit([{}])
+  }, [])
+
 
 
   return (
@@ -24,9 +28,12 @@ const BrandKit = () => {
       {step === 2 && <BrandGuidelines setStep={setStep} />}
       {step === 3 && <Creating setStep={setStep} />}
       {step === 4 && <AllBrands setStep={setStep} />} */}
+    
+
+      {/* <BrandGuidelines setStep={setStep} /> */}
       
-      {isLoading && <Creating setStep={setStep} />}
-      {!isLoading && allBrandkit.length > 0 ? <AllBrands allBrandkit={allBrandkit} setStep={setStep} /> : <FirstBrand setStep={setStep} />}
+      {/* {isLoading && <Creating setStep={setStep} />} */}
+      {!isLoading && allBrandkit.length > 0 ? <AllBrands allBrandkit={allBrandkit}  /> : <FirstBrand />}
 
 
       {/* <BrandGuidelines setStep={setStep} /> */}

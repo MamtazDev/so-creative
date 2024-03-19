@@ -1,9 +1,10 @@
 import { DotsThreeOutline, Plus } from "@phosphor-icons/react";
 import arrow from "../../../assets/down-arrow.svg";
 import brand from "../../../assets/socreative-brand.svg";
+import { useNavigate } from "react-router-dom";
 
 const AllBrands = ({ allBrandkit }) => {
-
+  const navigate = useNavigate();
   return (
     <div>
       <div className="flex items-center gap-3 justify-between mb-6">
@@ -15,7 +16,7 @@ const AllBrands = ({ allBrandkit }) => {
             </button>
           </div>
           <button
-
+            onClick={() =>  navigate('/user/brand-kit/create')}
             className="primary_btn py-2 px-3 flex items-center gap-1"
           >
             <Plus size={20} /> Add New
