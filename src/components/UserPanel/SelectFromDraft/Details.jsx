@@ -12,19 +12,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { DateConverter } from "../../../utils/converter";
 import {
   setActiveBrif,
+  setDraftStep,
   setProjectId,
+  setSelectedProject,
   setShowCreateModal,
+  setShowDraftModal,
   setStep,
 } from "../../../features/project/projectSlice";
 
-const Details = ({ setModalStep, setShowDraftModal }) => {
+const Details = ({ setModalStep }) => {
   const [showFullText, setShowFullText] = useState(false);
   const { selectedProject } = useSelector((state) => state.project);
   const dispatch = useDispatch();
   const maxWords = 110;
-  const text =
-    " This project aims to create a video series focusing on impactful sales strategies for businesses of all sizes. The series will leverage your on-demand video editing service to showcase its capabilities and attract potential clients, while providing valuable and actionable sales advice. <br /> <br /> To achieve your project goals, a multifaceted approach blending  content marketing, social media engagement, and strategic partnerships is essential. Crafting informative blog posts, videos, and social media content showcasing the benefits of your on-demand video editing service will help increase brand awareness and position your company as thought leaders in the sales and marketing realm. Implementing targeted advertising campaigns to reach potential clients and offering valuable resources such as eBooks or webinars on leveraging video editing for sales enhancement will generate leads and conversions. Collaborating with industry influencers and participating in relevant events or webinars will further solidify your company's reputation and expand your reach within the sales and marketing community.";
-
   const truncateText = (text, maxWords) => {
     const words = text?.split(" ");
     if (words.length > maxWords) {
@@ -36,22 +36,35 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
   const handleSelectDraft = () => {
     dispatch(setProjectId(selectedProject?._id));
     dispatch(setShowCreateModal(true));
-    dispatch(setStep(1));
-    setShowDraftModal(false);
 
+    dispatch(setShowDraftModal(false));
+    dispatch(setDraftStep(1));
     if (!selectedProject?.description) {
+      dispatch(setStep(1));
       dispatch(setActiveBrif("description"));
       return;
     } else if (
       !selectedProject?.supportiveMaterials ||
       selectedProject?.supportiveMaterials.length === 0
     ) {
+      dispatch(setStep(1));
       dispatch(setActiveBrif("materials"));
       return;
+    } else if (!selectedProject?.brandKit) {
+      dispatch(setStep(1));
+      dispatch(setActiveBrif("brandKit"));
+      return;
+    } else if (!selectedProject?.aspectRatio) {
+      dispatch(setStep(1));
+      dispatch(setActiveBrif("ratio"));
+      return;
+    } else if (!selectedProject?.presenter) {
+      dispatch(setStep(1));
+      dispatch(setActiveBrif("presenter"));
+      return;
+    } else {
+      dispatch(setStep(2));
     }
-    // else if (){
-      
-    // }
   };
   return (
     <div>
@@ -70,7 +83,10 @@ const Details = ({ setModalStep, setShowDraftModal }) => {
           </p>
         </div>
         <button
-          onClick={() => setStep(1)}
+          onClick={() => {
+            dispatch(setSelectedProject(undefined));
+            dispatch(setDraftStep(1));
+          }}
           className="flex items-center gap-2 px-6 py-3 text-base font-semibold text-indigo-600 border rounded-full border-indigo-600"
         >
           <CaretLeft size={24} /> Go Back
