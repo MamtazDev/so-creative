@@ -53,7 +53,11 @@ const AccepteJobModal = ({
 
   const handeAccepteJob = async () => {
     try {
-      const formdata = { projectId: selectedProject?._id, editor: user?._id };
+      const formdata = {
+        projectId: selectedProject?._id,
+        editor: user?._id,
+        status: "In Progress",
+      };
       const res = await updateProject(formdata);
 
       if (res?.error?.error) {
