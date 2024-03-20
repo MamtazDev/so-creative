@@ -67,9 +67,9 @@ const EditorPagination = ({
 
         <button
           onClick={() => handlePageChange(currentPage + 1)}
-          disabled={endIndex >= filteredData.length}
+          disabled={endIndex >= filteredData?.length}
           className={`${
-            endIndex >= filteredData.length
+            endIndex >= filteredData?.length
               ? "flex items-center text-base font-medium border border-slate-200 px-3 py-1 rounded-full gap-2"
               : "flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
           }`}
@@ -77,7 +77,7 @@ const EditorPagination = ({
         >
           <span
             className={`${
-              endIndex >= filteredData.length
+              endIndex >= filteredData?.length
                 ? "text-slate-200"
                 : "text-indigo-600"
             }`}
@@ -86,7 +86,7 @@ const EditorPagination = ({
           </span>
           <CaretRight
             className={`${
-              endIndex >= filteredData.length
+              endIndex >= filteredData?.length
                 ? "text-slate-200"
                 : "text-indigo-600"
             }`}

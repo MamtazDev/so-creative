@@ -21,7 +21,8 @@ import { DateConverter } from "../utils/converter";
 import { useUpdateProjectMutation } from "../features/project/projectApi";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-const AccepteJobModal = ({
+import { useDropzone } from "react-dropzone";
+const SubmitProjectModal = ({
   setModalPopup,
   setSelectedProject,
   selectedProject,
@@ -30,7 +31,7 @@ const AccepteJobModal = ({
 
   const { user } = useSelector((state) => state.auth);
 
-  const accpeteModal = useRef();
+  const submitModal = useRef();
 
   const [showFullText, setShowFullText] = useState(false);
 
@@ -42,7 +43,7 @@ const AccepteJobModal = ({
     return text;
   };
 
-  useOutsideClick(accpeteModal, () => {
+  useOutsideClick(submitModal, () => {
     setModalPopup(false);
     setSelectedProject(null);
   });
@@ -81,11 +82,29 @@ const AccepteJobModal = ({
       });
     }
   };
+
+  const [file, setFile] = useState();
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      "video/mp4": [".mp4"],
+      "video/mov": [".mov"],
+    },
+    onDrop: (acceptedFiles) => {
+      const upload = async () => {
+        setFile(acceptedFiles[0]);
+      };
+
+      upload();
+    },
+    multiple: false,
+  });
+
   return (
     <div className="absolute top-0 left-0 w-full h-screen bg-black/50 backdrop-blur-sm">
       <div className="flex justify-center items-center h-screen">
         <div
-          ref={accpeteModal}
+          ref={submitModal}
           className="w-[1150px] bg-white rounded-3xl overflow-y-scroll no_scrollbar"
         >
           <div className="modal_header border-b border-b-black/10 p-6 flex justify-between items-center">
@@ -107,23 +126,110 @@ const AccepteJobModal = ({
             </div>
             <div className="project_action flex gap-3">
               <button
-                onClick={() => setModalPopup(false)}
-                className="text-base font-semibold text-red-600 border border-red-600 py-3 px-6 rounded-full"
-              >
-                Decline Job
-              </button>
-              <button
                 onClick={handeAccepteJob}
                 disabled={isLoading}
                 className="text-base font-semibold text-white bg-indigo-600 border border-indigo-600 py-3 px-6 rounded-full"
               >
-                {isLoading ? "Accepting..." : "Accept Job"}
+                {isLoading ? "Accepting..." : "Submit Project"}
               </button>
             </div>
           </div>
           <div className="modal_description p-10 h-[640px]">
             <div className="grid grid-cols-12 gap-10">
               <div className="col-span-7">
+                <div className="submit_video_wrapper pb-10">
+                  <div className="section_head pb-4">
+                    <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
+                      <FileText size={24} className="text-indigo-600" />
+                      Submit Video
+                    </h2>
+                  </div>
+                  <div className="submit_video outline-1 outline-dashed outline-slate-200  rounded-3xl">
+                    <div className="upoload_video py-12 px-6 flex justify-center items-center flex-col border-b border-dashed">
+                      <div {...getRootProps()}>
+                        {/* {thumbnail ? (
+                          <img
+                            src={thumbnail}
+                            alt="thumbnail"
+                            style={{
+                              maxWidth: "100px",
+                              maxHeight: "100px",
+                            }}
+                          />
+                        ) : (
+                          <img src={uploadVideo} alt="icon" />
+                        )} */}
+                        <input
+                          id="fileInput"
+                          type="file"
+                          {...getInputProps()}
+                          // style={{ display: "none" }}
+                        />
+                      </div>
+                      {file ? (
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900 pb-1">
+                            File uploaded: {file.name}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="text-center">
+                          <p className="text-sm font-semibold text-slate-900 pb-1">
+                            Upload a File or{" "}
+                            <Link to="#" className="text-indigo-600 ml-1">
+                              Paste URL
+                            </Link>
+                          </p>
+                          <p className="text-sm text-normal text-slate-500">
+                            Click to browse or drag & drop a file here
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="previous_veriosn py-6 px-4">
+                      <div className="section_head pb-4 flex justify-between items-center">
+                        <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
+                          Previous Versions
+                        </h2>
+
+                        <Link className="text-sm font-semibold text-indigo-600 flex items-center gap-1">
+                          See All
+                          <CaretRight
+                            size={16}
+                            className="text-sm font-semibold"
+                          />
+                        </Link>
+                      </div>
+                      <div className="previous_video flex gap-4">
+                        <div className="video_item">
+                          <div className="video_img relative">
+                            <img src={PreviousVideo} alt="video" />
+                            <p className="text-white font-xs font-semibold bg-slate-900 inline rounded-md px-1 absolute bottom-2 left-2">
+                              03:45
+                            </p>
+                          </div>
+                        </div>
+                        <div className="video_item">
+                          <div className="video_img relative">
+                            <img src={PreviousVideo} alt="video" />
+                            <p className="text-white font-xs font-semibold bg-slate-900 inline rounded-md px-1 absolute bottom-2 left-2">
+                              03:45
+                            </p>
+                          </div>
+                        </div>
+                        <div className="video_item">
+                          <div className="video_img relative">
+                            <img src={PreviousVideo} alt="video" />
+                            <p className="text-white font-xs font-semibold bg-slate-900 inline rounded-md px-1 absolute bottom-2 left-2">
+                              03:45
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="project_brief_wrapper pb-10">
                   <div className="section_head pb-4">
                     <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
@@ -280,4 +386,4 @@ const AccepteJobModal = ({
   );
 };
 
-export default AccepteJobModal;
+export default SubmitProjectModal;
