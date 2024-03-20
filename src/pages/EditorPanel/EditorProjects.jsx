@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGetAllProjectsQuery } from "../../features/project/projectApi";
 import Loading from "../../Shared/Loading";
 import EditroSectionTitle from "../../components/EditorPanel/EditorSectionTitle/EditroSectionTitle";
 import MyWorkTable from "../../components/EditorPanel/EditorDashboard/MyWorkTable";
+import { useSelector } from "react-redux";
 
 const EditorProjects = () => {
-  const { data, isLoading } = useGetAllProjectsQuery();
+  const { user } = useSelector((state) => state.auth);
+  const { data, isLoading } = useGetAllProjectsQuery(`editor=${user?._id}`);
+
+  const [filter, setFilter] = useState("All");
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
+
+  console.log(data, "data");
+
   return isLoading ? (
     <Loading />
   ) : (
     <>
-      {/* <EditroSectionTitle
+      <EditroSectionTitle
         filter={filter}
         handleFilterChange={handleFilterChange}
-      /> */}
-      <div>fdf</div>
-      {/* <MyWorkTable filteredData={filteredData} repeatedData={repeatedData} /> */}
+      />
+
+      <MyWorkTable filteredData={data} />
     </>
   );
 };

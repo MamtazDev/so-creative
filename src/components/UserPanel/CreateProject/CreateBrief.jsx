@@ -18,7 +18,6 @@ import ProjectPresenter from "./CreateBrief/ProjectPresenter";
 const CreateBrief = () => {
   const { projectId } = useSelector((state) => state.project);
 
-  const [addProject, { isLoading }] = useAddProjectMutation();
   const [updateProject, { isLoading: updating }] = useUpdateProjectMutation();
 
   const { data } = useGetProjectDetailsQuery(projectId);

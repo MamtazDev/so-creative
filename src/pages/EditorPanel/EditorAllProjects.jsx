@@ -12,7 +12,7 @@ const EditorAllProjects = () => {
     setFilter(newFilter);
   };
 
-  const { data, isLoading } = useGetAllProjectsQuery("");
+  const { data, isLoading } = useGetAllProjectsQuery("editor=none");
 
   console.log(data, "datatkjk");
   const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
@@ -37,7 +37,7 @@ const EditorAllProjects = () => {
             handleFilterChange={handleFilterChange}
           />
 
-          <MyWorkTable filteredData={data} repeatedData={repeatedData} />
+          <MyWorkTable filteredData={data} />
         </>
       )}
     </>

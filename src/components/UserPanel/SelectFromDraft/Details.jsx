@@ -20,11 +20,14 @@ import {
   setStep,
 } from "../../../features/project/projectSlice";
 
-const Details = ({ setModalStep }) => {
+const Details = () => {
   const [showFullText, setShowFullText] = useState(false);
   const { selectedProject } = useSelector((state) => state.project);
+
   const dispatch = useDispatch();
+
   const maxWords = 110;
+  
   const truncateText = (text, maxWords) => {
     const words = text?.split(" ");
     if (words.length > maxWords) {

@@ -13,13 +13,22 @@ import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 import EditorPagination from "./EditorPagination";
 import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
 import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
+import { DateConverter } from "../../../utils/converter";
+import AccepteJobModal from "../../../Modal/AccepteJobModal";
+import SubmitProjectModal from "../../../Modal/SubmitProjectModal";
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
+
   const [modalPopup, setModalPopup] = useState(false);
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
+
+  const [selectedProject, setSelectedProject] = useState(null);
   const [jobAction, setJobAction] = useState(false);
+
   const [file, setFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "video/mp4": [".mp4"],
@@ -39,8 +48,9 @@ const MyWorkTable = ({ filteredData }) => {
   const handleUploadClick = () => {
     document.getElementById("fileInput").click();
   };
-  const handlePopup = () => {
-    setModalPopup(!modalPopup);
+  const handlePopup = (item) => {
+    setModalPopup(true);
+    setSelectedProject(item);
   };
   const handeJobAction = () => {
     setJobAction(!jobAction);
@@ -104,6 +114,59 @@ const MyWorkTable = ({ filteredData }) => {
           </div>
         </div>
       )}
+      {route.pathname === "/editor/my-projects" && (
+        <>
+          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">
+            <div className="inline-block min-w-full border border-slate-200 rounded-2xl overflow-hidden">
+              <table className="min-w-full leading-normal myworktable">
+                <TableHead tableHeading={tableHeading} />
+                <tbody>
+                  {paginatedData.map((tableDataInfo, index) => (
+                    <TableBody
+                      tableDataInfo={tableDataInfo}
+                      key={index}
+                      handlePopup={() => {
+                        setSelectedProject(tableDataInfo);
+                        setShowSubmitModal(true);
+                      }}
+                    />
+                  ))}
+                </tbody>
+              </table>
+
+              {/* {modalPopup === true && (
+                <EditorProjectPopUp
+                  jobAction={jobAction}
+                  setModalPopup={setModalPopup}
+                  handlePopup={handlePopup}
+                  handeJobAction={handeJobAction}
+                  handleUploadClick={handleUploadClick}
+                  thumbnail={thumbnail}
+                  getInputProps={getInputProps}
+                  getRootProps={getRootProps}
+                  file={file}
+                />
+              )} */}
+              {showSubmitModal && (
+                <SubmitProjectModal
+                  setModalPopup={setShowSubmitModal}
+                  setSelectedProject={setSelectedProject}
+                  selectedProject={selectedProject}
+                />
+              )}
+            </div>
+          </div>
+          {filteredData?.length > 10 && (
+            <EditorPagination
+              handlePageChange={handlePageChange}
+              currentPage={currentPage}
+              filteredData={filteredData}
+              itemsPerPage={itemsPerPage}
+              endIndex={endIndex}
+            />
+          )}
+        </>
+      )}
 
       {route.pathname === "/editor/all-projects" && (
         <>
@@ -116,7 +179,7 @@ const MyWorkTable = ({ filteredData }) => {
                     <tr
                       key={index}
                       className="hover:bg-indigo-100 hover:cursor-pointer"
-                      onClick={handlePopup}
+                      onClick={() => handlePopup(tableDataInfo)}
                     >
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <div className="flex items-center">
@@ -178,7 +241,8 @@ const MyWorkTable = ({ filteredData }) => {
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                          {tableDataInfo.dateCreated} <CaretRight size={20} />
+                          {DateConverter(tableDataInfo.updatedAt)}{" "}
+                          <CaretRight size={20} />
                         </p>
                       </td>
                     </tr>
@@ -186,29 +250,25 @@ const MyWorkTable = ({ filteredData }) => {
                 </tbody>
               </table>
 
-              {modalPopup === true && (
-                <EditorProjectPopUp
-                  jobAction={jobAction}
-                  handlePopup={handlePopup}
+              {modalPopup && (
+                <AccepteJobModal
                   setModalPopup={setModalPopup}
-                  handeJobAction={handeJobAction}
-                  handleUploadClick={handleUploadClick}
-                  thumbnail={thumbnail}
-                  getInputProps={getInputProps}
-                  getRootProps={getRootProps}
-                  file={file}
+                  setSelectedProject={setSelectedProject}
+                  selectedProject={selectedProject}
                 />
               )}
             </div>
           </div>
 
-          <EditorPagination
-            handlePageChange={handlePageChange}
-            currentPage={currentPage}
-            filteredData={filteredData}
-            itemsPerPage={itemsPerPage}
-            endIndex={endIndex}
-          />
+          {filteredData?.length > 10 && (
+            <EditorPagination
+              handlePageChange={handlePageChange}
+              currentPage={currentPage}
+              filteredData={filteredData}
+              itemsPerPage={itemsPerPage}
+              endIndex={endIndex}
+            />
+          )}
         </>
       )}
 
