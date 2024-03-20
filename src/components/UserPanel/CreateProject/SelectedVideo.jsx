@@ -40,7 +40,6 @@ const SelectedVideo = ({
         <div>
           {isUploading && (
             <div>
-
               <div className="">
                 <div className="h-[108px]  relative">
                   <video className="rounded-xl w-full h-full" controls>
@@ -63,7 +62,6 @@ const SelectedVideo = ({
                     {uploadProgress}%
                   </p>
                 </div>
-
               </div>
               <p className="text-sm font-medium mt-4">
                 {newSelectedVideo[0].name}
