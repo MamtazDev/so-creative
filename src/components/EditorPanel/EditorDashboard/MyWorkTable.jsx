@@ -13,6 +13,7 @@ import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 import EditorPagination from "./EditorPagination";
 import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
 import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
+import { DateConverter } from "../../../utils/converter";
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
@@ -178,7 +179,8 @@ const MyWorkTable = ({ filteredData }) => {
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                          {tableDataInfo.dateCreated} <CaretRight size={20} />
+                          {DateConverter(tableDataInfo.updatedAt)}{" "}
+                          <CaretRight size={20} />
                         </p>
                       </td>
                     </tr>

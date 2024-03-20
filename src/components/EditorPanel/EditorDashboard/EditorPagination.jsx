@@ -13,7 +13,8 @@ const EditorPagination = ({
     <div className="container mx-auto mt-10 px-4">
       <nav
         className="flex gap-4 flex-row flex-nowrap justify-between md:justify-center items-center"
-        aria-label="Pagination">
+        aria-label="Pagination"
+      >
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
@@ -22,7 +23,8 @@ const EditorPagination = ({
               ? "flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
               : "flex items-center text-base font-medium border border-slate-200 px-3 py-1 rounded-full gap-2"
           }`}
-          title="Previous">
+          title="Previous"
+        >
           <CaretLeft
             className={`${
               currentPage > 1 ? "text-indigo-600" : "text-slate-200"
@@ -32,7 +34,8 @@ const EditorPagination = ({
           <span
             className={`${
               currentPage > 1 ? "text-indigo-600" : "text-slate-200"
-            }`}>
+            }`}
+          >
             Previous
           </span>
         </button>
@@ -54,7 +57,8 @@ const EditorPagination = ({
                   currentPage === index + 1
                     ? "bg-indigo-600 text-white"
                     : "text-[#64748B] border-transparent"
-                }`}>
+                }`}
+              >
                 {index + 1}
               </Link>
             )
@@ -69,13 +73,15 @@ const EditorPagination = ({
               ? "flex items-center text-base font-medium border border-slate-200 px-3 py-1 rounded-full gap-2"
               : "flex items-center text-base font-medium border border-indigo-600 px-3 py-1 rounded-full gap-2"
           }`}
-          title="Next">
+          title="Next"
+        >
           <span
             className={`${
               endIndex >= filteredData.length
                 ? "text-slate-200"
                 : "text-indigo-600"
-            }`}>
+            }`}
+          >
             Next
           </span>
           <CaretRight
@@ -92,4 +98,4 @@ const EditorPagination = ({
   );
 };
 
-export default EditorPagination
+export default EditorPagination;
