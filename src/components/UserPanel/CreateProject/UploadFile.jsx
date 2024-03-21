@@ -7,6 +7,7 @@ import { BASE_API_URL } from "../../../config/config";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProjectId } from "../../../features/project/projectSlice";
+import * as tus from "tus-js-client";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
@@ -18,7 +19,7 @@ const UploadFile = () => {
   const [vimeoVideoInfo, setVimeoVideoInfo] = useState(null);
 
   const [isVimeoProcessDone, setIsVimeoProcessDone] = useState(false);
-
+  // mohii
   const { accessToken } = useSelector((state) => state.auth);
   const { projectId } = useSelector((state) => state.project);
   const dispatch = useDispatch();
@@ -31,7 +32,6 @@ const UploadFile = () => {
     onDrop: (acceptedFiles) => {
       setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
-
 
       const selectedFile = acceptedFiles[0];
 
@@ -91,18 +91,18 @@ const UploadFile = () => {
 
               const formData = projectId
                 ? {
-                    title: acceptedFiles[0]?.name,
-                    size: acceptedFiles[0]?.size,
-                    path: result.data.player_embed_url,
-                    // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
-                    projectId: projectId,
-                  }
+                  title: acceptedFiles[0]?.name,
+                  size: acceptedFiles[0]?.size,
+                  path: result.data.player_embed_url,
+                  // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+                  projectId: projectId,
+                }
                 : {
-                    title: acceptedFiles[0]?.name,
-                    size: acceptedFiles[0]?.size,
-                    path: result.data.player_embed_url,
-                    // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
-                  };
+                  title: acceptedFiles[0]?.name,
+                  size: acceptedFiles[0]?.size,
+                  path: result.data.player_embed_url,
+                  // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+                };
 
               const response = await axios.post(
                 `${BASE_API_URL}/v1/project/add`,
@@ -158,8 +158,7 @@ const UploadFile = () => {
 
           tusUpload.start();
         } catch (error) {
-          console.log(error);
-          // setIsUploading(false);
+          console.error("Error uploading file:", error);
         }
       };
 
