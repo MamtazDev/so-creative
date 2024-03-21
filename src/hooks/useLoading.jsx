@@ -8,7 +8,7 @@ const useLoading = () => {
 
     const asyncOperation = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearTimeout(asyncOperation);

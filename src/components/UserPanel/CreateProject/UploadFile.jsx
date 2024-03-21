@@ -7,6 +7,7 @@ import { BASE_API_URL } from "../../../config/config";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProjectId } from "../../../features/project/projectSlice";
+import * as tus from "tus-js-client";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
@@ -14,12 +15,11 @@ const UploadFile = () => {
   const [isDragActive, setIsDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  // mohii
 
   const [vimeoVideoInfo, setVimeoVideoInfo] = useState(null);
 
   const [isVimeoProcessDone, setIsVimeoProcessDone] = useState(false);
-
+  // mohii
   const { accessToken } = useSelector((state) => state.auth);
   const { projectId } = useSelector((state) => state.project);
   const dispatch = useDispatch();
@@ -32,7 +32,6 @@ const UploadFile = () => {
     onDrop: (acceptedFiles) => {
       setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
-
 
       const selectedFile = acceptedFiles[0];
 
@@ -159,8 +158,7 @@ const UploadFile = () => {
 
           tusUpload.start();
         } catch (error) {
-          console.log(error);
-          // setIsUploading(false);
+          console.error("Error uploading file:", error);
         }
       };
 
