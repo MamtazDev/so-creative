@@ -16,7 +16,7 @@ const AllVideoHeader = ({
     <div className="mb-6 flex justify-between items-center gap-4">
       <p className="text-xl font-bold">All Videos</p>
       <div className="flex items-center gap-3">
-        <div className="bg-slate-100 border rounded-full p-1">
+        {/* <div className="bg-slate-100 border rounded-full p-1">
           <button
             onClick={() => handleButtonClick("Videos")}
             className={` rounded-full p-1.5 text-xs font-medium ${
@@ -37,7 +37,7 @@ const AllVideoHeader = ({
           >
             Drafts
           </button>
-        </div>
+        </div> */}
         <div className="bg-slate-100 border rounded-full p-1">
           <button
             onClick={() => handleComponentChange("folder")}
@@ -83,6 +83,7 @@ const AllVideoHeader = ({
             Sort by: Last Modified <img src={arrow} alt="" />
           </button>
         </div>
+        
       </div>
     </div>
   );

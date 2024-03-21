@@ -15,6 +15,7 @@ const AllVideo = ({ filteredVideos }) => {
             data={data}
             name={truncateFilename(data.title)}
             status={data.status}
+            time={data.createdAt}
           />
         ))
       ) : (
