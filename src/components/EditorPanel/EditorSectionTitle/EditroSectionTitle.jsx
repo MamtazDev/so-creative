@@ -8,6 +8,8 @@ const EditroSectionTitle = ({ filter, handleFilterChange }) => {
         <h3 className="text-2xl font-bold text-slate-900">
           {route.pathname === "/editor/all-projects"
             ? "All Projects"
+            : route.pathname === "/editor/my-projects"
+            ? "My Tasks"
             : "All Clients"}
         </h3>
       </div>

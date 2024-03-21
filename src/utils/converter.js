@@ -74,3 +74,21 @@ export const DateConverter = (dateString) => {
   const formattedDate = `${month} ${day}, ${year}`;
   return formattedDate;
 };
+
+export const DateConverterWithTime = (dateString) => {
+  const originalDate = new Date(dateString);
+
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+    originalDate
+  );
+  return formattedDate;
+};

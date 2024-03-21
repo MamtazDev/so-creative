@@ -1,36 +1,56 @@
 import { DownloadSimple } from "@phosphor-icons/react";
 import React, { useState } from "react";
+import { timeAgo, truncateFilename } from "../../../../utils/converter";
+import VideoCard from "../../../../Shared/UserPanel/VideoCard";
 
-const Details = () => {
+const Details = ({ data }) => {
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
+  const sortedVideos = data?.files.map((i) => i.fileData) || [];
+
+  console.log(sortedVideos, "sortedVideos");
   return (
     <div>
-      <iframe
-        className="rounded-xl mb-5"
-        width="100%"
-        height="570"
-        src="https://www.youtube.com/embed/Z76aWfCc7_k?si=GW52k_zAdVfPOw66"
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      ></iframe>
+      {data?.exportedUrl ? (
+        <iframe
+          className="rounded-xl mb-5"
+          width="100%"
+          height="570"
+          src={data?.exportedUrl}
+          title={data?.projectTitle}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
+      ) : (
+        <div className="w-full h-[570px] flex gap-5 flex-wrap">
+          {sortedVideos.length > 0 &&
+            sortedVideos?.map((v, index) => (
+              <VideoCard
+                key={index}
+                data={v}
+                name={truncateFilename(v.title)}
+                time={v.createdAt}
+                status={v.status}
+              />
+            ))}
+        </div>
+      )}
       <div>
         <div className="flex items-center gap-4 justify-between">
           <div>
-            <p className="text-2xl font-semibold mb-1">
-              Mindfulness Meditation Guides
-            </p>
+            <p className="text-2xl font-semibold mb-1">{data?.projectTitle}</p>
             <p className="text-slate-500 font-normal text-base">
-              updated 1 day ago
+              updated {timeAgo(data?.updatedAt)}
             </p>
           </div>
-          <button
-            onClick={() => setShowDownloadOptions(!showDownloadOptions)}
-            className="flex items-center gap-2.5 bg-slate-900 text-white py-2.5 px-[30px] rounded-full text-sm font-semibold"
-          >
-            <DownloadSimple size={20} /> Download Video
-          </button>
+          {data?.exportedUrl && (
+            <button
+              onClick={() => setShowDownloadOptions(!showDownloadOptions)}
+              className="flex items-center gap-2.5 bg-slate-900 text-white py-2.5 px-[30px] rounded-full text-sm font-semibold"
+            >
+              <DownloadSimple size={20} /> Download Video
+            </button>
+          )}
         </div>
         {showDownloadOptions && (
           <div className="max-w-[477px] w-full shadow-2xl rounded-2xl ml-auto">

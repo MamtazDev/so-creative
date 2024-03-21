@@ -14,8 +14,6 @@ const AllVideos = () => {
 
   const { data, isLoading } = useGetUserAllFilesQuery();
 
-  console.log(data, "ddd");
-
   const handleFilterChange = (filter) => {
     if (filter === "Videos") {
       setFilteredVideos(videos);

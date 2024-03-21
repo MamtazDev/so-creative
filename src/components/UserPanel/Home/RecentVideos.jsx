@@ -7,8 +7,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const RecentVideos = ({ data }) => {
-
-
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -27,6 +25,7 @@ const RecentVideos = ({ data }) => {
       items: 1,
     },
   };
+
   return (
     <div className="mb-24">
       <div className="flex items-center gap-4 justify-between mb-6">
@@ -40,11 +39,15 @@ const RecentVideos = ({ data }) => {
         </Link>
       </div>
 
-    
       <Carousel swipeable={true} responsive={responsive}>
-        {videos.length > 0 ? (
-          videos.map((data, index) => (
-            <VideoCard key={index} name={data.name} status={data.status} />
+        {data?.length > 0 ? (
+          data.map((data, index) => (
+            <VideoCard
+              key={index}
+              name={truncateFilename(data.title)}
+              status={data.status}
+              time={data?.createdAt}
+            />
           ))
         ) : (
           <p>There is no data</p>

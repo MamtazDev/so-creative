@@ -17,6 +17,8 @@ import UserRoute from "../components/Route/UserRoute";
 import EditorRoute from "../components/Route/EditorRoute";
 import AdminRoute from "../components/Route/AdminRoute";
 import MainLayout from "../Layouts/MainLayout";
+import Projects from "../pages/UserPanel/Projects";
+import EditorProjects from "../pages/EditorPanel/EditorProjects";
 import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 
 export const router = createBrowserRouter([
@@ -50,11 +52,16 @@ export const router = createBrowserRouter([
         element: <UserHome />,
       },
       {
+        path: "/user/projects",
+        element: <Projects />,
+      },
+      {
         path: "/user/all-videos",
         element: <AllVideos />,
       },
+
       {
-        path: "/user/video-details",
+        path: "/user/project-details/:id",
         element: <VideoDetails />,
       },
       {
@@ -87,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: "/editor",
         element: <EditorDashboard />,
+      },
+      {
+        path: "/editor/my-projects",
+        element: <EditorProjects />,
       },
       {
         path: "/editor/all-projects",
