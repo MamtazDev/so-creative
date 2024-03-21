@@ -19,6 +19,7 @@ import AdminRoute from "../components/Route/AdminRoute";
 import MainLayout from "../Layouts/MainLayout";
 import Projects from "../pages/UserPanel/Projects";
 import EditorProjects from "../pages/EditorPanel/EditorProjects";
+import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 
 export const router = createBrowserRouter([
   {
@@ -41,9 +42,9 @@ export const router = createBrowserRouter([
   {
     path: "/user",
     element: (
-      <UserRoute>
-        <MainLayout />
-      </UserRoute>
+      // <UserRoute>
+      <MainLayout />
+      // </UserRoute>
     ),
     children: [
       {
@@ -75,15 +76,19 @@ export const router = createBrowserRouter([
         path: "/user/brand-kit",
         element: <BrandKit />,
       },
+      {
+        path: "/user/brand-kit/create",
+        element: <BrandGuidelines />,
+      },
     ],
   },
 
   {
     path: "/editor",
     element: (
-      <EditorRoute>
-        <MainLayout />
-      </EditorRoute>
+      // <EditorRoute>
+      <MainLayout />
+      // </EditorRoute>
     ),
     children: [
       {
@@ -108,9 +113,9 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <AdminRoute>
-        <MainLayout />
-      </AdminRoute>
+      // <AdminRoute>
+      <MainLayout />
+      // </AdminRoute>
     ),
     children: [
       {

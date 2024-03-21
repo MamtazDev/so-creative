@@ -7,7 +7,6 @@ import { BASE_API_URL } from "../../../config/config";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProjectId } from "../../../features/project/projectSlice";
-import * as tus from "tus-js-client";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
@@ -32,6 +31,7 @@ const UploadFile = () => {
     onDrop: (acceptedFiles) => {
       setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
+
 
       const selectedFile = acceptedFiles[0];
 
@@ -158,7 +158,8 @@ const UploadFile = () => {
 
           tusUpload.start();
         } catch (error) {
-          console.error("Error uploading file:", error);
+          console.log(error);
+          // setIsUploading(false);
         }
       };
 
