@@ -81,7 +81,7 @@ const VideoComments = ({ data }) => {
           />
           <button>{/* <img src={filter} alt="" /> */}</button>
         </div>
-        {projectCommet && projectCommet?.comments.length === 0 ? (
+        {projectCommet && projectCommet?.comments?.length === 0 ? (
           <div className="text-center my-10">
             <img className="mb-6 mx-auto" src={chatBot} alt="" />
             <p className="text-xl font-semibold text-slate-700">No Comments</p>
@@ -89,7 +89,7 @@ const VideoComments = ({ data }) => {
         ) : (
           <div className="overflow-y-auto no_scrollbar max-h-[500px] flex h-full flex-col gap-6">
             {projectCommet &&
-              projectCommet?.comments.length > 0 &&
+              projectCommet?.comments?.length > 0 &&
               projectCommet?.comments
                 .filter(handleFilter)
                 .map((item, index) => (
