@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const FirstBrand = () => {
-  const [allBrandKit, setAllBrandKit] = useState([])
+  const [allBrandKit, setAllBrandKit] = useState([]);
 
   return (
     <div className="flex flex-col justify-center items-center h-full">
@@ -12,7 +12,8 @@ const FirstBrand = () => {
         This information allows you to create videos faster <br /> and maintain
         consistency across your content.
       </p>
-      <Link to='/user/brand-kit/create'
+      <Link
+        to="/user/brand-kit/create"
         className="flex items-center gap-2 primary_btn"
       >
         <Plus size={24} /> Create
