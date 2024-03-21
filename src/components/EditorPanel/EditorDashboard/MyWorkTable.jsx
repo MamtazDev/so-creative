@@ -272,6 +272,10 @@ const MyWorkTable = ({ filteredData }) => {
         </>
       )}
 
+      
+            
+
+
       {route.pathname === "/editor/clients" && (
         <>
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto">

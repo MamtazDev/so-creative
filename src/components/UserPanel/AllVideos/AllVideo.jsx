@@ -3,6 +3,9 @@ import VideoCard from "../../../Shared/UserPanel/VideoCard";
 import { truncateFilename } from "../../../utils/converter";
 
 const AllVideo = ({ filteredVideos }) => {
+
+  console.log("filteredVideos", filteredVideos)
+  
   return (
     <div className="grid grid-cols-5 gap-6">
       {filteredVideos?.length > 0 ? (
