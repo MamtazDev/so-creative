@@ -81,44 +81,43 @@ const VideoComments = ({ data }) => {
           />
           <button>{/* <img src={filter} alt="" /> */}</button>
         </div>
-        {projectCommet && projectCommet?.comments.length === 0 ? (
+        {projectCommet && projectCommet?.comments?.length === 0 ? (
           <div className="text-center my-10">
             <img className="mb-6 mx-auto" src={chatBot} alt="" />
             <p className="text-xl font-semibold text-slate-700">No Comments</p>
           </div>
         ) : (
-          <p>Demo</p>
-          // <div className="overflow-y-auto no_scrollbar max-h-[500px] flex h-full flex-col gap-6">
-          //   {projectCommet &&
-          //     projectCommet?.comments.length > 0 &&
-          //     projectCommet?.comments
-          //       .filter(handleFilter)
-          //       .map((item, index) => (
-          //         <div className="activity_card flex gap-2 " key={index}>
-          //           <div className="left_activity_card">
-          //             <img
-          //               className="h-10 w-10 rounded-full"
-          //               src={aveter}
-          //               alt="activity_img"
-          //             />
-          //           </div>
-          //           <div className="right_activity_card">
-          //             <h3 className="text-base font-semibold text-slate-900 pb-3">
-          //               {item.user.name}
-          //               <span className="bg-blue-500 text-xs font-bold text-white py-2 px-2 rounded ml-[6px]">
-          //                 {item.user.role}
-          //               </span>
-          //             </h3>
-          //             <p className="text-sm font-normal text-slate-700 pb-2">
-          //               {item.comment}
-          //             </p>
-          //             <p className="text-slate-500 text-xs font-medium">
-          //               {DateConverterWithTime(item.createdAt)}
-          //             </p>
-          //           </div>
-          //         </div>
-          //       ))}
-          // </div>
+          <div className="overflow-y-auto no_scrollbar max-h-[500px] flex h-full flex-col gap-6">
+            {projectCommet &&
+              projectCommet?.comments?.length > 0 &&
+              projectCommet?.comments
+                .filter(handleFilter)
+                .map((item, index) => (
+                  <div className="activity_card flex gap-2 " key={index}>
+                    <div className="left_activity_card">
+                      <img
+                        className="h-10 w-10 rounded-full"
+                        src={aveter}
+                        alt="activity_img"
+                      />
+                    </div>
+                    <div className="right_activity_card">
+                      <h3 className="text-base font-semibold text-slate-900 pb-3">
+                        {item.user.name}
+                        <span className="bg-blue-500 text-xs font-bold text-white py-2 px-2 rounded ml-[6px]">
+                          {item.user.role}
+                        </span>
+                      </h3>
+                      <p className="text-sm font-normal text-slate-700 pb-2">
+                        {item.comment}
+                      </p>
+                      <p className="text-slate-500 text-xs font-medium">
+                        {DateConverterWithTime(item.createdAt)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+          </div>
         )}
         <div className=" flex items-center gap-2 border rounded-full py-2 pr-2 pl-4">
           <input

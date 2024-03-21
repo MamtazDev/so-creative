@@ -3,6 +3,7 @@ import creating from "../../assets/creating.svg";
 const CreatingBrand = ({ title }) => {
   return (
     <div className="text-center ">
+      {" "}
       <img className="mb-6 mx-auto" src={creating} alt="" />
       <p className="text-xl font-bold">{title}</p>
     </div>
