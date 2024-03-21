@@ -23,7 +23,7 @@ const Details = ({ data }) => {
         ></iframe>
       ) : (
         <div className="w-full h-[570px] flex gap-5 flex-wrap">
-          {sortedVideos.length > 0 &&
+          {sortedVideos?.length > 0 &&
             sortedVideos?.map((v, index) => (
               <VideoCard
                 key={index}
