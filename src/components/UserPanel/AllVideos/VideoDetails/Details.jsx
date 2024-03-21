@@ -7,7 +7,7 @@ const Details = ({ data }) => {
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   const sortedVideos = data?.files.map((i) => i.fileData) || [];
 
-  console.log(sortedVideos, "sortedVideos");
+  // console.log(sortedVideos, "sortedVideos");
   return (
     <div>
       {data?.exportedUrl ? (
@@ -28,9 +28,8 @@ const Details = ({ data }) => {
               <VideoCard
                 key={index}
                 data={v}
-                name={truncateFilename(v.title)}
-                time={v.createdAt}
-                status={v.status}
+                name={truncateFilename(v?.title)}
+                time={v?.createdAt}
               />
             ))}
         </div>

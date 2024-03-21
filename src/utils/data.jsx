@@ -724,10 +724,10 @@ export const workspaceMenu = [
     icon: <Notebook size={24} />,
     title: "Team Billing",
   },
-  {
-    icon: <BellSimpleRinging size={24} />,
-    title: "Notifications",
-  },
+  // {
+  //   icon: <BellSimpleRinging size={24} />,
+  //   title: "Notifications",
+  // },
 ];
 export const companyMenu = [
   {

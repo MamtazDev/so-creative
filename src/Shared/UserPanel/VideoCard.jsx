@@ -4,7 +4,9 @@ import { useRef, useState } from "react";
 import VimeoPlayer from "react-player/vimeo";
 
 /* eslint-disable react/prop-types */
-const VideoCard = ({ status, name, data, time }) => {
+const VideoCard = ({  name, data, time }) => {
+
+  console.log("VideoCard data: ", data, name, time)
   return (
     <div>
       <div className="relative  mr-6 ">
@@ -17,17 +19,11 @@ const VideoCard = ({ status, name, data, time }) => {
             height="100%"
             controls={true}
           />
-          {/* <button
-            className={`${
-              status === "Draft" ? "bg-slate-800" : "bg-green-500"
-            } text-white font-semibold text-sm px-[6px] rounded-md absolute top-2 right-2 z-50`}
-          >
-            {status}
-          </button> */}
+         
         </div>
       </div>
       <p className="text-base  font-semibold mb-1">{name}</p>
-      <p className="text-slate-500 text-sm font-normal">{timeAgo(time)}</p>
+      <p className="text-slate-500 text-sm font-normal">Created AT:{timeAgo(time)}</p>
     </div>
   );
 };

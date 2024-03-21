@@ -20,7 +20,7 @@ const VideoComments = ({ data }) => {
 
   const { data: projectCommet } = useGetProjectCommentsQuery(data?._id);
 
-  console.log(projectCommet?.comments, "projectCommet");
+  // console.log(projectCommet?.comments, "projectCommet");
 
   const handleAddComment = async () => {
     const formData = {
