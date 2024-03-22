@@ -1,8 +1,10 @@
 import { Plus } from "@phosphor-icons/react";
 import { useState } from "react";
 
-const FirstBrand = ({ setStep }) => {
-  const [allBrandKit, setAllBrandKit] = useState([])
+
+const FirstBrand = () => {
+  const [allBrandKit, setAllBrandKit] = useState([]);
+
 
 
 
@@ -13,8 +15,10 @@ const FirstBrand = ({ setStep }) => {
         This information allows you to create videos faster <br /> and maintain
         consistency across your content.
       </p>
-      <button
-        onClick={() => setStep(2)}
+
+      <Link
+        to="/user/brand-kit/create"
+
         className="flex items-center gap-2 primary_btn"
       >
         <Plus size={24} /> Create

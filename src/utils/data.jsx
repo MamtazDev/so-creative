@@ -52,10 +52,15 @@ import slack from "../assets/slack-notification.svg";
 
 import {
   BellSimpleRinging,
+  FileVideo,
   GearSix,
   NewspaperClipping,
+  Note,
   Notebook,
+  Question,
+  Swatches,
   Users,
+  Video,
 } from "@phosphor-icons/react";
 
 export const tableHeading = [
@@ -778,5 +783,28 @@ export const notificationSettings = [
       "Write an updates on a project that you’re working",
       "Replies to a conversation you’re part of",
     ],
+  },
+];
+
+export const projectTab = [
+  {
+    icon: <Video size={16} />,
+    name: "Submit Video",
+  },
+  {
+    icon: <FileVideo size={16} />,
+    name: "Video Files",
+  },
+  {
+    icon: <Note size={16} />,
+    name: "Project Brief",
+  },
+  {
+    icon: <Swatches size={16} />,
+    name: "Brand Kit",
+  },
+  {
+    icon: <Question size={16} />,
+    name: "Ask Questions",
   },
 ];
