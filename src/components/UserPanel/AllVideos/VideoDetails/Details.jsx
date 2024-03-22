@@ -1,20 +1,21 @@
 import { DownloadSimple } from "@phosphor-icons/react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import VimeoPlayer from "react-player/vimeo";
+import useOutsideClick from "../../../../hooks/useOutsideClick";
 
 const Details = () => {
+  const downloadRef = useRef();
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
+  useOutsideClick(downloadRef, () => setShowDownloadOptions(false));
   return (
     <div>
-      <iframe
-        className="rounded-xl mb-5"
+      <VimeoPlayer
+        className="bg-gray-400 rounded-xl"
+        url="https://vimeo.com/626780181"
         width="100%"
         height="570"
-        src="https://www.youtube.com/embed/Z76aWfCc7_k?si=GW52k_zAdVfPOw66"
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      ></iframe>
+        controls={true}
+      />
       <div>
         <div className="flex items-center gap-4 justify-between">
           <div>
@@ -33,7 +34,10 @@ const Details = () => {
           </button>
         </div>
         {showDownloadOptions && (
-          <div className="max-w-[477px] w-full shadow-2xl rounded-2xl ml-auto">
+          <div
+            ref={downloadRef}
+            className="max-w-[477px]  bg-white w-full shadow-2xl rounded-2xl ml-auto"
+          >
             {[1, 2, 3, 4, 5, 6, 7].map((index) => (
               <div
                 key={index}

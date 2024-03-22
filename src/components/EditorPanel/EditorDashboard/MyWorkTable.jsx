@@ -13,6 +13,7 @@ import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 import EditorPagination from "./EditorPagination";
 import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
 import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
+import ProjectBriefModal from "../../../Modal/ProjectBriefModal";
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
@@ -185,16 +186,22 @@ const MyWorkTable = ({ filteredData }) => {
               </table>
 
               {modalPopup === true && (
-                <EditorProjectPopUp
+                // <EditorProjectPopUp
+                //   jobAction={jobAction}
+                //   handlePopup={handlePopup}
+                //   setModalPopup={setModalPopup}
+                //   handeJobAction={handeJobAction}
+                //   handleUploadClick={handleUploadClick}
+                //   thumbnail={thumbnail}
+                //   getInputProps={getInputProps}
+                //   getRootProps={getRootProps}
+                //   file={file}
+                // />
+                <ProjectBriefModal
                   jobAction={jobAction}
                   handlePopup={handlePopup}
-                  setModalPopup={setModalPopup}
                   handeJobAction={handeJobAction}
-                  handleUploadClick={handleUploadClick}
-                  thumbnail={thumbnail}
-                  getInputProps={getInputProps}
-                  getRootProps={getRootProps}
-                  file={file}
+                  setModalPopup={setModalPopup}
                 />
               )}
             </div>

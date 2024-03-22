@@ -30,7 +30,8 @@ const StockVideos = () => {
         {[1, 2, 3, 4].map((data, index) => (
           <div
             className={`${
-              selectedVideo.includes(index) && "border-2 border-[#C67CFF] p-1 "
+              selectedVideo.includes(index) &&
+              "border-2 border-[#C67CFF] p-1 rounded-xl"
             } ${isPlaying && "scale-125"} relative  w-[211px] h-[108px]  `}
             key={index}
           >
