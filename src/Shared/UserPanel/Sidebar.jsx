@@ -10,63 +10,69 @@ import { menus } from "../../utils/data";
 import SelectDraft from "../../components/UserPanel/SelectFromDraft/SelectDraft";
 import TeamSettingModal from "../../Modal/TeamSettingModal";
 import { useDispatch, useSelector } from "react-redux";
-import { setShowCreateModal } from "../../features/project/projectSlice";
+import {
+  setShowCreateModal,
+  setShowDraftModal,
+} from "../../features/project/projectSlice";
 
 const Sidebar = ({ user }) => {
   const location = useLocation();
   const showRef = useRef();
   const [show, setShow] = useState(false);
 
-  const [showDraftModal, setShowDraftModal] = useState(false);
   const [showTeamModal, setShowTeamModal] = useState(false);
   useOutsideClick(showRef, () => setShow(false));
-  const { showCretedModal } = useSelector((state) => state.project);
+  const { showCretedModal, showDraftModal } = useSelector(
+    (state) => state.project
+  );
   const dispatch = useDispatch();
 
   return (
     <aside className="flex-shrink-0 sidebar h-full flex flex-col gap-4 justify-between w-64 pl-6 pr-2 pb-8">
       <div>
-        <div className="relative">
-          <button
-            onClick={() => setShow(!show)}
-            className=" flex gap-2 items-center justify-center mb-8  w-full primary_btn "
-          >
-            <Plus size={24} />
-            New Project
-          </button>
-          {show && (
-            <div
-              ref={showRef}
-              className="absolute top-14 w-full z-50 bg-white rounded-2xl py-5 px-6"
+        {user?.role === "USER" && (
+          <div className="relative">
+            <button
+              onClick={() => setShow(!show)}
+              className=" flex gap-2 items-center justify-center mb-8  w-full primary_btn "
             >
-              <button
-                onClick={() => {
-                  dispatch(setShowCreateModal(true));
-                  setShow(false);
-                }}
-                className="flex gap-3.5 items-center text-base font-medium mb-6"
+              <Plus size={24} />
+              New Project
+            </button>
+            {show && (
+              <div
+                ref={showRef}
+                className="absolute top-14 w-full z-50 bg-white rounded-2xl py-5 px-6"
               >
-                <img src={createProject} alt="" />
-                Create Project
-              </button>
-              <button
-                onClick={() => {
-                  setShowDraftModal(true);
-                  setShow(false);
-                }}
-                className="flex gap-3.5 items-center text-base font-medium"
-              >
-                <img src={selectDraft} alt="" />
-                Select Drafts
-              </button>
-            </div>
-          )}
-        </div>
+                <button
+                  onClick={() => {
+                    dispatch(setShowCreateModal(true));
+                    setShow(false);
+                  }}
+                  className="flex gap-3.5 items-center text-base font-medium mb-6"
+                >
+                  <img src={createProject} alt="" />
+                  Create Project
+                </button>
+                <button
+                  onClick={() => {
+                    dispatch(setShowDraftModal(true));
+                    setShow(false);
+                  }}
+                  className="flex gap-3.5 items-center text-base font-medium"
+                >
+                  <img src={selectDraft} alt="" />
+                  Select Drafts
+                </button>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="flex flex-col gap-1">
           {menus.length > 0 &&
             menus
-              // .filter((i) => i.type === user?.role)
+              .filter((i) => i.type === user?.role)
               .map((data, index) => (
                 <Link
                   to={data.path}
@@ -110,7 +116,7 @@ const Sidebar = ({ user }) => {
       )}
 
       {showCretedModal && <CreateProjectModal />}
-      {showDraftModal && <SelectDraft setShowDraftModal={setShowDraftModal} />}
+      {showDraftModal && <SelectDraft />}
       {showTeamModal && (
         <TeamSettingModal setShowTeamModal={setShowTeamModal} />
       )}

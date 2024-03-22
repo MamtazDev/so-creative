@@ -1,7 +1,6 @@
-import { useState } from "react";
-import arrow from "../../../assets/down-arrow.svg";
+import React, { useState } from "react";
 
-const AllVideoHeader = ({
+const ProjectsHeader = ({
   handleFilterChange,
   handleComponentChange,
   selectedComponent,
@@ -14,30 +13,8 @@ const AllVideoHeader = ({
   };
   return (
     <div className="mb-6 flex justify-between items-center gap-4">
-      <p className="text-xl font-bold">All Videos</p>
+      <p className="text-xl font-bold">Projects</p>
       <div className="flex items-center gap-3">
-        {/* <div className="bg-slate-100 border rounded-full p-1">
-          <button
-            onClick={() => handleButtonClick("Videos")}
-            className={` rounded-full p-1.5 text-xs font-medium ${
-              selectedFilter === "Videos"
-                ? "bg-white text-slate-900"
-                : "text-slate-600 bg-transparent"
-            }`}
-          >
-            Videos
-          </button>
-          <button
-            onClick={() => handleButtonClick("Drafts")}
-            className={` rounded-full p-1.5 text-xs font-medium ${
-              selectedFilter === "Drafts"
-                ? "bg-white text-slate-900"
-                : "text-slate-600 bg-transparent"
-            }`}
-          >
-            Drafts
-          </button>
-        </div> */}
         <div className="bg-slate-100 border rounded-full p-1">
           <button
             onClick={() => handleComponentChange("folder")}
@@ -78,15 +55,9 @@ const AllVideoHeader = ({
             </svg>
           </button>
         </div>
-        <div className="bg-slate-100 border rounded-full p-1">
-          <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
-            Sort by: Last Modified <img src={arrow} alt="" />
-          </button>
-        </div>
-        
       </div>
     </div>
   );
 };
 
-export default AllVideoHeader;
+export default ProjectsHeader;

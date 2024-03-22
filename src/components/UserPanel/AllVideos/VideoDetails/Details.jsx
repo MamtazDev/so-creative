@@ -1,4 +1,5 @@
 import { DownloadSimple } from "@phosphor-icons/react";
+
 import React, { useRef, useState } from "react";
 import VimeoPlayer from "react-player/vimeo";
 import useOutsideClick from "../../../../hooks/useOutsideClick";
@@ -19,19 +20,19 @@ const Details = () => {
       <div>
         <div className="flex items-center gap-4 justify-between">
           <div>
-            <p className="text-2xl font-semibold mb-1">
-              Mindfulness Meditation Guides
-            </p>
+            <p className="text-2xl font-semibold mb-1">{data?.projectTitle}</p>
             <p className="text-slate-500 font-normal text-base">
-              updated 1 day ago
+              updated {timeAgo(data?.updatedAt)}
             </p>
           </div>
-          <button
-            onClick={() => setShowDownloadOptions(!showDownloadOptions)}
-            className="flex items-center gap-2.5 bg-slate-900 text-white py-2.5 px-[30px] rounded-full text-sm font-semibold"
-          >
-            <DownloadSimple size={20} /> Download Video
-          </button>
+          {data?.exportedUrl && (
+            <button
+              onClick={() => setShowDownloadOptions(!showDownloadOptions)}
+              className="flex items-center gap-2.5 bg-slate-900 text-white py-2.5 px-[30px] rounded-full text-sm font-semibold"
+            >
+              <DownloadSimple size={20} /> Download Video
+            </button>
+          )}
         </div>
         {showDownloadOptions && (
           <div

@@ -7,6 +7,7 @@ import { BASE_API_URL } from "../../../config/config";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProjectId } from "../../../features/project/projectSlice";
+import * as tus from "tus-js-client";
 
 const UploadFile = () => {
   const [selectedVideos, setSelectedVideos] = useState([]);
@@ -15,7 +16,12 @@ const UploadFile = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
 
+  const [vimeoVideoInfo, setVimeoVideoInfo] = useState(null);
+
+  const [isVimeoProcessDone, setIsVimeoProcessDone] = useState(false);
+  // mohii
   const { accessToken } = useSelector((state) => state.auth);
+  const { projectId } = useSelector((state) => state.project);
   const dispatch = useDispatch();
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -27,36 +33,132 @@ const UploadFile = () => {
       setNewSelectedVideo([...acceptedFiles]);
       setIsUploading(true);
 
-      const formData = new FormData();
-
-      formData.append("file", acceptedFiles[0]);
+      const selectedFile = acceptedFiles[0];
 
       const upload = async () => {
         try {
-          const response = await axios.post(
-            `${BASE_API_URL}/v1/project/add`,
-            formData,
+          const res = await fetch(
+            `${BASE_API_URL}/v1/vimeo/create-video-instant`,
             {
+              method: "POST",
+              body: JSON.stringify({ size: selectedFile.size }),
               headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "multipart/form-data",
-              },
-              onUploadProgress: (e) => {
-                const progress = Math.floor((e.loaded / e.total) * 100);
-
-                setUploadProgress(progress);
-                // setIsUploading(false);
+                "Content-Type": "application/json",
               },
             }
           );
 
-          const data = response.data;
-          if (data.success) {
-            dispatch(setProjectId(data.data._id));
-          }
+          const result = await res.json();
+
+          console.log(result.data);
+
+          const { upload_link } = result.data;
+
+          console.log("upload_link", upload_link);
+
+          const tusUpload = new tus.Upload(selectedFile, {
+            endpoint: upload_link,
+            uploadUrl: upload_link,
+            onProgress: (bytesUploaded, bytesTotal) => {
+              const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(
+                2
+              );
+
+              console.log(`${percentage}% uploaded`);
+              setUploadProgress(percentage);
+            },
+
+            onError: (error) => {
+              console.error("Failed to upload", error);
+              alert("There is an issue with uploading video.");
+
+              // Handle error
+            },
+
+            onSuccess: async () => {
+              console.log("Upload finished");
+              setVimeoVideoInfo(result.data);
+
+              setUploadProgress(0);
+
+              console.log("Uploaded finished data:", result.data);
+              setSelectedVideos([...selectedVideos, acceptedFiles[0]]);
+              setIsUploading(false);
+
+              // player_embed_url
+
+              // ---- saving data on database ----//
+
+              const formData = projectId
+                ? {
+                  title: acceptedFiles[0]?.name,
+                  size: acceptedFiles[0]?.size,
+                  path: result.data.player_embed_url,
+                  // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+                  projectId: projectId,
+                }
+                : {
+                  title: acceptedFiles[0]?.name,
+                  size: acceptedFiles[0]?.size,
+                  path: result.data.player_embed_url,
+                  // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+                };
+
+              const response = await axios.post(
+                `${BASE_API_URL}/v1/project/add`,
+                formData,
+                {
+                  headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
+
+              const data = response.data;
+              if (data.success) {
+                dispatch(setProjectId(data.data._id));
+              }
+
+              setIsVimeoProcessDone(true);
+
+              // Handle successful upload
+              const url = result.data.link;
+              const regex = /vimeo\.com\/(\d+)/;
+              const videoId = url.match(regex);
+
+              console.log("video id", videoId[1]);
+              // Interval to check if the process is done
+              // const interval = setInterval(async () => {
+              //   const res = await fetch(
+              //     `${BASE_API_URL}/v1/vimeo/${videoId[1]}?fields=transcode.status,download,upload.status,is_playable`,
+              //     {
+              //       method: "GET",
+              //       headers: {
+              //         "Content-Type": "application/json",
+              //       },
+              //     }
+              //   );
+
+              //   const result = await res.json();
+
+              //   console.log(
+              //     "check the video processing is done or not, ",
+              //     result.data.is_playable
+              //   );
+
+              //   // Check if the process is done
+              //   if (result.data.is_playable) {
+              //     setIsVimeoProcessDone(false);
+              //     clearInterval(interval); // Clear the interval once process is done
+              //   }
+              // }, 1000);
+            },
+          });
+
+          tusUpload.start();
         } catch (error) {
-          console.log(error);
-          // setIsUploading(false);
+          console.error("Error uploading file:", error);
         }
       };
 
@@ -107,3 +209,19 @@ const UploadFile = () => {
 };
 
 export default UploadFile;
+
+// const allVideos  = [
+//   {
+//     "link": "https://vimeo.com/925317004",
+//     "player_embed_url": "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+//     "upload_link": "https://asia-files.tus.vimeo.com/files/vimeo-prod-src-tus-asia/5c43b0a8a5bf6ba4478a7c658a3e3aa0",
+//     "status": "in_progress",
+//     "size": 6264657
+// },{
+//   "link": "https://vimeo.com/925317004",
+//   "player_embed_url": "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+//   "upload_link": "https://asia-files.tus.vimeo.com/files/vimeo-prod-src-tus-asia/5c43b0a8a5bf6ba4478a7c658a3e3aa0",
+//   "status": "in_progress",
+//   "size": 6264657
+// }
+// ]

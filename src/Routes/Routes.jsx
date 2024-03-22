@@ -17,7 +17,8 @@ import UserRoute from "../components/Route/UserRoute";
 import EditorRoute from "../components/Route/EditorRoute";
 import AdminRoute from "../components/Route/AdminRoute";
 import MainLayout from "../Layouts/MainLayout";
-import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
+import Projects from "../pages/UserPanel/Projects";
+import EditorProjects from "../pages/EditorPanel/EditorProjects";
 
 export const router = createBrowserRouter([
   {
@@ -40,9 +41,9 @@ export const router = createBrowserRouter([
   {
     path: "/user",
     element: (
-      // <UserRoute>
-      <MainLayout />
-      // </UserRoute>
+      <UserRoute>
+        <MainLayout />
+      </UserRoute>
     ),
     children: [
       {
@@ -50,11 +51,16 @@ export const router = createBrowserRouter([
         element: <UserHome />,
       },
       {
+        path: "/user/projects",
+        element: <Projects />,
+      },
+      {
         path: "/user/all-videos",
         element: <AllVideos />,
       },
+
       {
-        path: "/user/video-details",
+        path: "/user/project-details/:id",
         element: <VideoDetails />,
       },
       {
@@ -69,24 +75,24 @@ export const router = createBrowserRouter([
         path: "/user/brand-kit",
         element: <BrandKit />,
       },
-      {
-        path: "/user/brand-kit/create",
-        element: <BrandGuidelines />,
-      },
     ],
   },
 
   {
     path: "/editor",
     element: (
-      // <EditorRoute>
-      <MainLayout />
-      // </EditorRoute>
+      <EditorRoute>
+        <MainLayout />
+      </EditorRoute>
     ),
     children: [
       {
         path: "/editor",
         element: <EditorDashboard />,
+      },
+      {
+        path: "/editor/my-projects",
+        element: <EditorProjects />,
       },
       {
         path: "/editor/all-projects",
@@ -102,9 +108,9 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      // <AdminRoute>
-      <MainLayout />
-      // </AdminRoute>
+      <AdminRoute>
+        <MainLayout />
+      </AdminRoute>
     ),
     children: [
       {

@@ -4,9 +4,13 @@ import React, { useState } from "react";
 import { useGetUserProjectsQuery } from "../../../features/project/projectApi";
 import { timeAgo } from "../../../utils/converter";
 import { useDispatch } from "react-redux";
-import { setSelectedProject } from "../../../features/project/projectSlice";
+import {
+  setDraftStep,
+  setSelectedProject,
+  setShowDraftModal,
+} from "../../../features/project/projectSlice";
 
-const Draft = ({ setShowDraftModal, setStep }) => {
+const Draft = () => {
   const [searchParams, setSearchParams] = useState("");
   const [selected, setSelected] = useState(null);
   const [visibleVideos, setVisibleVideos] = useState(9);
@@ -27,7 +31,7 @@ const Draft = ({ setShowDraftModal, setStep }) => {
 
   const handleContinue = () => {
     dispatch(setSelectedProject(selected));
-    setStep(2);
+    dispatch(setDraftStep(2));
     // () => setStep(2);
   };
 
@@ -42,7 +46,7 @@ const Draft = ({ setShowDraftModal, setStep }) => {
       <div className="flex items-center gap-4 justify-between mb-6">
         <p className="text-xl font-bold">Select From Draft</p>
 
-        <button onClick={() => setShowDraftModal(false)}>
+        <button onClick={() => dispatch(setShowDraftModal(false))}>
           <img src={close} alt="" />
         </button>
       </div>

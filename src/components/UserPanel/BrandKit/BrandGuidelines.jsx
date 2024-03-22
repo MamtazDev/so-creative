@@ -16,7 +16,6 @@ const BrandGuidelines = () => {
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
   const brandImgRef = useRef();
   const guidelinesInputRefs = useRef(
     Array.from({ length: guidelines.length }).map(() => React.createRef())
@@ -39,11 +38,13 @@ const BrandGuidelines = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setIsLoading("loading");
 
     setTimeout(() => {
       setIsLoading("done");
     }, 1000);
+
   };
 
   const handleChange = (e, fieldName, index) => {
@@ -53,6 +54,7 @@ const BrandGuidelines = () => {
       [fieldName]: [...(prevState[fieldName] || []), file],
     }));
   };
+
 
   return (
     <>
@@ -199,6 +201,7 @@ const BrandGuidelines = () => {
         </div>
       )}
     </>
+
   );
 };
 

@@ -3,10 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   projectId: undefined,
   step: 0,
+  draftStep: 1,
   activeBrif: undefined,
   projectCrating: false,
   selectedProject: undefined,
   showCretedModal: false,
+  showDraftModal: false,
 };
 
 const projectSlice = createSlice({
@@ -31,6 +33,12 @@ const projectSlice = createSlice({
     setShowCreateModal: (state, action) => {
       state.showCretedModal = action.payload;
     },
+    setShowDraftModal: (state, action) => {
+      state.showDraftModal = action.payload;
+    },
+    setDraftStep: (state, action) => {
+      state.draftStep = action.payload;
+    },
   },
 });
 
@@ -41,5 +49,7 @@ export const {
   setProjectCreating,
   setSelectedProject,
   setShowCreateModal,
+  setShowDraftModal,
+  setDraftStep,
 } = projectSlice.actions;
 export default projectSlice.reducer;

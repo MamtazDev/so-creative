@@ -3,8 +3,9 @@ import FromLabel from "./FromLabel";
 import ExpandInputTitle from "./ExpandInputTitle";
 import { expandsDetails } from "../../../utils/data";
 import {
-  useAddOrUpdateProjectMutation,
+  useAddProjectMutation,
   useGetProjectDetailsQuery,
+  useUpdateProjectMutation,
 } from "../../../features/project/projectApi";
 import ProjectType from "./CreateBrief/ProjectType";
 import { useSelector } from "react-redux";
@@ -17,7 +18,7 @@ import ProjectPresenter from "./CreateBrief/ProjectPresenter";
 const CreateBrief = () => {
   const { projectId } = useSelector((state) => state.project);
 
-  const [addOrUpdateProject, { isLoading }] = useAddOrUpdateProjectMutation();
+  const [updateProject, { isLoading: updating }] = useUpdateProjectMutation();
 
   const { data } = useGetProjectDetailsQuery(projectId);
 
@@ -25,35 +26,35 @@ const CreateBrief = () => {
     <div className="max-w-[640px] w-full m-auto ">
       <div>
         <ProjectType
-          save={addOrUpdateProject}
-          isLoading={isLoading}
+          save={updateProject}
+          isLoading={updating}
           projectData={data}
         />
 
         <ProjectDescription
-          save={addOrUpdateProject}
-          isLoading={isLoading}
+          save={updateProject}
+          isLoading={updating}
           projectData={data}
         />
         <ProjectMaterials
-          save={addOrUpdateProject}
-          isLoading={isLoading}
+          save={updateProject}
+          isLoading={updating}
           projectData={data}
         />
         <ProjectBrandKit
-          save={addOrUpdateProject}
-          isLoading={isLoading}
+          save={updateProject}
+          isLoading={updating}
           projectData={data}
         />
         <ProjectRatio
-          save={addOrUpdateProject}
-          isLoading={isLoading}
+          save={updateProject}
+          isLoading={updating}
           projectData={data}
         />
 
         <ProjectPresenter
-          save={addOrUpdateProject}
-          isLoading={isLoading}
+          save={updateProject}
+          isLoading={updating}
           projectData={data}
         />
 
