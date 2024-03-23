@@ -1,5 +1,6 @@
-import { Plus } from "@phosphor-icons/react";
+import { CalendarBlank, CaretDown, Plus, TextAa } from "@phosphor-icons/react";
 import arrow from "../../../../assets/down-arrow.svg";
+import { useState } from "react";
 
 const FolderHeader = ({
   handleComponentChange,
@@ -7,14 +8,30 @@ const FolderHeader = ({
   setOpedUploadVideoModal,
   title,
 }) => {
+  const [showSort, setShowSort] = useState(false);
   return (
     <div className="mb-6 flex justify-between items-center gap-4">
       <p className="text-xl font-bold">{title}</p>
       <div className="flex items-center gap-3">
-        <div className="bg-slate-100 border rounded-full p-1">
-          <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
-            Sort by: Last Modified <img src={arrow} alt="" />
-          </button>
+        <div className="relative">
+          <div
+            onClick={() => setShowSort(!showSort)}
+            className="bg-slate-100 border rounded-full p-1"
+          >
+            <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
+              Sort by: Last Modified <CaretDown size={12} weight="fill" />
+            </button>
+          </div>
+          {showSort && (
+            <div className="bg-white w-auto shadow-xl rounded-xl absolute">
+              <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                <CalendarBlank size={16} /> Last Modified
+              </button>
+              <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                <TextAa size={16} /> Alphabetical
+              </button>
+            </div>
+          )}
         </div>
         <div className="bg-slate-100 border rounded-full p-1">
           <button

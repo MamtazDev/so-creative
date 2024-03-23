@@ -19,6 +19,7 @@ import AdminRoute from "../components/Route/AdminRoute";
 import MainLayout from "../Layouts/MainLayout";
 import Projects from "../pages/UserPanel/Projects";
 import EditorProjects from "../pages/EditorPanel/EditorProjects";
+import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/brand-kit",
         element: <BrandKit />,
+      },
+      {
+        path: "/user/brand-kit/create",
+        element: <BrandGuidelines />,
       },
     ],
   },

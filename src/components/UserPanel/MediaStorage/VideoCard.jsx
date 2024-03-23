@@ -20,16 +20,15 @@ const VideoCard = ({ video, setClickedItem, clickedItem }) => {
         <DotsThreeOutline className="text-slate-500" size={20} weight="fill" />
       </button>
       {clickedItem === video?._id && (
-        <div className="absolute top-0 -right-6 bg-indigo-50 p-2 shadow rounded-sm flex flex-col items-center gap-2">
-          <button>
-            <Trash className="text-red-600" size={20} weight="fill" />
+        <div
+          className="absolute top-0 -right-40 bg-white w-[196px]  shadow-xl  rounded-xl "
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button className="text-sm font-medium flex items-center gap-3 px-4 py-3 border-b w-full">
+            <DownloadSimple size={16} /> Download
           </button>
-          <button>
-            <DownloadSimple
-              className="text-indigo-600"
-              size={20}
-              weight="fill"
-            />
+          <button className="text-sm font-medium flex items-center gap-3 px-4 py-3 w-full">
+            <Trash size={16} /> Delete
           </button>
         </div>
       )}

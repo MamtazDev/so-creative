@@ -13,9 +13,13 @@ import EditorProjectPopUp from "../EditorProjectPopUp/EditorProjectPopUp";
 import EditorPagination from "./EditorPagination";
 import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
 import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
+
+import ProjectBriefModal from "../../../Modal/ProjectBriefModal";
+
 import { DateConverter } from "../../../utils/converter";
 import AccepteJobModal from "../../../Modal/AccepteJobModal";
 import SubmitProjectModal from "../../../Modal/SubmitProjectModal";
+
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
@@ -250,13 +254,35 @@ const MyWorkTable = ({ filteredData }) => {
                 </tbody>
               </table>
 
-              {modalPopup && (
-                <AccepteJobModal
+
+              {modalPopup === true && (
+                // <EditorProjectPopUp
+                //   jobAction={jobAction}
+                //   handlePopup={handlePopup}
+                //   setModalPopup={setModalPopup}
+                //   handeJobAction={handeJobAction}
+                //   handleUploadClick={handleUploadClick}
+                //   thumbnail={thumbnail}
+                //   getInputProps={getInputProps}
+                //   getRootProps={getRootProps}
+                //   file={file}
+                // />
+                <ProjectBriefModal
+                  jobAction={jobAction}
+                  handlePopup={handlePopup}
+                  handeJobAction={handeJobAction}
                   setModalPopup={setModalPopup}
-                  setSelectedProject={setSelectedProject}
-                  selectedProject={selectedProject}
-                />
-              )}
+
+//               {modalPopup && (
+//                 <AccepteJobModal
+//                   setModalPopup={setModalPopup}
+//                   setSelectedProject={setSelectedProject}
+//                   selectedProject={selectedProject}
+//                  />
+//                )}
+
+                 />
+               )}
             </div>
           </div>
 

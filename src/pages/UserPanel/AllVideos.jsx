@@ -13,7 +13,7 @@ const AllVideos = () => {
   // const { isLoading } = useLoading();
 
   const { data, isLoading } = useGetUserAllFilesQuery();
-
+  console.log(data, "data");
   const handleFilterChange = (filter) => {
     if (filter === "Videos") {
       setFilteredVideos(videos);
@@ -39,7 +39,7 @@ const AllVideos = () => {
           {selectedComponent === "folder" ? (
             <AllVideo filteredVideos={data} />
           ) : (
-            <AllVideoFileLayout filteredVideos={filteredVideos} />
+            <AllVideoFileLayout filteredVideos={data} />
           )}
         </>
       )}

@@ -21,16 +21,16 @@ const AllProjects = ({ data }) => {
     }
   };
   return (
-    <div className="grid grid-cols-5 gap-6">
+    <div className="grid grid-cols-4 gap-6 mb-10">
       {data &&
         data?.length > 0 &&
         data.map((item, idx) => (
           <div
             key={idx}
             onClick={() => handleNavigate(item)}
-            className="cursor-pointer"
+            className="border rounded-2xl p-4 flex gap-4 items-center cursor-pointer"
           >
-            <div className="relative  mr-6 ">
+            {/* <div className="relative  mr-6 ">
               {" "}
               <div className="overflow-hidden rounded-xl max-h-[160px] h-full mb-4 relative group">
                 <img
@@ -53,7 +53,28 @@ const AllProjects = ({ data }) => {
             </p>
             <p className="text-slate-500 text-sm font-normal">
               {timeAgo(item?.createdAt)}
-            </p>
+            </p> */}
+
+            <div className="relative">
+              <img
+                src="https://miro.medium.com/v2/resize:fit:1400/1*vbVPr3brcmImEQh0cckBOw.jpeg"
+                alt=""
+                className="w-[151px] h-[84px] rounded"
+              />
+              <button className="absolute top-1 right-1 bg-orange-500 text-[10.5px] text-white py-[1.75px] px-[5.25px] rounded-md ">
+                {item?.status}
+              </button>
+            </div>
+            <div>
+              <p className="text-base font-bold mb-2">{item?.projectTitle}</p>
+              <p className="text-xs text-slate-500 font-normal mb-1">
+                Remaining Delivery Time
+              </p>
+              <p className="text-sm font-semibold">
+                {" "}
+                {timeAgo(item?.createdAt)}
+              </p>
+            </div>
           </div>
         ))}
     </div>

@@ -1,39 +1,22 @@
 import { DownloadSimple } from "@phosphor-icons/react";
-import React, { useState } from "react";
-import { timeAgo, truncateFilename } from "../../../../utils/converter";
-import VideoCard from "../../../../Shared/UserPanel/VideoCard";
 
-const Details = ({ data }) => {
+import React, { useRef, useState } from "react";
+import VimeoPlayer from "react-player/vimeo";
+import useOutsideClick from "../../../../hooks/useOutsideClick";
+
+const Details = () => {
+  const downloadRef = useRef();
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
-  const sortedVideos = data?.files.map((i) => i.fileData) || [];
-
-  // console.log(sortedVideos, "sortedVideos");
+  useOutsideClick(downloadRef, () => setShowDownloadOptions(false));
   return (
     <div>
-      {data?.exportedUrl ? (
-        <iframe
-          className="rounded-xl mb-5"
-          width="100%"
-          height="570"
-          src={data?.exportedUrl}
-          title={data?.projectTitle}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
-      ) : (
-        <div className="w-full h-[570px] flex gap-5 flex-wrap">
-          {sortedVideos?.length > 0 &&
-            sortedVideos?.map((v, index) => (
-              <VideoCard
-                key={index}
-                data={v}
-                name={truncateFilename(v?.title)}
-                time={v?.createdAt}
-              />
-            ))}
-        </div>
-      )}
+      <VimeoPlayer
+        className="bg-gray-400 rounded-xl"
+        url="https://vimeo.com/626780181"
+        width="100%"
+        height="570"
+        controls={true}
+      />
       <div>
         <div className="flex items-center gap-4 justify-between">
           <div>
@@ -52,7 +35,10 @@ const Details = ({ data }) => {
           )}
         </div>
         {showDownloadOptions && (
-          <div className="max-w-[477px] w-full shadow-2xl rounded-2xl ml-auto">
+          <div
+            ref={downloadRef}
+            className="max-w-[477px]  bg-white w-full shadow-2xl rounded-2xl ml-auto"
+          >
             {[1, 2, 3, 4, 5, 6, 7].map((index) => (
               <div
                 key={index}

@@ -45,3 +45,20 @@ select.special {
   background-position: right 2% center;
   background-repeat: no-repeat;
 }
+
+.stock_video iframe a,
+.player a {
+  display: none !important;
+}
+
+.ControlBar_module_progressBarAndButtons__ea0d6863.ControlBar_module_noProgressBar__ea0d6863 {
+  display: none !important;
+}
+
+.vimeo-player .react-player__play-icon {
+  display: none !important;
+}
+
+.vimeo-player:hover {
+  transform: scale(1.5);
+}

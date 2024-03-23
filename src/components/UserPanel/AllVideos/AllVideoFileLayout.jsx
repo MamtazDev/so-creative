@@ -1,4 +1,7 @@
+import VimeoPlayer from "react-player/vimeo";
+
 const AllVideoFileLayout = ({ filteredVideos }) => {
+  console.log(filteredVideos, "oooooooooooooo");
   return (
     <div>
       <table
@@ -11,7 +14,7 @@ const AllVideoFileLayout = ({ filteredVideos }) => {
         <thead>
           <tr className="text-slate-500 font-medium text-base">
             <th className="text-start ">Name</th>
-            <th className="text-start">Status</th>
+            {/* <th className="text-start">Status</th> */}
             <th className="text-start">Date Modified</th>
           </tr>
         </thead>
@@ -21,21 +24,23 @@ const AllVideoFileLayout = ({ filteredVideos }) => {
               <tr key={index}>
                 <td>
                   <div className="flex gap-4 items-center">
-                    {" "}
-                    <iframe
-                      className="rounded-xl mb-4"
-                      width="113"
-                      height="64"
-                      src="https://www.youtube.com/embed/Z76aWfCc7_k?si=GW52k_zAdVfPOw66"
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
-                    <p>{data.name}</p>
+                    <div className="w-[113px] h-[64px] rounded-xl">
+                      <VimeoPlayer
+                        className="bg-gray-400 rounded-xl w-full"
+                        url={
+                          data?.file
+                            ? data?.file
+                            : "https://vimeo.com/626780181"
+                        }
+                        width="100%"
+                        height="100%"
+                        controls={true}
+                      />
+                    </div>
+                    <p className="text-base font-semibold">{data?.title}</p>
                   </div>
                 </td>
-                <td>
+                {/* <td>
                   <button
                     className={`${
                       data.status === "Draft" ? "bg-slate-800" : "bg-green-500"
@@ -43,7 +48,7 @@ const AllVideoFileLayout = ({ filteredVideos }) => {
                   >
                     {data.status}
                   </button>
-                </td>
+                </td> */}
                 <td className="text-base font-semibold">1 day ago</td>
               </tr>
             ))
