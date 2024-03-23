@@ -28,7 +28,7 @@ const InProgressVideo = ({ data }) => {
               <p className="text-base font-bold mb-2">
                 {truncateFilename(d.projectTitle)}
               </p>
-              <p className="text-xs font-normal mb-1">
+              <p className="text-xs text-slate-500 font-normal mb-1">
                 Remaining Delivery Time
               </p>
               <p className="text-sm font-semibold">16h: 52m: 36s</p>
