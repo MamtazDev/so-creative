@@ -28,7 +28,7 @@ const RecentVideos = ({ data }) => {
 
   return (
     <div className="mb-24">
-      <div className="flex items-center gap-4 justify-between mb-6">
+      <div className="flex items-center gap-4  mb-6">
         <p className=" text-xl font-bold ">Recent Videos</p>
         <Link
           to="/user/all-videos"

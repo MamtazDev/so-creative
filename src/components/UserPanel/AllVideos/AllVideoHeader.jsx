@@ -83,7 +83,6 @@ const AllVideoHeader = ({
             Sort by: Last Modified <img src={arrow} alt="" />
           </button>
         </div>
-        
       </div>
     </div>
   );

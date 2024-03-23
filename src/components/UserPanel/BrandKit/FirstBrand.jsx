@@ -1,12 +1,9 @@
 import { Plus } from "@phosphor-icons/react";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 const FirstBrand = () => {
   const [allBrandKit, setAllBrandKit] = useState([]);
-
-
-
 
   return (
     <div className="flex flex-col justify-center items-center h-full">
@@ -18,11 +15,10 @@ const FirstBrand = () => {
 
       <Link
         to="/user/brand-kit/create"
-
         className="flex items-center gap-2 primary_btn"
       >
         <Plus size={24} /> Create
-      </button>
+      </Link>
     </div>
   );
 };

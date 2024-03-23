@@ -54,7 +54,10 @@ const InternalTable = ({ filteredData }) => {
               </td>
 
               <td className="px-4 py-4 border-b border-[#e5e5e5b3]  text-sm">
-                <select className="w-full rounded-xl bg-slate-100 py-2 px-3">
+                <select
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full rounded-xl bg-slate-100 py-2 px-3"
+                >
                   <option selected>{tableDataInfo.role}</option>
                   <option>Admin</option>
                   <option>Editor</option>
