@@ -1,5 +1,10 @@
 /* eslint-disable react/prop-types */
-import { UserPlus } from "@phosphor-icons/react";
+import {
+  CalendarBlank,
+  CaretDown,
+  TextAa,
+  UserPlus,
+} from "@phosphor-icons/react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import InviteUsers from "./InviteUsers";
@@ -7,6 +12,7 @@ import InviteUsers from "./InviteUsers";
 const InternalSectionTitle = ({ filter, handleFilterChange }) => {
   const route = useLocation();
   const [showInviteUser, setShowInviteUser] = useState(false);
+  const [showSort, setShowSort] = useState(false);
   return (
     <div className="relative">
       <div className="seciton_heading pb-6 flex items-center justify-between">
@@ -57,10 +63,25 @@ const InternalSectionTitle = ({ filter, handleFilterChange }) => {
             </button>
           </div>
 
-          <div className="sorting_dropdown bg-slate-100 rounded-full p-1">
-            <select className="text-xs font-medium text-slate-900 min-w-[167px] focus:outline-none outline-none p-2 rounded-full">
-              <option value="">Sort by: Last Modified</option>
-            </select>
+          <div className="relative">
+            <div
+              onClick={() => setShowSort(!showSort)}
+              className="bg-slate-100 border rounded-full p-1"
+            >
+              <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
+                Sort by: Last Modified <CaretDown size={12} weight="fill" />
+              </button>
+            </div>
+            {showSort && (
+              <div className="bg-white w-auto shadow-xl rounded-xl absolute">
+                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                  <CalendarBlank size={16} /> Last Modified
+                </button>
+                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                  <TextAa size={16} /> Alphabetical
+                </button>
+              </div>
+            )}
           </div>
 
           <button

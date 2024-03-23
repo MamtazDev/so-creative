@@ -1,5 +1,6 @@
 import { useState } from "react";
 import arrow from "../../../assets/down-arrow.svg";
+import { CalendarBlank, CaretDown, TextAa } from "@phosphor-icons/react";
 
 const AllVideoHeader = ({
   handleFilterChange,
@@ -7,6 +8,7 @@ const AllVideoHeader = ({
   selectedComponent,
 }) => {
   const [selectedFilter, setSelectedFilter] = useState("Videos");
+  const [showSort, setShowSort] = useState(false);
 
   const handleButtonClick = (filter) => {
     setSelectedFilter(filter);
@@ -78,10 +80,25 @@ const AllVideoHeader = ({
             </svg>
           </button>
         </div>
-        <div className="bg-slate-100 border rounded-full p-1">
-          <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
-            Sort by: Last Modified <img src={arrow} alt="" />
-          </button>
+        <div className="relative">
+          <div
+            onClick={() => setShowSort(!showSort)}
+            className="bg-slate-100 border rounded-full p-1"
+          >
+            <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
+              Sort by: Last Modified <CaretDown size={12} weight="fill" />
+            </button>
+          </div>
+          {showSort && (
+            <div className="bg-white w-auto shadow-xl rounded-xl absolute">
+              <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                <CalendarBlank size={16} /> Last Modified
+              </button>
+              <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                <TextAa size={16} /> Alphabetical
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

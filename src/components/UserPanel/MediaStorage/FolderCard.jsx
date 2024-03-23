@@ -1,4 +1,9 @@
-import { DotsThreeOutline, NotePencil } from "@phosphor-icons/react";
+import {
+  DotsThreeOutline,
+  NotePencil,
+  PencilSimple,
+  Trash,
+} from "@phosphor-icons/react";
 import folderIcon from "../../../assets/folder.svg";
 import { formatFileSize } from "../../../utils/converter";
 import { useNavigate } from "react-router";
@@ -34,17 +39,28 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
 
       {clickedItem === folder._id && (
         <div
-          className="absolute top-0 -right-6 bg-indigo-50 p-2 shadow rounded-sm "
+          className="absolute top-0 -right-40 bg-white w-[196px]  shadow-xl  rounded-xl "
           onClick={(e) => e.stopPropagation()}
         >
           <button
+            className="text-sm font-medium flex items-center gap-3 px-4 py-3 border-b w-full"
             onClick={(e) => {
               e.stopPropagation();
               setEditFolderModal(true);
               setTitle(folder.title);
             }}
           >
-            <NotePencil className="text-indigo-600" size={20} weight="fill" />
+            <PencilSimple size={16} /> Rename
+          </button>
+          <button
+            className="text-sm font-medium flex items-center gap-3 px-4 py-3 w-full"
+            onClick={(e) => {
+              e.stopPropagation();
+              setEditFolderModal(true);
+              setTitle(folder.title);
+            }}
+          >
+            <Trash size={16} /> Delete
           </button>
         </div>
       )}

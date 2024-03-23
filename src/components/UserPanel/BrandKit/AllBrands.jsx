@@ -1,17 +1,40 @@
-import { DotsThreeOutline, Plus } from "@phosphor-icons/react";
+import {
+  CalendarBlank,
+  CaretDown,
+  DotsThreeOutline,
+  Plus,
+  TextAa,
+} from "@phosphor-icons/react";
 import arrow from "../../../assets/down-arrow.svg";
 import brand from "../../../assets/socreative-brand.svg";
+import { useState } from "react";
 
 const AllBrands = ({ setStep }) => {
+  const [showSort, setShowSort] = useState(false);
   return (
     <div>
       <div className="flex items-center gap-3 justify-between mb-6">
         <p className="text-xl font-bold">All Brand Kits</p>
         <div className="flex items-center gap-3">
-          <div className="bg-slate-100 border rounded-full p-1">
-            <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
-              Sort by: Last Modified <img src={arrow} alt="" />
-            </button>
+          <div className="relative">
+            <div
+              onClick={() => setShowSort(!showSort)}
+              className="bg-slate-100 border rounded-full p-1"
+            >
+              <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
+                Sort by: Last Modified <CaretDown size={12} weight="fill" />
+              </button>
+            </div>
+            {showSort && (
+              <div className="bg-white w-auto shadow-xl rounded-xl absolute">
+                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                  <CalendarBlank size={16} /> Last Modified
+                </button>
+                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                  <TextAa size={16} /> Alphabetical
+                </button>
+              </div>
+            )}
           </div>
           <button
             onClick={() => setStep(1)}
