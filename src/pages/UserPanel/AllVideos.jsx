@@ -39,7 +39,7 @@ const AllVideos = () => {
           {selectedComponent === "folder" ? (
             <AllVideo filteredVideos={data} />
           ) : (
-            <AllVideoFileLayout filteredVideos={filteredVideos} />
+            <AllVideoFileLayout filteredVideos={data} />
           )}
         </>
       )}
