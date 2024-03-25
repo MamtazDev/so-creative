@@ -124,7 +124,7 @@ const CreateFolderModal = ({
       >
         <div className="flex items-center gap-4 justify-between mb-4">
           <p className="text-lg font-semibold">Rename</p>
-          <button onClick={() => setClickedItem(false)}>
+          <button onClick={() => setOpenCreateFolderModal(false)}>
             <img src={close} alt="" />
           </button>
         </div>
