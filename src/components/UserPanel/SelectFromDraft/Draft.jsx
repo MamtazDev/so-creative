@@ -64,7 +64,7 @@ const Draft = () => {
         {filteredData.length > 0 ? (
           filteredData.map((data, index) => (
             <div
-              className="flex items-center justify-between gap-4 p-4 border-b cursor-pointer"
+              className="flex items-center justify-between gap-4 p-4 border-b last:border-0 cursor-pointer"
               key={index}
               onClick={() => setSelected(data)}
             >

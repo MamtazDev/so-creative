@@ -91,21 +91,21 @@ const UploadFile = () => {
 
               const formData = projectId
                 ? {
-                  title: acceptedFiles[0]?.name,
-                  size: acceptedFiles[0]?.size,
-                  path: result.data.player_embed_url,
-                  // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
-                  projectId: projectId,
-                }
+                    title: acceptedFiles[0]?.name,
+                    size: acceptedFiles[0]?.size,
+                    path: result.data.player_embed_url,
+                    // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+                    projectId: projectId,
+                  }
                 : {
-                  title: acceptedFiles[0]?.name,
-                  size: acceptedFiles[0]?.size,
-                  path: result.data.player_embed_url,
-                  // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
-                };
+                    title: acceptedFiles[0]?.name,
+                    size: acceptedFiles[0]?.size,
+                    path: result.data.player_embed_url,
+                    // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
+                  };
 
               const response = await axios.post(
-                `${BASE_API_URL}/v1/project/add`,
+                ` ${BASE_API_URL}/v1/project/add`,
                 formData,
                 {
                   headers: {
@@ -131,7 +131,7 @@ const UploadFile = () => {
               // Interval to check if the process is done
               // const interval = setInterval(async () => {
               //   const res = await fetch(
-              //     `${BASE_API_URL}/v1/vimeo/${videoId[1]}?fields=transcode.status,download,upload.status,is_playable`,
+              //     ${BASE_API_URL}/v1/vimeo/${videoId[1]}?fields=transcode.status,download,upload.status,is_playable,
               //     {
               //       method: "GET",
               //       headers: {
