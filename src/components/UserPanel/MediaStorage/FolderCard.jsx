@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import CreateFolderModal from "../../../Modal/CreateFolderModal";
 import { useState } from "react";
 import Deleting from "../../../Modal/Deleting";
+import EditModal from "../../../Modal/EditModal";
 
 const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
   const navigate = useNavigate();
@@ -79,7 +80,7 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
         </p>
       </div>
       {openEditFolderModal && (
-        <CreateFolderModal
+        <EditModal
           setOpenCreateFolderModal={setEditFolderModal}
           folderTitle={title}
           clickedItem={clickedItem}

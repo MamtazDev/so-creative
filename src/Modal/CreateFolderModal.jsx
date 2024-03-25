@@ -123,7 +123,7 @@ const CreateFolderModal = ({
         className="max-w-md max-h-[90vh] overflow-y-auto no_scrollbar w-full bg-white text-black  rounded-2xl p-6"
       >
         <div className="flex items-center gap-4 justify-between mb-4">
-          <p className="text-lg font-semibold">Rename</p>
+          <p className="text-lg font-semibold">New Folder</p>
           <button onClick={() => setOpenCreateFolderModal(false)}>
             <img src={close} alt="" />
           </button>
@@ -133,6 +133,7 @@ const CreateFolderModal = ({
             className="border rounded-lg w-full mb-6 px-4 py-3.5"
             type="text"
             name="title"
+            placeholder="e.g Video Assets"
             required
             defaultValue={folderTitle ? folderTitle : ""}
           />
@@ -151,7 +152,7 @@ const CreateFolderModal = ({
               disabled={isLoading || updating}
               className="primary_btn"
             >
-              Rename
+              Create Folder
             </button>
           </div>
         </form>
