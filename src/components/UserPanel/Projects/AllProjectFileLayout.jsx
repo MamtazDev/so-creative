@@ -38,6 +38,7 @@ const AllProjectFileLayout = ({ data }) => {
                       ></iframe> */}
                       <img
                         // className="absolute top-0 right-0 w-full h-full z-50"
+                        className="w-[113px] h-[64px] rounded-xl"
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyQudo2gDpZS8r1PDPBqiA9cwQ8Bt-e6diLw&usqp=CAU"
                         alt=""
                       />

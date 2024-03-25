@@ -44,6 +44,7 @@ const SelectedVideo = ({
                   className="absolute overflow-hidden top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-125 "
                   value={uploadProgress}
                   strokeWidth={50}
+                  counterClockwise={true}
                   styles={buildStyles({
                     strokeLinecap: "butt",
                     pathColor: "rgba(0, 0, 0, 0.6)",
