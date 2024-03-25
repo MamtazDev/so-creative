@@ -34,7 +34,6 @@ const CreateProjectModal = () => {
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       {projectCrating ? (
         <div className="min-h-[90vh] h-full flex flex-col items-center justify-center bg-white w-full">
-          {" "}
           <CreatingBrand title="Creating new project..." />
         </div>
       ) : (

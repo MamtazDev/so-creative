@@ -105,27 +105,29 @@ const AddPresenter = ({ save, isLoading, projectData }) => {
             alt=""
           />
         </div>
-        <div className="mb-6">
-          <label className="block text-sm font-semibold mb-2.5">Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={handleInputChange}
-            placeholder="Enter name of the presenter"
-            className="border w-full px-4 py-3.5 rounded-lg"
-            required
-          />
-        </div>
-        <div className="mb-10">
-          <label className="block text-sm font-semibold mb-2.5">Title</label>
-          <input
-            type="text"
-            name="title"
-            className="border w-full px-4 py-3.5 rounded-lg"
-            required
-            placeholder="The presenters title"
-            onChange={handleInputChange}
-          />
+        <div className="flex items-center gap-4 mb-6 ">
+          <div className="w-full">
+            <label className="block text-sm font-semibold mb-2.5">Name</label>
+            <input
+              type="text"
+              name="name"
+              onChange={handleInputChange}
+              placeholder="Enter name of the presenter"
+              className="border w-full px-4 py-3.5 rounded-lg"
+              required
+            />
+          </div>
+          <div className="w-full">
+            <label className="block text-sm font-semibold mb-2.5">Title</label>
+            <input
+              type="text"
+              name="title"
+              className="border w-full px-4 py-3.5 rounded-lg"
+              required
+              placeholder="The presenters title"
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
         <div className="mb-6">
           <label className="block text-sm font-semibold mb-2.5">

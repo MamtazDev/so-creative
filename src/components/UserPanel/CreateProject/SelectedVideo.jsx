@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const SelectedVideo = ({
   selectedVideos,
@@ -6,16 +8,6 @@ const SelectedVideo = ({
   newSelectedVideo,
   isUploading,
 }) => {
-  const [animationInProgress, setAnimationInProgress] = useState(false);
-
-  useEffect(() => {
-    if (isUploading) {
-      setAnimationInProgress(true);
-    } else {
-      setAnimationInProgress(false);
-    }
-  }, [isUploading]);
-
   return (
     <div
       className={`text-start ${
@@ -39,29 +31,28 @@ const SelectedVideo = ({
           ))}
         <div>
           {isUploading && (
-            <div>
-              <div className="">
-                <div className="h-[108px]  relative">
-                  <video className="rounded-xl w-full h-full" controls>
-                    <source
-                      src={URL.createObjectURL(newSelectedVideo[0])}
-                      type="video/mp4"
-                    />
-                  </video>
-                  {/* Black backdrop for the progress */}
-                  <div className="progress-backdrop"></div>
-                  {/* Progress pie */}
-                  <div
-                    className="progress-pie"
-                    style={{
-                      transform: `rotate(${(360 * uploadProgress) / 100}deg)`,
-                    }}
-                  ></div>
-                  {/* Progress percentage */}
-                  <p className="text-sm absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-[56px] text-semibold py-1 px-2">
-                    {uploadProgress}%
-                  </p>
-                </div>
+            <div className="relative">
+              <div className="h-[108px] w-full relative rounded-xl overflow-hidden">
+                <video className="rounded-xl w-full h-full" controls>
+                  <source
+                    src={URL.createObjectURL(newSelectedVideo[0])}
+                    type="video/mp4"
+                  />
+                </video>
+
+                <CircularProgressbar
+                  className="absolute overflow-hidden top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-125 "
+                  value={uploadProgress}
+                  strokeWidth={50}
+                  styles={buildStyles({
+                    strokeLinecap: "butt",
+                    pathColor: "rgba(0, 0, 0, 0.6)",
+                    trailColor: "transparent",
+                  })}
+                />
+                <p className="text-sm absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-[56px] text-semibold py-1 px-2">
+                  {uploadProgress}%
+                </p>
               </div>
               <p className="text-sm font-medium mt-4">
                 {newSelectedVideo[0].name}
