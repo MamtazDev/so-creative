@@ -1,4 +1,4 @@
-import creating from "../../assets/creating.svg";
+import creating from "../../assets/new-creating.svg";
 
 const CreatingBrand = ({ title }) => {
   return (
