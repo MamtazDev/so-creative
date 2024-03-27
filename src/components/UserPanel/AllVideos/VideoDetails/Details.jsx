@@ -3,8 +3,9 @@ import { DownloadSimple } from "@phosphor-icons/react";
 import React, { useRef, useState } from "react";
 import VimeoPlayer from "react-player/vimeo";
 import useOutsideClick from "../../../../hooks/useOutsideClick";
+import { timeAgo } from "../../../../utils/converter";
 
-const Details = () => {
+const Details = ({ data }) => {
   const downloadRef = useRef();
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   useOutsideClick(downloadRef, () => setShowDownloadOptions(false));
