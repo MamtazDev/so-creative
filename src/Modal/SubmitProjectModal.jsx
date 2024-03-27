@@ -204,7 +204,7 @@ const SubmitProjectModal = ({
                       <div className="previous_video flex gap-4">
                         <div className="video_item">
                           <div className="video_img relative">
-                            <img src={PreviousVideo} alt="video" />
+                            <img src={uploadVideo} alt="video" />
                             <p className="text-white font-xs font-semibold bg-slate-900 inline rounded-md px-1 absolute bottom-2 left-2">
                               03:45
                             </p>
@@ -212,7 +212,7 @@ const SubmitProjectModal = ({
                         </div>
                         <div className="video_item">
                           <div className="video_img relative">
-                            <img src={PreviousVideo} alt="video" />
+                            <img src={uploadVideo} alt="video" />
                             <p className="text-white font-xs font-semibold bg-slate-900 inline rounded-md px-1 absolute bottom-2 left-2">
                               03:45
                             </p>
@@ -220,7 +220,7 @@ const SubmitProjectModal = ({
                         </div>
                         <div className="video_item">
                           <div className="video_img relative">
-                            <img src={PreviousVideo} alt="video" />
+                            <img src={uploadVideo} alt="video" />
                             <p className="text-white font-xs font-semibold bg-slate-900 inline rounded-md px-1 absolute bottom-2 left-2">
                               03:45
                             </p>
