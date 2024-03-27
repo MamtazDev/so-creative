@@ -1,4 +1,4 @@
-import { Notebook, Plus } from "@phosphor-icons/react";
+import { Plus } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import CreateProjectModal from "../../Modal/CreateProjectModal";
@@ -38,7 +38,7 @@ const Sidebar = ({ user }) => {
               onClick={() => setShow(!show)}
               className=" flex gap-2 items-center justify-center mb-8  w-full primary_btn "
             >
-              <Plus size={24} />
+              <Plus size={24} weight="bold" />
               New Project
             </button>
             {show && (

@@ -1,13 +1,7 @@
 import React from "react";
 import mp4 from "../../../assets/mp4.svg";
 import folder from "../../../assets/folder.svg";
-import {
-  DotsThreeOutline,
-  DownloadSimple,
-  NotePencil,
-  Trash,
-} from "@phosphor-icons/react";
-import { mediaStorage } from "../../../utils/data";
+import { DownloadSimple, NotePencil, Trash } from "@phosphor-icons/react";
 import { formatFileSize, timeAgo } from "../../../utils/converter";
 import { Link } from "react-router-dom";
 

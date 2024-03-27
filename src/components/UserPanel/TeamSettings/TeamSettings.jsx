@@ -38,7 +38,7 @@ const TeamSettings = () => {
               to="#"
               className="text-sm font-semibold flex items-center gap-1 mb-4"
             >
-              Learn More <ArrowRight size={16} />{" "}
+              Learn More <ArrowRight size={16} weight="bold" />{" "}
             </Link>
             <button className="bg-white rounded-full py-1.5 px-4 w-full text-slate-900 text-sm font-semibold">
               Upgrade

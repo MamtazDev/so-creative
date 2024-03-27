@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
 import {
   ArrowUp,
-  CaretDown,
-  CaretRight,
   CaretUp,
   CaretUpDown,
   FileText,
@@ -11,11 +9,7 @@ import {
 } from "@phosphor-icons/react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import imgOne from "../assets/editor_panel/profile_profile.svg";
-import ccImg from "../assets/editor_panel/cc_icon.svg";
 import { addOns } from "../utils/data";
-
-import uploadVideo from "../assets/editor_panel/upload_video.svg";
-import voiceOverImg from "../assets/editor_panel/voice_over.svg";
 import { Link } from "react-router-dom";
 import { DateConverter } from "../utils/converter";
 import { useUpdateProjectMutation } from "../features/project/projectApi";
@@ -131,7 +125,11 @@ const AccepteJobModal = ({
                 <div className="project_brief_wrapper pb-10">
                   <div className="section_head pb-4">
                     <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                      <FileText size={24} className="text-indigo-600" />
+                      <FileText
+                        size={24}
+                        className="text-indigo-600"
+                        weight="bold"
+                      />
                       Project Brief
                     </h2>
                   </div>
@@ -158,11 +156,11 @@ const AccepteJobModal = ({
                       >
                         {showFullText ? (
                           <>
-                            Show Less <CaretUp size={20} />
+                            Show Less <CaretUp size={20} weight="bold" />
                           </>
                         ) : (
                           <>
-                            Show More <CaretUpDown size={20} />
+                            Show More <CaretUpDown size={20} weight="bold" />
                           </>
                         )}
                       </button>
@@ -173,7 +171,11 @@ const AccepteJobModal = ({
                 <div className="addons_wrapper pb-10">
                   <div className="section_head pb-4">
                     <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                      <PuzzlePiece size={24} className="text-indigo-600" />
+                      <PuzzlePiece
+                        size={24}
+                        className="text-indigo-600"
+                        weight="bold"
+                      />
                       Add-Ons
                     </h2>
                   </div>
@@ -241,7 +243,11 @@ const AccepteJobModal = ({
                 <div className="ask_question">
                   <div className="section_head pb-4">
                     <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                      <Question size={24} className="text-indigo-600" />
+                      <Question
+                        size={24}
+                        className="text-indigo-600"
+                        weight="bold"
+                      />
                       Ask Question
                     </h2>
                   </div>
@@ -269,7 +275,11 @@ const AccepteJobModal = ({
                           placeholder="Ask anything..."
                         />
                         <button className="py-2 px-2 bg-indigo-600 rounded-xl absolute right-2 top-1/2 -translate-y-1/2">
-                          <ArrowUp size={20} className="text-white font-bold" />
+                          <ArrowUp
+                            size={20}
+                            className="text-white font-bold"
+                            weight="bold"
+                          />
                         </button>
                       </div>
                     </div>

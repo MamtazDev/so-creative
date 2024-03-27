@@ -28,10 +28,10 @@ const AllBrands = ({ setStep }) => {
             {showSort && (
               <div className="bg-white w-auto shadow-xl rounded-xl absolute">
                 <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
-                  <CalendarBlank size={16} /> Last Modified
+                  <CalendarBlank size={16} weight="bold" /> Last Modified
                 </button>
                 <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
-                  <TextAa size={16} /> Alphabetical
+                  <TextAa size={16} weight="bold" /> Alphabetical
                 </button>
               </div>
             )}
@@ -40,7 +40,7 @@ const AllBrands = ({ setStep }) => {
             onClick={() => setStep(1)}
             className="primary_btn py-2 px-3 flex items-center gap-1"
           >
-            <Plus size={20} /> Add New
+            <Plus size={20} weight="bold" /> Add New
           </button>
         </div>
       </div>

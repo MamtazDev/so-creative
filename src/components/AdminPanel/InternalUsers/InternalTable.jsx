@@ -1,5 +1,3 @@
-import { CaretRight } from "@phosphor-icons/react";
-
 import { useState } from "react";
 
 import { internalTableHeading } from "../../../utils/data";

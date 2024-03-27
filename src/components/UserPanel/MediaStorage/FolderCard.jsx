@@ -1,13 +1,7 @@
-import {
-  DotsThreeOutline,
-  NotePencil,
-  PencilSimple,
-  Trash,
-} from "@phosphor-icons/react";
+import { DotsThreeOutline, PencilSimple, Trash } from "@phosphor-icons/react";
 import folderIcon from "../../../assets/folder.svg";
 import { formatFileSize } from "../../../utils/converter";
 import { useNavigate } from "react-router";
-import CreateFolderModal from "../../../Modal/CreateFolderModal";
 import { useState } from "react";
 import Deleting from "../../../Modal/Deleting";
 import EditModal from "../../../Modal/EditModal";
@@ -58,7 +52,7 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
                 setTitle(folder.title);
               }}
             >
-              <PencilSimple size={16} /> Rename
+              <PencilSimple size={16} weight="bold" /> Rename
             </button>
             <button
               className="text-sm font-medium flex items-center gap-3 px-4 py-3 w-full"

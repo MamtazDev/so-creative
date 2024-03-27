@@ -7,6 +7,7 @@ import chatBot from "../../assets/noChat.svg";
 import { useEffect, useRef, useState } from "react";
 import { quickOptions } from "../../utils/data";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { ArrowUp } from "@phosphor-icons/react";
 
 const ChatBot = () => {
   const [show, setShow] = useState(false);
@@ -75,8 +76,8 @@ const ChatBot = () => {
                   type="text"
                   placeholder="Write your message"
                 />
-                <button>
-                  <img src={send} alt="" />
+                <button className="text-white  w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center">
+                  <ArrowUp size={20} weight="bold" />
                 </button>
               </div>
             </div>

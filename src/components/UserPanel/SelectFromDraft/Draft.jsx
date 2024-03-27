@@ -51,7 +51,7 @@ const Draft = () => {
         </button>
       </div>
       <div className="flex items-center gap-5 rounded-full bg-slate-100 p-3 w-full mb-10">
-        <MagnifyingGlass size={16} />
+        <MagnifyingGlass size={16} weight="bold" />
         <input
           className="w-full bg-transparent"
           type="search"

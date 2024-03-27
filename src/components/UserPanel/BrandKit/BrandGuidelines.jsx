@@ -44,7 +44,6 @@ const BrandGuidelines = () => {
     setTimeout(() => {
       setIsLoading("done");
     }, 1000);
-
   };
 
   const handleChange = (e, fieldName, index) => {
@@ -54,7 +53,6 @@ const BrandGuidelines = () => {
       [fieldName]: [...(prevState[fieldName] || []), file],
     }));
   };
-
 
   return (
     <>
@@ -188,7 +186,7 @@ const BrandGuidelines = () => {
                 onClick={() => setIsLoading(false)}
                 className="border border-indigo-600 rounded-full py-3 px-6 flex items-center gap-2 text-indigo-600 text-base font-semibold"
               >
-                <Plus size={20} /> Add New
+                <Plus size={20} weight="bold" /> Add New
               </button>
               <button
                 onClick={() => navigate("/user/brand-kit")}
@@ -201,7 +199,6 @@ const BrandGuidelines = () => {
         </div>
       )}
     </>
-
   );
 };
 

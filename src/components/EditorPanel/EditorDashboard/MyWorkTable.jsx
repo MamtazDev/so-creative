@@ -2,7 +2,6 @@ import { CaretRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Link, useLocation } from "react-router-dom";
-import Loading from "../../../Shared/Loading";
 import {
   MyWorkTableData,
   clientTableHeading,
@@ -17,7 +16,6 @@ import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
 import ProjectBriefModal from "../../../Modal/ProjectBriefModal";
 
 import { DateConverter } from "../../../utils/converter";
-import AccepteJobModal from "../../../Modal/AccepteJobModal";
 import SubmitProjectModal from "../../../Modal/SubmitProjectModal";
 
 const MyWorkTable = ({ filteredData }) => {
@@ -93,7 +91,7 @@ const MyWorkTable = ({ filteredData }) => {
                       to={"/editor/all-projects"}
                       className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
                     >
-                      All Projects <CaretRight size={20} />
+                      All Projects <CaretRight size={20} weight="bold" />
                     </Link>
                   </td>
 
@@ -246,7 +244,7 @@ const MyWorkTable = ({ filteredData }) => {
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
                           {DateConverter(tableDataInfo.updatedAt)}{" "}
-                          <CaretRight size={20} />
+                          <CaretRight size={20} weight="bold" />
                         </p>
                       </td>
                     </tr>
@@ -362,7 +360,8 @@ const MyWorkTable = ({ filteredData }) => {
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3]  text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                          {tableDataInfo.dateCreated} <CaretRight size={20} />
+                          {tableDataInfo.dateCreated}{" "}
+                          <CaretRight size={20} weight="bold" />
                         </p>
                       </td>
                     </tr>

@@ -36,7 +36,7 @@ const Notifications = () => {
                 </div>
               </div>
               <button>
-                <CaretDown size={24} />
+                <CaretDown size={24} weight="bold" />
               </button>
             </div>
             {expandedIndex === index && (

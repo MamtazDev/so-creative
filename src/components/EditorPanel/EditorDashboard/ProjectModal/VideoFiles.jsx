@@ -39,7 +39,7 @@ const VideoFiles = () => {
                   onClick={() => setShowDownloadOptions(!showDownloadOptions)}
                   className="flex items-center gap-2.5 bg-slate-900 text-white py-2 px-6 rounded-full text-sm font-semibold"
                 >
-                  <DownloadSimple size={20} /> Download
+                  <DownloadSimple size={20} weight="bold" /> Download
                 </button>
               </div>
               {showDownloadOptions && (
@@ -59,7 +59,11 @@ const VideoFiles = () => {
                         </span>
                       </p>
                       <button className="flex items-center gap-2.5 text-sm font-semibold">
-                        <DownloadSimple className="text-indigo-600" size={20} />
+                        <DownloadSimple
+                          className="text-indigo-600"
+                          size={20}
+                          weight="bold"
+                        />
                         Download 99.23MB
                       </button>
                     </div>

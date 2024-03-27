@@ -62,11 +62,11 @@ const ProjectBrief = () => {
         >
           {showFullText ? (
             <>
-              Show Less <CaretUp size={20} />
+              Show Less <CaretUp size={20} weight="bold" />
             </>
           ) : (
             <>
-              Show More <CaretDown size={20} />
+              Show More <CaretDown size={20} weight="bold" />
             </>
           )}
         </button>
@@ -108,7 +108,7 @@ const ProjectBrief = () => {
                     <td className="border-t ">500 kb</td>
                     <td className="px-4 py-3 text-end">
                       <button>
-                        <DownloadSimple size={20} />
+                        <DownloadSimple size={20} weight="bold" />
                       </button>
                     </td>
                   </tr>

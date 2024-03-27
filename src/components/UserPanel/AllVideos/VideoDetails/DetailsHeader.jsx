@@ -7,7 +7,7 @@ const DetailsHeader = ({ setShowExperienceModal, data }) => {
     <div className="flex items-center justify-between gap-4 mb-10">
       <div className="flex items-center gap-1 text-xl font-bold">
         <p className="text-indigo-600">Projects</p>
-        <CaretRight size={20} />
+        <CaretRight size={20} weight="bold" />
         <p>{data?.projectTitle}</p>
       </div>
       <div className="flex items-center gap-3.5">

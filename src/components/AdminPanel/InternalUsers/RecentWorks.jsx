@@ -24,7 +24,7 @@ const RecentWorks = () => {
               <td className="border-t">4 days</td>
               <td className="border-t ">
                 <div className="flex items-center gap-3 ">
-                  September 10, 2023 <CaretRight size={20} />
+                  September 10, 2023 <CaretRight size={20} weight="bold" />
                 </div>
               </td>
             </tr>

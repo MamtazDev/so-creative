@@ -25,16 +25,16 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
   };
   const items = [
     {
-      icon: <User className="text-state-700" size={24} />,
+      icon: <User className="text-state-700" size={24} weight="bold" />,
       title: "Account Settings",
       event: openAccountModal,
     },
     {
-      icon: <Headset className="text-state-700" size={24} />,
+      icon: <Headset className="text-state-700" size={24} weight="bold" />,
       title: "Support ",
     },
     {
-      icon: <SignOut className="text-state-700" size={24} />,
+      icon: <SignOut className="text-state-700" size={24} weight="bold" />,
       title: "Logout ",
       event: handleLogout,
     },

@@ -76,7 +76,8 @@ const AllClients = ({ filteredData }) => {
 
               <td className="px-4 py-4 border-b border-[#e5e5e5b3]  text-sm">
                 <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                  {tableDataInfo.dateCreated} <CaretRight size={20} />
+                  {tableDataInfo.dateCreated}{" "}
+                  <CaretRight size={20} weight="bold" />
                 </p>
               </td>
             </tr>

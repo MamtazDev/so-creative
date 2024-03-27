@@ -27,7 +27,7 @@ const Details = () => {
   const dispatch = useDispatch();
 
   const maxWords = 110;
-  
+
   const truncateText = (text, maxWords) => {
     const words = text?.split(" ");
     if (words.length > maxWords) {
@@ -92,12 +92,12 @@ const Details = () => {
           }}
           className="flex items-center gap-2 px-6 py-3 text-base font-semibold text-indigo-600 border rounded-full border-indigo-600"
         >
-          <CaretLeft size={24} /> Go Back
+          <CaretLeft size={24} weight="bold" /> Go Back
         </button>
       </div>
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <FileText className="text-indigo-600 " size={24} />
+          <FileText className="text-indigo-600 " size={24} weight="bold" />
           <p className="text-lg font-semibold">Project Brief</p>
         </div>
 
@@ -118,17 +118,17 @@ const Details = () => {
           >
             {showFullText ? (
               <>
-                Show Less <CaretUp size={20} />
+                Show Less <CaretUp size={20} weight="bold" />
               </>
             ) : (
               <>
-                Show More <CaretDown size={20} />
+                Show More <CaretDown size={20} weight="bold" />
               </>
             )}
           </button>
         </div>
         <div className="flex items-center gap-2 mb-4">
-          <PuzzlePiece className="text-indigo-600 " size={24} />
+          <PuzzlePiece className="text-indigo-600 " size={24} weight="bold" />
           <p className="text-lg font-semibold">Add-Ons</p>
         </div>
 

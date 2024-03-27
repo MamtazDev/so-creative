@@ -1,5 +1,4 @@
 import { CalendarBlank, CaretDown, Plus, TextAa } from "@phosphor-icons/react";
-import arrow from "../../../assets/down-arrow.svg";
 import { useState } from "react";
 
 const MediaHeader = ({
@@ -26,10 +25,10 @@ const MediaHeader = ({
           {showSort && (
             <div className="bg-white w-auto shadow-xl rounded-xl absolute">
               <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
-                <CalendarBlank size={16} /> Last Modified
+                <CalendarBlank size={16} weight="bold" /> Last Modified
               </button>
               <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
-                <TextAa size={16} /> Alphabetical
+                <TextAa size={16} weight="bold" /> Alphabetical
               </button>
             </div>
           )}
@@ -78,13 +77,13 @@ const MediaHeader = ({
           className="flex items-center gap-1 py-2 px-3 rounded-full bg-indigo-600 text-white text-sm"
           onClick={() => setOpenCreateFolderModal(true)}
         >
-          <Plus size={20} /> Create Folder
+          <Plus size={20} weight="bold" /> Create Folder
         </button>
         <button
           className="flex items-center gap-1 py-2 px-3 rounded-full bg-indigo-600 text-white text-sm"
           onClick={() => setOpedUploadVideoModal(true)}
         >
-          <Plus size={20} /> Upload Video
+          <Plus size={20} weight="bold" /> Upload Video
         </button>
       </div>
     </div>
