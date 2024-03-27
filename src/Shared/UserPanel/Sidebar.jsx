@@ -6,7 +6,7 @@ import companyLogo from "../../assets/company-logo.svg";
 import createProject from "../../assets/create-project.svg";
 import selectDraft from "../../assets/select-draft.svg";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { menus } from "../../utils/data";
+import { menus, workspaceMenu } from "../../utils/data";
 import SelectDraft from "../../components/UserPanel/SelectFromDraft/SelectDraft";
 import TeamSettingModal from "../../Modal/TeamSettingModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,8 @@ const Sidebar = ({ user }) => {
   const location = useLocation();
   const showRef = useRef();
   const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [step, setStep] = useState(0);
 
   const [showTeamModal, setShowTeamModal] = useState(false);
   useOutsideClick(showRef, () => setShow(false));
@@ -97,15 +99,28 @@ const Sidebar = ({ user }) => {
         </div>
       </div>
       {user?.role === "USER" && (
-        <div>
-          <button
-            className=" rounded-full  py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in"
-            onClick={() => setShowTeamModal(true)}
+        <div className={`${open && "rounded-2xl shadow-2xl bg-white"}`}>
+          {open && (
+            <div className="border-b">
+              {workspaceMenu.map((data, index) => (
+                <button
+                  key={index}
+                  className=" rounded-full  py-3 px-6 flex items-center gap-3 text-sm font-semibold hover:bg-white transition-all duration-300 ease-in"
+                  onClick={() => {
+                    setShowTeamModal(true);
+                    setStep(index);
+                  }}
+                >
+                  {data.icon}
+                  {data.title}
+                </button>
+              ))}
+            </div>
+          )}
+          <div
+            onClick={() => setOpen(!open)}
+            className="flex gap-2 items-center  p-5 cursor-pointer "
           >
-            <Notebook size={24} />
-            Team Settings
-          </button>
-          <div className="flex gap-3 items-center border-t pt-5 ">
             <img src={companyLogo} alt="" />
             <div>
               <p className="text-base font-semibold">Company Name</p>
@@ -118,7 +133,11 @@ const Sidebar = ({ user }) => {
       {showCretedModal && <CreateProjectModal />}
       {showDraftModal && <SelectDraft />}
       {showTeamModal && (
-        <TeamSettingModal setShowTeamModal={setShowTeamModal} />
+        <TeamSettingModal
+          setShowTeamModal={setShowTeamModal}
+          step={step}
+          setStep={setStep}
+        />
       )}
     </aside>
   );

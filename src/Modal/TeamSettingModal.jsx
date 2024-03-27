@@ -6,8 +6,7 @@ import TeamBilling from "../components/UserPanel/TeamSettings/TeamBilling";
 import Notifications from "../components/UserPanel/TeamSettings/Notifications";
 import useOutsideClick from "../hooks/useOutsideClick";
 
-const TeamSettingModal = ({ setShowTeamModal }) => {
-  const [step, setStep] = useState(0);
+const TeamSettingModal = ({ setShowTeamModal, step, setStep }) => {
   const modalRef = useRef();
   useOutsideClick(modalRef, () => setShowTeamModal(false));
   return (

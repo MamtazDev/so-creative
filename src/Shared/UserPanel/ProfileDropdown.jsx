@@ -2,13 +2,14 @@ import { Headset, SignOut, User } from "@phosphor-icons/react";
 import ProfileActive from "./ProfileActive";
 import { useState } from "react";
 import AccountModal from "../../Modal/AccountModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLoggedOut } from "../../features/auth/authSlice";
 import Cookies from "js-cookie";
 
 const ProfileDropdown = ({ setShowProfile, profileRef }) => {
   const [showAccount, setShowAccount] = useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,12 +47,10 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
         className="fixed z-[9999] top-[84px] right-6  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[320px]"
       >
         <div className="flex items-center gap-3.5 p-5 border-b">
-          <ProfileActive />
+          <ProfileActive user={user} />
           <div>
-            <p className="text-base font-bold mb-1">James</p>
-            <p className="text-state-500 text-sm font-normal ">
-              james@example.com
-            </p>
+            <p className="text-base font-bold mb-1">{user.name}</p>
+            <p className="text-state-500 text-sm font-normal ">{user.email}</p>
           </div>
         </div>
         <div className="py-5 px-6 flex flex-col  gap-6">
