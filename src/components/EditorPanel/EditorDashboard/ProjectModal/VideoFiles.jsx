@@ -6,32 +6,25 @@ import useOutsideClick from "../../../../hooks/useOutsideClick";
 import { DownloadSimple } from "@phosphor-icons/react";
 
 const VideoFiles = () => {
-  const [selectedVideo, setSelectedVideo] = useState([]);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState(0);
   const downloadRef = useRef();
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   useOutsideClick(downloadRef, () => setShowDownloadOptions(false));
-  const handleSelected = (index) => {
-    if (selectedVideo.includes(index)) {
-      const newVideo = selectedVideo.filter((i) => i !== index);
-      setSelectedVideo(newVideo);
-    } else {
-      setSelectedVideo([...selectedVideo, index]);
-    }
-  };
 
   return (
     <div>
       <div className="grid grid-cols-3 gap-8 ">
         <div className="col-span-2">
           <div>
-            <VimeoPlayer
-              className="bg-gray-400 rounded-xl mb-6 "
-              url="https://vimeo.com/626780181"
-              width="100%"
-              height="570"
-              controls={true}
-            />
+            <div className="h-[327px] mb-5">
+              <VimeoPlayer
+                className="bg-gray-400 rounded-xl mb-6 "
+                url="https://vimeo.com/626780181"
+                width="100%"
+                height="100%"
+                controls={true}
+              />
+            </div>
             <div>
               <div className="flex items-center gap-4 justify-between">
                 <div>
@@ -81,21 +74,17 @@ const VideoFiles = () => {
             {[1, 2, 3, 4].map((data, index) => (
               <div
                 className={`${
-                  selectedVideo.includes(index) &&
-                  "border-2 border-[#C67CFF] p-1 rounded-xl"
-                } ${isPlaying && "scale-125"} relative  w-[211px] h-[108px]  `}
+                  selectedVideo === index
+                    ? "border-2 border-[#C67CFF] p-1 rounded-xl"
+                    : ""
+                }  relative  w-[211px] h-[108px]  `}
                 key={index}
               >
-                {selectedVideo.includes(index) ? (
-                  ""
-                ) : (
-                  <img
-                    onClick={() => handleSelected(index)}
-                    className="absolute top-2 right-2"
-                    src={check}
-                    alt=""
-                  />
-                )}
+                <div
+                  onClick={() => setSelectedVideo(index)}
+                  className="absolute top-0 right-0 w-full h-full"
+                ></div>
+
                 <VimeoPlayer
                   className="bg-gray-400 rounded-xl"
                   url="https://vimeo.com/626780181"

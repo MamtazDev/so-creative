@@ -20,7 +20,6 @@ import { DateConverter } from "../../../utils/converter";
 import AccepteJobModal from "../../../Modal/AccepteJobModal";
 import SubmitProjectModal from "../../../Modal/SubmitProjectModal";
 
-
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
 
@@ -64,6 +63,7 @@ const MyWorkTable = ({ filteredData }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = filteredData?.slice(startIndex, endIndex);
+  console.log("paginatedData", paginatedData);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -254,7 +254,6 @@ const MyWorkTable = ({ filteredData }) => {
                 </tbody>
               </table>
 
-
               {modalPopup === true && (
                 // <EditorProjectPopUp
                 //   jobAction={jobAction}
@@ -273,16 +272,15 @@ const MyWorkTable = ({ filteredData }) => {
                   handeJobAction={handeJobAction}
                   setModalPopup={setModalPopup}
 
-//               {modalPopup && (
-//                 <AccepteJobModal
-//                   setModalPopup={setModalPopup}
-//                   setSelectedProject={setSelectedProject}
-//                   selectedProject={selectedProject}
-//                  />
-//                )}
-
-                 />
-               )}
+                  //               {modalPopup && (
+                  //                 <AccepteJobModal
+                  //                   setModalPopup={setModalPopup}
+                  //                   setSelectedProject={setSelectedProject}
+                  //                   selectedProject={selectedProject}
+                  //                  />
+                  //                )}
+                />
+              )}
             </div>
           </div>
 
@@ -297,10 +295,6 @@ const MyWorkTable = ({ filteredData }) => {
           )}
         </>
       )}
-
-      
-            
-
 
       {route.pathname === "/editor/clients" && (
         <>
