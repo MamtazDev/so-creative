@@ -39,7 +39,6 @@ const EditorAllClients = () => {
 
           <MyWorkTable
             filteredData={filteredData}
-            repeatedData={repeatedData}
           />
         </>
       )}
