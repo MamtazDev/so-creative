@@ -1,43 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAddFileMutation } from "../../../features/videos/videoApi";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
+import { BASE_API_URL } from "../../../config/config";
+import * as tus from "tus-js-client";
 
 const SelectedVideo = ({ selectedVideo, setOpedUploadVideoModal }) => {
   const [addFile, { isLoading }] = useAddFileMutation();
   const { id } = useParams();
 
-  const handleUploadFile = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("title", selectedVideo.name);
-      formData.append("video", selectedVideo);
-      id && formData.append("parentFolderId", id);
-      const res = await addFile(formData);
+  const [loading, setLoading] = useState(false);
 
-      if (res?.error?.error) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${res?.error?.error}`,
-        });
-      }
-      if (res?.error?.data?.message) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${res?.error?.data?.message}`,
-        });
-      }
-      if (res?.data?.success) {
-        setOpedUploadVideoModal(false);
-      }
+  const handleUploadFile = async () => {
+    setLoading(true);
+    try {
+      const vimeoRes = await fetch(
+        `${BASE_API_URL}/v1/vimeo/create-video-instant`,
+        {
+          method: "POST",
+          body: JSON.stringify({ size: selectedVideo.size }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = await vimeoRes.json();
+      const { upload_link } = result.data;
+
+      const tusUpload = new tus.Upload(selectedVideo, {
+        endpoint: upload_link,
+        uploadUrl: upload_link,
+        onProgress: (bytesUploaded, bytesTotal) => {
+          const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+        },
+
+        onError: (error) => {
+          console.error("Failed to upload", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error?.message}`,
+          });
+        },
+
+        onSuccess: async () => {
+          const formData = id
+            ? {
+                title: selectedVideo.name,
+                path: result.data.player_embed_url,
+                size: selectedVideo.size,
+                parentFolderId: id,
+              }
+            : {
+                title: selectedVideo.name,
+                path: result.data.player_embed_url,
+                size: selectedVideo.size,
+              };
+
+          const uploadRes = await addFile(formData);
+          if (uploadRes?.error?.error) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${res?.error?.error}`,
+            });
+          }
+          if (uploadRes?.error?.data?.message) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${uploadRes?.error?.data?.message}`,
+            });
+          }
+          if (uploadRes?.data?.success) {
+            setOpedUploadVideoModal(false);
+          }
+        },
+      });
+
+      tusUpload.start();
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: `${error?.message}`,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,9 +105,9 @@ const SelectedVideo = ({ selectedVideo, setOpedUploadVideoModal }) => {
         <button
           className="py-2 px-5 rounded-full bg-indigo-600 text-white text-sm mt-3"
           onClick={handleUploadFile}
-          disabled={isLoading}
+          disabled={loading}
         >
-          {isLoading ? "Uploading..." : "Upload"}
+          {loading ? "Uploading..." : "Upload"}
         </button>
       </div>
     </div>
