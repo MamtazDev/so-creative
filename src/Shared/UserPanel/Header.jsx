@@ -87,7 +87,7 @@ const Header = ({ user }) => {
             </button>
           </div>
           <div onClick={() => setShowProfile(!showProfile)}>
-            <ProfileActive />
+            <ProfileActive user={user} />
           </div>
         </div>
       </div>
