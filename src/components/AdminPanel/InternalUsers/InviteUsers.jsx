@@ -22,7 +22,7 @@ const InviteUsers = ({ setShowInviteUser }) => {
       <div className="flex items-center justify-between gap-4 mb-6">
         <p className="text-xl font-bold ">Invite User</p>
         <button className="flex items-center gap-2 text-sm text-indigo-600 font-semibold">
-          <LinkSimple size={16} /> Copy Link
+          <LinkSimple size={16} weight="bold" /> Copy Link
         </button>
       </div>
       <div className="mb-6 bg-stone-100 rounded-lg flex items-center gap-2 px-4 py-3.5">

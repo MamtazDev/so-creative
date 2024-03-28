@@ -31,7 +31,7 @@ const Details = ({ data }) => {
               onClick={() => setShowDownloadOptions(!showDownloadOptions)}
               className="flex items-center gap-2.5 bg-slate-900 text-white py-2.5 px-[30px] rounded-full text-sm font-semibold"
             >
-              <DownloadSimple size={20} /> Download Video
+              <DownloadSimple size={20} weight="bold" /> Download Video
             </button>
           )}
         </div>
@@ -52,7 +52,11 @@ const Details = ({ data }) => {
                   </span>
                 </p>
                 <button className="flex items-center gap-2.5 text-sm font-semibold">
-                  <DownloadSimple className="text-indigo-600" size={20} />
+                  <DownloadSimple
+                    className="text-indigo-600"
+                    size={20}
+                    weight="bold"
+                  />
                   Download 99.23MB
                 </button>
               </div>

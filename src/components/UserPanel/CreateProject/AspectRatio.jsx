@@ -67,7 +67,7 @@ const AspectRatio = ({ save, isLoading, projectData, editing, setEditing }) => {
         <div className="flex items-center gap-1 text-xs font-medium">
           <p className="text-slate-500">Need Help?</p>
           <Link className="text-indigo-600 flex items-center gap-1" to="#">
-            See Guide <ArrowUpRight size={12} />
+            See Guide <ArrowUpRight size={12} weight="bold" />
           </Link>
         </div>
       </div>

@@ -7,7 +7,7 @@ const PlusButton = ({ handleClick }) => {
       onClick={handleClick}
       className="border border-dashed rounded-xl flex items-center justify-center"
     >
-      <Plus className="text-indigo-600" size={24} />
+      <Plus className="text-indigo-600" size={24} weight="bold" />
     </div>
   );
 };

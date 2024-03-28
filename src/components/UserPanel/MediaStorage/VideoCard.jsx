@@ -25,10 +25,10 @@ const VideoCard = ({ video, setClickedItem, clickedItem }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <button className="text-sm font-medium flex items-center gap-3 px-4 py-3 border-b w-full">
-            <DownloadSimple size={16} /> Download
+            <DownloadSimple size={16} weight="bold" /> Download
           </button>
           <button className="text-sm font-medium flex items-center gap-3 px-4 py-3 w-full">
-            <Trash size={16} /> Delete
+            <Trash size={16} weight="bold" /> Delete
           </button>
         </div>
       )}

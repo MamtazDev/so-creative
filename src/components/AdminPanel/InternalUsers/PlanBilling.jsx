@@ -82,7 +82,7 @@ const PlanBilling = () => {
               <td className="border-t">Paid</td>
               <td className="border-t">
                 <button className="text-indigo-600">
-                  <DownloadSimple size={20} />
+                  <DownloadSimple size={20} weight="bold" />
                 </button>
               </td>
             </tr>

@@ -96,7 +96,7 @@ const SubmitVideo = () => {
                   <td className="px-4 py-3">
                     {" "}
                     <button>
-                      <DownloadSimple size={20} />
+                      <DownloadSimple size={20} weight="bold" />
                     </button>
                   </td>
                 </tr>

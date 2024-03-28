@@ -22,6 +22,7 @@ const Invoice = () => {
               <DownloadSimple
                 className="text-indigo-600 cursor-pointer"
                 size={20}
+                weight="bold"
               />
             </td>
           </tr>
@@ -33,6 +34,7 @@ const Invoice = () => {
               <DownloadSimple
                 className="text-indigo-600 cursor-pointer"
                 size={20}
+                weight="bold"
               />
             </td>
           </tr>

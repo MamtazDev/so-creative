@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import FromLabel from "./FromLabel";
 import camera from "../../../assets/camera.svg";
 import brandInput from "../../../assets/brand-img.svg";
-import { Plus } from "@phosphor-icons/react";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { setStep } from "../../../features/project/projectSlice";

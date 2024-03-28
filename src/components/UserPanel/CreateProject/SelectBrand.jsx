@@ -60,7 +60,7 @@ const SelectBrand = ({ save, isLoading, projectData, editing, setEditing }) => {
           <p>SoCreative</p>
         </label>
         <div className="border border-dashed rounded-xl w-[120px] h-[120px] flex flex-col items-center justify-center">
-          <Plus className="text-indigo-600 mb-2" size={24} />
+          <Plus className="text-indigo-600 mb-2" size={24} weight="bold" />
           <p className="text-slate-500 text-xs font-semibold">Add New</p>
         </div>
       </div>

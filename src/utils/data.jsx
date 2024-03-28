@@ -51,7 +51,6 @@ import email from "../assets/email-notification.svg";
 import slack from "../assets/slack-notification.svg";
 
 import {
-  BellSimpleRinging,
   FileVideo,
   GearSix,
   NewspaperClipping,
@@ -718,15 +717,15 @@ export const addOns = [
 
 export const workspaceMenu = [
   {
-    icon: <GearSix size={24} />,
+    icon: <GearSix size={24} weight="bold" />,
     title: "Team Settings",
   },
   {
-    icon: <Users size={24} />,
+    icon: <Users size={24} weight="bold" />,
     title: "Collaborators",
   },
   {
-    icon: <Notebook size={24} />,
+    icon: <Notebook size={24} weight="bold" />,
     title: "Team Billing",
   },
   // {
@@ -736,11 +735,11 @@ export const workspaceMenu = [
 ];
 export const companyMenu = [
   {
-    icon: <Users size={24} />,
+    icon: <Users size={24} weight="bold" />,
     title: "Team Members",
   },
   {
-    icon: <NewspaperClipping size={24} />,
+    icon: <NewspaperClipping size={24} weight="bold" />,
     title: "Plans & Billing",
   },
 ];
@@ -788,23 +787,23 @@ export const notificationSettings = [
 
 export const projectTab = [
   {
-    icon: <Video size={16} />,
+    icon: <Video size={16} weight="bold" />,
     name: "Submit Video",
   },
   {
-    icon: <FileVideo size={16} />,
+    icon: <FileVideo size={16} weight="bold" />,
     name: "Video Files",
   },
   {
-    icon: <Note size={16} />,
+    icon: <Note size={16} weight="bold" />,
     name: "Project Brief",
   },
   {
-    icon: <Swatches size={16} />,
+    icon: <Swatches size={16} weight="bold" />,
     name: "Brand Kit",
   },
   {
-    icon: <Question size={16} />,
+    icon: <Question size={16} weight="bold" />,
     name: "Ask Questions",
   },
 ];

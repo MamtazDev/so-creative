@@ -30,6 +30,7 @@ const EditorPagination = ({
               currentPage > 1 ? "text-indigo-600" : "text-slate-200"
             }`}
             size={16}
+            weight="bold"
           />
           <span
             className={`${
@@ -91,6 +92,7 @@ const EditorPagination = ({
                 : "text-indigo-600"
             }`}
             size={16}
+            weight="bold"
           />
         </button>
       </nav>

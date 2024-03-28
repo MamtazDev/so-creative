@@ -102,7 +102,11 @@ const EditorProjectPopUp = ({
                   <div className="submit_video_wrapper pb-10">
                     <div className="section_head pb-4">
                       <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                        <FileText size={24} className="text-indigo-600" />
+                        <FileText
+                          size={24}
+                          className="text-indigo-600"
+                          weight="bold"
+                        />
                         Submit Video
                       </h2>
                     </div>
@@ -160,6 +164,7 @@ const EditorProjectPopUp = ({
                             <CaretRight
                               size={16}
                               className="text-sm font-semibold"
+                              weight="bold"
                             />
                           </Link>
                         </div>
@@ -197,7 +202,11 @@ const EditorProjectPopUp = ({
                 <div className="project_brief_wrapper pb-10">
                   <div className="section_head pb-4">
                     <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                      <FileText size={24} className="text-indigo-600" />
+                      <FileText
+                        size={24}
+                        className="text-indigo-600"
+                        weight="bold"
+                      />
                       Project Brief
                     </h2>
                   </div>
@@ -275,11 +284,13 @@ const EditorProjectPopUp = ({
                           <CaretUp
                             size={20}
                             className="text-indigo-600 text-sm font-semibold"
+                            weight="bold"
                           />
                         ) : (
                           <CaretDown
                             size={20}
                             className="text-indigo-600 text-sm font-semibold"
+                            weight="bold"
                           />
                         )}
                       </button>
@@ -364,7 +375,11 @@ const EditorProjectPopUp = ({
                 <div className="ask_question">
                   <div className="section_head pb-4">
                     <h2 className="text-slate-900 text-lg font-semibold flex items-center gap-2">
-                      <Question size={24} className="text-indigo-600" />
+                      <Question
+                        size={24}
+                        className="text-indigo-600"
+                        weight="bold"
+                      />
                       Ask Question
                     </h2>
                   </div>
@@ -392,7 +407,11 @@ const EditorProjectPopUp = ({
                           placeholder="Ask anything..."
                         />
                         <button className="py-2 px-2 bg-indigo-600 rounded-xl absolute right-2 top-1/2 -translate-y-1/2">
-                          <ArrowUp size={20} className="text-white font-bold" />
+                          <ArrowUp
+                            size={20}
+                            className="text-white font-bold"
+                            weight="bold"
+                          />
                         </button>
                       </div>
                     </div>

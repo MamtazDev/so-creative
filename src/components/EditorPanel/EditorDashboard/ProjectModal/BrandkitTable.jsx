@@ -39,7 +39,7 @@ const BrandkitTable = () => {
                 <td className="px-4 py-3">
                   {" "}
                   <button>
-                    <DownloadSimple size={20} />
+                    <DownloadSimple size={20} weight="bold" />
                   </button>
                 </td>
               </tr>
@@ -52,7 +52,7 @@ const BrandkitTable = () => {
             displayCount >= 6 ? "hidden" : "flex"
           } px-6 py-4 text-sm font-semibold  items-center gap-2 w-full justify-center border-t`}
         >
-          Show More <CaretDown size={20} />
+          Show More <CaretDown size={20} weight="bold" />
         </button>
       </div>
     </div>

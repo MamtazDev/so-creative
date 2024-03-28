@@ -52,7 +52,7 @@ const TeamMembers = () => {
               <td className="text-sm font-normal border-t">Delivery Head</td>
               <td className="border-t">
                 <button>
-                  <DotsThreeVertical size={24} />
+                  <DotsThreeVertical size={24} weight="bold" />
                 </button>
               </td>
             </tr>

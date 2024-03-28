@@ -81,7 +81,7 @@ const UploadFile = () => {
 
               setUploadProgress(0);
 
-              console.log("Uploaded finished data:", result.data);
+              console.log("Uploaded finished data:", result);
               setSelectedVideos([...selectedVideos, acceptedFiles[0]]);
               setIsUploading(false);
 

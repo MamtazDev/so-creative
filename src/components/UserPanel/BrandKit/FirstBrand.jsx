@@ -17,7 +17,7 @@ const FirstBrand = () => {
         to="/user/brand-kit/create"
         className="flex items-center gap-2 primary_btn"
       >
-        <Plus size={24} /> Create
+        <Plus size={24} weight="bold" /> Create
       </Link>
     </div>
   );

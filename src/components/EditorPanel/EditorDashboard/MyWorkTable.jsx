@@ -2,7 +2,6 @@ import { CaretRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Link, useLocation } from "react-router-dom";
-import Loading from "../../../Shared/Loading";
 import {
   MyWorkTableData,
   clientTableHeading,
@@ -17,9 +16,7 @@ import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
 import ProjectBriefModal from "../../../Modal/ProjectBriefModal";
 
 import { DateConverter } from "../../../utils/converter";
-import AccepteJobModal from "../../../Modal/AccepteJobModal";
 import SubmitProjectModal from "../../../Modal/SubmitProjectModal";
-
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
@@ -64,6 +61,7 @@ const MyWorkTable = ({ filteredData }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = filteredData?.slice(startIndex, endIndex);
+  console.log("paginatedData", paginatedData);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -93,7 +91,7 @@ const MyWorkTable = ({ filteredData }) => {
                       to={"/editor/all-projects"}
                       className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
                     >
-                      All Projects <CaretRight size={20} />
+                      All Projects <CaretRight size={20} weight="bold" />
                     </Link>
                   </td>
 
@@ -246,14 +244,13 @@ const MyWorkTable = ({ filteredData }) => {
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
                           {DateConverter(tableDataInfo.updatedAt)}{" "}
-                          <CaretRight size={20} />
+                          <CaretRight size={20} weight="bold" />
                         </p>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-
 
               {modalPopup === true && (
                 // <EditorProjectPopUp
@@ -273,16 +270,15 @@ const MyWorkTable = ({ filteredData }) => {
                   handeJobAction={handeJobAction}
                   setModalPopup={setModalPopup}
 
-//               {modalPopup && (
-//                 <AccepteJobModal
-//                   setModalPopup={setModalPopup}
-//                   setSelectedProject={setSelectedProject}
-//                   selectedProject={selectedProject}
-//                  />
-//                )}
-
-                 />
-               )}
+                  //               {modalPopup && (
+                  //                 <AccepteJobModal
+                  //                   setModalPopup={setModalPopup}
+                  //                   setSelectedProject={setSelectedProject}
+                  //                   selectedProject={selectedProject}
+                  //                  />
+                  //                )}
+                />
+              )}
             </div>
           </div>
 
@@ -297,10 +293,6 @@ const MyWorkTable = ({ filteredData }) => {
           )}
         </>
       )}
-
-      
-            
-
 
       {route.pathname === "/editor/clients" && (
         <>
@@ -368,7 +360,8 @@ const MyWorkTable = ({ filteredData }) => {
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3]  text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
-                          {tableDataInfo.dateCreated} <CaretRight size={20} />
+                          {tableDataInfo.dateCreated}{" "}
+                          <CaretRight size={20} weight="bold" />
                         </p>
                       </td>
                     </tr>

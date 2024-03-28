@@ -21,7 +21,7 @@ const UserHome = () => {
           className="flex items-center gap-1 text-indigo-600"
         >
           <span className=" text-base  font-semibold">All Projects</span>
-          <CaretRight size={20} />
+          <CaretRight size={20} weight="bold" />
         </Link>
       </div>
       {isLoading || getingProjects ? (
