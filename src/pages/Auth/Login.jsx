@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../features/auth/authApi";
 import logo from "../../assets/new-creating.svg";
+import loading from "../../assets/loading.svg";
 import Swal from "sweetalert2";
 import { useState } from "react";
 
@@ -122,9 +123,9 @@ const Login = () => {
             <button
               disabled={loging || isLoading}
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center items-center gap-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign in
+              {loging && <img width={20} src={loading} alt="" />} Sign in
             </button>
           </div>
         </form>

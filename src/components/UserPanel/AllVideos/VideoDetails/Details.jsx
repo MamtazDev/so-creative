@@ -11,13 +11,15 @@ const Details = ({ data }) => {
   useOutsideClick(downloadRef, () => setShowDownloadOptions(false));
   return (
     <div>
-      <VimeoPlayer
-        className="bg-gray-400 rounded-xl"
-        url="https://vimeo.com/626780181"
-        width="100%"
-        height="570"
-        controls={true}
-      />
+      <div className="h-[570px] mb-5">
+        <VimeoPlayer
+          className="bg-gray-400 rounded-xl"
+          url="https://vimeo.com/626780181"
+          width="100%"
+          height="100%"
+          controls={true}
+        />
+      </div>
       <div>
         <div className="flex items-center gap-4 justify-between">
           <div>
