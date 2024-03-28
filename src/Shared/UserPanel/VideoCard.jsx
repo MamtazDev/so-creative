@@ -1,12 +1,8 @@
-import { BASE_API_URL } from "../../config/config";
 import { timeAgo } from "../../utils/converter";
-import { useRef, useState } from "react";
 import VimeoPlayer from "react-player/vimeo";
 
-/* eslint-disable react/prop-types */
-const VideoCard = ({  name, data, time }) => {
-
-  console.log("VideoCard data: ", data, name, time)
+const VideoCard = ({ name, data, time }) => {
+  console.log("VideoCard data: ", data, name, time);
   return (
     <div>
       <div className="relative  mr-6 ">
@@ -19,11 +15,12 @@ const VideoCard = ({  name, data, time }) => {
             height="100%"
             controls={true}
           />
-         
         </div>
       </div>
       <p className="text-base  font-semibold mb-1">{name}</p>
-      <p className="text-slate-500 text-sm font-normal">Created AT:{timeAgo(time)}</p>
+      <p className="text-slate-500 text-sm font-normal">
+        Created AT:{timeAgo(time)}
+      </p>
     </div>
   );
 };
