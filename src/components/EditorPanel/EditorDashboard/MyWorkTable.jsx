@@ -77,7 +77,7 @@ const MyWorkTable = ({ filteredData }) => {
             <table className="min-w-full leading-normal myworktable">
               <TableHead tableHeading={tableHeading} />
               <tbody>
-                {repeatedData.slice(0, 5).map((tableDataInfo, index) => (
+                {repeatedData?.slice(0, 5).map((tableDataInfo, index) => (
                   <TableBody
                     tableDataInfo={tableDataInfo}
                     key={index}
@@ -124,7 +124,7 @@ const MyWorkTable = ({ filteredData }) => {
               <table className="min-w-full leading-normal myworktable">
                 <TableHead tableHeading={tableHeading} />
                 <tbody>
-                  {paginatedData.map((tableDataInfo, index) => (
+                  {paginatedData?.map((tableDataInfo, index) => (
                     <TableBody
                       tableDataInfo={tableDataInfo}
                       key={index}
@@ -253,8 +253,7 @@ const MyWorkTable = ({ filteredData }) => {
                 </tbody>
               </table>
 
-
-               {/* <EditorProjectPopUp
+              {/* <EditorProjectPopUp
                   jobAction={jobAction}
                   handlePopup={handlePopup}
                   setModalPopup={setModalPopup}
@@ -286,16 +285,13 @@ const MyWorkTable = ({ filteredData }) => {
                 // />
               )} */}
 
-
-
-
-               {modalPopup  === true && (
-                                  <AccepteJobModal
-                                    setModalPopup={setModalPopup}
-                                    setSelectedProject={setSelectedProject}
-                                    selectedProject={selectedProject}
-                                   />
-                                 )}
+              {modalPopup === true && (
+                <AccepteJobModal
+                  setModalPopup={setModalPopup}
+                  setSelectedProject={setSelectedProject}
+                  selectedProject={selectedProject}
+                />
+              )}
             </div>
           </div>
 
