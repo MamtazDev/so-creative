@@ -81,7 +81,14 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
           setClickedItem={setClickedItem}
         />
       )}
-      {deleteModal && <Deleting setDeleteModal={setDeleteModal} />}
+      {deleteModal && (
+        <Deleting
+          setDeleteModal={setDeleteModal}
+          folderTitle={title}
+          clickedItem={clickedItem}
+          setClickedItem={setClickedItem}
+        />
+      )}
     </div>
   );
 };

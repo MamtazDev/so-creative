@@ -73,6 +73,7 @@ const SelectedVideo = ({ selectedVideo, setOpedUploadVideoModal }) => {
             });
           }
           if (uploadRes?.data?.success) {
+            setLoading(false);
             setOpedUploadVideoModal(false);
           }
         },
@@ -85,7 +86,6 @@ const SelectedVideo = ({ selectedVideo, setOpedUploadVideoModal }) => {
         title: "Oops...",
         text: `${error?.message}`,
       });
-    } finally {
       setLoading(false);
     }
   };

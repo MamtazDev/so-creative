@@ -2,8 +2,48 @@ import React, { useRef } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import close from "../assets/close.svg";
 import { Trash } from "@phosphor-icons/react";
+import Swal from "sweetalert2";
+import { useRemoveFolderMutation } from "../features/videos/videoApi";
 
-const Deleting = ({ setDeleteModal }) => {
+const Deleting = ({
+  setDeleteModal,
+  folderTitle,
+  clickedItem,
+  setClickedItem,
+}) => {
+  const [removeFolder, { isLoading }] = useRemoveFolderMutation();
+
+  const handleDelete = async () => {
+    try {
+      const res = await removeFolder(clickedItem);
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        setDeleteModal(false);
+        folderTitle && setClickedItem(null);
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
+  };
+
   const modalRef = useRef();
   useOutsideClick(modalRef, () => setDeleteModal(false));
   return (
@@ -33,14 +73,17 @@ const Deleting = ({ setDeleteModal }) => {
           <button
             onClick={() => setDeleteModal(false)}
             className="text-red-500 py-3 px-6 rounded-full border border-red-500"
+            disabled={isLoading}
           >
             Cancel
           </button>
           <button
-            type="submit"
+            type="button"
             className="text-white bg-red-500 rounded-full py-3 px-6"
+            onClick={handleDelete}
+            disabled={isLoading}
           >
-            Yes, I Confirm
+            {isLoading ? "Deleting..." : "Yes, I Confirm"}
           </button>
         </div>
       </div>
