@@ -2,6 +2,9 @@
 import { CaretRight } from "@phosphor-icons/react";
 import { DateConverter } from "../../../../utils/converter";
 
+import userProfile from  '../../../../assets/userprofile.png'
+
+
 const TableBody = ({ tableDataInfo, index, handlePopup }) => {
   console.log(tableDataInfo, "tajfkajkfl");
   return (
@@ -15,7 +18,7 @@ const TableBody = ({ tableDataInfo, index, handlePopup }) => {
           <div className="flex-shrink-0 w-8 h-8">
             <img
               className="w-full h-full rounded-full"
-              src={tableDataInfo.clientImg}
+              src={tableDataInfo.clientImg ? tableDataInfo.clientImg : userProfile }
               alt="img"
             />
           </div>
@@ -33,11 +36,6 @@ const TableBody = ({ tableDataInfo, index, handlePopup }) => {
         </p>
       </td>
 
-      <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
-        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-          4 days
-        </p>
-      </td>
 
       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">

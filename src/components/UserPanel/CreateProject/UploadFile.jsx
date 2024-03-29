@@ -50,11 +50,7 @@ const UploadFile = () => {
 
           const result = await res.json();
 
-          console.log(result.data);
-
           const { upload_link } = result.data;
-
-          console.log("upload_link", upload_link);
 
           const tusUpload = new tus.Upload(selectedFile, {
             endpoint: upload_link,

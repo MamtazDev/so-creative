@@ -9,6 +9,10 @@ const EditorPagination = ({
   itemsPerPage,
   endIndex,
 }) => {
+
+
+  console.log("filteredData from editor portal:", filteredData)
+
   return (
     <div className="container mx-auto mt-10 px-4">
       <nav

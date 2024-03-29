@@ -38,6 +38,21 @@ export const videoApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Drives"],
     }),
+    deleteFile: builder.mutation({
+      query: ({ id, data }) => ({
+        url: "/v1/drive/removeFile",
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["Drives"],
+    }),
+    removeFolder: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/v1/drive/removeFolder/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Drives"],
+    }),
   }),
 });
 
@@ -48,4 +63,6 @@ export const {
   useGetFolderFileQuery,
   useGetUserAllFilesQuery,
   useUpdateFolderMutation,
+  useDeleteFileMutation,
+  useRemoveFolderMutation,
 } = videoApi;

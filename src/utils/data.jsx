@@ -65,7 +65,6 @@ import {
 export const tableHeading = [
   "Client",
   "Project Name",
-  "Duration",
   "Date Created",
 ];
 
@@ -81,7 +80,6 @@ export const tableHeadingTwo = [
 export const clientTableHeading = [
   "Client",
   "Project Count",
-  "Total Duration",
   "Last Project Status",
   "Last Activity",
 ];

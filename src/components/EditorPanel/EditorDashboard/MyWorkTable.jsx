@@ -17,6 +17,7 @@ import ProjectBriefModal from "../../../Modal/ProjectBriefModal";
 
 import { DateConverter } from "../../../utils/converter";
 import SubmitProjectModal from "../../../Modal/SubmitProjectModal";
+import AccepteJobModal from "../../../Modal/AccepteJobModal";
 
 const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
@@ -136,7 +137,7 @@ const MyWorkTable = ({ filteredData }) => {
                 </tbody>
               </table>
 
-              {/* {modalPopup === true && (
+              {modalPopup === true && (
                 <EditorProjectPopUp
                   jobAction={jobAction}
                   setModalPopup={setModalPopup}
@@ -148,14 +149,14 @@ const MyWorkTable = ({ filteredData }) => {
                   getRootProps={getRootProps}
                   file={file}
                 />
-              )} */}
-              {showSubmitModal && (
+              )}
+              {/* {showSubmitModal && (
                 <SubmitProjectModal
                   setModalPopup={setShowSubmitModal}
                   setSelectedProject={setSelectedProject}
                   selectedProject={selectedProject}
                 />
-              )}
+              )} */}
             </div>
           </div>
           {filteredData?.length > 10 && (
@@ -252,7 +253,20 @@ const MyWorkTable = ({ filteredData }) => {
                 </tbody>
               </table>
 
-              {modalPopup === true && (
+
+               {/* <EditorProjectPopUp
+                  jobAction={jobAction}
+                  handlePopup={handlePopup}
+                  setModalPopup={setModalPopup}
+                  handeJobAction={handeJobAction}
+                  handleUploadClick={handleUploadClick}
+                  thumbnail={thumbnail}
+                  getInputProps={getInputProps}
+                  getRootProps={getRootProps}
+                  file={file}
+                /> */}
+
+              {/* {modalPopup === true && (
                 // <EditorProjectPopUp
                 //   jobAction={jobAction}
                 //   handlePopup={handlePopup}
@@ -264,21 +278,24 @@ const MyWorkTable = ({ filteredData }) => {
                 //   getRootProps={getRootProps}
                 //   file={file}
                 // />
-                <ProjectBriefModal
-                  jobAction={jobAction}
-                  handlePopup={handlePopup}
-                  handeJobAction={handeJobAction}
-                  setModalPopup={setModalPopup}
+                // <ProjectBriefModal
+                //   jobAction={jobAction}
+                //   handlePopup={handlePopup}
+                //   handeJobAction={handeJobAction}
+                //   setModalPopup={setModalPopup}
+                // />
+              )} */}
 
-                  //               {modalPopup && (
-                  //                 <AccepteJobModal
-                  //                   setModalPopup={setModalPopup}
-                  //                   setSelectedProject={setSelectedProject}
-                  //                   selectedProject={selectedProject}
-                  //                  />
-                  //                )}
-                />
-              )}
+
+
+
+               {modalPopup  === true && (
+                                  <AccepteJobModal
+                                    setModalPopup={setModalPopup}
+                                    setSelectedProject={setSelectedProject}
+                                    selectedProject={selectedProject}
+                                   />
+                                 )}
             </div>
           </div>
 
@@ -328,12 +345,6 @@ const MyWorkTable = ({ filteredData }) => {
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
                           {tableDataInfo.projectCount}
-                        </p>
-                      </td>
-
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
-                        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
-                          {tableDataInfo.duration} days
                         </p>
                       </td>
 
