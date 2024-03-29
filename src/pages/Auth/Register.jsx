@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../features/auth/authApi";
 import { useState } from "react";
+import loading from "../../assets/loading.svg";
 import logo from "../../assets/new-creating.svg";
 import Swal from "sweetalert2";
 
@@ -172,8 +173,9 @@ const Register = () => {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center items-center gap-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
+              {registering && <img width={20} src={loading} alt="" />}
               Register
             </button>
           </div>
