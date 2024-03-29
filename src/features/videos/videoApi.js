@@ -44,7 +44,7 @@ export const videoApi = apiSlice.injectEndpoints({
         method: "DELETE",
         body: data,
       }),
-      invalidatesTags: ["Drives", "Videos"],
+      invalidatesTags: ["Drives", "Videos", "Folders"],
     }),
     removeFolder: builder.mutation({
       query: (id) => ({

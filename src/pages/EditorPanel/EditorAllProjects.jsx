@@ -12,7 +12,9 @@ const EditorAllProjects = () => {
     setFilter(newFilter);
   };
 
-  const { data, isLoading } = useGetAllProjectsQuery("editor=none");
+  const { data, isLoading } = useGetAllProjectsQuery(
+    "editor=none&status=Pending"
+  );
 
   console.log(data, "datatkjk");
   const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();

@@ -62,7 +62,40 @@ export const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    updateUserSettings: builder.mutation({
+      query: (data) => ({
+        url: "/v1/auth/updateUserInfo",
+        method: "PATCH",
+        body: data,
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch, getState }) {
+        try {
+          const result = await queryFulfilled;
+
+          const userInfo = getState().auth;
+
+          Cookies.set(
+            "soCreativeAuth",
+            JSON.stringify({
+              accessToken: userInfo?.accessToken,
+              user: result.data.data,
+            })
+          );
+
+          dispatch(
+            userLoggedIn({
+              accessToken: userInfo?.accessToken,
+              user: result.data.data,
+            })
+          );
+        } catch (error) {}
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useUpdateUserSettingsMutation,
+} = authApi;

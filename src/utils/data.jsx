@@ -62,18 +62,13 @@ import {
   Video,
 } from "@phosphor-icons/react";
 
-export const tableHeading = [
-  "Client",
-  "Project Name",
-  "Date Created",
-];
+export const tableHeading = ["Client", "Project Name", "Date Created"];
 
 export const tableHeadingTwo = [
   "Client",
   "Project Name",
   "Assignee",
   "Status",
-  "Duration",
   "Last Activity",
 ];
 

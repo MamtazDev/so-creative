@@ -3,19 +3,29 @@ import useOutsideClick from "../hooks/useOutsideClick";
 import close from "../assets/close.svg";
 import { Trash } from "@phosphor-icons/react";
 import Swal from "sweetalert2";
-import { useRemoveFolderMutation } from "../features/videos/videoApi";
+import {
+  useDeleteFileMutation,
+  useRemoveFolderMutation,
+} from "../features/videos/videoApi";
 
 const Deleting = ({
   setDeleteModal,
   folderTitle,
   clickedItem,
   setClickedItem,
+  file,
 }) => {
   const [removeFolder, { isLoading }] = useRemoveFolderMutation();
+  const [deleteFile, { isLoading: fileDeleting }] = useDeleteFileMutation();
 
   const handleDelete = async () => {
     try {
-      const res = await removeFolder(clickedItem);
+      const res = file
+        ? await deleteFile({
+            fileId: clickedItem,
+            folderId: file.parentFolderId,
+          })
+        : await removeFolder(clickedItem);
 
       if (res?.error?.error) {
         Swal.fire({
@@ -81,9 +91,9 @@ const Deleting = ({
             type="button"
             className="text-white bg-red-500 rounded-full py-3 px-6"
             onClick={handleDelete}
-            disabled={isLoading}
+            disabled={isLoading || fileDeleting}
           >
-            {isLoading ? "Deleting..." : "Yes, I Confirm"}
+            {isLoading || fileDeleting ? "Deleting..." : "Yes, I Confirm"}
           </button>
         </div>
       </div>

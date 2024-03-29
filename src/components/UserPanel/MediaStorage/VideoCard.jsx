@@ -6,6 +6,7 @@ import Deleting from "../../../Modal/Deleting";
 
 const VideoCard = ({ video, setClickedItem, clickedItem }) => {
   const [deleteModal, setDeleteModal] = useState(false);
+  const [title, setTitle] = useState(null);
   console.log("video", video);
   const handleClick = (e, id) => {
     e.stopPropagation();
@@ -52,6 +53,7 @@ const VideoCard = ({ video, setClickedItem, clickedItem }) => {
               onClick={(e) => {
                 e.stopPropagation();
                 setDeleteModal(true);
+                setTitle(video.title);
               }}
               className="text-sm font-medium flex items-center gap-3 px-4 py-3 w-full"
             >
@@ -67,7 +69,15 @@ const VideoCard = ({ video, setClickedItem, clickedItem }) => {
           {formatFileSize(video.fileSize)}
         </p>
       </div>
-      {deleteModal && <Deleting setDeleteModal={setDeleteModal} />}
+      {deleteModal && (
+        <Deleting
+          setDeleteModal={setDeleteModal}
+          folderTitle={title}
+          clickedItem={clickedItem}
+          setClickedItem={setClickedItem}
+          file={video}
+        />
+      )}
     </div>
   );
 };

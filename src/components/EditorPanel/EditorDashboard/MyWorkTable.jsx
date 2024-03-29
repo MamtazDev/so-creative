@@ -188,8 +188,8 @@ const MyWorkTable = ({ filteredData }) => {
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-8 h-8">
                             <img
-                              className="w-full h-full rounded-full"
-                              src={tableDataInfo.clientImg}
+                              className="w-full h-full rounded-full object-cover"
+                              src={tableDataInfo.creator?.image}
                               alt="img"
                             />
                           </div>
@@ -236,11 +236,11 @@ const MyWorkTable = ({ filteredData }) => {
                         </p>
                       </td>
 
-                      <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
+                      {/* <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
                           4 days
                         </p>
-                      </td>
+                      </td> */}
 
                       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
                         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap flex gap-2">
@@ -265,7 +265,7 @@ const MyWorkTable = ({ filteredData }) => {
                   file={file}
                 /> */}
 
-              {/* {modalPopup === true && (
+              {modalPopup === true && (
                 // <EditorProjectPopUp
                 //   jobAction={jobAction}
                 //   handlePopup={handlePopup}
@@ -277,21 +277,23 @@ const MyWorkTable = ({ filteredData }) => {
                 //   getRootProps={getRootProps}
                 //   file={file}
                 // />
-                // <ProjectBriefModal
-                //   jobAction={jobAction}
-                //   handlePopup={handlePopup}
-                //   handeJobAction={handeJobAction}
-                //   setModalPopup={setModalPopup}
-                // />
-              )} */}
-
-              {modalPopup === true && (
-                <AccepteJobModal
+                <ProjectBriefModal
+                  jobAction={jobAction}
+                  handlePopup={handlePopup}
+                  handeJobAction={handeJobAction}
                   setModalPopup={setModalPopup}
                   setSelectedProject={setSelectedProject}
                   selectedProject={selectedProject}
                 />
               )}
+
+              {/* {modalPopup === true && (
+                <AccepteJobModal
+                  setModalPopup={setModalPopup}
+                  setSelectedProject={setSelectedProject}
+                  selectedProject={selectedProject}
+                />
+              )} */}
             </div>
           </div>
 

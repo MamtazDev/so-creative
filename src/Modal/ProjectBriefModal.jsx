@@ -13,10 +13,17 @@ const ProjectBriefModal = ({
   handlePopup,
   handeJobAction,
   setModalPopup,
+  setSelectedProject,
+  selectedProject,
 }) => {
   const [step, setStep] = useState("Video Files");
+
+  console.log(selectedProject, "selectedProject");
   const bodyRef = useRef();
-  useOutsideClick(bodyRef, () => setModalPopup(false));
+  useOutsideClick(bodyRef, () => {
+    setModalPopup(false);
+    setSelectedProject(null);
+  });
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
@@ -31,7 +38,9 @@ const ProjectBriefModal = ({
         <div className="p-10 overflow-y-auto max-h-[70vh] no_scrollbar">
           <ProjectTab jobAction={jobAction} step={step} setStep={setStep} />
           {step === "Submit Video" && <SubmitVideo />}
-          {step === "Video Files" && <VideoFiles />}
+          {step === "Video Files" && (
+            <VideoFiles projectDetails={selectedProject} />
+          )}
           {step === "Project Brief" && <ProjectBrief />}
           {step === "Brand Kit" && <BrandKit />}
           {step === "Ask Questions" && <VideoComments />}

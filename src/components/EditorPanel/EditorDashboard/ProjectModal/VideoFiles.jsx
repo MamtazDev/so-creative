@@ -4,9 +4,11 @@ import check from "../../../../assets/check-icon.svg";
 import VimeoPlayer from "react-player/vimeo";
 import useOutsideClick from "../../../../hooks/useOutsideClick";
 import { DownloadSimple } from "@phosphor-icons/react";
+import { timeAgo } from "../../../../utils/converter";
 
-const VideoFiles = () => {
-  const [selectedVideo, setSelectedVideo] = useState(0);
+const VideoFiles = ({ projectDetails }) => {
+  const [selectedVideo, setSelectedVideo] = useState(projectDetails?.files[0]);
+
   const downloadRef = useRef();
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   useOutsideClick(downloadRef, () => setShowDownloadOptions(false));
@@ -19,7 +21,7 @@ const VideoFiles = () => {
             <div className="h-[327px] mb-5">
               <VimeoPlayer
                 className="bg-gray-400 rounded-xl mb-6 "
-                url="https://vimeo.com/626780181"
+                url={selectedVideo?.fileData?.file}
                 width="100%"
                 height="100%"
                 controls={true}
@@ -29,10 +31,10 @@ const VideoFiles = () => {
               <div className="flex items-center gap-4 justify-between">
                 <div>
                   <p className="text-base font-semibold mb-1">
-                    Mindfulness Meditation Guides
+                    {selectedVideo?.fileData?.title}
                   </p>
                   <p className="text-slate-500 font-normal text-xs">
-                    updated 1 day ago
+                    updated {timeAgo(selectedVideo?.fileData?.updatedAt)}
                   </p>
                 </div>
                 <button
@@ -75,7 +77,7 @@ const VideoFiles = () => {
         </div>
         <div className="h-full overflow-y-auto">
           <div className="flex flex-col items-center gap-6">
-            {[1, 2, 3, 4].map((data, index) => (
+            {projectDetails?.files?.map((data, index) => (
               <div
                 className={`${
                   selectedVideo === index

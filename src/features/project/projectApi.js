@@ -9,7 +9,7 @@ export const projectApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Project", "AllProjects", "UserProjects"],
+      invalidatesTags: ["Project", "AllProjects", "UserProjects", "Videos"],
     }),
     updateProject: builder.mutation({
       query: (data) => ({
@@ -17,7 +17,7 @@ export const projectApi = apiSlice.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["Project", "AllProjects", "UserProjects"],
+      invalidatesTags: ["Project", "AllProjects", "UserProjects", "Videos"],
     }),
 
     getProjectDetails: builder.query({
