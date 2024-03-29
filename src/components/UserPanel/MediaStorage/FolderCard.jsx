@@ -41,7 +41,7 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
 
         {clickedItem === folder._id && (
           <div
-            className="absolute top-0 -right-40 bg-white w-[196px]  shadow-xl  rounded-xl "
+            className="absolute top-0 -right-40 z-40 bg-white w-[196px]  shadow-xl  rounded-xl "
             onClick={(e) => e.stopPropagation()}
           >
             <button
