@@ -16,7 +16,6 @@ const EditorAllProjects = () => {
     "editor=none&status=Pending"
   );
 
-  console.log(data, "datatkjk");
   const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
 
   const filteredData = repeatedData.filter((item) =>

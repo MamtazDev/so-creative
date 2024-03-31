@@ -5,8 +5,7 @@ import uploadVideo from "../../../../assets/editor_panel/upload_video.svg";
 import mp4 from "../../../../assets/mp4.svg";
 import { DownloadSimple } from "@phosphor-icons/react";
 
-const SubmitVideo = () => {
-  const [file, setFile] = useState(null);
+const SubmitVideo = ({ selectedProject, file, setFile }) => {
   const [thumbnail, setThumbnail] = useState(null);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -30,8 +29,12 @@ const SubmitVideo = () => {
   return (
     <div>
       <div className="submit_video outline-1 outline-dashed outline-slate-200  rounded-3xl mb-6">
-        <div className="upoload_video py-12 px-6 flex justify-center items-center flex-col ">
-          <div {...getRootProps()} onClick={handleUploadClick}>
+        <div
+          {...getRootProps()}
+          onClick={handleUploadClick}
+          className="upoload_video py-12 px-6 flex justify-center items-center flex-col cursor-pointer"
+        >
+          <div>
             {thumbnail ? (
               <img
                 src={thumbnail}
@@ -54,7 +57,7 @@ const SubmitVideo = () => {
           {file ? (
             <div>
               <p className="text-sm font-semibold text-slate-900 pb-1">
-                File uploaded: {file.name}
+                {file.name}
               </p>
             </div>
           ) : (

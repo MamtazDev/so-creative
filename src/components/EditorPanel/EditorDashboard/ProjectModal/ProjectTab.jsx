@@ -1,7 +1,8 @@
 import React from "react";
 import { projectTab } from "../../../../utils/data";
 
-const ProjectTab = ({ step, setStep, jobAction }) => {
+const ProjectTab = ({ step, setStep, selectedProject }) => {
+  console.log(projectTab, "projectTab");
   return (
     <div className="flex items-center gap-3 mb-6 ">
       {projectTab.map((data, index) => (
@@ -12,7 +13,10 @@ const ProjectTab = ({ step, setStep, jobAction }) => {
               ? "bg-indigo-600 text-white"
               : "bg-slate-200 text-gray-900"
           } ${
-            !jobAction && data.name === "Submit Video" ? "hidden" : "flex"
+            selectedProject?.status === "Pending" &&
+            data.name === "Submit Video"
+              ? "hidden"
+              : "flex"
           }   rounded-[40px] py-2 px-4 flex items-center gap-2  text-xs font-semibold`}
           key={index}
         >

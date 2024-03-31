@@ -26,6 +26,8 @@ const MyWorkTable = ({ filteredData }) => {
   const [showSubmitModal, setShowSubmitModal] = useState(false);
 
   const [selectedProject, setSelectedProject] = useState(null);
+
+  console.log(selectedProject, "selectedProject");
   const [jobAction, setJobAction] = useState(false);
 
   const [file, setFile] = useState(null);
@@ -128,26 +130,29 @@ const MyWorkTable = ({ filteredData }) => {
                     <TableBody
                       tableDataInfo={tableDataInfo}
                       key={index}
-                      handlePopup={() => {
-                        setSelectedProject(tableDataInfo);
-                        setShowSubmitModal(true);
-                      }}
+                      handlePopup={() => handlePopup(tableDataInfo)}
                     />
                   ))}
                 </tbody>
               </table>
 
               {modalPopup === true && (
-                <EditorProjectPopUp
-                  jobAction={jobAction}
-                  setModalPopup={setModalPopup}
+                // <EditorProjectPopUp
+                //   jobAction={jobAction}
+                //   setModalPopup={setModalPopup}
+                //   handlePopup={handlePopup}
+                //   handeJobAction={handeJobAction}
+                //   handleUploadClick={handleUploadClick}
+                //   thumbnail={thumbnail}
+                //   getInputProps={getInputProps}
+                //   getRootProps={getRootProps}
+                //   file={file}
+                // />
+                <ProjectBriefModal
                   handlePopup={handlePopup}
-                  handeJobAction={handeJobAction}
-                  handleUploadClick={handleUploadClick}
-                  thumbnail={thumbnail}
-                  getInputProps={getInputProps}
-                  getRootProps={getRootProps}
-                  file={file}
+                  setModalPopup={setModalPopup}
+                  setSelectedProject={setSelectedProject}
+                  selectedProject={selectedProject}
                 />
               )}
               {/* {showSubmitModal && (
@@ -278,9 +283,7 @@ const MyWorkTable = ({ filteredData }) => {
                 //   file={file}
                 // />
                 <ProjectBriefModal
-                  jobAction={jobAction}
                   handlePopup={handlePopup}
-                  handeJobAction={handeJobAction}
                   setModalPopup={setModalPopup}
                   setSelectedProject={setSelectedProject}
                   selectedProject={selectedProject}

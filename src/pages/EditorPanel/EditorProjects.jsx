@@ -15,8 +15,6 @@ const EditorProjects = () => {
     setFilter(newFilter);
   };
 
-  console.log( "data for all editors: ", data );
-
   return isLoading ? (
     <Loading />
   ) : (

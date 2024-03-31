@@ -96,8 +96,8 @@ const VideoComments = ({ data }) => {
                   <div className="activity_card flex gap-2 " key={index}>
                     <div className="left_activity_card">
                       <img
-                        className="h-10 w-10 rounded-full"
-                        src={aveter}
+                        className="h-10 w-10 rounded-full object-cover"
+                        src={item.user.image ? item.user.image : aveter}
                         alt="activity_img"
                       />
                     </div>

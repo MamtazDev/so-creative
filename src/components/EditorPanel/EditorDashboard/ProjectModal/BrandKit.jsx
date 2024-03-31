@@ -1,7 +1,7 @@
 import React from "react";
 import BrandkitTable from "./BrandkitTable";
 
-const BrandKit = () => {
+const BrandKit = ({ selectedProject }) => {
   return (
     <div className="flex flex-col gap-8">
       <BrandkitTable />

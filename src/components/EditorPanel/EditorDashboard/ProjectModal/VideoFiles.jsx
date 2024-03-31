@@ -80,20 +80,20 @@ const VideoFiles = ({ projectDetails }) => {
             {projectDetails?.files?.map((data, index) => (
               <div
                 className={`${
-                  selectedVideo === index
+                  selectedVideo?.fileData._id === data?.fileData._id
                     ? "border-2 border-[#C67CFF] p-1 rounded-xl"
                     : ""
                 }  relative  w-[211px] h-[108px]  `}
                 key={index}
               >
                 <div
-                  onClick={() => setSelectedVideo(index)}
-                  className="absolute top-0 right-0 w-full h-full"
+                  onClick={() => setSelectedVideo(data)}
+                  className="absolute top-0 right-0 w-full h-full cursor-pointer"
                 ></div>
 
                 <VimeoPlayer
                   className="bg-gray-400 rounded-xl"
-                  url="https://vimeo.com/626780181"
+                  url={data?.fileData.file}
                   width="100%"
                   height="100%"
                   controls={true}
