@@ -88,7 +88,7 @@ const ChatBotV2 = () => {
   return (
     <div
       ref={chatbotRef}
-      className="fixed z-40 max-w-[512px] w-full  bottom-14 right-14"
+      className="fixed z-40 max-w-[512px] w-full  bottom-32 right-14"
     >
       {show && (
         <div className="rounded-3xl bg-white shadow-2xl max-h-[672px]  h-full ">
@@ -217,14 +217,13 @@ const ChatBotV2 = () => {
           </div>
         </div>
       )}
-      <div className="text-end mt-4">
-        <button
-          className="hover:scale-105 transition-all duration-300 ease-in"
-          onClick={() => setShow(!show)}
-        >
-          <img src={show ? chatOff : profile} alt="" />
-        </button>
-      </div>
+
+      <button
+        className="fixed z-40 bottom-14 right-14 hover:scale-105 transition-all duration-300 ease-in "
+        onClick={() => setShow(!show)}
+      >
+        <img src={show ? chatOff : profile} alt="" />
+      </button>
     </div>
   );
 };

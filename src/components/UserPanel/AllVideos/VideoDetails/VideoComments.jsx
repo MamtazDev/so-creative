@@ -69,7 +69,7 @@ const VideoComments = ({ data }) => {
     }
   };
   return (
-    <div className="border rounded-xl p-6">
+    <div className="border rounded-xl p-6 max-h-[70vh]">
       <div className="h-full flex flex-col gap-6 justify-between ">
         <div className="bg-slate-100 rounded-full flex items-center gap-2.5 p-2 ">
           <img src={search} alt="" />
