@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import uploadVideo from "../../../../assets/editor_panel/upload_video.svg";
 import mp4 from "../../../../assets/mp4.svg";
 import { DownloadSimple } from "@phosphor-icons/react";
+import { formatFileSize, truncateFilename } from "../../../../utils/converter";
 
 const SubmitVideo = ({ selectedProject, file, setFile }) => {
   const [thumbnail, setThumbnail] = useState(null);
@@ -51,7 +52,7 @@ const SubmitVideo = ({ selectedProject, file, setFile }) => {
               id="fileInput"
               type="file"
               {...getInputProps()}
-              // style={{ display: "none" }}
+            // style={{ display: "none" }}
             />
           </div>
           {file ? (
@@ -75,7 +76,7 @@ const SubmitVideo = ({ selectedProject, file, setFile }) => {
           )}
         </div>
       </div>
-      <div>
+      {selectedProject?.previousVersion && selectedProject?.previousVersion.length > 0 && <div>
         <p className="text-base font-semibold mb-4">Previous Versions</p>
         <div className="border rounded-2xl">
           <table className="w-full text-sm font-medium">
@@ -87,14 +88,14 @@ const SubmitVideo = ({ selectedProject, file, setFile }) => {
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3].map((data, index) => (
+              {selectedProject?.previousVersion.map((data, index) => (
                 <tr key={index} className="border-b last:border-b-0">
                   <td className="px-4 py-3 flex items-center gap-3">
                     <img width={24} src={mp4} alt="" />
-                    Subtitles and SRT Files
+                    {truncateFilename(data.fileData.title)}
                   </td>
                   <td className="px-4 py-3">
-                    Spoken English videos only. Allow up to 24-48 hours.
+                    {formatFileSize(data.fileData.fileSize)}
                   </td>
                   <td className="px-4 py-3">
                     {" "}
@@ -107,7 +108,7 @@ const SubmitVideo = ({ selectedProject, file, setFile }) => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
