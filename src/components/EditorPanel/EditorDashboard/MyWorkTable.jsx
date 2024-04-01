@@ -137,17 +137,6 @@ const MyWorkTable = ({ filteredData }) => {
               </table>
 
               {modalPopup === true && (
-                // <EditorProjectPopUp
-                //   jobAction={jobAction}
-                //   setModalPopup={setModalPopup}
-                //   handlePopup={handlePopup}
-                //   handeJobAction={handeJobAction}
-                //   handleUploadClick={handleUploadClick}
-                //   thumbnail={thumbnail}
-                //   getInputProps={getInputProps}
-                //   getRootProps={getRootProps}
-                //   file={file}
-                // />
                 <ProjectBriefModal
                   handlePopup={handlePopup}
                   setModalPopup={setModalPopup}
