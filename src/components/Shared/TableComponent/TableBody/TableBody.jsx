@@ -27,7 +27,7 @@ const TableBody = ({ tableDataInfo, index, handlePopup }) => {
           </div>
           <div className="ml-3">
             <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
-              {tableDataInfo?.creator?.name}
+              {tableDataInfo?.clientName}
             </p>
           </div>
         </div>

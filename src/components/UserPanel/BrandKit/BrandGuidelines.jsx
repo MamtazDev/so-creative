@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BrandUpload from "../../../Shared/UserPanel/BrandUpload";
 import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
@@ -16,6 +16,7 @@ const BrandGuidelines = () => {
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
   const brandImgRef = useRef();
   const guidelinesInputRefs = useRef(
     Array.from({ length: guidelines.length }).map(() => React.createRef())
@@ -170,7 +171,8 @@ const BrandGuidelines = () => {
 
       {isLoading === "done" && (
         <div className="h-full flex flex-col items-center justify-center">
-          <Confetti />
+          <Confetti recycle={false} />
+
           <>
             <img className="mb-10" src={created} alt="" />
             <p className="text-4xl font-bold mb-3">

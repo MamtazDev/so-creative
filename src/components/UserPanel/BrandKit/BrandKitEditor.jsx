@@ -49,7 +49,7 @@ const BrandKitEditor = () => {
           kitRef={guidelineRef}
         />
         {brand?.guidelines?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.guidelines?.map((data, index) => (
               <BrandcardInner key={index} data={data} />
             ))}
@@ -70,7 +70,7 @@ const BrandKitEditor = () => {
         />
 
         {brand?.logos?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.logos?.map((data, index) => (
               <BrandcardInner
                 main={brand?.logos}
@@ -95,7 +95,7 @@ const BrandKitEditor = () => {
           kitRef={fontRef}
         />
         {brand?.fonts?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.fonts?.map((data, index) => (
               <BrandcardInner key={index} data={data} />
             ))}
@@ -112,7 +112,7 @@ const BrandKitEditor = () => {
         />
 
         {brand?.colors?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.colors?.map((data, index) => (
               <BrandcardInner key={index} data={data} />
             ))}
@@ -132,7 +132,7 @@ const BrandKitEditor = () => {
           kitRef={imageAssetRef}
         />
         {brand?.imageAssets?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.imageAssets?.map((data, index) => (
               <BrandcardInner key={index} data={data} />
             ))}
@@ -152,7 +152,7 @@ const BrandKitEditor = () => {
           kitRef={videoAssetRef}
         />
         {brand?.videoAssets?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.videoAssets?.map((data, index) => (
               <BrandcardInner key={index} data={data} />
             ))}
@@ -172,7 +172,7 @@ const BrandKitEditor = () => {
           kitRef={audioAssetRef}
         />
         {brand?.audioAssets?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.audioAssets?.map((data, index) => (
               <BrandcardInner key={index} data={data} />
             ))}
