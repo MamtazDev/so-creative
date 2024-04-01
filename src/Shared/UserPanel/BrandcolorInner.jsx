@@ -2,17 +2,12 @@ import close from "../../assets/close.svg";
 import mp4 from "../../assets/mp4.svg";
 import mp3 from "../../assets/audio.svg";
 
-const BrandcardInner = ({ brand, main, data, setMain,index }) => {
+const BrandcolorInner = ({ brand, main, data, setMain,index }) => {
   console.log(data);
-  const fileName = data?.name.split(".")[0];
-  const fileExtension = data?.name.split(".").slice(1).join(".");
-  const truncatedFileName =
-    fileName.length > 10 ? fileName.slice(0, 10) : fileName;
-
-
-    
-
-
+  // const fileName = data?.name.split(".")[0];
+  // const fileExtension = data?.name.split(".").slice(1).join(".");
+  // const truncatedFileName =
+  //   fileName.length > 10 ? fileName.slice(0, 10) : fileName;
 
   const removeHandler = () => {
 
@@ -48,8 +43,9 @@ const BrandcardInner = ({ brand, main, data, setMain,index }) => {
       <span onClick={removeHandler} className="absolute top-1 right-1">
         <img src={close} alt="" />
       </span>
-      <div className="h-[90px] flex justify-center bg-indigo-100 rounded-t-xl">
-        {fileExtension.toLowerCase() === "pdf" ? (
+      <div className={` ${data} h-[90px] flex justify-center rounded-t-xl`} style={{backgroundColor: `${data}`}}>
+       
+        {/* {fileExtension.toLowerCase() === "pdf" ? (
           <img
             className="object-cover"
             src="https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_1280.png"
@@ -68,18 +64,13 @@ const BrandcardInner = ({ brand, main, data, setMain,index }) => {
             src={URL.createObjectURL(data)}
             alt=""
           />
-        )}
+        )} */}
       </div>
       <div className="py-2 px-3">
-        <p className="text-sm font-semibold mb-1">
-          {truncatedFileName}.{fileExtension}
-        </p>
-        <p className="text-xs font-normal">
-          {(data.size / (1024 * 1024)).toFixed(2)} MB
-        </p>
+       {data}
       </div>
     </div>
   );
 };
 
-export default BrandcardInner;
+export default BrandcolorInner;

@@ -6,12 +6,48 @@ const AddColor = ({
   setColorModal,
   selectedColor,
   setSelectedColor,
-  handleChange,
+  setBrand,
+  // handleChange,
 }) => {
   const colorRef = useRef();
 
+  const [ nameColor, setNameColor ] = useState()
+  const [ valueColor, setValueColor ] = useState()
+
+
+
+  const handleChange = (e) => {
+
+    setSelectedColor(e.target.value);
+
+
+    const { name } = e.target;
+    console.log("Name:", name)
+    console.log("Value:", e.target.value )
+    setNameColor(name)
+    setValueColor(e.target.value)
+    // setBrand((prevState) => ({
+    //   ...prevState,
+    //   [name]: [...(prevState[name] || []), e.target.value],
+    // }));
+  };
+
+  const handleSubmitColor = (e) => {
+    const { name } = e.target;
+    console.log("Name:", name)
+    console.log("Value:", e.target.value )
+    setBrand((prevState) => ({
+      ...prevState,
+      [nameColor]: [...(prevState[nameColor] || []), valueColor],
+    }));
+
+    setColorModal(false)
+  };
+
+
   const handleColorChange = (e) => {
     setSelectedColor(e.target.value);
+    console.log("e.target.value: ", e.target.value)
   };
   useOutsideClick(colorRef, () => setColorModal(false));
   return (
@@ -44,13 +80,13 @@ const AddColor = ({
             type="text"
             className="border border-gray-300 p-2 rounded-md w-full"
             value={selectedColor}
-            onChange={handleColorChange}
+            onChange={handleChange}
           />
         </div>
 
         <div className="text-center">
           <button
-            onClick={() => setColorModal(false)}
+            onClick={handleSubmitColor}
             type="button"
             className="primary_btn mt-5 "
           >

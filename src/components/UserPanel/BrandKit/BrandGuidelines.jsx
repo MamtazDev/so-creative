@@ -14,8 +14,12 @@ import BrandKitEditor from "./BrandKitEditor";
 const BrandGuidelines = () => {
   const [brandImg, setBrandImg] = useState(null);
   const [description, setDescription] = useState("");
+  const [brandname, setBrandname] = useState("");
   const [brand, setBrand] = useState({});
+
+  const [allbrand, setAllBrand] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  
   const brandImgRef = useRef();
   const guidelinesInputRefs = useRef(
     Array.from({ length: guidelines.length }).map(() => React.createRef())
@@ -39,12 +43,38 @@ const BrandGuidelines = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setIsLoading("loading");
+    console.log("brand", brandname)
+    console.log("brandImg", brandImg)
+    console.log("description", description)
 
-    setTimeout(() => {
-      setIsLoading("done");
-    }, 1000);
+    setAllBrand([...allbrand, {brand: brand, name: brandname, Description: description, brandLogo: brandImg}])
+    console.log("setAllBrand", allbrand)
+
+    // setIsLoading("loading");
+
+    // setTimeout(() => {
+    //   setIsLoading("done");
+    // }, 1000);
   };
+
+
+
+  const handleAssetPortion = () => {
+
+    const url = "https://player.vimeo.com/video/929420372?h=2df2a64de8";
+    const regex = /\/video\/(\d+)\?/;
+    const match = url.match(regex);
+    const videoId = match ? match[1] : null;
+    console.log("Video id: ", videoId)
+
+
+  }
+
+
+
+
+
+  console.log("setAllBrand", allbrand)
 
   const handleChange = (e, fieldName, index) => {
     const file = e.target.files[0];
@@ -104,7 +134,7 @@ const BrandGuidelines = () => {
             ) : (
               <p>There is no data</p>
             )} */}
-            <BrandKitEditor />
+            <BrandKitEditor  brand = {brand} setBrand = {setBrand} />
           </div>
           <div className="max-w-[584px] w-full border rounded-3xl p-10">
             <div
@@ -136,6 +166,8 @@ const BrandGuidelines = () => {
               </label>
               <input
                 type="text"
+                value={brandname}
+                onChange={(e) => setBrandname(e.target.value)}
                 className="border w-full px-4 py-3.5 rounded-lg"
                 placeholder="Enter your brand name"
               />
