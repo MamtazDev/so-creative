@@ -16,7 +16,6 @@ const BrandGuidelines = () => {
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(true);
 
   const brandImgRef = useRef();
   const guidelinesInputRefs = useRef(
@@ -55,11 +54,7 @@ const BrandGuidelines = () => {
       [fieldName]: [...(prevState[fieldName] || []), file],
     }));
   };
-  useEffect(() => {
-    setTimeout(() => {
-      setShowConfetti(false);
-    }, 5000);
-  }, []);
+
   return (
     <>
       {isLoading === "loading" && <Creating isLoading={isLoading} />}
@@ -176,9 +171,7 @@ const BrandGuidelines = () => {
 
       {isLoading === "done" && (
         <div className="h-full flex flex-col items-center justify-center">
-          {/* {showConfetti &&  */}
-          <Confetti tweenDuration={5000} />
-          {/* } */}
+          <Confetti recycle={false} />
 
           <>
             <img className="mb-10" src={created} alt="" />
