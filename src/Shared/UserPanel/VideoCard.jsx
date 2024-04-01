@@ -19,7 +19,7 @@ const VideoCard = ({ name, data, time }) => {
       </div>
       <p className="text-base  font-semibold mb-1">{name}</p>
       <p className="text-slate-500 text-sm font-normal">
-        Created AT:{timeAgo(time)}
+        Created {timeAgo(time)}
       </p>
     </div>
   );
