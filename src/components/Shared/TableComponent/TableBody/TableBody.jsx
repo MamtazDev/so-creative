@@ -18,8 +18,8 @@ const TableBody = ({ tableDataInfo, index, handlePopup }) => {
             <img
               className="w-full h-full rounded-full object-cover"
               src={
-                tableDataInfo.clientImg
-                  ? tableDataInfo.clientImg
+                tableDataInfo.creator?.image
+                  ? tableDataInfo.creator?.image
                   : userProfile
               }
               alt="img"

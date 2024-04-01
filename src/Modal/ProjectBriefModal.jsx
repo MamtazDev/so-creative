@@ -21,10 +21,12 @@ const ProjectBriefModal = ({
 }) => {
   const [step, setStep] = useState("Video Files");
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(null);
 
   const [updateProject, { isLoading }] = useUpdateProjectMutation();
 
   const handleSubmitVideo = async () => {
+    setLoading(true)
     try {
       const res = await fetch(`${BASE_API_URL}/v1/vimeo/create-video-instant`, {
         method: "POST",
@@ -38,7 +40,7 @@ const ProjectBriefModal = ({
 
       const { upload_link } = result.data;
 
-      const tusUpload = new tus.Upload(selectedFile, {
+      const tusUpload = new tus.Upload(file, {
         endpoint: upload_link,
         uploadUrl: upload_link,
         onProgress: (bytesUploaded, bytesTotal) => {
@@ -65,10 +67,12 @@ const ProjectBriefModal = ({
             size: file?.size,
             path: result.data.player_embed_url,
             projectId: selectedProject?._id,
+            submitVideo: true
           };
 
           const uploadRes = await updateProject(formData);
           if (uploadRes?.error?.error) {
+            setLoading(false)
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -76,6 +80,7 @@ const ProjectBriefModal = ({
             });
           }
           if (uploadRes?.error?.data?.message) {
+            setLoading(false)
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -83,6 +88,9 @@ const ProjectBriefModal = ({
             });
           }
           if (uploadRes?.data?.success) {
+            setModalPopup(false)
+            setFile(null)
+            setLoading(false)
             Swal.fire({
               icon: "success",
               title: "Successful!",
@@ -94,6 +102,7 @@ const ProjectBriefModal = ({
 
       tusUpload.start();
     } catch (error) {
+      setLoading(false)
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -118,6 +127,9 @@ const ProjectBriefModal = ({
           handlePopup={handlePopup}
           selectedProject={selectedProject}
           setModalPopup={setModalPopup}
+          handleSubmitVideo={handleSubmitVideo}
+          file={file}
+          loading={loading}
         />
         <div className="p-10 overflow-y-auto max-h-[70vh] no_scrollbar">
           <ProjectTab
@@ -130,6 +142,7 @@ const ProjectBriefModal = ({
               selectedProject={selectedProject}
               setFile={setFile}
               file={file}
+
             />
           )}
           {step === "Video Files" && (
