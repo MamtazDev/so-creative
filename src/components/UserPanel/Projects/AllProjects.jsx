@@ -30,38 +30,23 @@ const AllProjects = ({ data }) => {
             onClick={() => handleNavigate(item)}
             className="border rounded-2xl p-4 flex gap-4 items-center cursor-pointer"
           >
-            {/* <div className="relative  mr-6 ">
-              {" "}
-              <div className="overflow-hidden rounded-xl max-h-[160px] h-full mb-4 relative group">
-                <img
-                  // className="absolute top-0 right-0 w-full h-full z-50"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyQudo2gDpZS8r1PDPBqiA9cwQ8Bt-e6diLw&usqp=CAU"
-                  alt=""
-                />
-
-                <button
-                  className={`${
-                    item?.status === "Draft" ? "bg-slate-800" : "bg-green-500"
-                  } text-white font-semibold text-sm px-[6px] rounded-md absolute top-2 right-2 z-50`}
-                >
-                  {item?.status}
-                </button>
-              </div>
-            </div>
-            <p className="text-base  font-semibold mb-1">
-              {item?.projectTitle}
-            </p>
-            <p className="text-slate-500 text-sm font-normal">
-              {timeAgo(item?.createdAt)}
-            </p> */}
-
             <div className="relative">
               <img
                 src="https://miro.medium.com/v2/resize:fit:1400/1*vbVPr3brcmImEQh0cckBOw.jpeg"
                 alt=""
                 className="w-[151px] h-[84px] rounded"
               />
-              <button className="absolute top-1 right-1 bg-orange-500 text-[10.5px] text-white py-[1.75px] px-[5.25px] rounded-md ">
+              <button
+                className={`absolute top-1 right-1 ${
+                  item.status === "Draft"
+                    ? "bg-[#1E293B]"
+                    : item.status === "Exported"
+                    ? "bg-[#22C55E]"
+                    : item.status === "Pending"
+                    ? "bg-[#831843]"
+                    : "bg-orange-500"
+                }  text-[10.5px] text-white py-[1.75px] px-[5.25px] font-[600] rounded-md`}
+              >
                 {item?.status}
               </button>
             </div>

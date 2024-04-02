@@ -5,12 +5,11 @@ import { useUpdateProjectMutation } from "../../../../features/project/projectAp
 import Swal from "sweetalert2";
 
 const DetailsHeader = ({ setShowExperienceModal, data }) => {
-
-  const [updateProject, { isLoading }] = useUpdateProjectMutation()
+  const [updateProject, { isLoading }] = useUpdateProjectMutation();
 
   const handleApprove = async () => {
     try {
-      const formData = { projectId: data._id, status: "Exported" }
+      const formData = { projectId: data._id, status: "Exported" };
       const res = await updateProject(formData);
 
       if (res?.error?.error) {
@@ -29,7 +28,6 @@ const DetailsHeader = ({ setShowExperienceModal, data }) => {
       }
       if (res?.data?.success) {
         // navigate("/user");
-
       }
     } catch (error) {
       Swal.fire({
@@ -38,7 +36,7 @@ const DetailsHeader = ({ setShowExperienceModal, data }) => {
         text: `${error?.message}`,
       });
     }
-  }
+  };
   return (
     <div className="flex items-center justify-between gap-4 mb-10">
       <div className="flex items-center gap-1 text-xl font-bold">
@@ -57,16 +55,19 @@ const DetailsHeader = ({ setShowExperienceModal, data }) => {
         <button className="bg-indigo-600 text-white py-2.5 px-[30px]  rounded-full text-sm font-semibold ">
           Share
         </button>
-        {data?.status !== "Exported" && <button button
-          // onClick={() => setShowExperienceModal(true)}
-          onClick={handleApprove}
-          disabled={isLoading || !data?.exportedUrl}
-          className="bg-green-500 text-white py-2.5 px-[30px]  rounded-full text-sm font-semibold "
-        >
-          {isLoading ? "Approving..." : "Approve"}
-        </button>}
+        {data?.status !== "Exported" && data?.exportedUrl && (
+          <button
+            button
+            // onClick={() => setShowExperienceModal(true)}
+            onClick={handleApprove}
+            disabled={isLoading || !data?.exportedUrl}
+            className="bg-green-500 text-white py-2.5 px-[30px]  rounded-full text-sm font-semibold "
+          >
+            {isLoading ? "Approving..." : "Approve"}
+          </button>
+        )}
       </div>
-    </div >
+    </div>
   );
 };
 

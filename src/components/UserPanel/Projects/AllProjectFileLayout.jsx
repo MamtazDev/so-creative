@@ -25,32 +25,24 @@ const AllProjectFileLayout = ({ data }) => {
                 <tr key={index}>
                   <td>
                     <div className="flex gap-4 items-center">
-                      {" "}
-                      {/* <iframe
-                        className="rounded-xl mb-4"
-                        width="113"
-                        height="64"
-                        src="https://www.youtube.com/embed/Z76aWfCc7_k?si=GW52k_zAdVfPOw66"
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      ></iframe> */}
                       <img
-                        // className="absolute top-0 right-0 w-full h-full z-50"
                         className="w-[113px] h-[64px] rounded-xl"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyQudo2gDpZS8r1PDPBqiA9cwQ8Bt-e6diLw&usqp=CAU"
+                        src="https://miro.medium.com/v2/resize:fit:1400/1*vbVPr3brcmImEQh0cckBOw.jpeg"
                         alt=""
                       />
-                      <p>{item.projectTitle}</p>
+                      <p className="font-bold">{item.projectTitle}</p>
                     </div>
                   </td>
                   <td>
                     <button
-                      className={`${
+                      className={` ${
                         item.status === "Draft"
-                          ? "bg-slate-800"
-                          : "bg-green-500"
+                          ? "bg-[#1E293B]"
+                          : item.status === "Exported"
+                          ? "bg-[#22C55E]"
+                          : item.status === "Pending"
+                          ? "bg-[#831843]"
+                          : "bg-orange-500"
                       } text-white font-semibold text-sm px-[6px] rounded-md`}
                     >
                       {item.status}

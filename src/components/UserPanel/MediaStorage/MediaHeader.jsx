@@ -13,7 +13,7 @@ const MediaHeader = ({
     <div className="mb-6 flex justify-between items-center gap-4">
       <p className="text-xl font-bold">All Files & Media</p>
       <div className="flex items-center gap-3">
-        <div className="relative">
+        {/* <div className="relative">
           <div
             onClick={() => setShowSort(!showSort)}
             className="bg-slate-100 border rounded-full p-1"
@@ -23,7 +23,7 @@ const MediaHeader = ({
             </button>
           </div>
           {showSort && (
-            <div className="bg-white w-auto shadow-xl rounded-xl absolute">
+            <div className="bg-white w-auto shadow-xl rounded-xl absolute z-50">
               <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
                 <CalendarBlank size={16} weight="bold" /> Last Modified
               </button>
@@ -32,7 +32,7 @@ const MediaHeader = ({
               </button>
             </div>
           )}
-        </div>
+        </div> */}
         <div className="bg-slate-100 border rounded-full p-1">
           <button
             onClick={() => handleComponentChange("folder")}

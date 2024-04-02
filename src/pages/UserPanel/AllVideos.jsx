@@ -8,19 +8,20 @@ import Loading from "../../Shared/Loading";
 import { useGetUserAllFilesQuery } from "../../features/videos/videoApi";
 
 const AllVideos = () => {
-  const [filteredVideos, setFilteredVideos] = useState(videos);
+  const [sortBy, setSortBy] = useState("Last Modified");
   const [selectedComponent, setSelectedComponent] = useState("folder");
-  // const { isLoading } = useLoading();
 
   const { data, isLoading } = useGetUserAllFilesQuery();
-  console.log(data, "data");
-  const handleFilterChange = (filter) => {
-    if (filter === "Videos") {
-      setFilteredVideos(videos);
-    } else if (filter === "Drafts") {
-      setFilteredVideos(videos.filter((video) => video.status === "Draft"));
+
+  const handleSort = (a, b) => {
+    if (sortBy === "Alphabetical") {
+      return a.title.localeCompare(b.title);
+    } else {
+      return b?.createdAt - a?.createdAt;
     }
   };
+
+  const sortedData = data && data.length > 0 ? [...data].sort(handleSort) : [];
 
   const handleComponentChange = (filter) => {
     setSelectedComponent(filter);
@@ -28,7 +29,8 @@ const AllVideos = () => {
   return (
     <div className="h-full">
       <AllVideoHeader
-        handleFilterChange={handleFilterChange}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
         handleComponentChange={handleComponentChange}
         selectedComponent={selectedComponent}
       />
@@ -37,9 +39,9 @@ const AllVideos = () => {
       ) : (
         <>
           {selectedComponent === "folder" ? (
-            <AllVideo filteredVideos={data} />
+            <AllVideo filteredVideos={sortedData} />
           ) : (
-            <AllVideoFileLayout filteredVideos={data} />
+            <AllVideoFileLayout filteredVideos={sortedData} />
           )}
         </>
       )}

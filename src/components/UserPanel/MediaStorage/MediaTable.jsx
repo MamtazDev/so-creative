@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import mp4 from "../../../assets/mp4.svg";
 import folder from "../../../assets/folder.svg";
 import { DownloadSimple, NotePencil, Trash } from "@phosphor-icons/react";
 import { formatFileSize, timeAgo } from "../../../utils/converter";
 import { Link } from "react-router-dom";
+import EditModal from "../../../Modal/EditModal";
+import Deleting from "../../../Modal/Deleting";
 
 const MediaTable = ({ data }) => {
   const folders = data.folders;
   const videos = data.files;
   const combinedItems = data.folders ? folders.concat(videos) : data;
-  console.log(combinedItems, "dfjkdfj");
+  const [clickedItem, setClickedItem] = useState(null);
+  const [openEditFolderModal, setEditFolderModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectVideo, setSelectVideo] = useState(null);
 
   return (
     <div>
@@ -76,8 +81,25 @@ const MediaTable = ({ data }) => {
                 </td>
                 <td>
                   {data.folderData ? (
-                    <div className="flex justify-center">
-                      <button>
+                    <div className="flex items-center gap-2 justify-center">
+                      <button
+                        onClick={() => {
+                          setClickedItem(data.folderData);
+                          setDeleteModal(true);
+                        }}
+                      >
+                        <Trash
+                          className="text-red-600"
+                          size={20}
+                          weight="fill"
+                        />
+                      </button>
+                      <button
+                        onClick={() => {
+                          setClickedItem(data.folderData);
+                          setEditFolderModal(true);
+                        }}
+                      >
                         <NotePencil
                           className="text-indigo-600"
                           size={20}
@@ -87,7 +109,12 @@ const MediaTable = ({ data }) => {
                     </div>
                   ) : (
                     <div className="flex  items-center gap-2 justify-center">
-                      <button>
+                      <button
+                        onClick={() => {
+                          setDeleteModal(true);
+                          setClickedItem(data.fileData);
+                        }}
+                      >
                         <Trash
                           className="text-red-600"
                           size={20}
@@ -111,6 +138,23 @@ const MediaTable = ({ data }) => {
           )}
         </tbody>
       </table>
+      {openEditFolderModal && (
+        <EditModal
+          setOpenCreateFolderModal={setEditFolderModal}
+          folderTitle={clickedItem?.title}
+          clickedItem={clickedItem?._id}
+          setClickedItem={setClickedItem}
+        />
+      )}
+      {deleteModal && (
+        <Deleting
+          setDeleteModal={setDeleteModal}
+          folderTitle={clickedItem?.title}
+          clickedItem={clickedItem?._id}
+          setClickedItem={setClickedItem}
+          file={clickedItem?.file ? clickedItem : null}
+        />
+      )}
     </div>
   );
 };

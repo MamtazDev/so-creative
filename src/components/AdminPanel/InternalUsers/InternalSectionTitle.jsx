@@ -73,7 +73,7 @@ const InternalSectionTitle = ({ filter, handleFilterChange }) => {
               </button>
             </div>
             {showSort && (
-              <div className="bg-white w-auto shadow-xl rounded-xl absolute">
+              <div className="bg-white w-auto shadow-xl rounded-xl absolute z-50">
                 <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
                   <CalendarBlank size={16} weight="bold" /> Last Modified
                 </button>

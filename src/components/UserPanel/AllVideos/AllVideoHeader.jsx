@@ -3,43 +3,18 @@ import arrow from "../../../assets/down-arrow.svg";
 import { CalendarBlank, CaretDown, TextAa } from "@phosphor-icons/react";
 
 const AllVideoHeader = ({
-  handleFilterChange,
   handleComponentChange,
   selectedComponent,
+  setSortBy,
+  sortBy,
 }) => {
   const [selectedFilter, setSelectedFilter] = useState("Videos");
   const [showSort, setShowSort] = useState(false);
 
-  const handleButtonClick = (filter) => {
-    setSelectedFilter(filter);
-    handleFilterChange(filter);
-  };
   return (
     <div className="mb-6 flex justify-between items-center gap-4">
       <p className="text-xl font-bold">All Videos</p>
       <div className="flex items-center gap-3">
-        {/* <div className="bg-slate-100 border rounded-full p-1">
-          <button
-            onClick={() => handleButtonClick("Videos")}
-            className={` rounded-full p-1.5 text-xs font-medium ${
-              selectedFilter === "Videos"
-                ? "bg-white text-slate-900"
-                : "text-slate-600 bg-transparent"
-            }`}
-          >
-            Videos
-          </button>
-          <button
-            onClick={() => handleButtonClick("Drafts")}
-            className={` rounded-full p-1.5 text-xs font-medium ${
-              selectedFilter === "Drafts"
-                ? "bg-white text-slate-900"
-                : "text-slate-600 bg-transparent"
-            }`}
-          >
-            Drafts
-          </button>
-        </div> */}
         <div className="bg-slate-100 border rounded-full p-1">
           <button
             onClick={() => handleComponentChange("folder")}
@@ -80,21 +55,31 @@ const AllVideoHeader = ({
             </svg>
           </button>
         </div>
-        <div className="relative">
+        <div className="relative  ">
           <div
             onClick={() => setShowSort(!showSort)}
             className="bg-slate-100 border rounded-full p-1"
           >
             <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
-              Sort by: Last Modified <CaretDown size={12} weight="fill" />
+              Sort by: {sortBy} <CaretDown size={12} weight="fill" />
             </button>
           </div>
           {showSort && (
-            <div className="bg-white w-auto shadow-xl rounded-xl absolute">
-              <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+            <div className="bg-white min-w-[165px] shadow-xl rounded-xl absolute right-0 z-50 mt-1">
+              <button
+                className={`text-sm font-medium flex items-center gap-3 px-4 py-2 ${
+                  sortBy === "Last Modified" && "bg-slate-200"
+                } w-full`}
+                onClick={() => setSortBy("Last Modified")}
+              >
                 <CalendarBlank size={16} weight="bold" /> Last Modified
               </button>
-              <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+              <button
+                className={`text-sm font-medium flex items-center gap-3 px-4 py-2 ${
+                  sortBy === "Alphabetical" && "bg-slate-200"
+                } w-full`}
+                onClick={() => setSortBy("Alphabetical")}
+              >
                 <TextAa size={16} weight="bold" /> Alphabetical
               </button>
             </div>

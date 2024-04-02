@@ -12,6 +12,7 @@ import Help from "./Help";
 import ProfileActive from "./ProfileActive";
 import ProfileDropdown from "./ProfileDropdown";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { useSelector } from "react-redux";
 
 const Header = ({ user }) => {
   const [showNotification, setShowNotification] = useState(false);
