@@ -41,12 +41,13 @@ const RecentVideos = ({ data }) => {
 
       <Carousel swipeable={true} responsive={responsive}>
         {data?.length > 0 ? (
-          data.map((data, index) => (
+          data.map((item, index) => (
             <VideoCard
               key={index}
-              name={truncateFilename(data.title)}
-              status={data.status}
-              time={data?.createdAt}
+              name={truncateFilename(item.title)}
+              status={item.status}
+              time={item?.createdAt}
+              data={item}
             />
           ))
         ) : (

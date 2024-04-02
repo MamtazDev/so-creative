@@ -18,8 +18,6 @@ const EditorDashboard = () => {
   const newTasks =
     data && data?.length > 0 ? data.filter((i) => i?.status === "Pending") : [];
 
-  console.log(newTasks, "newTasks");
-
   return (
     <>
       {isLoading ? (
@@ -36,7 +34,9 @@ const EditorDashboard = () => {
                   </h3>
                 </div>
                 <InsightsCard
-                  myTasks={myTasks.length}
+                  myTasks={
+                    myTasks.filter((i) => i.status === "In Progress").length
+                  }
                   newTasks={newTasks.length}
                 />
               </div>

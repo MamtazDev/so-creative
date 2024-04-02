@@ -1,42 +1,8 @@
 import { CaretRight } from "@phosphor-icons/react";
 import aveter1 from "../../.././../assets/aveter1.svg";
 import aveter2 from "../../.././../assets/aveter2.svg";
-import { useUpdateProjectMutation } from "../../../../features/project/projectApi";
-import Swal from "sweetalert2";
 
-const DetailsHeader = ({ setShowExperienceModal, data }) => {
-  const [updateProject, { isLoading }] = useUpdateProjectMutation();
-
-  const handleApprove = async () => {
-    try {
-      const formData = { projectId: data._id, status: "Exported" };
-      const res = await updateProject(formData);
-
-      if (res?.error?.error) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${res?.error?.error}`,
-        });
-      }
-      if (res?.error?.data?.message) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${res?.error?.data?.message}`,
-        });
-      }
-      if (res?.data?.success) {
-        // navigate("/user");
-      }
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `${error?.message}`,
-      });
-    }
-  };
+const DetailsHeader = ({ setShowExperienceModal, data, isLoading }) => {
   return (
     <div className="flex items-center justify-between gap-4 mb-10">
       <div className="flex items-center gap-1 text-xl font-bold">
@@ -58,8 +24,8 @@ const DetailsHeader = ({ setShowExperienceModal, data }) => {
         {data?.status !== "Exported" && data?.exportedUrl && (
           <button
             button
-            // onClick={() => setShowExperienceModal(true)}
-            onClick={handleApprove}
+            onClick={() => setShowExperienceModal(true)}
+            // onClick={handleApprove}
             disabled={isLoading || !data?.exportedUrl}
             className="bg-green-500 text-white py-2.5 px-[30px]  rounded-full text-sm font-semibold "
           >

@@ -2,14 +2,25 @@ import React, { useRef, useState } from "react";
 import close from "../assets/close.svg";
 import useOutsideClick from "../hooks/useOutsideClick";
 
-const ExperienceModal = ({ setShowExperienceModal }) => {
-  const [rating, setRating] = useState(0); // Initially no stars selected
-
+const ExperienceModal = ({
+  setShowExperienceModal,
+  handleApprove,
+  isLoading,
+  reviewData,
+  setReviewData,
+}) => {
   const experienceRef = useRef();
-  useOutsideClick(experienceRef, () => setShowExperienceModal(false));
+
   const handleStarClick = (selectedRating) => {
-    setRating(selectedRating);
+    setReviewData({ ...reviewData, rating: selectedRating });
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setReviewData({ ...reviewData, [name]: value });
+  };
+
+  useOutsideClick(experienceRef, () => setShowExperienceModal(false));
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
@@ -22,7 +33,7 @@ const ExperienceModal = ({ setShowExperienceModal }) => {
         >
           <img src={close} alt="" />
         </button>
-        <form>
+        <div>
           <p className="text-black font-semibold text-2xl mb-4 text-center">
             How was your experience?
           </p>
@@ -32,7 +43,9 @@ const ExperienceModal = ({ setShowExperienceModal }) => {
                 key={star}
                 onClick={() => handleStarClick(star)}
                 className={`${
-                  star <= rating ? "text-amber-400" : "text-slate-200"
+                  star <= reviewData.rating
+                    ? "text-amber-400"
+                    : "text-slate-200"
                 } text-5xl cursor-pointer`}
               >
                 &#9733;
@@ -47,7 +60,9 @@ const ExperienceModal = ({ setShowExperienceModal }) => {
               className="border w-full px-4 py-3.5 rounded-lg"
               rows="5"
               placeholder="Start typing here..."
-            ></textarea>
+              name="comment"
+              onChange={handleInputChange}
+            />
           </div>
           <div className="mb-6">
             <label className="text-sm font-semibold mb-2.5 block">
@@ -57,10 +72,18 @@ const ExperienceModal = ({ setShowExperienceModal }) => {
               className="border w-full px-4 py-3.5 rounded-lg"
               rows="5"
               placeholder="Start typing here..."
-            ></textarea>
+              name="suggestion"
+              onChange={handleInputChange}
+            />
           </div>
-          <button className="primary_btn w-full">Submit</button>
-        </form>
+          <button
+            className="primary_btn w-full"
+            disabled={isLoading}
+            onClick={handleApprove}
+          >
+            {isLoading ? "Submiting..." : "Submit"}
+          </button>
+        </div>
       </div>
     </div>
   );
