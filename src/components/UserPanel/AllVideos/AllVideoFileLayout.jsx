@@ -1,4 +1,5 @@
 import VimeoPlayer from "react-player/vimeo";
+import { timeAgo } from "../../../utils/converter";
 
 const AllVideoFileLayout = ({ filteredVideos }) => {
   console.log(filteredVideos, "oooooooooooooo");
@@ -49,7 +50,9 @@ const AllVideoFileLayout = ({ filteredVideos }) => {
                     {data.status}
                   </button>
                 </td> */}
-                <td className="text-base font-semibold">1 day ago</td>
+                <td className="text-base font-semibold">
+                  {timeAgo(data?.createdAt)}
+                </td>
               </tr>
             ))
           ) : (

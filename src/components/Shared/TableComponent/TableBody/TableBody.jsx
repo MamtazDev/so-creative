@@ -27,7 +27,7 @@ const TableBody = ({ tableDataInfo, index, handlePopup }) => {
           </div>
           <div className="ml-3">
             <p className="text-sm font-semibold text-slate-900 whitespace-no-wrap">
-              {tableDataInfo?.clientName}
+              {tableDataInfo?.creator?.name}
             </p>
           </div>
         </div>
@@ -36,6 +36,11 @@ const TableBody = ({ tableDataInfo, index, handlePopup }) => {
       <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
         <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
           {tableDataInfo?.projectTitle}
+        </p>
+      </td>
+      <td className="px-4 py-4 border-b border-[#e5e5e5b3] text-sm">
+        <p className="text-sm font-normal text-slate-900 whitespace-no-wrap">
+          {tableDataInfo?.status}
         </p>
       </td>
 

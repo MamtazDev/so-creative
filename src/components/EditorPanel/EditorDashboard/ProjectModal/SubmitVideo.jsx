@@ -29,86 +29,91 @@ const SubmitVideo = ({ selectedProject, file, setFile }) => {
   };
   return (
     <div>
-      <div className="submit_video outline-1 outline-dashed outline-slate-200  rounded-3xl mb-6">
-        <div
-          {...getRootProps()}
-          onClick={handleUploadClick}
-          className="upoload_video py-12 px-6 flex justify-center items-center flex-col cursor-pointer"
-        >
-          <div>
-            {thumbnail ? (
-              <img
-                src={thumbnail}
-                alt="thumbnail"
-                style={{
-                  maxWidth: "100px",
-                  maxHeight: "100px",
-                }}
-              />
-            ) : (
-              <img src={uploadVideo} alt="icon" />
-            )}
-            <input
-              id="fileInput"
-              type="file"
-              {...getInputProps()}
-            // style={{ display: "none" }}
-            />
-          </div>
-          {file ? (
+      {selectedProject?.status !== "Exported" && (
+        <div className="submit_video outline-1 outline-dashed outline-slate-200  rounded-3xl mb-6">
+          <div
+            {...getRootProps()}
+            onClick={handleUploadClick}
+            className="upoload_video py-12 px-6 flex justify-center items-center flex-col cursor-pointer"
+          >
             <div>
-              <p className="text-sm font-semibold text-slate-900 pb-1">
-                {file.name}
-              </p>
+              {thumbnail ? (
+                <img
+                  src={thumbnail}
+                  alt="thumbnail"
+                  style={{
+                    maxWidth: "100px",
+                    maxHeight: "100px",
+                  }}
+                />
+              ) : (
+                <img src={uploadVideo} alt="icon" />
+              )}
+              <input
+                id="fileInput"
+                type="file"
+                {...getInputProps()}
+                // style={{ display: "none" }}
+              />
             </div>
-          ) : (
-            <div className="text-center">
-              <p className="text-sm font-semibold text-slate-900 pb-1">
-                Upload a File or{" "}
-                <Link to="#" className="text-indigo-600 ml-1">
-                  Paste URL
-                </Link>
-              </p>
-              <p className="text-sm text-normal text-slate-500">
-                Click to browse or drag & drop a file here
-              </p>
+            {file ? (
+              <div>
+                <p className="text-sm font-semibold text-slate-900 pb-1">
+                  {file.name}
+                </p>
+              </div>
+            ) : (
+              <div className="text-center">
+                <p className="text-sm font-semibold text-slate-900 pb-1">
+                  Upload a File or{" "}
+                  <Link to="#" className="text-indigo-600 ml-1">
+                    Paste URL
+                  </Link>
+                </p>
+                <p className="text-sm text-normal text-slate-500">
+                  Click to browse or drag & drop a file here
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      {selectedProject?.previousVersion &&
+        selectedProject?.previousVersion.length > 0 && (
+          <div>
+            <p className="text-base font-semibold mb-4">Previous Versions</p>
+            <div className="border rounded-2xl">
+              <table className="w-full text-sm font-medium">
+                <thead>
+                  <tr className="border-b">
+                    <td className="px-4 py-2">Name</td>
+                    <td>Size</td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedProject?.previousVersion.map((data, index) => (
+                    <tr key={index} className="border-b last:border-b-0">
+                      <td className="px-4 py-3 flex items-center gap-3">
+                        <img width={24} src={mp4} alt="" />
+                        {truncateFilename(data.fileData.title)}
+                      </td>
+                      <td className="px-4 py-3">
+                        {formatFileSize(data.fileData.fileSize)}
+                      </td>
+                      <td className="px-4 py-3">
+                        {" "}
+                        <button>
+                          <DownloadSimple size={20} weight="bold" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          )}
-        </div>
-      </div>
-      {selectedProject?.previousVersion && selectedProject?.previousVersion.length > 0 && <div>
-        <p className="text-base font-semibold mb-4">Previous Versions</p>
-        <div className="border rounded-2xl">
-          <table className="w-full text-sm font-medium">
-            <thead>
-              <tr className="border-b">
-                <td className="px-4 py-2">Name</td>
-                <td>Size</td>
-                <td></td>
-              </tr>
-            </thead>
-            <tbody>
-              {selectedProject?.previousVersion.map((data, index) => (
-                <tr key={index} className="border-b last:border-b-0">
-                  <td className="px-4 py-3 flex items-center gap-3">
-                    <img width={24} src={mp4} alt="" />
-                    {truncateFilename(data.fileData.title)}
-                  </td>
-                  <td className="px-4 py-3">
-                    {formatFileSize(data.fileData.fileSize)}
-                  </td>
-                  <td className="px-4 py-3">
-                    {" "}
-                    <button>
-                      <DownloadSimple size={20} weight="bold" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>}
+          </div>
+        )}
     </div>
   );
 };

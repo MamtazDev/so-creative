@@ -5,7 +5,13 @@ import { useUpdateProjectMutation } from "../../../../features/project/projectAp
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
-const BriefHeader = ({ selectedProject, setModalPopup, handleSubmitVideo, loading, file }) => {
+const BriefHeader = ({
+  selectedProject,
+  setModalPopup,
+  handleSubmitVideo,
+  loading,
+  file,
+}) => {
   const [updateProject, { isLoading }] = useUpdateProjectMutation();
   const { user } = useSelector((state) => state.auth);
   const handeAccepteJob = async () => {
@@ -92,7 +98,13 @@ const BriefHeader = ({ selectedProject, setModalPopup, handleSubmitVideo, loadin
             </button>
           </>
         ) : (
-          <button disabled={loading || !file} onClick={handleSubmitVideo} className="text-base font-semibold text-white bg-indigo-600 border border-indigo-600 py-3 px-6 rounded-full">
+          <button
+            disabled={loading || !file}
+            onClick={handleSubmitVideo}
+            className={`text-base font-semibold text-white bg-indigo-600 border border-indigo-600 py-3 px-6 rounded-full ${
+              selectedProject?.status === "Exported" && "hidden"
+            }`}
+          >
             {loading ? "Submiting..." : "Share Project"}
           </button>
         )}

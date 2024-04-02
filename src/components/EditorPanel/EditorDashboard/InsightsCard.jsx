@@ -1,13 +1,22 @@
 import { insightsCardData } from "../../../utils/data";
 
-const InsightsCard = () => {
+const InsightsCard = ({ newTasks, myTasks }) => {
+  const InsightsData = insightsCardData.map((i) => {
+    if (i.name === "New Projects") {
+      i.number = newTasks;
+    } else {
+      i.number = myTasks;
+    }
+    return i;
+  });
   return (
     <>
       <div className="insights_card_wrapper flex gap-8">
-        {insightsCardData.map((insightsItem, index) => (
+        {InsightsData.map((insightsItem, index) => (
           <div
             className="insights_card_item max-w-[496px] w-full border border-slate-200 rounded-2xl p-6 flex justify-between"
-            key={index}>
+            key={index}
+          >
             <div className="card_info">
               <h3 className="text-sm font-medium text-slate-500 pb-2">
                 {insightsItem.name}

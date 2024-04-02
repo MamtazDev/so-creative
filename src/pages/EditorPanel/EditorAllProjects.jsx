@@ -7,7 +7,9 @@ import { MyWorkTableData } from "../../utils/data";
 import { useGetAllProjectsQuery } from "../../features/project/projectApi";
 
 const EditorAllProjects = () => {
+  const [sortBy, setSortBy] = useState("Last Modified");
   const [filter, setFilter] = useState("All");
+
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
@@ -16,17 +18,16 @@ const EditorAllProjects = () => {
     "editor=none&status=Pending"
   );
 
-  const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
+  const handleSort = (a, b) => {
+    if (sortBy === "Alphabetical") {
+      return a.projectTitle.localeCompare(b.projectTitle);
+    } else {
+      return b?.createdAt - a?.createdAt;
+    }
+  };
 
-  const filteredData = repeatedData.filter((item) =>
-    filter === "All"
-      ? true
-      : filter === "Active"
-      ? item.status === "In Progress" || item.status === "New Project"
-      : filter === "Completed"
-      ? item.status === "Approved"
-      : true
-  );
+  const sortedData = data && data.length > 0 ? [...data].sort(handleSort) : [];
+
   return (
     <>
       {isLoading ? (
@@ -36,9 +37,11 @@ const EditorAllProjects = () => {
           <EditroSectionTitle
             filter={filter}
             handleFilterChange={handleFilterChange}
+            setSortBy={setSortBy}
+            sortBy={sortBy}
           />
 
-          <MyWorkTable filteredData={data} />
+          <MyWorkTable filteredData={sortedData} />
         </>
       )}
     </>

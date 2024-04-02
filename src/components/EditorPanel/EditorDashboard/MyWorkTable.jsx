@@ -23,7 +23,6 @@ const MyWorkTable = ({ filteredData }) => {
   const route = useLocation();
 
   const [modalPopup, setModalPopup] = useState(false);
-  const [showSubmitModal, setShowSubmitModal] = useState(false);
 
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -64,12 +63,9 @@ const MyWorkTable = ({ filteredData }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = filteredData?.slice(startIndex, endIndex);
-  console.log("paginatedData", paginatedData);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  //repeted the data
-  const repeatedData = Array.from({ length: 5 }, () => MyWorkTableData).flat();
 
   return (
     <>
@@ -79,11 +75,11 @@ const MyWorkTable = ({ filteredData }) => {
             <table className="min-w-full leading-normal myworktable">
               <TableHead tableHeading={tableHeading} />
               <tbody>
-                {repeatedData?.slice(0, 5).map((tableDataInfo, index) => (
+                {paginatedData?.slice(0, 5).map((tableDataInfo, index) => (
                   <TableBody
                     tableDataInfo={tableDataInfo}
                     key={index}
-                    handlePopup={handlePopup}
+                    handlePopup={() => handlePopup(tableDataInfo)}
                   />
                 ))}
                 <tr>
@@ -91,7 +87,7 @@ const MyWorkTable = ({ filteredData }) => {
 
                   <td className="px-4 py-4 border-b border-[#e5e5e5b3] bg-white text-sm">
                     <Link
-                      to={"/editor/all-projects"}
+                      to={"/editor/my-projects"}
                       className="text-sm font-semibold text-indigo-600 flex justify-center items-center gap-3"
                     >
                       All Projects <CaretRight size={20} weight="bold" />
@@ -104,16 +100,11 @@ const MyWorkTable = ({ filteredData }) => {
             </table>
 
             {modalPopup === true && (
-              <EditorProjectPopUp
-                jobAction={jobAction}
-                setModalPopup={setModalPopup}
+              <ProjectBriefModal
                 handlePopup={handlePopup}
-                handeJobAction={handeJobAction}
-                handleUploadClick={handleUploadClick}
-                thumbnail={thumbnail}
-                getInputProps={getInputProps}
-                getRootProps={getRootProps}
-                file={file}
+                setModalPopup={setModalPopup}
+                setSelectedProject={setSelectedProject}
+                selectedProject={selectedProject}
               />
             )}
           </div>
