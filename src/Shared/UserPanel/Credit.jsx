@@ -5,6 +5,8 @@ import minus from "../../assets/minus.svg";
 import creditPlus from "../../assets/creditPlus.svg";
 import { useEffect, useState } from "react";
 
+import { Link } from "react-router-dom";
+
 const Credit = ({ setShowCredit, creditRef }) => {
   const [count, setCount] = useState(2);
   const [creditprice, setCreditprice] = useState(0);
@@ -30,6 +32,7 @@ const Credit = ({ setShowCredit, creditRef }) => {
     console.log("Count:", count)
     const totalPrice = count * 11.5
     console.log("totalPrice:", totalPrice);
+    setShowCredit(false)
   }
 
   useEffect(() => {},[creditprice])
@@ -70,9 +73,13 @@ const Credit = ({ setShowCredit, creditRef }) => {
           <p className="text-base font-normal">
             Total Cost: <span className="font-bold">${creditprice}</span>{" "}
           </p>
-          <button onClick={purchaseHandler} className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3">
+          <Link
+            to={`/user/purchase-credit/totalCredit=${count}`}
+            onClick={() =>  purchaseHandler}
+            className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3"
+          >
             Purchase Now
-          </button>
+          </Link>
         </div>
       </div>
       <div className="bg-slate-100 flex items-center justify-center gap-3 p-4 ">

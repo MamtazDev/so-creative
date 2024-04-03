@@ -20,6 +20,7 @@ import MainLayout from "../Layouts/MainLayout";
 import Projects from "../pages/UserPanel/Projects";
 import EditorProjects from "../pages/EditorPanel/EditorProjects";
 import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
+import PurchaseCredit from "../pages/UserPanel/PurchaseCredit";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/brand-kit/create",
         element: <BrandGuidelines />,
+      },
+      {
+        path: "/user/purchase-credit/:credit",
+        element: <PurchaseCredit />,
       },
     ],
   },
