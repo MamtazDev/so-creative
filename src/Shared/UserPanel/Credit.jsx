@@ -3,18 +3,38 @@ import secure from "../../assets/secure.svg";
 import credit from "../../assets/credit.svg";
 import minus from "../../assets/minus.svg";
 import creditPlus from "../../assets/creditPlus.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Credit = ({ setShowCredit, creditRef }) => {
   const [count, setCount] = useState(2);
+  const [creditprice, setCreditprice] = useState(0);
+
+  const price = (credit) => {
+    setCreditprice(credit*11.5)
+  }
+
+
   const handleIncrement = () => {
     setCount(count + 1);
+    price(count)
   };
   const handleDecrement = () => {
     if (count > 0) {
       setCount(count - 1);
+      price(count)
     }
   };
+
+
+  const purchaseHandler = () => {
+    console.log("Count:", count)
+    const totalPrice = count * 11.5
+    console.log("totalPrice:", totalPrice);
+  }
+
+  useEffect(() => {},[creditprice])
+
+
   return (
     <div
       ref={creditRef}
@@ -24,7 +44,7 @@ const Credit = ({ setShowCredit, creditRef }) => {
         <div className="flex items-center gap-2 justify-between mb-8">
           <div>
             <p className="text-slate-500 text-xs font-medium mb-1">Balance</p>
-            <p className="text-sm font-semibold">0 Credit</p>
+            <p className="text-sm font-semibold">{count} Credit</p>
           </div>
           <button onClick={() => setShowCredit(false)}>
             <img src={close} alt="" />
@@ -48,9 +68,9 @@ const Credit = ({ setShowCredit, creditRef }) => {
         </div>
         <div className="flex justify-between gap-2 items-center">
           <p className="text-base font-normal">
-            Total Cost: <span className="font-bold">$1,000.00</span>{" "}
+            Total Cost: <span className="font-bold">${creditprice}</span>{" "}
           </p>
-          <button className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3">
+          <button onClick={purchaseHandler} className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3">
             Purchase Now
           </button>
         </div>
