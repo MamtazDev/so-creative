@@ -75,7 +75,6 @@ export const DateConverter = (dateString) => {
   return formattedDate;
 };
 
-
 // export function lastTimeConverter(dateString) {
 //   const date = new Date(dateString);
 //   const now = new Date();
@@ -128,7 +127,6 @@ export function lastTimeConverter(dateString) {
   return `${Math.floor(seconds)} seconds ago`;
 }
 
-
 export const DateConverterWithTime = (dateString) => {
   const originalDate = new Date(dateString);
 
@@ -145,4 +143,39 @@ export const DateConverterWithTime = (dateString) => {
     originalDate
   );
   return formattedDate;
+};
+
+export const convetChatDateTime = (dateString) => {
+  const dateObj = new Date(dateString);
+
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = months[dateObj.getMonth()];
+  const day = dateObj.getDate();
+  const year = dateObj.getFullYear();
+  let hour = dateObj.getHours();
+  const minute = dateObj.getMinutes();
+  const ampm = hour >= 12 ? "PM" : "AM";
+
+  // Convert hour to 12-hour format
+  hour = hour % 12;
+  hour = hour ? hour : 12; // 0 should be converted to 12
+
+  const formattedTime = `${day} ${month}, ${year} ${hour}:${minute
+    .toString()
+    .padStart(2, "0")} ${ampm}`;
+
+  return formattedTime;
 };

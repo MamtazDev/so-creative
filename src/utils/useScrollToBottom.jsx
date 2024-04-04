@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useScrollToBottom(chatBoxRef, chat, suggestionEnabled) {
+export function useScrollToBottom(chatBoxRef, suggestionEnabled) {
   useEffect(() => {
     if (chatBoxRef.current) {
       chatBoxRef.current.scrollTo({
@@ -8,5 +8,5 @@ export function useScrollToBottom(chatBoxRef, chat, suggestionEnabled) {
         behavior: "smooth",
       });
     }
-  }, [chat, chatBoxRef, suggestionEnabled]);
+  }, [chatBoxRef, suggestionEnabled]);
 }
