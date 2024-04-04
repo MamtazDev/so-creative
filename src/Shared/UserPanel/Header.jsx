@@ -53,7 +53,7 @@ const Header = ({ user }) => {
               onClick={() => setShowCredit(!showCredit)}
               className="bg-gradient-to-r from-purple-500 to-indigo-900 text-transparent bg-clip-text whitespace-nowrap hover:text-indigo-600 hover:border-indigo-600 transition-all duration-300 ease-in gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF]"
             >
-              6 Credits Remaining
+              {user?.credit} Credits Remaining
             </button>
           )}
 

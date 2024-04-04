@@ -149,6 +149,7 @@ const ChatBotV2 = () => {
   };
 
   const messagesEndRef = useRef(null);
+  const chatbotRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -173,7 +174,10 @@ const ChatBotV2 = () => {
   }, [data, show]);
 
   return (
-    <div className="fixed z-40 max-w-[512px] w-full  bottom-32 right-14">
+    <div
+      className="fixed z-40 max-w-[512px] w-full  bottom-32 right-14"
+      ref={chatbotRef}
+    >
       {show && (
         <div className="rounded-3xl bg-white shadow-2xl max-h-[672px]  h-full ">
           <div className="chatbot_header border-b p-6 w-full flex gap-2 items-start justify-between">

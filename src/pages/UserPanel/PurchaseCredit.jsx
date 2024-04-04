@@ -11,7 +11,6 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 
-
 const CARD_OPTIONS = {
   style: {
     base: {
@@ -25,44 +24,39 @@ const CARD_OPTIONS = {
   },
 };
 
-
 const PurchaseCreditComp = () => {
-
   const stripe = useStripe();
   const elements = useElements();
 
-  const [checkedItems, setCheckItems] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [isSubscribing, setIsSubscribing] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const [updateUserSettings, { isLoading }] = useUpdateUserSettingsMutation();
 
   const params = useParams();
-  const totalCredit = params.credit;
-
-
-
+  const totalCredit = params.totalCredit;
 
   const billingHandler = async (e) => {
     e.preventDefault();
 
-    console.log("Clicked on purchese")
-
-
-    setIsSubscribing(true);
+    setLoading(true);
 
     const data = {
-      "BillingName": "BillingName",
+      BillingName: "BillingName",
     };
 
     if (!stripe) {
-
-      console.log("There is no stripe ", stripe)
-      setIsSubscribing(false);
+      console.log("There is no stripe ", stripe);
+      setLoading(false);
       return;
     }
 
     try {
       const clientSecret = await createPaymentIntent(
-        Number(totalCredit*11.5) * 100,
+        Number(totalCredit * 11.5) * 100,
         "usd"
       );
 
@@ -75,7 +69,7 @@ const PurchaseCreditComp = () => {
             type: "card",
             card: cardElement,
             billing_details: {
-              name: "Nahid Murad Abir",
+              name: user.name,
             },
           },
         }
@@ -83,35 +77,66 @@ const PurchaseCreditComp = () => {
 
       if (error) {
         console.error("error", error);
-        alert(error?.message);
-        setIsSubscribing(false);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
+        setLoading(false);
       } else if (paymentIntent.status === "succeeded") {
         console.log("Success", paymentIntent.status);
 
-        // update user with credit 
-        // totalCredit
+        const updateRes = await updateUserSettings({
+          credit: Number(totalCredit) + Number(user?.credit),
+        });
 
+        if (updateRes?.error?.error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${res?.error?.error}`,
+          });
+        }
+        if (updateRes?.error?.data?.message) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${res?.error?.data?.message}`,
+          });
+        }
+        if (updateRes?.data?.success) {
+          navigate("/user");
+        }
+
+        setLoading(false);
       }
     } catch (error) {
-      console.log("Error,", error)
-      setIsSubscribing(false);
+      console.log("Error,", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+      setLoading(false);
     }
   };
   return (
     <div className="max-w-[475px] m-auto mt-12">
       <div className="mb-4">
-        <label className="text-sm text-[#4F5B76] block mb-1">Card number </label>
+        <label className="text-sm text-[#4F5B76] block mb-1">
+          Card number{" "}
+        </label>
         {/* <input
           className="border rounded-md shadow-md p-2 w-full"
           type="number"
           placeholder="1234 1234 1234 1234"
         /> */}
-         <CardNumberElement
-                options={{
-                  ...CARD_OPTIONS,
-                  placeholder: "Enter card number",
-                }}
-              />
+        <CardNumberElement
+          options={{
+            ...CARD_OPTIONS,
+            placeholder: "Enter card number",
+          }}
+        />
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
@@ -157,37 +182,38 @@ const PurchaseCreditComp = () => {
           />
         </div>
       </div>
-      <button onClick={billingHandler} className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3">
-        Proceed to pay
+      <button
+        onClick={billingHandler}
+        disabled={loading || !stripe}
+        className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3"
+      >
+        {loading ? "Paying..." : "Proceed to pay"}
       </button>
     </div>
   );
 };
 
-
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { STRIPE_PK, STRIPE_SK } from "../../config/config";
-import { useParams, useRoutes } from "react-router-dom";
-
+import { useNavigate, useParams, useRoutes } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useUpdateUserSettingsMutation } from "../../features/auth/authApi";
+import Swal from "sweetalert2";
 
 function PurchaseCredit() {
-
   const stripePromise = loadStripe(STRIPE_PK);
 
-
-
   return (
-    <><Elements stripe={stripePromise}><PurchaseCreditComp /></Elements></>
-  )
+    <>
+      <Elements stripe={stripePromise}>
+        <PurchaseCreditComp />
+      </Elements>
+    </>
+  );
 }
 
-
-
-
 export default PurchaseCredit;
-
-
 
 const createPaymentIntent = async (amountInCents, currency) => {
   const stripe = Stripe(STRIPE_SK);
@@ -197,7 +223,7 @@ const createPaymentIntent = async (amountInCents, currency) => {
       currency: "USD",
     });
 
-    console.log("paymentIntent:", paymentIntent)
+    console.log("paymentIntent:", paymentIntent);
 
     return paymentIntent.client_secret;
   } catch (error) {
