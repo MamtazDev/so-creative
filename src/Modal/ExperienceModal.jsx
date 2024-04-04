@@ -60,7 +60,7 @@ const ExperienceModal = ({
               className="border w-full px-4 py-3.5 rounded-lg"
               rows="5"
               placeholder="Start typing here..."
-              name="comment"
+              name="comments"
               onChange={handleInputChange}
             />
           </div>
@@ -72,7 +72,7 @@ const ExperienceModal = ({
               className="border w-full px-4 py-3.5 rounded-lg"
               rows="5"
               placeholder="Start typing here..."
-              name="suggestion"
+              name="suggestions"
               onChange={handleInputChange}
             />
           </div>
