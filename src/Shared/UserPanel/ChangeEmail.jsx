@@ -4,10 +4,13 @@ import open from "../../assets/open.svg";
 import { Link } from "react-router-dom";
 import { answers, reactions } from "../../utils/data";
 
-const ChangeEmail = () => {
+const ChangeEmail = ({ setStep }) => {
   return (
     <div>
-      <div className=" flex items-center gap-3 mb-8">
+      <div
+        className=" flex items-center gap-3 mb-8 cursor-pointer"
+        onClick={() => setStep(2)}
+      >
         <img src={arrowLeft} alt="" />
         <p className="text-base text-indigo-600 font-bold">
           How to change the email address of your account?{" "}

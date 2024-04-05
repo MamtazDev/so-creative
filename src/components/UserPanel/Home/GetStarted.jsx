@@ -1,6 +1,33 @@
+import { useDispatch } from "react-redux";
+import { setShowCreateModal } from "../../../features/project/projectSlice";
 import { details } from "../../../utils/data";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const GetStarted = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = (item) => {
+    console.log(item);
+    if (item === "New Projects") {
+      dispatch(setShowCreateModal(true));
+    }
+    if (item === "Edit Video") {
+      Swal.fire({
+        icon: "info",
+        title: "Comming Soon!",
+        customClass: {
+          confirmButton: "custom-confirm-button-class",
+        },
+      });
+    }
+    if (item === "Upload Brand") {
+      navigate("/user/brand-kit");
+    }
+    if (item === "Access Files") {
+      navigate("/user/media-storage");
+    }
+  };
   return (
     <div>
       <p className=" text-xl font-semibold mb-5">Get Started</p>
@@ -12,6 +39,7 @@ const GetStarted = () => {
                 className={`${data.bgColor} w-full h-[178px] rounded-xl flex items-center justify-center p-4 mb-4`}
               >
                 <button
+                  onClick={() => handleClick(data.name)}
                   className={`${data.buttonBg} flex text-white font-bold text-base items-center gap-3 py-2 pl-2 pr-4 rounded-[72px]`}
                 >
                   <img src={data.pic} alt="" />

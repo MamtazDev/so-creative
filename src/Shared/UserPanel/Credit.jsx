@@ -5,38 +5,29 @@ import minus from "../../assets/minus.svg";
 import creditPlus from "../../assets/creditPlus.svg";
 import { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Credit = ({ setShowCredit, creditRef }) => {
-  const [count, setCount] = useState(2);
-  const [creditprice, setCreditprice] = useState(0);
+  const [count, setCount] = useState(0);
 
-  const price = (credit) => {
-    setCreditprice(credit*11.5)
-  }
-
+  const { user } = useSelector((state) => state.auth);
 
   const handleIncrement = () => {
     setCount(count + 1);
-    price(count)
   };
   const handleDecrement = () => {
     if (count > 0) {
       setCount(count - 1);
-      price(count)
     }
   };
 
+  const navigate = useNavigate();
 
   const purchaseHandler = () => {
-    console.log("Count:", count)
-    const totalPrice = count * 11.5
-    console.log("totalPrice:", totalPrice);
-    setShowCredit(false)
-  }
-
-  useEffect(() => {},[creditprice])
-
+    navigate(`/user/purchase-credit/${count}`);
+    setShowCredit(false);
+  };
 
   return (
     <div
@@ -47,7 +38,7 @@ const Credit = ({ setShowCredit, creditRef }) => {
         <div className="flex items-center gap-2 justify-between mb-8">
           <div>
             <p className="text-slate-500 text-xs font-medium mb-1">Balance</p>
-            <p className="text-sm font-semibold">{count} Credit</p>
+            <p className="text-sm font-semibold">{user?.credit} Credit</p>
           </div>
           <button onClick={() => setShowCredit(false)}>
             <img src={close} alt="" />
@@ -71,15 +62,15 @@ const Credit = ({ setShowCredit, creditRef }) => {
         </div>
         <div className="flex justify-between gap-2 items-center">
           <p className="text-base font-normal">
-            Total Cost: <span className="font-bold">${creditprice}</span>{" "}
+            Total Cost: <span className="font-bold">${count * 11.5}</span>{" "}
           </p>
-          <Link
-            to={`/user/purchase-credit/totalCredit=${count}`}
-            onClick={() =>  purchaseHandler}
+          <button
+            onClick={() => purchaseHandler()}
+            disabled={count === 0}
             className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3"
           >
             Purchase Now
-          </Link>
+          </button>
         </div>
       </div>
       <div className="bg-slate-100 flex items-center justify-center gap-3 p-4 ">

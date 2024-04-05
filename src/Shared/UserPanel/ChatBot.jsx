@@ -3,6 +3,7 @@ import active from "../../assets/active.svg";
 import profile from "../../assets/chatbot.svg";
 import chatOff from "../../assets/chatOff.svg";
 import close from "../../assets/close.svg";
+import chatBot from "../../assets/noChat.svg";
 import {
   chatHistory,
   getFormattedDate,
@@ -171,7 +172,7 @@ const ChatBotV2 = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [data, show]);
+  }, [data, show, autoRepling]);
 
   return (
     <div

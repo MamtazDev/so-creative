@@ -5,7 +5,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import { STRIPE_PK, STRIPE_SK } from "../../config/config";
 import { useNavigate, useParams, useRoutes } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useUpdateUserSettingsMutation } from "../../features/auth/authApi";
+import {
+  useMakeSubscriptionMutation,
+  useUpdateUserSettingsMutation,
+} from "../../features/auth/authApi";
 import Swal from "sweetalert2";
 
 import {
@@ -17,6 +20,7 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { calculateExpireDate } from "../../utils/converter";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -60,16 +64,17 @@ const PurchaseCreditComp = () => {
   const navigate = useNavigate();
 
   const [updateUserSettings, { isLoading }] = useUpdateUserSettingsMutation();
+  const [makeSubscription, { isLoading: subscribing }] =
+    useMakeSubscriptionMutation();
+  const { plan } = useParams();
 
-  const { credit } = useParams();
+  const credit = plan === "business" ? 384.44 : 524.44;
+  const subscriptionType = plan === "business" ? "Business" : "Enterprise";
+  const purchaseCredit = plan === "business" ? 1000 : 1500;
   const billingHandler = async (e) => {
     e.preventDefault();
 
     setLoading(true);
-
-    const data = {
-      BillingName: "BillingName",
-    };
 
     if (!stripe) {
       console.log("There is no stripe ", stripe);
@@ -79,7 +84,7 @@ const PurchaseCreditComp = () => {
 
     try {
       const clientSecret = await createPaymentIntent(
-        Number(credit * 11.5) * 100,
+        (Number(credit) * 100).toFixed(2),
         "usd"
       );
 
@@ -111,10 +116,17 @@ const PurchaseCreditComp = () => {
         });
         setLoading(false);
       } else if (paymentIntent.status === "succeeded") {
-        console.log("Success", paymentIntent);
-
         const updateRes = await updateUserSettings({
-          credit: Number(credit) + Number(user?.credit),
+          credit: Number(purchaseCredit) + Number(user?.credit),
+          currentPlan: subscriptionType,
+          subscriptionExpierDate: calculateExpireDate(),
+        });
+
+        const createInvoice = await makeSubscription({
+          user: user?._id,
+          amount: credit,
+          status: "Paid",
+          invoiceId: paymentIntent.id,
         });
 
         if (updateRes?.error?.error) {
@@ -221,7 +233,7 @@ const PurchaseCreditComp = () => {
         disabled={loading || !stripe || !formData.nationality || !formData.zip}
         className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3"
       >
-        {loading ? "Paying..." : `Pay $${credit * 11.5}`}
+        {loading ? "Paying..." : `Pay $${credit}`}
       </button>
     </div>
   );

@@ -2,10 +2,13 @@ import React from "react";
 import companyLogo from "../../../assets/company-logo.svg";
 import companyEdit from "../../../assets/company-edit.svg";
 import { plans } from "../../../utils/data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight } from "@phosphor-icons/react";
+import { useSelector } from "react-redux";
 
-const TeamSettings = () => {
+const TeamSettings = ({ setShowTeamModal }) => {
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
   return (
     <div>
       <div className="flex items-center gap-4 justify-between mb-6">
@@ -40,7 +43,17 @@ const TeamSettings = () => {
             >
               Learn More <ArrowRight size={16} weight="bold" />{" "}
             </Link>
-            <button className="bg-white rounded-full py-1.5 px-4 w-full text-slate-900 text-sm font-semibold">
+            <button
+              disabled={
+                data.slug.toLocaleLowerCase() ===
+                user?.currentPlan.toLocaleLowerCase()
+              }
+              onClick={() => {
+                navigate(`/user/subscribe/${data.slug}`);
+                setShowTeamModal(false);
+              }}
+              className="bg-white rounded-full py-1.5 px-4 w-full text-slate-900 text-sm font-semibold disabled:bg-gray-400 disabled:text-white"
+            >
               Upgrade
             </button>
           </div>

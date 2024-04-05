@@ -179,3 +179,13 @@ export const convetChatDateTime = (dateString) => {
 
   return formattedTime;
 };
+
+export const calculateExpireDate = () => {
+  const currentDate = new Date();
+
+  const expirationDate = new Date(currentDate);
+  expirationDate.setFullYear(currentDate.getFullYear() + 1);
+
+  // const expirationDateString = expirationDate.toISOString().split("T")[0];
+  return expirationDate;
+};

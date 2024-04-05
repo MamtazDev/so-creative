@@ -21,6 +21,7 @@ import Projects from "../pages/UserPanel/Projects";
 import EditorProjects from "../pages/EditorPanel/EditorProjects";
 import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 import PurchaseCredit from "../pages/UserPanel/PurchaseCredit";
+import PurchaseSubscription from "../pages/UserPanel/PurchaseSubscription";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/purchase-credit/:credit",
         element: <PurchaseCredit />,
+      },
+      {
+        path: "/user/subscribe/:plan",
+        element: <PurchaseSubscription />,
       },
     ],
   },

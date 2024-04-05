@@ -746,12 +746,14 @@ export const plans = [
   {
     pic: business,
     title: "Business Plan",
+    slug: "business",
     subtitle:
       "For professionals that need translation, storage, and more instruments.",
   },
   {
     pic: enterprise,
     title: "Enterprise Plan",
+    slug: "enterprise",
     subtitle:
       "For professionals that need translation, storage, and more instruments.",
   },
