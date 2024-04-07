@@ -7,33 +7,42 @@ import html2canvas from "html2canvas";
 const Invoice = ({ paymentDatas }) => {
   console.log(paymentDatas, "fgjskf");
 
-  const generatePDF = () => {
-    const input = document.getElementById("invoice");
-    html2canvas(input)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF();
-        const imgWidth = 210; // PDF width
-        const pageHeight = 297; // PDF height
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        let heightLeft = imgHeight;
-        let position = 0;
+  const generatePDF = (item) => {
+    const doc = new jsPDF();
 
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+    // Invoice header
+    doc.setFontSize(18);
+    doc.text("Invoice", 14, 20);
 
-        while (heightLeft >= 0) {
-          position = heightLeft - imgHeight;
-          pdf.addPage();
-          pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
-        }
+    // Invoice details table
+    doc.setFontSize(12);
+    const startY = 30;
+    const startX = 10;
+    const lineHeight = 10;
+    const columnWidth = 70;
 
-        pdf.save("invoice.pdf");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // Customer Name
+    doc.text("Customer:", startX, startY);
+    doc.text(item.user.name || "N/A", startX + columnWidth, startY);
+
+    // Amount
+    doc.text("Amount:", startX, startY + lineHeight);
+    doc.text(
+      "$" + (item.amount || "N/A"),
+      startX + columnWidth,
+      startY + lineHeight
+    );
+
+    // Date
+    doc.text("Date:", startX, startY + 2 * lineHeight);
+    doc.text(
+      DateConverter(item.createdAt) || new Date().toLocaleDateString(),
+      startX + columnWidth,
+      startY + 2 * lineHeight
+    );
+
+    // Save the PDF
+    doc.save("invoice.pdf");
   };
 
   return (
@@ -69,89 +78,8 @@ const Invoice = ({ paymentDatas }) => {
             ))}
         </tbody>
       </table>
-
-      <div>
-        <h1>Invoice</h1>
-        <div id="invoice" style={{ backgroundColor: "white", padding: "20px" }}>
-          <h2>Invoice Number: #5465fsf</h2>
-          <p>Date: 05 April, 2024</p>
-          <p>Customer: John Doe</p>
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              marginTop: "20px",
-            }}
-          >
-            <thead>
-              <tr style={{ borderBottom: "1px solid black" }}>
-                <th style={{ textAlign: "left", padding: "8px" }}>Item</th>
-                <th style={{ textAlign: "right", padding: "8px" }}>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style={{ borderBottom: "1px solid black" }}>
-                <td style={{ textAlign: "left", padding: "8px" }}>Item 1</td>
-                <td style={{ textAlign: "right", padding: "8px" }}>$10.00</td>
-              </tr>
-              <tr style={{ borderBottom: "1px solid black" }}>
-                <td style={{ textAlign: "left", padding: "8px" }}>Item 2</td>
-                <td style={{ textAlign: "right", padding: "8px" }}>$20.00</td>
-              </tr>
-              <tr style={{ borderBottom: "1px solid black" }}>
-                <td style={{ textAlign: "left", padding: "8px" }}>Item 3</td>
-                <td style={{ textAlign: "right", padding: "8px" }}>$30.00</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style={{ textAlign: "right", marginTop: "20px" }}>Total: $60.00</p>
-        </div>
-      </div>
     </div>
   );
 };
 
 export default Invoice;
-
-const InvoiceComponent = (data) => {
-  return (
-    <div>
-      <h1>Invoice</h1>
-      <div id="invoice" style={{ backgroundColor: "white", padding: "20px" }}>
-        <h2>Invoice Number: {data.invoiceId}</h2>
-        <p>Date: {DateConverter(data.createdAt)}</p>
-        <p>Customer: John Doe</p>
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            marginTop: "20px",
-          }}
-        >
-          <thead>
-            <tr style={{ borderBottom: "1px solid black" }}>
-              <th style={{ textAlign: "left", padding: "8px" }}>Item</th>
-              <th style={{ textAlign: "right", padding: "8px" }}>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style={{ borderBottom: "1px solid black" }}>
-              <td style={{ textAlign: "left", padding: "8px" }}>Item 1</td>
-              <td style={{ textAlign: "right", padding: "8px" }}>$10.00</td>
-            </tr>
-            <tr style={{ borderBottom: "1px solid black" }}>
-              <td style={{ textAlign: "left", padding: "8px" }}>Item 2</td>
-              <td style={{ textAlign: "right", padding: "8px" }}>$20.00</td>
-            </tr>
-            <tr style={{ borderBottom: "1px solid black" }}>
-              <td style={{ textAlign: "left", padding: "8px" }}>Item 3</td>
-              <td style={{ textAlign: "right", padding: "8px" }}>$30.00</td>
-            </tr>
-          </tbody>
-        </table>
-        <p style={{ textAlign: "right", marginTop: "20px" }}>Total: $60.00</p>
-      </div>
-      <button onClick={this.generatePDF}>Download Invoice</button>
-    </div>
-  );
-};

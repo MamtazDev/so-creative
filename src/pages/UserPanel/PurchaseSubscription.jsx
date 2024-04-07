@@ -126,6 +126,7 @@ const PurchaseCreditComp = () => {
           user: user?._id,
           amount: credit,
           status: "Paid",
+          plan: subscriptionType,
           invoiceId: paymentIntent.id,
         });
 
