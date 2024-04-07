@@ -10,12 +10,18 @@ import {
   setProjectCreating,
   setStep,
 } from "../../../features/project/projectSlice";
+import { useUpdateUserSettingsMutation } from "../../../features/auth/authApi";
 
 const SelectAddOns = () => {
   const { projectId } = useSelector((state) => state.project);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  const [creditError, setCreditError] = useState("");
+
   const [updateProject, { isLoading }] = useUpdateProjectMutation();
+  const [updateUserSettings, { isLoading: updating }] =
+    useUpdateUserSettingsMutation();
 
   const [projectAddons, setAddProjectOns] = useState([]);
   const { data: projectData } = useGetProjectDetailsQuery(projectId);
@@ -41,6 +47,16 @@ const SelectAddOns = () => {
 
   const handleContinue = async () => {
     dispatch(setProjectCreating(true));
+    setCreditError("");
+    const totalCredit =
+      projectData?.totalCredit +
+      projectAddons.reduce((total, current) => total + current.credit, 0);
+
+    if (totalCredit > user?.credit) {
+      setCreditError("You dont have enough credit!");
+      dispatch(setProjectCreating(false));
+      return;
+    }
     try {
       const formData = new FormData();
 
@@ -58,6 +74,7 @@ const SelectAddOns = () => {
         }
       });
       formData.append("projectId", projectId);
+      formData.append("totalCredit", totalCredit);
       formData.append("status", "Pending");
       const res = await updateProject(formData);
 
@@ -77,7 +94,14 @@ const SelectAddOns = () => {
       }
       if (res?.data?.success) {
         // push("/dashboard");
-        dispatch(setStep(3));
+
+        const userData = {
+          credit: user?.credit - totalCredit,
+        };
+        const updateUser = await updateUserSettings(userData);
+        if (updateUser?.data?.success) {
+          dispatch(setStep(3));
+        }
       }
     } catch (error) {
       Swal.fire({
@@ -86,6 +110,7 @@ const SelectAddOns = () => {
         text: `${error?.message}`,
       });
     } finally {
+      setCreditError("");
       dispatch(setProjectCreating(false));
     }
   };
@@ -131,19 +156,28 @@ const SelectAddOns = () => {
         All add-ons are subject to change once reviewed by our editing team.
         Additional credit charges may apply.
       </p>
+      <p className="text-red-600">{creditError}</p>
       <div className="flex items-center gap-2 justify-between">
         <p className="text-base font-normal">
           Total Project Cost:{" "}
           <span className="font-bold">
-            {projectData?.totalCredit !== 0
+            {/* {projectData?.totalCredit !== 0
               ? projectData?.totalCredit.toFixed(1)
               : projectAddons
                   .reduce((total, current) => total + current.credit, 0)
-                  .toFixed(1)}{" "}
+                  .toFixed(1)}{" "} */}
+            {(
+              projectData?.totalCredit +
+              projectAddons.reduce(
+                (total, current) => total + current.credit,
+                0
+              )
+            ).toFixed(1)}
             <></>
             Credits
           </span>{" "}
         </p>
+
         <div className="flex items-center gap-4">
           <button
             onClick={() => dispatch(setStep(1))}

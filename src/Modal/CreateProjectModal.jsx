@@ -15,12 +15,17 @@ import {
   setStep,
 } from "../features/project/projectSlice";
 import CreatingBrand from "../Shared/UserPanel/CreatingBrand";
+import { useUpdateProjectMutation } from "../features/project/projectApi";
+import Swal from "sweetalert2";
 const CreateProjectModal = () => {
   const createRef = useRef();
 
   const { projectId, step, projectCrating } = useSelector(
     (state) => state.project
   );
+  const [updateProject, { isLoading }] = useUpdateProjectMutation();
+  const [selectedVideo, setSelectedVideo] = useState([]);
+  const [selectedAveter, setSelectedAveter] = useState([]);
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -28,6 +33,49 @@ const CreateProjectModal = () => {
     dispatch(setStep(0));
     dispatch(setActiveBrif(undefined));
     dispatch(setShowCreateModal(false));
+  };
+
+  console.log(selectedVideo, "selectedVideo");
+  console.log(selectedAveter, "selectedAveter");
+
+  const handleSaveProject = async () => {
+    // onClick={() => dispatch(setStep(1))}
+
+    try {
+      const formData = {
+        projectId: projectId,
+        stockVideos: selectedVideo,
+        avatar: selectedAveter,
+        totalCredit:
+          Number(selectedVideo.length) * 1 + Number(selectedAveter.length) * 1,
+      };
+
+      const res = await updateProject(formData);
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        dispatch(setStep(1));
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
   };
 
   return (
@@ -48,15 +96,22 @@ const CreateProjectModal = () => {
           {step === 0 && (
             <div className="">
               <UploadFile />
-              <StockVideos />
-              <AllAvater />
+              <StockVideos
+                selectedVideo={selectedVideo}
+                setSelectedVideo={setSelectedVideo}
+              />
+              <AllAvater
+                selectedAveter={selectedAveter}
+                setSelectedAveter={setSelectedAveter}
+              />
               <div className="mt-10 text-center">
                 <button
-                  disabled={!projectId}
-                  onClick={() => dispatch(setStep(1))}
+                  disabled={!projectId || isLoading}
+                  // onClick={() => dispatch(setStep(1))}
+                  onClick={handleSaveProject}
                   className=" primary_btn disabled:bg-indigo-300"
                 >
-                  Save & Continue
+                  {isLoading ? "Saving..." : "Save & Continue"}
                 </button>
               </div>
             </div>
