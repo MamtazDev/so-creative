@@ -37,14 +37,14 @@ const Header = ({ user }) => {
           <Link to="/">
             <img className="max-w-60 h-10" src={logo} alt="" />
           </Link>
-          <div className="flex items-center gap-5 rounded-full bg-white p-3 w-full max-w-xl">
+          {/* <div className="flex items-center gap-5 rounded-full bg-white p-3 w-full max-w-xl">
             <img src={search} alt="" />
             <input
               className="w-full"
               type="search"
               placeholder="Search videos"
             />
-          </div>
+          </div> */}  
         </div>
 
         <div className="w-full flex justify-end items-center gap-4">

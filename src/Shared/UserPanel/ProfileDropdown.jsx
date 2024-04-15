@@ -26,7 +26,7 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
   const items = [
     {
       icon: <User className="text-state-700" size={24} weight="bold" />,
-      title: "Account Settings",
+      title: "Account Settings ",
       event: openAccountModal,
     },
     {

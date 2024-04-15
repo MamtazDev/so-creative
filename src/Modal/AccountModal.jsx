@@ -123,7 +123,7 @@ const AccountModal = ({ setShowAccount }) => {
                     ? user?.image
                     : brandInput
                 }
-                alt=""
+                alt="Profile Image"
               />
               <img
                 className="absolute translate-y-[-50%] top-[50%] left-[44px] cursor-pointer"
