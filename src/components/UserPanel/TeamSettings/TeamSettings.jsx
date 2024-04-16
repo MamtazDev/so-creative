@@ -9,6 +9,12 @@ import { useSelector } from "react-redux";
 const TeamSettings = ({ setShowTeamModal }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+
+
+
+  console.log("data?.slug.toLocaleLowerCase() plans", plans )
+  console.log("data?.slug.toLocaleLowerCase()", user )
+
   return (
     <div>
       <div className="flex items-center gap-4 justify-between mb-6">
@@ -41,13 +47,13 @@ const TeamSettings = ({ setShowTeamModal }) => {
               to="#"
               className="text-sm font-semibold flex items-center gap-1 mb-4"
             >
-              Learn More <ArrowRight size={16} weight="bold" />{" "}
+              Learn More <ArrowRight size={16} weight="bold" />
             </Link>
             <button
-              disabled={
-                data.slug.toLocaleLowerCase() ===
-                user?.currentPlan.toLocaleLowerCase()
-              }
+              // disabled={
+              //   data?.slug.toLocaleLowerCase() ===
+              //   user?.currentPlan.toLocaleLowerCase()
+              // }
               onClick={() => {
                 navigate(`/user/subscribe/${data.slug}`);
                 setShowTeamModal(false);
