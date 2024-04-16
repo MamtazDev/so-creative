@@ -14,7 +14,7 @@ const UserHome = () => {
   console.log(projects, "projects");
   return (
     <div>
-      <div className="flex items-center gap-3 mb-6">
+      {data?.length > 0 && <div className="flex items-center gap-3 mb-6">
         <p className=" text-xl font-bold">Recent Projects</p>
         <Link
           to="/user/projects"
@@ -23,11 +23,11 @@ const UserHome = () => {
           <span className=" text-base  font-semibold">All Projects</span>
           <CaretRight size={20} weight="bold" />
         </Link>
-      </div>
+      </div>}
       {isLoading || getingProjects ? (
         <Loading />
       ) : (
-        <>
+        data?.length>0 && <>
           <InProgressVideo data={projects} />
           <RecentVideos data={data} />
         </>

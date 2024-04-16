@@ -7,6 +7,7 @@ import {
   setShowDraftModal,
 } from "../../../features/project/projectSlice";
 import { useNavigate } from "react-router-dom";
+import NoData from "../../../Shared/NoData";
 
 const AllProjects = ({ data }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const AllProjects = ({ data }) => {
   return (
     <div className="grid grid-cols-4 gap-6 mb-10">
       {data &&
-        data?.length > 0 &&
+        data?.length > 0 ?
         data.map((item, idx) => (
           <div
             key={idx}
@@ -61,7 +62,9 @@ const AllProjects = ({ data }) => {
               </p>
             </div>
           </div>
-        ))}
+        )) : (
+          <NoData/>
+        )}
     </div>
   );
 };

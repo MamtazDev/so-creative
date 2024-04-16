@@ -13,6 +13,8 @@ import EditorPagination from "./EditorPagination";
 import TableHead from "../../Shared/TableComponent/TableHead/TableHead";
 import TableBody from "../../Shared/TableComponent/TableBody/TableBody";
 
+import demoImage from "../../../assets/userprofile.png";
+
 import ProjectBriefModal from "../../../Modal/ProjectBriefModal";
 
 import { DateConverter } from "../../../utils/converter";
@@ -174,7 +176,7 @@ const MyWorkTable = ({ filteredData }) => {
                           <div className="flex-shrink-0 w-8 h-8">
                             <img
                               className="w-full h-full rounded-full object-cover"
-                              src={tableDataInfo.creator?.image}
+                              src={tableDataInfo.creator?.image ? tableDataInfo.creator?.image : demoImage  }
                               alt="img"
                             />
                           </div>
