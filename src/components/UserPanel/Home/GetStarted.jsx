@@ -42,7 +42,7 @@ const GetStarted = () => {
                   onClick={() => handleClick(data.name)}
                   className={`${data.buttonBg} flex text-white font-bold text-base items-center gap-3 py-2 pl-2 pr-4 rounded-[72px]`}
                 >
-                  <img src={data.pic} alt="" />
+                  {data.icon}
                   {data.name}
                 </button>
               </div>
