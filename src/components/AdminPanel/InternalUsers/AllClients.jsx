@@ -17,7 +17,7 @@ const AllClients = ({ filteredData }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col h-[90%] justify-between">
       <table className="w-full leading-normal myworktable">
         <TableHead tableHeading={clientTableHeading} />
 

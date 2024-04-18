@@ -32,10 +32,16 @@ const ProfileDropdown = ({ setShowProfile }) => {
       title: "Account Settings ",
       event: openAccountModal,
     },
-    {
-      icon: <Headset className="text-state-700" size={24} weight="bold" />,
-      title: "Support ",
-    },
+    ...(user.role !== "ADMIN"
+      ? [
+          {
+            icon: (
+              <Headset className="text-state-700" size={24} weight="bold" />
+            ),
+            title: "Support",
+          },
+        ]
+      : []),
     {
       icon: <SignOut className="text-state-700" size={24} weight="bold" />,
       title: "Logout ",
