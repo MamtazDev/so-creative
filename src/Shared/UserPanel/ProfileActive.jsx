@@ -7,7 +7,7 @@ const ProfileActive = () => {
   return (
     <div className="relative">
       {user?.image ? (
-        <div className="h-12 w-12 rounded-full">
+        <div className="h-12 w-12 rounded-full cursor-pointer ">
           <img
             src={user.image}
             alt=""
@@ -15,7 +15,7 @@ const ProfileActive = () => {
           />
         </div>
       ) : (
-        <button className="text-white uppercase text-sm font-semibold h-12 w-12 bg-[#4F16A5] rounded-full p-3">
+        <button className="text-white uppercase text-sm font-semibold h-12 w-12 cursor-pointer bg-[#4F16A5] rounded-full p-3">
           {firstLetter}
         </button>
       )}

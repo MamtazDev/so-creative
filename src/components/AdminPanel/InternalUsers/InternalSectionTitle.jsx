@@ -5,14 +5,23 @@ import {
   TextAa,
   UserPlus,
 } from "@phosphor-icons/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import InviteUsers from "./InviteUsers";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const InternalSectionTitle = ({ filter, handleFilterChange }) => {
   const route = useLocation();
   const [showInviteUser, setShowInviteUser] = useState(false);
+  const sortRef = useRef();
   const [showSort, setShowSort] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Last Modified");
+
+  useOutsideClick(sortRef, () => setShowSort(false));
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    setShowSort(false);
+  };
   return (
     <div className="relative">
       <div className="seciton_heading pb-6 flex items-center justify-between">
@@ -69,15 +78,24 @@ const InternalSectionTitle = ({ filter, handleFilterChange }) => {
               className="bg-slate-100 border rounded-full p-1"
             >
               <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
-                Sort by: Last Modified <CaretDown size={12} weight="fill" />
+                Sort by: {selectedOption} <CaretDown size={12} weight="fill" />
               </button>
             </div>
             {showSort && (
-              <div className="bg-white w-auto shadow-xl rounded-xl absolute z-50">
-                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+              <div
+                ref={sortRef}
+                className="bg-white w-auto shadow-xl rounded-xl absolute z-50"
+              >
+                <button
+                  onClick={() => handleOptionSelect("Last Modified")}
+                  className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b"
+                >
                   <CalendarBlank size={16} weight="bold" /> Last Modified
                 </button>
-                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                <button
+                  onClick={() => handleOptionSelect("Alphabetical")}
+                  className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b"
+                >
                   <TextAa size={16} weight="bold" /> Alphabetical
                 </button>
               </div>
