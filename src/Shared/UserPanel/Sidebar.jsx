@@ -18,12 +18,14 @@ import {
 const Sidebar = ({ user }) => {
   const location = useLocation();
   const showRef = useRef();
+  const settingRef = useRef();
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
 
   const [showTeamModal, setShowTeamModal] = useState(false);
   useOutsideClick(showRef, () => setShow(false));
+  useOutsideClick(settingRef, () => setOpen(false));
   const { showCretedModal, showDraftModal } = useSelector(
     (state) => state.project
   );
@@ -99,7 +101,10 @@ const Sidebar = ({ user }) => {
         </div>
       </div>
       {user?.role === "USER" && (
-        <div className={`${open && "rounded-2xl shadow-2xl bg-white"}`}>
+        <div
+          ref={settingRef}
+          className={`${open && "rounded-2xl shadow-2xl bg-white"}`}
+        >
           {open && (
             <div className="border-b">
               {workspaceMenu.map((data, index) => (

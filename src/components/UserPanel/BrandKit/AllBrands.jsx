@@ -7,10 +7,19 @@ import {
 } from "@phosphor-icons/react";
 import arrow from "../../../assets/down-arrow.svg";
 import brand from "../../../assets/socreative-brand.svg";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const AllBrands = ({ setStep }) => {
+  const sortRef = useRef();
   const [showSort, setShowSort] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Last Modified");
+
+  useOutsideClick(sortRef, () => setShowSort(false));
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    setShowSort(false);
+  };
   return (
     <div>
       <div className="flex items-center gap-3 justify-between mb-6">
@@ -22,15 +31,24 @@ const AllBrands = ({ setStep }) => {
               className="bg-slate-100 border rounded-full p-1"
             >
               <button className="bg-white rounded-full p-1.5 text-xs font-medium flex items-center gap-1">
-                Sort by: Last Modified <CaretDown size={12} weight="fill" />
+                Sort by: {selectedOption} <CaretDown size={12} weight="fill" />
               </button>
             </div>
             {showSort && (
-              <div className="bg-white w-auto shadow-xl rounded-xl absolute z-50">
-                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+              <div
+                ref={sortRef}
+                className="bg-white w-auto shadow-xl rounded-xl absolute z-50"
+              >
+                <button
+                  onClick={() => handleOptionSelect("Last Modified")}
+                  className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b"
+                >
                   <CalendarBlank size={16} weight="bold" /> Last Modified
                 </button>
-                <button className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b">
+                <button
+                  onClick={() => handleOptionSelect("Alphabetical")}
+                  className="text-sm font-medium flex items-center gap-3 px-4 py-2 border-b"
+                >
                   <TextAa size={16} weight="bold" /> Alphabetical
                 </button>
               </div>

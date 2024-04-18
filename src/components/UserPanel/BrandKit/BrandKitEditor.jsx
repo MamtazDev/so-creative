@@ -6,9 +6,7 @@ import BrandKitCommon from "./BrandKitCommon";
 import AddColor from "../../../Modal/AddColor";
 import BrandcolorInner from "../../../Shared/UserPanel/BrandcolorInner";
 
-const BrandKitEditor = ({brand
-  ,setBrand}) => {
- 
+const BrandKitEditor = ({ brand, setBrand }) => {
   const [colorModal, setColorModal] = useState(false);
   const [selectedColor, setSelectedColor] = useState("#000000");
   const guidelineRef = useRef();
@@ -54,8 +52,13 @@ const BrandKitEditor = ({brand
         {brand?.guidelines?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
             {brand?.guidelines?.map((data, index) => (
-              <BrandcardInner key={index} data={data}  main={brand.guidelines} index={"guidelines"}
-              setMain={setBrand}/>
+              <BrandcardInner
+                key={index}
+                data={data}
+                main={brand.guidelines}
+                index={"guidelines"}
+                setMain={setBrand}
+              />
             ))}
             <PlusButton handleClick={() => guidelineRef.current.click()} />
           </div>
@@ -77,7 +80,7 @@ const BrandKitEditor = ({brand
           <div className="grid grid-cols-4 gap-6">
             {brand?.logos?.map((data, index) => (
               <BrandcardInner
-              brand={brand}
+                brand={brand}
                 main={brand?.logos}
                 key={index}
                 data={data}
@@ -103,8 +106,13 @@ const BrandKitEditor = ({brand
         {brand?.fonts?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
             {brand?.fonts?.map((data, index) => (
-              <BrandcardInner key={index} data={data} index={"fonts"} main={brand?.fonts}
-              setMain={setBrand} />
+              <BrandcardInner
+                key={index}
+                data={data}
+                index={"fonts"}
+                main={brand?.fonts}
+                setMain={setBrand}
+              />
             ))}
             <PlusButton handleClick={() => fontRef.current.click()} />
           </div>
@@ -116,14 +124,18 @@ const BrandKitEditor = ({brand
         <BrandKitCommon
           title="Color Palette"
           subtitle="Add your brand color palettes to maintain brand consistency across your videos"
-         
         />
 
         {brand?.color?.length > 0 ? (
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {brand?.color?.map((data, index) => (
-              <BrandcolorInner key={index} data={data} index={"color"} main={brand?.color}
-              setMain={setBrand} />
+              <BrandcolorInner
+                key={index}
+                data={data}
+                index={"color"}
+                main={brand?.color}
+                setMain={setBrand}
+              />
             ))}
             <PlusButton handleClick={() => setColorModal(true)} />
           </div>
@@ -143,8 +155,13 @@ const BrandKitEditor = ({brand
         {brand?.imageAssets?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
             {brand?.imageAssets?.map((data, index) => (
-              <BrandcardInner key={index} data={data} index={"imageAssets"} main={brand?.imageAssets}
-              setMain={setBrand} />
+              <BrandcardInner
+                key={index}
+                data={data}
+                index={"imageAssets"}
+                main={brand?.imageAssets}
+                setMain={setBrand}
+              />
             ))}
             <PlusButton handleClick={() => imageAssetRef.current.click()} />
           </div>
@@ -164,8 +181,13 @@ const BrandKitEditor = ({brand
         {brand?.videoAssets?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
             {brand?.videoAssets?.map((data, index) => (
-              <BrandcardInner key={index} data={data} index={"videoAssets"} main={brand?.videoAssets}
-              setMain={setBrand} />
+              <BrandcardInner
+                key={index}
+                data={data}
+                index={"videoAssets"}
+                main={brand?.videoAssets}
+                setMain={setBrand}
+              />
             ))}
             <PlusButton handleClick={() => videoAssetRef.current.click()} />
           </div>
@@ -185,8 +207,13 @@ const BrandKitEditor = ({brand
         {brand?.audioAssets?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
             {brand?.audioAssets?.map((data, index) => (
-              <BrandcardInner key={index} data={data} index={"audioAssets"} main={brand?.audioAssets}
-              setMain={setBrand} />
+              <BrandcardInner
+                key={index}
+                data={data}
+                index={"audioAssets"}
+                main={brand?.audioAssets}
+                setMain={setBrand}
+              />
             ))}
             <PlusButton handleClick={() => audioAssetRef.current.click()} />
           </div>

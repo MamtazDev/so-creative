@@ -44,7 +44,7 @@ const Header = ({ user }) => {
               type="search"
               placeholder="Search videos"
             />
-          </div> */}  
+          </div> */}
         </div>
 
         <div className="w-full flex justify-end items-center gap-4">
@@ -106,6 +106,7 @@ const Header = ({ user }) => {
         <ProfileDropdown
           setShowProfile={setShowProfile}
           profileRef={profileRef}
+          user={user}
         />
       )}
     </div>

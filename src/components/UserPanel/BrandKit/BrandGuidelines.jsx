@@ -42,12 +42,20 @@ const BrandGuidelines = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("brand", brandname)
-    console.log("brandImg", brandImg)
-    console.log("description", description)
+    console.log("brand", brandname);
+    console.log("brandImg", brandImg);
+    console.log("description", description);
 
-    setAllBrand([...allbrand, {brand: brand, name: brandname, Description: description, brandLogo: brandImg}])
-    console.log("setAllBrand", allbrand)
+    setAllBrand([
+      ...allbrand,
+      {
+        brand: brand,
+        name: brandname,
+        Description: description,
+        brandLogo: brandImg,
+      },
+    ]);
+    console.log("setAllBrand", allbrand);
 
     // setIsLoading("loading");
 
@@ -56,24 +64,15 @@ const BrandGuidelines = () => {
     // }, 1000);
   };
 
-
-
   const handleAssetPortion = () => {
-
     const url = "https://player.vimeo.com/video/929420372?h=2df2a64de8";
     const regex = /\/video\/(\d+)\?/;
     const match = url.match(regex);
     const videoId = match ? match[1] : null;
-    console.log("Video id: ", videoId)
+    console.log("Video id: ", videoId);
+  };
 
-
-  }
-
-
-
-
-
-  console.log("setAllBrand", allbrand)
+  console.log("setAllBrand", allbrand);
 
   const handleChange = (e, fieldName, index) => {
     const file = e.target.files[0];
@@ -89,9 +88,9 @@ const BrandGuidelines = () => {
       {isLoading === false && (
         <form
           onSubmit={handleSubmit}
-          className="flex items-start justify-between gap-10"
+          className="flex items-start justify-between gap-10 "
         >
-          <div className="w-full flex flex-col gap-10 ">
+          <div className="w-1/2 flex flex-col gap-10 ">
             {/* {
             guidelines.length > 0 ? (
               guidelines.map((data, index) => (
@@ -133,9 +132,9 @@ const BrandGuidelines = () => {
             ) : (
               <p>There is no data</p>
             )} */}
-            <BrandKitEditor  brand = {brand} setBrand = {setBrand} />
+            <BrandKitEditor brand={brand} setBrand={setBrand} />
           </div>
-          <div className="max-w-[584px] w-full border rounded-3xl p-10">
+          <div className="max-w-[584px] w-full border rounded-3xl p-10 fixed right-16">
             <div
               onClick={() => brandImgRef.current.click()}
               className="relative"

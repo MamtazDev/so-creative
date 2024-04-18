@@ -1,15 +1,8 @@
-import AboutProject from "../components/UserPanel/CreateProject/AboutProject";
-import SupportingMaterial from "../components/UserPanel/CreateProject/SupportingMaterial";
-import SelectBrand from "../components/UserPanel/CreateProject/SelectBrand";
-import AspectRatio from "../components/UserPanel/CreateProject/AspectRatio";
 import AddPresenter from "../components/UserPanel/CreateProject/AddPresenter";
-
 import accepted from "../assets/accepted.svg";
-import access from "../assets/access.svg";
 import alert from "../assets/alert.svg";
 import brandActive from "../assets/brand-active.svg";
 import brand from "../assets/brand.svg";
-import edit from "../assets/edit.svg";
 import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
 import clientImg1 from "../assets/editor_panel/clientImg1.svg";
 import clientIconActive from "../assets/editor_panel/client_active.svg";
@@ -23,11 +16,9 @@ import homeActive from "../assets/home-active.svg";
 import home from "../assets/home.svg";
 import mediaActive from "../assets/media-active.svg";
 import media from "../assets/media.svg";
-import plus from "../assets/plus.svg";
 import premium from "../assets/premium.svg";
 import rejected from "../assets/rejected.svg";
 import sad from "../assets/sad.svg";
-import upload from "../assets/upload.svg";
 import upset from "../assets/upset.svg";
 import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
@@ -52,12 +43,16 @@ import slack from "../assets/slack-notification.svg";
 
 import {
   FileVideo,
+  Folder,
   GearSix,
   NewspaperClipping,
   Note,
   Notebook,
+  PlusCircle,
   Question,
+  Scissors,
   Swatches,
+  UploadSimple,
   Users,
   Video,
 } from "@phosphor-icons/react";
@@ -348,28 +343,28 @@ export const videos = [
 
 export const details = [
   {
-    pic: plus,
+    icon: <PlusCircle size={24} weight="fill" />,
     name: "New Projects",
     bgColor: "bg-purple-100",
     buttonBg: "bg-purple-950",
     title: "Create your first project",
   },
   {
-    pic: edit,
+    icon: <Scissors size={24} />,
     name: "Edit Video",
     bgColor: "bg-pink-100",
     buttonBg: "bg-pink-900",
     title: "Make changes to your videos",
   },
   {
-    pic: upload,
+    icon: <UploadSimple size={24} />,
     name: "Upload Brand",
     bgColor: "bg-emerald-100",
     buttonBg: "bg-emerald-900",
     title: "Upload your brand kit",
   },
   {
-    pic: access,
+    icon: <Folder size={24} weight="fill" />,
     name: "Access Files",
     bgColor: "bg-amber-100",
     buttonBg: "bg-amber-700",
