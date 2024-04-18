@@ -95,11 +95,25 @@ const VideoComments = ({ data }) => {
                 .map((item, index) => (
                   <div className="activity_card flex gap-2 " key={index}>
                     <div className="left_activity_card">
-                      <img
+                      {/* <img
                         className="h-10 w-10 rounded-full object-cover"
                         src={item.user.image ? item.user.image : aveter}
                         alt="activity_img"
-                      />
+                      /> */}
+
+                      {item.user.image ? (
+                        <div className="h-10 w-10 rounded-full cursor-pointer ">
+                          <img
+                            src={item.user.image}
+                            alt=""
+                            className="h-full w-full object-cover rounded-full"
+                          />
+                        </div>
+                      ) : (
+                        <button className="text-white uppercase text-sm font-semibold h-10 w-10 cursor-pointer bg-[#4F16A5] rounded-full p-3">
+                          {item.user.name.slice(0, 2)}
+                        </button>
+                      )}
                     </div>
                     <div className="right_activity_card">
                       <h3 className="text-base font-semibold text-slate-900 pb-3">
