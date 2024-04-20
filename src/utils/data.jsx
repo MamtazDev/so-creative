@@ -74,7 +74,7 @@ export const tableHeadingTwo = [
 
 export const clientTableHeading = [
   "Client",
-  "Project Count",
+  // "Project Count",
   "Last Project Status",
   "Last Activity",
 ];

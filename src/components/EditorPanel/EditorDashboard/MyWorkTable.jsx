@@ -70,6 +70,8 @@ const MyWorkTable = ({ filteredData }) => {
     setCurrentPage(pageNumber);
   };
 
+  console.log("paginatedData", paginatedData)
+
   return (
     <>
       {route.pathname === "/editor" && (

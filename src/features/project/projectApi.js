@@ -44,6 +44,10 @@ export const projectApi = apiSlice.injectEndpoints({
       query: (queryString) => `/v1/project/getAllProjects?${queryString}`,
       providesTags: ["AllProjects"],
     }),
+    getAllClients: builder.query({
+      query:(queryString) => `/v1/users?${queryString}`
+    }),
+
     addReview: builder.mutation({
       query: (data) => ({
         url: "/v1/project/addReview",
@@ -62,5 +66,6 @@ export const {
   useAddCommentMutation,
   useGetProjectCommentsQuery,
   useGetAllProjectsQuery,
+  useGetAllClientsQuery,
   useAddReviewMutation,
 } = projectApi;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../Shared/Loading";
 import MyWorkTable from "../../components/EditorPanel/EditorDashboard/MyWorkTable";
 import EditroSectionTitle from "../../components/EditorPanel/EditorSectionTitle/EditroSectionTitle";
@@ -11,6 +11,8 @@ const EditorAllClients = () => {
   const [filter, setFilter] = useState("All");
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
+                                   
+    // const setFilter = newFilter data
   };
 
   const { user } = useSelector((state) => state.auth);
@@ -40,6 +42,12 @@ const EditorAllClients = () => {
     }, []);
 
   console.log(result, "result");
+
+
+  useEffect(() => {
+    console.log("data", data)
+  }, [data])
+
 
   // const filteredData = repeatedData.filter((item) =>
   //   filter === "All"
