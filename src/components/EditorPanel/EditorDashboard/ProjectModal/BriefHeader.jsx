@@ -105,7 +105,7 @@ const BriefHeader = ({
               selectedProject?.status === "Exported" && "hidden"
             }`}
           >
-            {loading ? "Submiting..." : "Share Project"}
+            {loading ? "Submiting..." : "Submit Project"}
           </button>
         )}
       </div>

@@ -20,8 +20,8 @@ const AllVideoFileLayout = ({ filteredVideos }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredVideos.length > 0 ? (
-            filteredVideos.map((data, index) => (
+          {filteredVideos?.length > 0 ? (
+            filteredVideos?.map((data, index) => (
               <tr key={index}>
                 <td>
                   <div className="flex gap-4 items-center">

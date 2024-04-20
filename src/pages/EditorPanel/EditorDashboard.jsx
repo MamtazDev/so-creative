@@ -11,6 +11,7 @@ const EditorDashboard = () => {
   // const { isLoading } = useLoading();
   const { user } = useSelector((state) => state.auth);
   const { data, isLoading } = useGetAllProjectsQuery("");
+
   const myTasks =
     data && data?.length > 0
       ? data.filter((i) => i?.editor?._id === user._id)
@@ -34,8 +35,9 @@ const EditorDashboard = () => {
                   </h3>
                 </div>
                 <InsightsCard
+                  data={myTasks}
                   myTasks={
-                    myTasks.filter((i) => i.status === "In Progress").length
+                    myTasks.length
                   }
                   newTasks={newTasks.length}
                 />

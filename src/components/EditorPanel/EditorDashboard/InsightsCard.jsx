@@ -1,6 +1,17 @@
+import { useEffect } from "react";
 import { insightsCardData } from "../../../utils/data";
 
-const InsightsCard = ({ newTasks, myTasks }) => {
+const InsightsCard = ({data,  newTasks, myTasks }) => {
+
+
+  useEffect(() => {
+    console.log("newTasks", newTasks)
+    console.log("myTasks", myTasks)
+    console.log("my Data: ", data)
+  }, [])
+
+
+
   const InsightsData = insightsCardData.map((i) => {
     if (i.name === "New Projects") {
       i.number = newTasks;
@@ -9,6 +20,7 @@ const InsightsCard = ({ newTasks, myTasks }) => {
     }
     return i;
   });
+
   return (
     <>
       <div className="insights_card_wrapper flex gap-8">
