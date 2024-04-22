@@ -11,20 +11,18 @@ const AddColor = ({
 }) => {
   const colorRef = useRef();
 
-  const [ nameColor, setNameColor ] = useState()
-  const [ valueColor, setValueColor ] = useState()
-
+  const [ nameColor, setNameColor ] = useState("color")
+  const [ valueColor, setValueColor ] = useState(selectedColor)
 
 
   const handleChange = (e) => {
-
     setSelectedColor(e.target.value);
 
 
-    const { name } = e.target;
-    console.log("Name:", name)
+    // const { name } = e.target;
+    // console.log("Name:", e.target)
     console.log("Value:", e.target.value )
-    setNameColor(name)
+    // setNameColor(name)
     setValueColor(e.target.value)
     // setBrand((prevState) => ({
     //   ...prevState,
@@ -44,11 +42,11 @@ const AddColor = ({
     setColorModal(false)
   };
 
-
   const handleColorChange = (e) => {
     setSelectedColor(e.target.value);
     console.log("e.target.value: ", e.target.value)
   };
+
   useOutsideClick(colorRef, () => setColorModal(false));
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
