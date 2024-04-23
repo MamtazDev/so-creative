@@ -45,6 +45,8 @@ const BrandGuidelines = () => {
     console.log("brand", brandname);
     console.log("brandImg", brandImg);
     console.log("description", description);
+    console.log("description", description);
+
 
     setAllBrand([
       ...allbrand,
