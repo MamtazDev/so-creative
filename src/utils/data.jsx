@@ -752,6 +752,20 @@ export const plans = [
     subtitle:
       "For professionals that need translation, storage, and more instruments.",
   },
+  {
+    pic: enterprise,
+    title: "Weakly Plan",
+    slug: "weak",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
+  },
+  {
+    pic: enterprise,
+    title: "Monthly Plan",
+    slug: "month",
+    subtitle:
+      "For professionals that need translation, storage, and more instruments.",
+  },
 ];
 
 export const notificationSettings = [

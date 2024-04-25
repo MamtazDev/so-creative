@@ -10,8 +10,10 @@ import { useNavigate } from "react-router-dom";
 import Creating from "./Creating";
 import { Plus } from "@phosphor-icons/react";
 import BrandKitEditor from "./BrandKitEditor";
+import { useCreateBrandMutation } from "../../../features/brand-kit/brandKitApi";
 
 const BrandGuidelines = () => {
+  const [createBrand] = useCreateBrandMutation();
   const [brandImg, setBrandImg] = useState(null);
   const [description, setDescription] = useState("");
   const [brandname, setBrandname] = useState("");
@@ -39,25 +41,62 @@ const BrandGuidelines = () => {
     setDescription(inputValue);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading("loading");
+    // console.log("brand", brandname);
+    // console.log("brandImg", brandImg);
+    // console.log("description", description);
 
-    console.log("brand", brandname);
-    console.log("brandImg", brandImg);
-    console.log("description", description);
-    console.log("description", description);
+    // setAllBrand([
+    //   ...allbrand,
+    //   {
+    //     brand: brand,
+    //     name: brandname,
+    //     Description: description,
+    //     brandLogo: brandImg,
+    //   },
+    // ]);
 
+    const data = {
+      brand: brand, // Each property is an array
+      brandName: brandname,
+      brandDescription: description,
+      brandLogo: brandImg,
+    };
 
-    setAllBrand([
-      ...allbrand,
-      {
-        brand: brand,
-        name: brandname,
-        Description: description,
-        brandLogo: brandImg,
-      },
-    ]);
-    console.log("setAllBrand", allbrand);
+    const formData = new FormData();
+
+    // Append brand data if it exists
+    if (data?.brand) {
+      for (const [key, value] of Object.entries(data.brand)) {
+        value.forEach((el) => {
+          formData.append(`brand[${key}]`, el);
+        });
+      }
+    }
+
+    // Append brand logo if it exists
+    if (brandImg) {
+      formData.append("brandLogo", brandImg);
+    }
+
+    // Append name if it exists
+    if (brandname) {
+      formData.append("brandName", brandname);
+    }
+
+    // Append description if it exists
+    if (description) {
+      formData.append("brandDescription", description);
+    }
+
+    // Assuming createBrand is an asynchronous function that sends data to create a brand
+    const result = await createBrand(formData);
+    if (result?.data?.success) {
+      setIsLoading("done");
+    }
+    setIsLoading("done");
 
     // setIsLoading("loading");
 
@@ -74,7 +113,7 @@ const BrandGuidelines = () => {
     console.log("Video id: ", videoId);
   };
 
-  console.log("setAllBrand", allbrand);
+  // console.log("setAllBrand", allbrand);
 
   const handleChange = (e, fieldName, index) => {
     const file = e.target.files[0];

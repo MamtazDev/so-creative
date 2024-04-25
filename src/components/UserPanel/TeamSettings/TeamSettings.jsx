@@ -10,10 +10,8 @@ const TeamSettings = ({ setShowTeamModal }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
-
-
-  console.log("data?.slug.toLocaleLowerCase() plans", plans )
-  console.log("data?.slug.toLocaleLowerCase()", user )
+  console.log("data?.slug.toLocaleLowerCase() plans", plans);
+  console.log("data?.slug.toLocaleLowerCase()", user);
 
   return (
     <div>
@@ -38,7 +36,7 @@ const TeamSettings = ({ setShowTeamModal }) => {
         </div>
       </div>
       <div className="flex items-center gap-6 mb-6">
-        {plans.map((data, index) => (
+        {plans.slice(0, 2).map((data, index) => (
           <div className="p-5 rounded-2xl bg-slate-900 text-white" key={index}>
             <img className="mb-4" src={data.pic} alt="" />
             <p className="text-lg font-bold mb-2">{data.title}</p>
@@ -61,6 +59,34 @@ const TeamSettings = ({ setShowTeamModal }) => {
               className="bg-white rounded-full py-1.5 px-4 w-full text-slate-900 text-sm font-semibold disabled:bg-gray-400 disabled:text-white"
             >
               Upgrade
+            </button>
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center gap-6 mb-6">
+        {plans.slice(2, 4).map((data, index) => (
+          <div className="p-5 rounded-2xl bg-slate-900 text-white" key={index}>
+            <img className="mb-4" src={data.pic} alt="" />
+            <p className="text-lg font-bold mb-2">{data.title}</p>
+            <p className="text-sm font-normal mb-4">{data.subtitle}</p>
+            <Link
+              to="#"
+              className="text-sm font-semibold flex items-center gap-1 mb-4"
+            >
+              Learn More <ArrowRight size={16} weight="bold" />
+            </Link>
+            <button
+              // disabled={
+              //   data?.slug.toLocaleLowerCase() ===
+              //   user?.currentPlan.toLocaleLowerCase()
+              // }
+              onClick={() => {
+                navigate(`/user/subscribe/${data.slug}`);
+                setShowTeamModal(false);
+              }}
+              className="bg-white rounded-full py-1.5 px-4 w-full text-slate-900 text-sm font-semibold disabled:bg-gray-400 disabled:text-white"
+            >
+              Subscribe
             </button>
           </div>
         ))}

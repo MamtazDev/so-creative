@@ -68,9 +68,18 @@ const PurchaseCreditComp = () => {
     useMakeSubscriptionMutation();
   const { plan } = useParams();
 
-  const credit = plan === "business" ? 384.44 : 524.44;
-  const subscriptionType = plan === "business" ? "Business" : "Enterprise";
-  const purchaseCredit = plan === "business" ? 1000 : 1500;
+  const credit =
+    (plan === "business" && 384.44) ||
+    (plan === "enterprise" && 524.44) ||
+    (plan === "weak" && 5) ||
+    (plan === "month" && 20);
+  const subscriptionType =
+    (plan === "business" && "Business") ||
+    (plan === "enterprise" && "Enterprise") ||
+    (plan === "weak" && "Weak") ||
+    (plan === "month" && "Month");
+  const purchaseCredit =
+    (plan === "business" && 1000) || (plan === "enterprise" && 1500) || 0;
   const billingHandler = async (e) => {
     e.preventDefault();
 

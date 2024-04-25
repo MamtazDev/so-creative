@@ -22,6 +22,7 @@ import EditorProjects from "../pages/EditorPanel/EditorProjects";
 import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 import PurchaseCredit from "../pages/UserPanel/PurchaseCredit";
 import PurchaseSubscription from "../pages/UserPanel/PurchaseSubscription";
+import Subscription from "../pages/UserPanel/Subscription";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +90,14 @@ export const router = createBrowserRouter([
       {
         path: "/user/subscribe/:plan",
         element: <PurchaseSubscription />,
+      },
+      {
+        path: "/user/subscription/weakly",
+        element: <Subscription />,
+      },
+      {
+        path: "/user/subscription/monthly",
+        element: <Subscription />,
       },
     ],
   },

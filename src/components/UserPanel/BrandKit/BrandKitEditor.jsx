@@ -34,9 +34,9 @@ const BrandKitEditor = ({ brand, setBrand }) => {
     }
   };
 
-  console.log(brand, "brand data");
+  // console.log(brand, "brand data");
   useEffect(() => {
-    console.log("Brand object updated:", brand);
+    // console.log("Brand object updated:", brand);
   }, [brand]);
   return (
     <div className="w-full flex flex-col gap-10 ">

@@ -3,7 +3,7 @@ import mp4 from "../../assets/mp4.svg";
 import mp3 from "../../assets/audio.svg";
 
 const BrandcardInner = ({ brand, main, data, setMain, index }) => {
-  console.log(data);
+  // console.log(data);
   const fileName = data?.name.split(".")[0];
   const fileExtension = data?.name.split(".").slice(1).join(".");
   const truncatedFileName =

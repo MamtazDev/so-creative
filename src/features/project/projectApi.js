@@ -1,4 +1,3 @@
-
 import { apiSlice } from "../api/apiSlice";
 
 export const projectApi = apiSlice.injectEndpoints({
@@ -45,7 +44,7 @@ export const projectApi = apiSlice.injectEndpoints({
       providesTags: ["AllProjects"],
     }),
     getAllClients: builder.query({
-      query:(queryString) => `/v1/users?${queryString}`
+      query: (queryString) => `/v1/users?${queryString}`,
     }),
 
     addReview: builder.mutation({
