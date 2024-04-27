@@ -5,9 +5,6 @@ import { DownloadSimple } from "@phosphor-icons/react";
 
 
 function SingleSupportingMaterial({ data, index }) {
-
-    console.log("index", index, data)
-
     return (
         <tr key={index} className="border-b last:border-b-0">
             <td className="px-4 py-3 flex items-center gap-3">
