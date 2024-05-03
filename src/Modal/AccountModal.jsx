@@ -1,14 +1,12 @@
 import { useRef, useState } from "react";
-import close from "../assets/close.svg";
 import brandInput from "../assets/brand-img.svg";
 import camera from "../assets/camera.svg";
-import verifyEmail from "../assets/verify-email.svg";
-import { Link } from "react-router-dom";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useUpdateUserSettingsMutation } from "../features/auth/authApi";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { uploadImageToImgBB } from "../utils/imageHosting";
+import { XCircle } from "@phosphor-icons/react";
 
 const AccountModal = ({ setShowAccount }) => {
   const [inputData, setInputData] = useState({});
@@ -92,7 +90,7 @@ const AccountModal = ({ setShowAccount }) => {
           onClick={() => setShowAccount(false)}
           className="absolute top-5 right-5 "
         >
-          <img src={close} alt="" />
+          <XCircle size={32} weight="fill" />
         </button>
 
         {/* {step === 1 && ( */}

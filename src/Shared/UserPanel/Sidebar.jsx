@@ -1,4 +1,4 @@
-import { Plus } from "@phosphor-icons/react";
+import { FileVideo, FilmStrip, Plus } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import CreateProjectModal from "../../Modal/CreateProjectModal";
@@ -55,7 +55,11 @@ const Sidebar = ({ user }) => {
                   }}
                   className="flex gap-3.5 items-center text-base font-medium mb-6"
                 >
-                  <img src={createProject} alt="" />
+                  <FilmStrip
+                    className="text-indigo-600"
+                    size={24}
+                    weight="bold"
+                  />
                   Create Project
                 </button>
                 <button
@@ -65,7 +69,11 @@ const Sidebar = ({ user }) => {
                   }}
                   className="flex gap-3.5 items-center text-base font-medium"
                 >
-                  <img src={selectDraft} alt="" />
+                  <FileVideo
+                    className="text-[#E11D48]"
+                    size={24}
+                    weight="bold"
+                  />
                   Select Drafts
                 </button>
               </div>

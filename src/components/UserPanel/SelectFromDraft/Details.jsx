@@ -7,7 +7,6 @@ import {
   PuzzlePiece,
 } from "@phosphor-icons/react";
 import cc from "../../../assets/cc.svg";
-import voice from "../../../assets/voice.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { DateConverter } from "../../../utils/converter";
 import {

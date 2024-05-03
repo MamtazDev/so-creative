@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import search from "../../assets/search.svg";
 import message from "../../assets/message-question.svg";
 import help from "../../assets/help-black.svg";
 import notification from "../../assets/notification.svg";
@@ -14,7 +13,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { useSelector } from "react-redux";
 
-const Header = ({ user }) => {
+const Header = ({ user, show, setShow }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showCredit, setShowCredit] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
@@ -107,6 +106,8 @@ const Header = ({ user }) => {
           setShowProfile={setShowProfile}
           profileRef={profileRef}
           user={user}
+          show={show}
+          setShow={setShow}
         />
       )}
     </div>

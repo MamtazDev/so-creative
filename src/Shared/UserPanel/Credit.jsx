@@ -1,12 +1,10 @@
-import close from "../../assets/close.svg";
 import secure from "../../assets/secure.svg";
 import credit from "../../assets/credit.svg";
-import minus from "../../assets/minus.svg";
-import creditPlus from "../../assets/creditPlus.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { MinusCircle, PlusCircle, XCircle } from "@phosphor-icons/react";
 
 const Credit = ({ setShowCredit, creditRef }) => {
   const [count, setCount] = useState(0);
@@ -41,7 +39,7 @@ const Credit = ({ setShowCredit, creditRef }) => {
             <p className="text-sm font-semibold">{user?.credit} Credit</p>
           </div>
           <button onClick={() => setShowCredit(false)}>
-            <img src={close} alt="" />
+            <XCircle size={32} weight="fill" />
           </button>
         </div>
         <div className="text-center mb-8">
@@ -53,11 +51,11 @@ const Credit = ({ setShowCredit, creditRef }) => {
         </div>
         <div className="border rounded-full flex items-center justify-between gap-2 p-2 mb-8">
           <button onClick={handleDecrement}>
-            <img src={minus} alt="" />
+            <MinusCircle className="text-red-500" size={48} weight="fill" />
           </button>
           <p className="text-lg font-bold">{count} Credit</p>
           <button onClick={handleIncrement}>
-            <img src={creditPlus} alt="" />
+            <PlusCircle className="text-green-500" size={48} weight="fill" />
           </button>
         </div>
         <div className="flex justify-between gap-2 items-center">

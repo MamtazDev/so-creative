@@ -1,15 +1,15 @@
-import arrowLeft from "../assets/arrow-left.svg";
 import helpQuery from "../assets/help-ans.png";
 import open from "../assets/open.svg";
 import { Link } from "react-router-dom";
 import { answers, reactions } from "../utils/data";
+import { CaretLeft } from "@phosphor-icons/react";
 
 const ChangeEmail = () => {
   return (
     <div>
-      <div className=" flex items-center gap-3 mb-8">
-        <img src={arrowLeft} alt="" />
-        <p className="text-base text-indigo-600 font-bold">
+      <div className=" flex items-center text-indigo-600 gap-3 mb-8">
+        <CaretLeft size={24} weight="bold" />
+        <p className="text-base  font-bold">
           How to change the email address of your account?{" "}
         </p>
       </div>

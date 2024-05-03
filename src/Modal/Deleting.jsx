@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
-import close from "../assets/close.svg";
-import { Trash } from "@phosphor-icons/react";
+import { Trash, XCircle } from "@phosphor-icons/react";
 import Swal from "sweetalert2";
 import {
   useDeleteFileMutation,
@@ -67,7 +66,7 @@ const Deleting = ({
             <Trash className="text-red-500" size={24} weight="fill" />
           </button>
           <button onClick={() => setDeleteModal(false)}>
-            <img src={close} alt="" />
+            <XCircle size={32} weight="fill" />
           </button>
         </div>
         <div>

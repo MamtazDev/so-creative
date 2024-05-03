@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import active from "../../assets/active.svg";
 import profile from "../../assets/chatbot.svg";
 import chatOff from "../../assets/chatOff.svg";
-import close from "../../assets/close.svg";
 import chatBot from "../../assets/noChat.svg";
 import {
   chatHistory,
@@ -10,7 +8,7 @@ import {
   suggestionData,
 } from "../../utils/chat";
 import { useScrollToBottom } from "../../utils/useScrollToBottom";
-import { ArrowUp } from "@phosphor-icons/react";
+import { ArrowUp, XCircle } from "@phosphor-icons/react";
 import {
   useAddAutoReplyMutation,
   useAddMessageMutation,
@@ -20,8 +18,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { convetChatDateTime } from "../../utils/converter";
 
-const ChatBotV2 = () => {
-  const [show, setShow] = useState(false);
+const ChatBotV2 = ({ show, setShow }) => {
   const [inputValue, setInputValue] = useState("");
 
   const { user } = useSelector((state) => state.auth);
@@ -187,7 +184,7 @@ const ChatBotV2 = () => {
               <div>
                 <p className=" text-xl font-bold mb-1">SoCreative Bot</p>
                 <div className="flex items-center gap-1">
-                  <img src={active} alt="" />
+                  <div className=" border-2 border-white rounded-full bg-green-500 w-4 h-4"></div>
                   <p className="text-slate-500 text-sm font-medium">
                     Active Now
                   </p>
@@ -195,7 +192,7 @@ const ChatBotV2 = () => {
               </div>
             </div>
             <button onClick={() => setShow(false)}>
-              <img src={close} alt="" />
+              <XCircle size={32} weight="fill" />
             </button>
           </div>
           <div className="chatbot_body overflow-y-auto no_scrollbar p-8">

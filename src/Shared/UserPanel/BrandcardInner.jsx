@@ -1,6 +1,6 @@
-import close from "../../assets/close.svg";
 import mp4 from "../../assets/mp4.svg";
 import mp3 from "../../assets/audio.svg";
+import { XCircle } from "@phosphor-icons/react";
 
 const BrandcardInner = ({ brand, main, data, setMain, index }) => {
   console.log(data);
@@ -20,7 +20,6 @@ const BrandcardInner = ({ brand, main, data, setMain, index }) => {
     const updatedMain = main.filter((item) => item !== data);
     console.log("updatedMain", updatedMain);
     // setMain(updatedMain)
-
     // setMain(prevArray => {
     //   // Copying the previous array
     //   const newArray = [...main];
@@ -36,12 +35,41 @@ const BrandcardInner = ({ brand, main, data, setMain, index }) => {
       [index]: updatedMain,
     }));
   };
+
+  const renderBackgroundImage = () => {
+    switch (fileExtension.toLowerCase()) {
+      case "pdf":
+        return "https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_1280.png";
+      case "mp4":
+      case "wmv":
+      case "mov":
+        return mp4;
+      case "mp3":
+      case "wav":
+        return mp3;
+      case "jpg":
+      case "jpeg":
+      case "png":
+      case "gif":
+        return URL.createObjectURL(data);
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="border rounded-xl relative">
-      <span onClick={removeHandler} className="absolute top-1 right-1">
-        <img src={close} alt="" />
+      <span onClick={removeHandler} className="absolute top-1 right-1 z-40">
+        <XCircle size={32} weight="fill" />
       </span>
-      <div className="h-[90px] flex justify-center bg-indigo-100 rounded-t-xl overflow-hidden">
+      <div
+        className="h-[90px] w-full flex justify-center bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${renderBackgroundImage()})`,
+          backgroundBlendMode: "overlay",
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+        }}
+      >
         {fileExtension.toLowerCase() === "pdf" ? (
           <img
             className="object-cover rounded-t-xl"

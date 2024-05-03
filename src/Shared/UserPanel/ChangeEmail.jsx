@@ -1,18 +1,18 @@
-import arrowLeft from "../../assets/arrow-left.svg";
 import helpQuery from "../../assets/help-ans.svg";
 import open from "../../assets/open.svg";
 import { Link } from "react-router-dom";
 import { answers, reactions } from "../../utils/data";
+import { CaretLeft } from "@phosphor-icons/react";
 
 const ChangeEmail = ({ setStep }) => {
   return (
     <div>
       <div
-        className=" flex items-center gap-3 mb-8 cursor-pointer"
+        className=" flex items-center gap-3 mb-8 cursor-pointer text-indigo-600"
         onClick={() => setStep(2)}
       >
-        <img src={arrowLeft} alt="" />
-        <p className="text-base text-indigo-600 font-bold">
+        <CaretLeft size={24} weight="bold" />
+        <p className="text-base  font-bold">
           How to change the email address of your account?{" "}
         </p>
       </div>

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import close from "../../assets/close.svg";
 import { notifications } from "../../utils/data";
 import useLoading from "../../hooks/useLoading";
 import Loading from "../Loading";
+import { XCircle } from "@phosphor-icons/react";
 
 const Notification = ({ setShowNotification, notificationRef }) => {
   const { isLoading } = useLoading();
@@ -36,7 +36,7 @@ const Notification = ({ setShowNotification, notificationRef }) => {
       <div className="flex gap-2 justify-between items-center mb-6">
         <p className="text-xl font-bold">Notification</p>
         <button onClick={() => setShowNotification(false)}>
-          <img src={close} alt="" />
+          <XCircle size={32} weight="fill" />
         </button>
       </div>
       {isLoading ? (

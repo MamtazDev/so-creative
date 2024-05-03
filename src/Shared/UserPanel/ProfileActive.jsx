@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import active from "../../assets/active.svg";
 
 const ProfileActive = () => {
   const { user } = useSelector((state) => state.auth);
@@ -19,7 +18,8 @@ const ProfileActive = () => {
           {firstLetter}
         </button>
       )}
-      <img className="absolute bottom-0 -right-1" src={active} alt="" />
+
+      <div className=" border-2 border-white rounded-full bg-green-500 w-4 h-4 absolute bottom-0 -right-1"></div>
     </div>
   );
 };

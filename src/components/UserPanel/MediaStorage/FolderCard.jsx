@@ -2,11 +2,13 @@ import { DotsThreeOutline, PencilSimple, Trash } from "@phosphor-icons/react";
 import folderIcon from "../../../assets/folder.svg";
 import { formatFileSize } from "../../../utils/converter";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Deleting from "../../../Modal/Deleting";
 import EditModal from "../../../Modal/EditModal";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
+  const clickedItemRef = useRef();
   const navigate = useNavigate();
 
   const handleClick = (e, id) => {
@@ -21,6 +23,8 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
   const [openEditFolderModal, setEditFolderModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [title, setTitle] = useState(null);
+
+  useOutsideClick(clickedItemRef, () => setClickedItem(null));
 
   return (
     <div>
@@ -41,6 +45,7 @@ const FolderCard = ({ folder, setClickedItem, clickedItem }) => {
 
         {clickedItem === folder._id && (
           <div
+            ref={clickedItemRef}
             className="absolute top-0 -right-40 z-40 bg-white w-[196px]  shadow-xl  rounded-xl "
             onClick={(e) => e.stopPropagation()}
           >

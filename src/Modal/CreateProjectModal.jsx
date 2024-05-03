@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import Stepper from "../components/UserPanel/CreateProject/Stepper";
-import close from "../assets/close.svg";
 import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
 import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
 import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
@@ -17,6 +16,7 @@ import {
 import CreatingBrand from "../Shared/UserPanel/CreatingBrand";
 import { useUpdateProjectMutation } from "../features/project/projectApi";
 import Swal from "sweetalert2";
+import { XCircle } from "@phosphor-icons/react";
 const CreateProjectModal = () => {
   const createRef = useRef();
 
@@ -90,7 +90,7 @@ const CreateProjectModal = () => {
           className="max-w-[1280px] max-h-[90vh] overflow-y-auto no_scrollbar w-full bg-white text-black p-10 rounded-2xl relative"
         >
           <button onClick={handleClick} className="absolute top-5 right-5 ">
-            <img src={close} alt="" />
+            <XCircle size={32} weight="fill" />
           </button>
           {step !== 3 && <Stepper step={step} />}
           {step === 0 && (

@@ -1,7 +1,4 @@
-import search from "../../../../assets/search.svg";
-import filter from "../../../../assets/filter.svg";
 import send from "../../../../assets/send.svg";
-import aveter from "../../../../assets/aveter1.svg";
 import chatBot from "../../../../assets/noChat.svg";
 import { useState } from "react";
 import {
@@ -10,6 +7,7 @@ import {
 } from "../../../../features/project/projectApi";
 import Swal from "sweetalert2";
 import { DateConverterWithTime } from "../../../../utils/converter";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 
 const VideoComments = ({ data }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -72,7 +70,7 @@ const VideoComments = ({ data }) => {
     <div className="border rounded-xl p-6 max-h-[70vh]">
       <div className="h-full flex flex-col gap-6 justify-between ">
         <div className="bg-slate-100 rounded-full flex items-center gap-2.5 p-2 ">
-          <img src={search} alt="" />
+          <MagnifyingGlass size={20} />
           <input
             className="bg-transparent w-full"
             type="search"

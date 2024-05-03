@@ -8,7 +8,7 @@ import { userLoggedOut } from "../../features/auth/authSlice";
 import Cookies from "js-cookie";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-const ProfileDropdown = ({ setShowProfile }) => {
+const ProfileDropdown = ({ setShowProfile, show, setShow }) => {
   const [showAccount, setShowAccount] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const modalRef = useRef();
@@ -26,6 +26,12 @@ const ProfileDropdown = ({ setShowProfile }) => {
     Cookies.remove("soCreativeAuth");
     navigate("/");
   };
+
+  const handleOpenChat = () => {
+    setShow(!show);
+    setShowProfile(false);
+  };
+
   const items = [
     {
       icon: <User className="text-state-700" size={24} weight="bold" />,
@@ -39,6 +45,7 @@ const ProfileDropdown = ({ setShowProfile }) => {
               <Headset className="text-state-700" size={24} weight="bold" />
             ),
             title: "Support",
+            event: handleOpenChat,
           },
         ]
       : []),

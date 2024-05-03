@@ -5,7 +5,6 @@ import {
   Plus,
   TextAa,
 } from "@phosphor-icons/react";
-import arrow from "../../../assets/down-arrow.svg";
 import brand from "../../../assets/socreative-brand.svg";
 import { useRef, useState } from "react";
 import useOutsideClick from "../../../hooks/useOutsideClick";

@@ -1,7 +1,6 @@
-import search from "../../assets/search.svg";
-import arrow from "../../assets/arrow-right.svg";
 import { helps } from "../../utils/data";
 import { useState } from "react";
+import { CaretRight, MagnifyingGlass } from "@phosphor-icons/react";
 
 const HelpOptions = ({ setStep }) => {
   const [inputSearch, setInputSearch] = useState("");
@@ -17,7 +16,7 @@ const HelpOptions = ({ setStep }) => {
   return (
     <div>
       <div className="bg-slate-100 rounded-full flex items-center gap-3 pl-4 p-2 mb-8">
-        <img src={search} alt="" />
+        <MagnifyingGlass size={20} />
         <input
           className="w-full bg-transparent"
           type="search"
@@ -37,7 +36,7 @@ const HelpOptions = ({ setStep }) => {
                 <p className="mb-2 text-base font-bold ">{data.title}</p>
                 <p className="text-sm font-medium">{data.no} articles</p>
               </div>
-              <img src={arrow} alt="" />
+              <CaretRight size={24} weight="bold" />
             </div>
           ))
         ) : (

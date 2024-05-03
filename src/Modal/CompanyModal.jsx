@@ -1,11 +1,10 @@
 import React, { useRef, useState } from "react";
-import close from "../assets/close.svg";
 import aveter from "../assets/aveter1.svg";
-import search from "../assets/search.svg";
 import CompanySidebar from "../components/AdminPanel/InternalUsers/CompanySidebar";
 import useOutsideClick from "../hooks/useOutsideClick";
 import TeamMembers from "../components/AdminPanel/InternalUsers/TeamMembers";
 import PlanBilling from "../components/AdminPanel/InternalUsers/PlanBilling";
+import { MagnifyingGlass, XCircle } from "@phosphor-icons/react";
 
 const CompanyModal = ({ setShowModal }) => {
   const [step, setStep] = useState(0);
@@ -29,7 +28,7 @@ const CompanyModal = ({ setShowModal }) => {
           </div>
           <div className="flex w-full justify-end items-center gap-6">
             <div className="max-w-[384px] w-full bg-slate-100 rounded-full p-3 flex  items-center gap-3">
-              <img src={search} alt="" />
+              <MagnifyingGlass size={20} />
               <input
                 className="bg-transparent w-full"
                 type="search"
@@ -37,7 +36,7 @@ const CompanyModal = ({ setShowModal }) => {
               />
             </div>
             <button onClick={() => setShowModal(false)}>
-              <img src={close} alt="" />
+              <XCircle size={32} weight="fill" />
             </button>
           </div>
         </div>

@@ -40,6 +40,14 @@ import business from "../assets/business-plan.svg";
 import enterprise from "../assets/enterprise-plan.svg";
 import email from "../assets/email-notification.svg";
 import slack from "../assets/slack-notification.svg";
+import benz from "../assets/website/benz.svg";
+import ant from "../assets/website/ant.svg";
+import american from "../assets/website/amarican.svg";
+import biess from "../assets/website/biess.svg";
+import volvo from "../assets/website/volvo.svg";
+import film from "../assets/website/film-kit.svg";
+import ongoing from "../assets/website/ongoing-support.svg";
+import editing from "../assets/website/editting-team.svg";
 
 import {
   FileVideo,
@@ -800,5 +808,55 @@ export const projectTab = [
   {
     icon: <Question size={16} weight="bold" />,
     name: "Ask Questions",
+  },
+];
+
+export const teams = [benz, ant, american, biess, volvo];
+
+export const videoContentTab = [
+  "Learning & Development",
+  "Communications",
+  "Marketing",
+  "Product",
+  "Sales Enablement",
+];
+
+export const levelUp = [
+  {
+    pic: film,
+    label: "Film Kit",
+  },
+  {
+    pic: ongoing,
+    label: "Ongoing Support",
+  },
+  {
+    pic: editing,
+    label: "Dedicated Editing Team",
+  },
+];
+
+export const footerLink = [
+  {
+    title: "Features",
+    routes: ["Overview", "Platform", "Film Kits", "AI Video"],
+  },
+  {
+    title: "Use Cases",
+    routes: [
+      "Learning & Development",
+      "Communications",
+      "Marketing",
+      "Product",
+      "Sales Enablement",
+    ],
+  },
+  {
+    title: "Resources",
+    routes: ["Blog", "Academy", "Help Centre"],
+  },
+  {
+    title: "Company",
+    routes: ["About", "Careers", "Pricing"],
   },
 ];

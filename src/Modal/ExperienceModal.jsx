@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import close from "../assets/close.svg";
 import useOutsideClick from "../hooks/useOutsideClick";
+import { XCircle } from "@phosphor-icons/react";
 
 const ExperienceModal = ({
   setShowExperienceModal,
@@ -31,7 +31,7 @@ const ExperienceModal = ({
           onClick={() => setShowExperienceModal(false)}
           className="absolute top-5 right-5 "
         >
-          <img src={close} alt="" />
+          <XCircle size={32} weight="fill" />
         </button>
         <div>
           <p className="text-black font-semibold text-2xl mb-4 text-center">

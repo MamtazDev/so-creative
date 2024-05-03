@@ -22,6 +22,7 @@ const InternalSectionTitle = ({ filter, handleFilterChange }) => {
     setSelectedOption(option);
     setShowSort(false);
   };
+
   return (
     <div className="relative">
       <div className="seciton_heading pb-6 flex items-center justify-between">

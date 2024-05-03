@@ -1,16 +1,15 @@
-import arrow from "../../assets/arrow-right.svg";
-import arrowLeft from "../../assets/arrow-left.svg";
 import { gettingStarted } from "../../utils/data";
+import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 const GettingStarted = ({ setStep }) => {
   return (
     <div>
       <div
         onClick={() => setStep(1)}
-        className="cursor-pointer flex items-center gap-3  mb-8"
+        className="cursor-pointer flex text-indigo-600 items-center gap-3  mb-8"
       >
-        <img src={arrowLeft} alt="" />
-        <p className="text-base text-indigo-600 font-bold">Getting Started</p>
+        <CaretLeft size={24} weight="bold" />
+        <p className="text-base font-bold">Getting Started</p>
       </div>
       <div className="flex flex-col gap-4">
         {gettingStarted.length > 0 ? (
@@ -26,7 +25,7 @@ const GettingStarted = ({ setStep }) => {
                   updated {data.time} months ago
                 </p>
               </div>
-              <img src={arrow} alt="" />
+              <CaretRight size={24} weight="bold" />
             </div>
           ))
         ) : (
