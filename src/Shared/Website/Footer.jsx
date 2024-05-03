@@ -14,7 +14,7 @@ const Footer = () => {
     <div className="p-4 ">
       <div className="bg-stone-100 rounded-[48px] p-5 lg:py-20">
         <div className="max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-12 gap-4 lg:gap-10">
+          <div className="grid grid-cols-12 gap-4 lg:gap-10 mb-[69px]">
             <div className="col-span-12 lg:col-span-5">
               <Link className="block mb-6" to="/">
                 <img src={logo} alt="" />
@@ -67,6 +67,16 @@ const Footer = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          <hr />
+          <div className="flex items-center gap-4 justify-between flex-wrap pt-8 text-slate-950 text-base font-normal">
+            <p>© 2024 SoCreative Media Pty Ltd. All Right Reserved</p>
+
+            <div className="flex items-center gap-6">
+              <Link to="/">Privacy Policy</Link>
+              <Link to="/">Terms of Service</Link>
             </div>
           </div>
         </div>

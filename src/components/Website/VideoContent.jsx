@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { videoContentTab } from "../../utils/data";
 import CommonSection from "../../Shared/Website/CommonSection";
+import experlences from "../../assets/website/experlences.svg";
 
 const VideoContent = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,6 +20,7 @@ const VideoContent = () => {
               } text-[#0C0020] font-semibold text-sm py-4 px-7 whitespace-nowrap`}
               onClick={() => setActiveTab(index)}
               key={index}
+              p
             >
               {data}
             </button>
@@ -31,6 +33,7 @@ const VideoContent = () => {
             subtitle="Empower your team to excel with engaging 
             and interactive content that caters to diverse
             learning styles."
+            pic={experlences}
           />
         </div>
       </div>
