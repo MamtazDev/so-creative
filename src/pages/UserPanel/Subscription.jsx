@@ -60,6 +60,9 @@ function Subscription() {
       );
       console.log(result);
       console.log(confirm);
+      //   if(result?.data?.success){
+      //     setCustomerId(result?.data)
+      //   }
       if (confirm.error) return alert("Payment unsuccessful!");
 
       alert("Payment Successful! Subscription active.");
