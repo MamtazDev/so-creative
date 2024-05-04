@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { videoContentTab } from "../../utils/data";
 import CommonSection from "../../Shared/Website/CommonSection";
-import experlences from "../../assets/website/experlences.svg";
+import experlences from "../../assets/learnanddrv.png";
 
 const VideoContent = () => {
   const [activeTab, setActiveTab] = useState(0);

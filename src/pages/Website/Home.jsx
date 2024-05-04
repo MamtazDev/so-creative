@@ -8,8 +8,8 @@ import NextLevel from "../../components/Website/NextLevel";
 import Teams from "../../components/Website/Teams";
 import VideoContent from "../../components/Website/VideoContent";
 import production from "../../assets/website/production.svg";
-import onePlace from "../../assets/website/one-place.svg";
-import powerfull from "../../assets/website/powerful.svg";
+import onePlace from "../../assets/oneplace.png";
+import powerfull from "../../assets/aifeature.png";
 
 const Home = () => {
   return (
