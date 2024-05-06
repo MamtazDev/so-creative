@@ -1,4 +1,3 @@
-import React from "react";
 import made from "../../assets/website/made-by.svg";
 
 const MadeBy = () => {
@@ -12,7 +11,9 @@ const MadeBy = () => {
           SoCreative
         </p>
       </div>
-      <img src={made} alt="" />
+      <div className="">
+        <img src={made} alt="" />
+      </div>
     </div>
   );
 };

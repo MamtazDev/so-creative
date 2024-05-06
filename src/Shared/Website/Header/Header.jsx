@@ -3,27 +3,27 @@ import NavLogo from "../../../assets/website/logo.svg";
 import { useState } from "react";
 
 const Header = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const NavItemData = [
     {
       name: "Features",
-      link: "/features",
+      link: "#",
     },
     {
       name: "Use Cases",
-      link: "/use-cases",
+      link: "#",
     },
     {
       name: "Pricing",
-      link: "/pricing",
+      link: "#",
     },
     {
       name: "Recourses",
-      link: "/recourses",
+      link: "#",
     },
     {
       name: "Company",
-      link: "/company",
+      link: "#",
     },
   ];
   return (
@@ -48,7 +48,7 @@ const Header = () => {
           {open && (
             <>
               <nav className="mx-auto">
-                <ul className="flex flex-col lg:flex-row gap-8 lg:gap-[47px]">
+                <ul className="flex flex-col lg:flex-row gap-8 lg:gap-[32px]">
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
                       <li key={index}>

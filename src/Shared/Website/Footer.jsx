@@ -56,7 +56,7 @@ const Footer = () => {
                     <div className="flex flex-col gap-4">
                       {links.routes.map((data, idx) => (
                         <Link
-                          className="text-base text-stone-800 font-normal"
+                          className="text-base text-stone-800 font-medium"
                           key={idx}
                           to="/"
                         >

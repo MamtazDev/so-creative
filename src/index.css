@@ -25,3 +25,9 @@
 .activity_card:last-child {
     border-bottom-width: 0;
 }
+
+
+.bg_levelBg {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #1C1917 80%);
+    border-radius: 24px;
+}

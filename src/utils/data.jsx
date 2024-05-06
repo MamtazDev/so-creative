@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import AddPresenter from "../components/UserPanel/CreateProject/AddPresenter";
 import accepted from "../assets/accepted.svg";
 import alert from "../assets/alert.svg";
@@ -43,6 +44,7 @@ import slack from "../assets/slack-notification.svg";
 import benz from "../assets/website/benz.svg";
 import ant from "../assets/website/ant.svg";
 import american from "../assets/website/amarican.svg";
+import buildcorp from "../assets/website/buildcorp.svg";
 import biess from "../assets/website/biess.svg";
 import volvo from "../assets/website/volvo.svg";
 import film from "../assets/website/film-kit.svg";
@@ -811,7 +813,7 @@ export const projectTab = [
   },
 ];
 
-export const teams = [benz, ant, american, biess, volvo];
+export const teams = [benz, ant, buildcorp, biess, volvo];
 
 export const videoContentTab = [
   "Learning & Development",
