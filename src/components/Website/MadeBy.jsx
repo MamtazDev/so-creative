@@ -1,7 +1,7 @@
 import made from "../../assets/website/made-by.svg";
 const MadeBy = () => {
   return (
-    <div className="max-w-[1280px] mx-auto py-20 relative">
+    <div className="max-w-[1280px] py-20 relative lg:mx-auto mx-[20px] ">
       <div className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <p className="mb-4 text-[#0C0020] text-3xl lg:text-[60px] font-bold leading-[125%]">
           Made by

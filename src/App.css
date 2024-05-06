@@ -95,9 +95,6 @@ select.special {
   font-size: 14px;
 }
 
-
-
-
 .skeleton {
   position: relative;
 }
@@ -127,7 +124,7 @@ select.special {
 }
 
 .banner {
-  background-image: url('/src/assets/website/banner-bg.svg');
+  background-image: url('/src/assets/website/bgcolor.png');
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: contain;
