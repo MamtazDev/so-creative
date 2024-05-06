@@ -3,7 +3,7 @@ import NavLogo from "../../../assets/website/logo.svg";
 import { useState } from "react";
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const NavItemData = [
     {
       name: "Features",
@@ -66,11 +66,11 @@ const Header = () => {
               <div className=" flex flex-col lg:flex-row  items-center gap-6">
                 <Link
                   to={"/login"}
-                  className="block  text-slate-900 text-base font-semibold"
+                  className="block  text-slate-900 text-base font-bold"
                 >
                   Login
                 </Link>
-                <button className="text-white font-semibold text-base py-3 px-8 rounded-full bg-slate-900">
+                <button className="text-white font-bold text-base py-3 px-8 rounded-full bg-slate-900">
                   Get Started
                 </button>
               </div>

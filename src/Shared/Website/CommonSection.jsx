@@ -14,6 +14,7 @@ const CommonSection = ({ title, subtitle, pic }) => {
           />
           <button className="flex items-center text-indigo-600 font-bold text-[20px]  gap-1 leading-[140%]">
             <span>Learn More</span>
+
             <svg
               style={{ marginTop: "5px" }}
               xmlns="http://www.w3.org/2000/svg"

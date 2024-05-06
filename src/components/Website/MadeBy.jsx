@@ -1,5 +1,4 @@
 import made from "../../assets/website/made-by.svg";
-
 const MadeBy = () => {
   return (
     <div className="max-w-[1280px] mx-auto py-20 relative">
