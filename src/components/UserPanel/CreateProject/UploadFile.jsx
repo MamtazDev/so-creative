@@ -1,24 +1,19 @@
+import axios from "axios";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import mp4 from "../../../assets/mp4.svg";
-import SelectedVideo from "./SelectedVideo";
-import UploadProgress from "./UploadProgress";
-import { BASE_API_URL } from "../../../config/config";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { setProjectId } from "../../../features/project/projectSlice";
 import * as tus from "tus-js-client";
+import mp4 from "../../../assets/mp4.svg";
+import { BASE_API_URL } from "../../../config/config";
+import { setProjectId } from "../../../features/project/projectSlice";
+import { default as SelectedVideo } from "./SelectedVideo";
 
 const UploadFile = () => {
-  const [selectedVideos, setSelectedVideos] = useState([]);
-  const [newSelectedVideo, setNewSelectedVideo] = useState([]);
   const [isDragActive, setIsDragActive] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [upload, setUpload] = useState([
+    // { success: false, uploading: false, progress: 0, video: "" },
+  ]);
 
-  const [vimeoVideoInfo, setVimeoVideoInfo] = useState(null);
-
-  const [isVimeoProcessDone, setIsVimeoProcessDone] = useState(false);
   // mohii
   const { accessToken } = useSelector((state) => state.auth);
   const { projectId } = useSelector((state) => state.project);
@@ -30,12 +25,16 @@ const UploadFile = () => {
       "video/mov": [".mov"],
     },
     onDrop: (acceptedFiles) => {
-      setNewSelectedVideo([...acceptedFiles]);
-      setIsUploading(true);
+      setUpload(
+        acceptedFiles.map((i) => ({
+          success: false,
+          uploading: true,
+          progress: 0,
+          video: i,
+        }))
+      );
 
-      const selectedFile = acceptedFiles[0];
-
-      const upload = async () => {
+      const upload = async (selectedFile, index) => {
         try {
           const res = await fetch(
             `${BASE_API_URL}/v1/vimeo/create-video-instant`,
@@ -61,7 +60,13 @@ const UploadFile = () => {
               );
 
               console.log(`${percentage}% uploaded`);
-              setUploadProgress(percentage);
+
+              setUpload((prev) => {
+                const result = [...prev];
+                result[index].progress = percentage;
+
+                return result;
+              });
             },
 
             onError: (error) => {
@@ -73,29 +78,30 @@ const UploadFile = () => {
 
             onSuccess: async () => {
               console.log("Upload finished");
-              setVimeoVideoInfo(result.data);
-
-              setUploadProgress(0);
-
               console.log("Uploaded finished data:", result);
-              setSelectedVideos([...selectedVideos, acceptedFiles[0]]);
-              setIsUploading(false);
 
-              // player_embed_url
+              setUpload((prev) => {
+                const result = [...prev];
+                result[index].progress = 0;
+                result[index].uploading = false;
+                result[index].success = true;
+
+                return result;
+              });
 
               // ---- saving data on database ----//
 
               const formData = projectId
                 ? {
-                    title: acceptedFiles[0]?.name,
-                    size: acceptedFiles[0]?.size,
+                    title: selectedFile?.name,
+                    size: selectedFile?.size,
                     path: result.data.player_embed_url,
                     // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
                     projectId: projectId,
                   }
                 : {
-                    title: acceptedFiles[0]?.name,
-                    size: acceptedFiles[0]?.size,
+                    title: selectedFile?.name,
+                    size: selectedFile?.size,
                     path: result.data.player_embed_url,
                     // path: "https://player.vimeo.com/video/925317004?h=de6e76e94a",
                   };
@@ -115,8 +121,6 @@ const UploadFile = () => {
               if (data.success) {
                 dispatch(setProjectId(data.data._id));
               }
-
-              setIsVimeoProcessDone(true);
 
               // Handle successful upload
               const url = result.data.link;
@@ -158,9 +162,11 @@ const UploadFile = () => {
         }
       };
 
-      upload();
+      for (let i = 0; i < acceptedFiles.length; i++) {
+        upload(acceptedFiles[i], i);
+      }
     },
-    multiple: false,
+    multiple: true,
     onDragEnter: () => {
       setIsDragActive(true);
     },
@@ -194,12 +200,7 @@ const UploadFile = () => {
         </p>
       </div>
 
-      <SelectedVideo
-        selectedVideos={selectedVideos}
-        uploadProgress={uploadProgress}
-        newSelectedVideo={newSelectedVideo}
-        isUploading={isUploading}
-      />
+      <SelectedVideo upload={upload} />
     </div>
   );
 };
