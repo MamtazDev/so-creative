@@ -1,22 +1,22 @@
 import { useRef, useState } from "react";
-import Stepper from "../components/UserPanel/CreateProject/Stepper";
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import CreatingBrand from "../Shared/UserPanel/CreatingBrand";
 import close from "../assets/close.svg";
-import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
-import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
 import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
 import CreateBrief from "../components/UserPanel/CreateProject/CreateBrief";
-import SelectAddOns from "../components/UserPanel/CreateProject/SelectAddOns";
 import CreatingProject from "../components/UserPanel/CreateProject/CreatingProject";
-import { useDispatch, useSelector } from "react-redux";
+import SelectAddOns from "../components/UserPanel/CreateProject/SelectAddOns";
+import Stepper from "../components/UserPanel/CreateProject/Stepper";
+import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
+import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
+import { useUpdateProjectMutation } from "../features/project/projectApi";
 import {
   setActiveBrif,
   setProjectId,
   setShowCreateModal,
   setStep,
 } from "../features/project/projectSlice";
-import CreatingBrand from "../Shared/UserPanel/CreatingBrand";
-import { useUpdateProjectMutation } from "../features/project/projectApi";
-import Swal from "sweetalert2";
 const CreateProjectModal = () => {
   const createRef = useRef();
 
