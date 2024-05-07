@@ -14,7 +14,7 @@ const RecentActivities = () => {
     }
   }, [data?.data]);
 
-  console.log("My Activities: ", activities);
+  // console.log("My Activities: ", activities);
   // const repeatedData = Array.from({ length: 5 }, () => RecentActivites).flat();
   return (
     <div className="recent_activities_wrapper border border-slate-200 rounded-2xl h-[650px] overflow-y-scroll no_scrollbar">
@@ -36,15 +36,15 @@ const RecentActivities = () => {
             </div>
             <div className="right_activity_card">
               <h3 className="text-base font-semibold text-slate-900 pb-3">
-                {activityItem?.user?.name}
+                {activityItem.user?.name}
                 <span
                   className={`${
-                    activityItem?.user?.role === "Editor"
+                    activityItem.user?.role === "Editor"
                       ? "bg-blue-500 text-xs font-bold text-white py-2 px-2 rounded ml-[6px]"
                       : "bg-[#4F16A5] text-xs font-bold text-white py-2 px-2 rounded ml-[6px]"
                   }`}
                 >
-                  {activityItem?.user?.role}
+                  {activityItem.user?.role}
                 </span>
               </h3>
               <p className="text-sm font-normal text-slate-700 pb-2">
