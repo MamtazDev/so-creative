@@ -1,10 +1,9 @@
 import { useState } from "react";
-import AllVideo from "../../components/UserPanel/AllVideos/AllVideo";
-import AllVideoHeader from "../../components/UserPanel/AllVideos/AllVideoHeader";
-import AllVideoFileLayout from "../../components/UserPanel/AllVideos/AllVideoFileLayout";
-import { videos } from "../../utils/data";
-import useLoading from "../../hooks/useLoading";
 import Loading from "../../Shared/Loading";
+import EditorPagination from "../../components/EditorPanel/EditorDashboard/EditorPagination";
+import AllVideo from "../../components/UserPanel/AllVideos/AllVideo";
+import AllVideoFileLayout from "../../components/UserPanel/AllVideos/AllVideoFileLayout";
+import AllVideoHeader from "../../components/UserPanel/AllVideos/AllVideoHeader";
 import { useGetUserAllFilesQuery } from "../../features/videos/videoApi";
 
 const AllVideos = () => {
@@ -26,6 +25,12 @@ const AllVideos = () => {
   const handleComponentChange = (filter) => {
     setSelectedComponent(filter);
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
   return (
     <div className="h-full">
       <AllVideoHeader
@@ -39,9 +44,41 @@ const AllVideos = () => {
       ) : (
         <>
           {selectedComponent === "folder" ? (
-            <AllVideo filteredVideos={sortedData} />
+            <>
+              <AllVideo
+                filteredVideos={sortedData.slice(
+                  (currentPage - 1) * itemsPerPage,
+                  itemsPerPage * currentPage
+                )}
+              />
+              <div className="pb-7">
+                <EditorPagination
+                  handlePageChange={(pageNumber) => setCurrentPage(pageNumber)}
+                  currentPage={currentPage}
+                  filteredData={data}
+                  itemsPerPage={itemsPerPage}
+                  endIndex={endIndex}
+                />
+              </div>
+            </>
           ) : (
-            <AllVideoFileLayout filteredVideos={sortedData} />
+            <>
+              <AllVideoFileLayout
+                filteredVideos={sortedData.slice(
+                  (currentPage - 1) * itemsPerPage,
+                  itemsPerPage * currentPage
+                )}
+              />
+              <div className="pb-7">
+                <EditorPagination
+                  handlePageChange={(pageNumber) => setCurrentPage(pageNumber)}
+                  currentPage={currentPage}
+                  filteredData={data}
+                  itemsPerPage={itemsPerPage}
+                  endIndex={endIndex}
+                />
+              </div>
+            </>
           )}
         </>
       )}
