@@ -1,28 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "../Layouts/MainLayout";
+import AdminRoute from "../components/Route/AdminRoute";
+import EditorRoute from "../components/Route/EditorRoute";
+import PublicRoute from "../components/Route/PublicRoute";
+import UserRoute from "../components/Route/UserRoute";
+import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
+import Companies from "../pages/AdminPanel/Companies";
+import InternalUsers from "../pages/AdminPanel/InternalUsers";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 import EditorAllClients from "../pages/EditorPanel/EditorAllClients";
 import EditorAllProjects from "../pages/EditorPanel/EditorAllProjects";
 import EditorDashboard from "../pages/EditorPanel/EditorDashboard";
+import EditorProjects from "../pages/EditorPanel/EditorProjects";
 import AllVideos from "../pages/UserPanel/AllVideos";
 import BrandKit from "../pages/UserPanel/BrandKit";
-import MediaStorage from "../pages/UserPanel/MediaStorage";
-import Register from "../pages/Auth/Register";
-import Login from "../pages/Auth/Login";
+import Download from "../pages/UserPanel/Download";
 import Folder from "../pages/UserPanel/Folder";
-import UserHome from "../pages/UserPanel/UserHome";
-import VideoDetails from "../pages/UserPanel/VideoDetails";
-import InternalUsers from "../pages/AdminPanel/InternalUsers";
-import Companies from "../pages/AdminPanel/Companies";
-import PublicRoute from "../components/Route/PublicRoute";
-import UserRoute from "../components/Route/UserRoute";
-import EditorRoute from "../components/Route/EditorRoute";
-import AdminRoute from "../components/Route/AdminRoute";
-import MainLayout from "../Layouts/MainLayout";
+import MediaStorage from "../pages/UserPanel/MediaStorage";
 import Projects from "../pages/UserPanel/Projects";
-import EditorProjects from "../pages/EditorPanel/EditorProjects";
-import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 import PurchaseCredit from "../pages/UserPanel/PurchaseCredit";
 import PurchaseSubscription from "../pages/UserPanel/PurchaseSubscription";
 import Subscription from "../pages/UserPanel/Subscription";
+import UserHome from "../pages/UserPanel/UserHome";
+import VideoDetails from "../pages/UserPanel/VideoDetails";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/subscription/monthly",
         element: <Subscription />,
+      },
+      {
+        path: "/user/download",
+        element: <Download />,
       },
     ],
   },
