@@ -88,9 +88,9 @@ const Header = () => {
             </button>
           </div>
           {open && (
-            <>
-              <nav className="block lg:hidden mx-auto">
-                <ul className="flex flex-col justify-center items-center lg:flex-row gap-8 lg:gap-[32px]">
+            <div className=" absolute  top-[74px] bg-stone-100 rounded-3xl shadow-2xl w-[94%] py-4 px-2">
+              <nav className="block lg:hidden mx-auto mb-8">
+                <ul className="flex flex-col justify-center items-center lg:flex-row gap-8 ">
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
                       <li key={index}>
@@ -111,11 +111,11 @@ const Header = () => {
                 >
                   Login
                 </Link>
-                <button className="text-white font-bold text-base py-2 px-5 rounded-full bg-slate-900">
+                <button className="text-white font-bold text-base py-2 px-5 rounded-full w-full bg-slate-900">
                   Get Started
                 </button>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
