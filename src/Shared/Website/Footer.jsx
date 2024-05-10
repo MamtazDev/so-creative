@@ -14,12 +14,12 @@ const Footer = () => {
     <div className="p-4 ">
       <div className="bg-stone-100 rounded-[48px] p-5 lg:py-20">
         <div className="max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-12 gap-4 lg:gap-10 mb-[69px]">
-            <div className="col-span-12 lg:col-span-5">
-              <Link className="block mb-6" to="/">
-                <img src={logo} alt="" />
+          <div className="grid grid-cols-12 gap-1 lg:gap-10 mb-10 lg:mb-[69px] lg:text-start text-center">
+            <div className="col-span-12 lg:col-span-5 mb-7 lg:mb-0 ">
+              <Link className="block mb-6 " to="/">
+                <img className="mx-auto lg:mx-0" src={logo} alt="" />
               </Link>
-              <div className="flex items-center gap-3">
+              <div className="flex justify-center lg:justify-start items-center gap-3">
                 <Link
                   to="/"
                   className="w-11 h-11 rounded-full bg-white flex items-center justify-center"
@@ -47,7 +47,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="col-span-12 lg:col-span-7">
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-10">
                 {footerLink.map((links, index) => (
                   <div key={index}>
                     <p className="text-stone-950 text-lg font-bold mb-6">
@@ -71,10 +71,12 @@ const Footer = () => {
           </div>
 
           <hr />
-          <div className="flex items-center gap-4 justify-between flex-wrap pt-8 text-slate-950 text-base font-normal">
-            <p>© 2024 SoCreative Media Pty Ltd. All Right Reserved</p>
+          <div className="flex items-center gap-6 justify-between flex-wrap pt-8 text-slate-950 text-base font-normal">
+            <p className="text-center">
+              © 2024 SoCreative Media Pty Ltd. All Right Reserved
+            </p>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center justify-center w-full lg:w-auto gap-6">
               <Link to="/">Privacy Policy</Link>
               <Link to="/">Terms of Service</Link>
             </div>

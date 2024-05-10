@@ -2,12 +2,12 @@ import { teams } from "../../utils/data";
 
 const Teams = () => {
   return (
-    <div className="team pb-24">
-      <div className="max-w-[1280px] lg:mx-auto mx-[20px]">
-        <p className="text-slate-900 text-lg font-medium mb-12 text-center">
+    <div className="team pb-[70px] lg:pb-24">
+      <div className="max-w-[1280px] lg:mx-auto mx-6">
+        <p className="text-slate-900 text-lg font-medium mb-8 lg:mb-12 text-center">
           Trusted by teams at
         </p>
-        <div className="flex items-center gap-6 justify-between overflow-x-auto no_scrollbar ">
+        <div className="flex flex-wrap items-center gap-9 justify-center lg:justify-between  ">
           {teams.map((data, index) => (
             <img key={index} src={data} alt="" />
           ))}

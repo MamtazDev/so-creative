@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { videoContentTab } from "../../utils/data";
-// import CommonSection from "../../Shared/Website/CommonSection";
 import experlences from "../../assets/learnanddrv.png";
+import { CaretDown } from "@phosphor-icons/react";
 
 const VideoContent = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [show, setShow] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(
+    "Learning & Development"
+  );
   return (
-    <div className="video_content py-20">
-      <div className=" mx-auto">
-        <p className="text-center text-3xl lg:text-[56px] font-extrabold leading-[64px] text-[#0C0020] mb-10">
+    <div className="video_content py-7 lg:py-20">
+      <div className="mx-5 lg:mx-auto">
+        <p className="text-center text-4xl lg:text-[56px] font-extrabold leading-10 lg:leading-[64px] text-[#0C0020] mb-6 lg:mb-10">
           For teams that create <br />
           <span className="text-indigo-600"> video content at scale</span>
         </p>
-        <div className="lg:max-w-[817px] mx-auto w-full rounded-full bg-stone-100 p-1 flex items-center mb-20 overflow-x-auto no_scrollbar ">
+        <div className="hidden lg:max-w-[817px] mx-auto w-full rounded-full bg-stone-100 p-1 lg:flex items-center mb-20 overflow-x-auto no_scrollbar ">
           {videoContentTab.map((data, index) => (
             <button
               className={`${
@@ -26,14 +30,42 @@ const VideoContent = () => {
           ))}
         </div>
 
+        <div className="relative mb-8">
+          <div className="block lg:hidden w-full rounded-full bg-stone-100 p-1">
+            <button
+              className="bg-white flex gap-4 items-center justify-between w-full rounded-full text-[#0C0020] font-semibold text-sm py-4 px-7 whitespace-nowrap"
+              onClick={() => setShow(!show)}
+            >
+              {selectedOption} <CaretDown size={20} />
+            </button>
+          </div>
+
+          {show && (
+            <div className="absolute top-16 rounded flex flex-col gap-4 w-full bg-stone-100 p-8 mb-9">
+              {videoContentTab.map((data, index) => (
+                <button
+                  className="text-[#0C0020] font-semibold text-sm  whitespace-nowrap "
+                  onClick={() => {
+                    setSelectedOption(data);
+                    setShow(false);
+                  }}
+                  key={index}
+                >
+                  {data}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
         <div>
           <div className="max-w-[1086px] mx-auto">
-            <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-5 lg:mx-0 mx-[20px]">
+            <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-5 lg:mx-0 ">
               <div>
-                <p className="text-[#0C0020] text-[24px] font-extrabold mb-4 leading-[32px]">
+                <p className="text-[#0C0020] text-2xl font-extrabold mb-2 lg:mb-4 leading-[32px]">
                   Create immersive learning experiences
                 </p>
-                <p className="text-[#0C0020] text-xl font-medium mb-[33px]">
+                <p className="text-[#0C0020] text-xl font-medium mb-6 lg:mb-[33px]">
                   Empower your team to excel with engaging <br /> and
                   interactive content that caters to diverse <br /> learning
                   styles.

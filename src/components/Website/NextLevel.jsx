@@ -2,9 +2,9 @@ import { PlayCircle } from "@phosphor-icons/react";
 
 const NextLevel = () => {
   return (
-    <div className="next_level lg:pt-20 pt-10 pb-16">
+    <div className="next_level lg:pt-20 py-7 lg:pb-16">
       <div className="container mx-auto text-center">
-        <p className="text-[#0C0020] text-3xl lg:text-[56px] font-extrabold leading-[64px] mb-10">
+        <p className="text-[#0C0020] text-5xl lg:text-[56px] font-extrabold leading-[48px] lg:leading-[64px] mb-8 lg:mb-10">
           Take your videos to the <br /> next level
         </p>
         <div className="flex gap-4 items-center justify-center">

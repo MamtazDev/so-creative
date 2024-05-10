@@ -43,7 +43,6 @@ import email from "../assets/email-notification.svg";
 import slack from "../assets/slack-notification.svg";
 import benz from "../assets/website/benz.svg";
 import ant from "../assets/website/ant.svg";
-import american from "../assets/website/amarican.svg";
 import buildcorp from "../assets/website/buildcorp.svg";
 import biess from "../assets/website/biess.svg";
 import volvo from "../assets/website/volvo.svg";
