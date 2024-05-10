@@ -41,7 +41,7 @@ const VideoContent = () => {
           </div>
 
           {show && (
-            <div className="absolute top-16 rounded flex flex-col gap-4 w-full bg-stone-100 p-8 mb-9">
+            <div className="absolute top-16 rounded-[35px] flex flex-col gap-4 w-full bg-stone-100 p-8 mb-9">
               {videoContentTab.map((data, index) => (
                 <button
                   className="text-[#0C0020] font-semibold text-sm  whitespace-nowrap "
@@ -65,13 +65,13 @@ const VideoContent = () => {
                 <p className="text-[#0C0020] text-2xl font-extrabold mb-2 lg:mb-4 leading-[32px]">
                   Create immersive learning experiences
                 </p>
-                <p className="text-[#0C0020] text-xl font-medium mb-6 lg:mb-[33px]">
-                  Empower your team to excel with engaging <br /> and
-                  interactive content that caters to diverse <br /> learning
-                  styles.
+                <p className="text-[#0C0020] text-lg lg:text-xl font-medium mb-6 lg:mb-[33px] max-w-[440px]">
+                  Empower your team to excel with engaging and interactive
+                  content that caters to diverse learning styles.
                 </p>
-                <button className="flex items-center text-indigo-600 font-bold text-sm gap-1 leading-[140%]">
+                <button className="flex items-center text-indigo-600 font-bold text-xl  gap-1 leading-[140%]">
                   <span>Learn More</span>
+
                   <svg
                     style={{ marginTop: "5px" }}
                     xmlns="http://www.w3.org/2000/svg"

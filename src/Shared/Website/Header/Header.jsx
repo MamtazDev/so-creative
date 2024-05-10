@@ -90,7 +90,7 @@ const Header = () => {
           {open && (
             <>
               <nav className="block lg:hidden mx-auto">
-                <ul className="flex flex-col lg:flex-row gap-8 lg:gap-[32px]">
+                <ul className="flex flex-col justify-center items-center lg:flex-row gap-8 lg:gap-[32px]">
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
                       <li key={index}>
