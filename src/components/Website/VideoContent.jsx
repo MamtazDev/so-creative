@@ -27,18 +27,10 @@ const VideoContent = () => {
         </div>
 
         <div>
-          {/* <CommonSection
-            title="Create immersive learning experiences"
-            subtitle="Empower your team to excel with engaging 
-            and interactive content that caters to diverse
-            learning styles."
-            pic={experlences}
-          />
-           */}
-          <div className="max-w-[1280px] mx-auto">
-            <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-20 lg:mx-0 mx-[20px]">
+          <div className="max-w-[1086px] mx-auto">
+            <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-5 lg:mx-0 mx-[20px]">
               <div>
-                <p className="text-[#0C0020] text-3xl lg:text-[24px] font-extrabold mb-4 leading-[32px]">
+                <p className="text-[#0C0020] text-[24px] font-extrabold mb-4 leading-[32px]">
                   Create immersive learning experiences
                 </p>
                 <p className="text-[#0C0020] text-xl font-medium mb-[33px]">
@@ -46,7 +38,7 @@ const VideoContent = () => {
                   interactive content that caters to diverse <br /> learning
                   styles.
                 </p>
-                <button className="flex items-center text-indigo-600 font-bold text-[20px]  gap-1 leading-[140%]">
+                <button className="flex items-center text-indigo-600 font-bold text-sm gap-1 leading-[140%]">
                   <span>Learn More</span>
                   <svg
                     style={{ marginTop: "5px" }}

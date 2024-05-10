@@ -10,8 +10,8 @@ const LevelUp = () => {
         </p>
         <p className="text-[#0C0020] text-xl font-medium text-center mb-20">
           We are here to guide your journey with comprehensive
-          <br className="lg:flex hidden " />
-          training materials and <br className="lg:hidden flex" /> seamless
+          <br className="lg:block hidden " />
+          training materials and <br className="lg:hidden block" /> seamless
           onboarding support
         </p>
         <div className="grid grid-cols-1  lg:grid-cols-3  gap-8 lg:mx-0 mx-[20px]">

@@ -3,7 +3,7 @@ import dashboard from "../../assets/website/dashboard.svg";
 
 const Banner = () => {
   return (
-    <div className="banner lg:pt-20 pt-[50px] pb-[120px]">
+    <div className="banner lg:pt-20 pt-[50px] pb-[190px]">
       <div className="max-w-[1280px] lg:mx-auto mx-[20px] text-center">
         <p className="text-[#0C0020] text-3xl lg:text-[72px] font-extrabold leading-[110%] mb-3">
           The easy way to <br className="lg:flex hidden" /> make videos

@@ -70,7 +70,7 @@ const Header = () => {
                 >
                   Login
                 </Link>
-                <button className="text-white font-bold text-base py-3 px-8 rounded-full bg-slate-900">
+                <button className="text-white font-bold text-base py-2 px-5 rounded-full bg-slate-900">
                   Get Started
                 </button>
               </div>

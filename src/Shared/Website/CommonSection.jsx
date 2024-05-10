@@ -5,14 +5,14 @@ const CommonSection = ({ title, subtitle, pic }) => {
     <div className="max-w-[1280px] mx-auto">
       <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-20 lg:mx-0 mx-[20px]">
         <div>
-          <p className="text-[#0C0020] text-3xl lg:text-[48px] font-extrabold mb-4 leading-[56px]">
+          <p className="text-[#0C0020] text-3xl lg:text-[48px] font-extrabold mb-4 leading-[48px]">
             {title}
           </p>
           <p
             className="text-[#0C0020] text-xl font-medium mb-[32px]"
             dangerouslySetInnerHTML={{ __html: subtitle }}
           />
-          <button className="flex items-center text-indigo-600 font-bold text-[20px]  gap-1 leading-[140%]">
+          <button className="flex items-center text-indigo-600 font-bold text-xl  gap-1 leading-[140%]">
             <span>Learn More</span>
 
             <svg
