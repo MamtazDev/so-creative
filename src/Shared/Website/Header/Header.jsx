@@ -3,7 +3,7 @@ import NavLogo from "../../../assets/website/logo.svg";
 import { useState } from "react";
 
 const Header = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const NavItemData = [
     {
       name: "Features",
@@ -60,9 +60,36 @@ const Header = () => {
               )}
             </button>
           </div>
+
+          <nav className="hidden lg:block mx-auto">
+            <ul className="flex flex-col lg:flex-row gap-8 lg:gap-[32px]">
+              {NavItemData.length > 0 &&
+                NavItemData.map((navitem, index) => (
+                  <li key={index}>
+                    <Link
+                      className=" text-base font-bold text-[#0C0020]"
+                      to={navitem.link}
+                    >
+                      {navitem.name}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </nav>
+          <div className=" hidden lg:flex flex-col lg:flex-row  items-center gap-6">
+            <Link
+              to={"/login"}
+              className="block  text-slate-900 text-base font-bold"
+            >
+              Login
+            </Link>
+            <button className="text-white font-bold text-base py-2 px-5 rounded-full bg-slate-900">
+              Get Started
+            </button>
+          </div>
           {open && (
             <>
-              <nav className="mx-auto">
+              <nav className="block lg:hidden mx-auto">
                 <ul className="flex flex-col lg:flex-row gap-8 lg:gap-[32px]">
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
@@ -77,7 +104,6 @@ const Header = () => {
                     ))}
                 </ul>
               </nav>
-
               <div className=" flex flex-col lg:flex-row  items-center gap-6">
                 <Link
                   to={"/login"}
