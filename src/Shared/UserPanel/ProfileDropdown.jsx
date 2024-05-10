@@ -12,7 +12,7 @@ const ProfileDropdown = ({ setShowProfile }) => {
   const [showAccount, setShowAccount] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const modalRef = useRef();
-  // useOutsideClick(modalRef, () => setShowProfile(false));
+  useOutsideClick(modalRef, () => setShowProfile(false));
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

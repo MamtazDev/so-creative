@@ -8,7 +8,7 @@ export const imageHostKey = "7378254be2fef904c69a0c05769ced22";
 // export const STRIPE_PK =
 //   "pk_test_51NFZaOLLDUmTZxUmkDuDcasoN5JOWe1Q4aPJXUqqURoA9fd2cS4Vcx7rooYsmfivbLhojg1vM1uzegRpZ7MNl52700t9DowwUF";
 
-// robiul
+// dihan
 export const STRIPE_SK =
   "sk_test_51M6wx2EMTQyMb7XDXr8kxdPREQqV4XJTPMgX7aPcKO7bKiSnmBEv9uLfap1hcYJiwEGg7yfE9PGT4C5XrFUERsXr00HhSFnd44";
 export const STRIPE_PK =
