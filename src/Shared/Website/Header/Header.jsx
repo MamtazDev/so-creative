@@ -88,7 +88,7 @@ const Header = () => {
             </button>
           </div>
           {open && (
-            <div className=" absolute  top-[74px] bg-slate-900 rounded-3xl shadow-2xl w-[94%] pb-4 pt-8 px-2">
+            <div className=" absolute  top-[74px] bg-slate-900 rounded-3xl shadow-2xl w-[94%] pb-2 pt-8 px-2">
               <nav className="block lg:hidden mx-auto mb-8">
                 <ul className="flex flex-col justify-center items-center lg:flex-row gap-8 ">
                   {NavItemData.length > 0 &&
