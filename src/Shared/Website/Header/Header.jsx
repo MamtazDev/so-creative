@@ -88,14 +88,14 @@ const Header = () => {
             </button>
           </div>
           {open && (
-            <div className=" absolute  top-[74px] bg-stone-100 rounded-3xl shadow-2xl w-[94%] py-4 px-2">
+            <div className=" absolute  top-[74px] bg-slate-900 rounded-3xl shadow-2xl w-[94%] pb-4 pt-8 px-2">
               <nav className="block lg:hidden mx-auto mb-8">
                 <ul className="flex flex-col justify-center items-center lg:flex-row gap-8 ">
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
                       <li key={index}>
                         <Link
-                          className=" text-base font-bold text-[#0C0020]"
+                          className=" text-base font-bold text-white"
                           to={navitem.link}
                         >
                           {navitem.name}
@@ -104,14 +104,14 @@ const Header = () => {
                     ))}
                 </ul>
               </nav>
-              <div className=" flex flex-col lg:flex-row  items-center gap-6">
+              <div className=" flex flex-col lg:flex-row bg-slate-800 rounded-[19px]  p-2 items-center gap-6">
                 <Link
                   to={"/login"}
-                  className="block  text-slate-900 text-base font-bold"
+                  className="block  text-white text-base font-bold"
                 >
                   Login
                 </Link>
-                <button className="text-white font-bold text-base py-2 px-5 rounded-full w-full bg-slate-900">
+                <button className="text-slate-900 font-bold text-base py-2 px-5 rounded-full w-full bg-white">
                   Get Started
                 </button>
               </div>
