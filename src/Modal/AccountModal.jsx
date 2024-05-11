@@ -97,7 +97,7 @@ const AccountModal = ({ setShowAccount }) => {
 
         {/* {step === 1 && ( */}
         <div>
-          <p className="text-2xl font-semibold mb-10">Account Settings </p>
+          <p className="text-2xl font-semibold mb-10">Account Settings</p>
           <form onSubmit={handleSubmit}>
             <div
               className="relative w-[120px] h-[120px] rounded-full mb-16"
