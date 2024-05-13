@@ -12,7 +12,7 @@ const CommonSection = ({ title, subtitle, pic, customWidth }) => {
             className={`text-[#0C0020] text-lg lg:text-xl font-medium mb-6 lg:mb-8 ${customWidth}`}
             dangerouslySetInnerHTML={{ __html: subtitle }}
           />
-          <button className="flex items-center text-indigo-600 font-bold text-xl  gap-1 leading-[140%]">
+          {/* <button className="flex items-center text-indigo-600 font-bold text-xl  gap-1 leading-[140%]">
             <span>Learn More</span>
 
             <svg
@@ -28,7 +28,7 @@ const CommonSection = ({ title, subtitle, pic, customWidth }) => {
                 fill="#4F46E5"
               />
             </svg>
-          </button>
+          </button> */}
         </div>
         <div>
           <img src={pic} alt="" />

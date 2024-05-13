@@ -10,7 +10,7 @@ const VideoContent = () => {
     "Learning & Development"
   );
   return (
-    <div className="video_content py-7 lg:py-20">
+    <div id="usecases" className="video_content py-7 lg:py-20">
       <div className="mx-5 lg:mx-auto">
         <p className="text-center text-4xl lg:text-[56px] font-extrabold leading-10 lg:leading-[64px] text-[#0C0020] mb-6 lg:mb-10">
           For teams that create <br />
@@ -69,7 +69,7 @@ const VideoContent = () => {
                   Empower your team to excel with engaging and interactive
                   content that caters to diverse learning styles.
                 </p>
-                <button className="flex items-center text-indigo-600 font-bold text-xl  gap-1 leading-[140%]">
+                {/* <button className="flex items-center text-indigo-600 font-bold text-xl  gap-1 leading-[140%]">
                   <span>Learn More</span>
 
                   <svg
@@ -85,7 +85,7 @@ const VideoContent = () => {
                       fill="#4F46E5"
                     />
                   </svg>
-                </button>
+                </button> */}
               </div>
               <div>
                 <img src={experlences} alt="" />

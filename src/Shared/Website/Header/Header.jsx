@@ -7,18 +7,18 @@ const Header = () => {
   const NavItemData = [
     {
       name: "Features",
-      link: "#",
+      link: "#features",
     },
     {
       name: "Use Cases",
-      link: "#",
+      link: "#usecases",
     },
     {
       name: "Pricing",
       link: "#",
     },
     {
-      name: "Recourses",
+      name: "Resources",
       link: "#",
     },
     {
@@ -66,12 +66,12 @@ const Header = () => {
               {NavItemData.length > 0 &&
                 NavItemData.map((navitem, index) => (
                   <li key={index}>
-                    <Link
+                    <a
                       className=" text-base font-bold text-[#0C0020]"
-                      to={navitem.link}
+                      href={navitem.link}
                     >
                       {navitem.name}
-                    </Link>
+                    </a>
                   </li>
                 ))}
             </ul>
@@ -94,12 +94,12 @@ const Header = () => {
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
                       <li key={index}>
-                        <Link
+                        <a
                           className=" text-base font-bold text-white"
-                          to={navitem.link}
+                          href={navitem.link}
                         >
                           {navitem.name}
-                        </Link>
+                        </a>
                       </li>
                     ))}
                 </ul>

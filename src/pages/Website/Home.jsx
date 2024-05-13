@@ -17,30 +17,32 @@ const Home = () => {
       <Header />
       <Banner />
       <Teams />
-      <CommonSection
-        title="Video production without the hassle"
-        subtitle="Film anytime, anywhere with our versatile 
+      <div id="features">
+        <CommonSection
+          title="Video production. without the hassle"
+          subtitle="Film anytime, anywhere with our versatile 
 filming kit, packed with the essential 
 tools to capture high-quality videos"
-        pic={production}
-        customWidth="max-w-[390px]"
-      />
-      <CommonSection
-        title="Everything in one place"
-        subtitle="Upload assets, create briefs, collaborate 
+          pic={production}
+          customWidth="max-w-[390px]"
+        />
+        <CommonSection
+          title="Everything in one place"
+          subtitle="Upload assets, create briefs, collaborate 
         with your editing team, and conduct 
         efficient reviews - all within our platform."
-        pic={onePlace}
-        customWidth="max-w-[400px]"
-      />
-      <CommonSection
-        title="Powerful AI features"
-        subtitle="Leverage the power of AI including customized 
+          pic={onePlace}
+          customWidth="max-w-[400px]"
+        />
+        <CommonSection
+          title="Powerful AI features"
+          subtitle="Leverage the power of AI including customized 
         avatars and text-to-speech for effortless 
         content creation."
-        pic={powerfull}
-        customWidth="max-w-[450px]"
-      />
+          pic={powerfull}
+          customWidth="max-w-[450px]"
+        />
+      </div>
       <VideoContent />
       <LevelUp />
       <MadeBy />

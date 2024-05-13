@@ -812,7 +812,7 @@ export const projectTab = [
   },
 ];
 
-export const teams = [benz, ant, buildcorp, biess, volvo];
+export const teams = [benz, ant, buildcorp, volvo, biess];
 
 export const videoContentTab = [
   "Learning & Development",
