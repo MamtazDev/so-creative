@@ -91,15 +91,18 @@ const Header = () => {
             </button>
           </div>
           {open && (
-            <div className=" absolute  top-[74px] bg-slate-900 rounded-3xl shadow-2xl w-[94%] pb-2 pt-8 px-2">
+            <div className=" absolute  top-[57px] bg-slate-900 rounded-3xl shadow-2xl w-[94%] pb-2 pt-8 px-2">
               <nav className="block lg:hidden mx-auto mb-8">
-                <ul className="flex flex-col justify-center items-center lg:flex-row gap-8 ">
+                <ul className="flex flex-col justify-center items-center lg:flex-row gap-4 ">
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
-                      <li key={index}>
+                      <li
+                        className="w-full text-center transition-all duration-300 ease-in hover:bg-slate-800 py-2 rounded-full"
+                        key={index}
+                      >
                         <ScrollLink
                           onClick={() => setOpen(false)}
-                          className=" text-base font-bold text-white cursor-pointer"
+                          className=" text-base font-bold text-white cursor-pointer  w-full"
                           to={navitem.link}
                           smooth={true}
                           duration={1000}

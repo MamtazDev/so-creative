@@ -7,7 +7,7 @@ const Teams = () => {
         <p className="text-slate-900 text-lg font-medium mb-8 lg:mb-12 text-center">
           Trusted by teams at
         </p>
-        <div className="flex flex-wrap items-center gap-9 justify-center lg:justify-between  ">
+        <div className="flex flex-wrap items-center gap-9 justify-around lg:justify-between  ">
           {teams.map((data, index) => (
             <img key={index} src={data} alt="" />
           ))}
