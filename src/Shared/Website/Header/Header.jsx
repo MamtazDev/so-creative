@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 import NavLogo from "../../../assets/website/logo.svg";
 import { useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const NavItemData = [
     {
       name: "Features",
-      link: "#features",
+      link: "features",
     },
     {
       name: "Use Cases",
-      link: "#usecases",
+      link: "usecases",
     },
     {
       name: "Pricing",
@@ -66,12 +67,14 @@ const Header = () => {
               {NavItemData.length > 0 &&
                 NavItemData.map((navitem, index) => (
                   <li key={index}>
-                    <a
-                      className=" text-base font-bold text-[#0C0020]"
-                      href={navitem.link}
+                    <ScrollLink
+                      className="text-base font-bold text-[#0C0020] cursor-pointer"
+                      to={navitem.link}
+                      smooth={true}
+                      duration={1000}
                     >
                       {navitem.name}
-                    </a>
+                    </ScrollLink>
                   </li>
                 ))}
             </ul>
@@ -94,12 +97,15 @@ const Header = () => {
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
                       <li key={index}>
-                        <a
-                          className=" text-base font-bold text-white"
-                          href={navitem.link}
+                        <ScrollLink
+                          onClick={() => setOpen(false)}
+                          className=" text-base font-bold text-white cursor-pointer"
+                          to={navitem.link}
+                          smooth={true}
+                          duration={1000}
                         >
                           {navitem.name}
-                        </a>
+                        </ScrollLink>
                       </li>
                     ))}
                 </ul>
