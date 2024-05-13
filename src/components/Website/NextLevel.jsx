@@ -4,7 +4,7 @@ const NextLevel = () => {
   return (
     <div className="next_level lg:pt-20 py-7 lg:pb-16">
       <div className="container mx-auto text-center">
-        <p className="text-[#0C0020] text-4xl lg:text-[56px] font-extrabold leading-[48px] lg:leading-[64px] tracking-[-1px] mb-8 lg:mb-10">
+        <p className="text-[#0C0020] text-4xl lg:text-[56px] font-extrabold leading-[36px] lg:leading-[110%] tracking-[-1px] mb-8 lg:mb-10">
           Take your videos to the <br className="hidden lg:block" /> next level
         </p>
         <div className="flex gap-4 items-center justify-center">

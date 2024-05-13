@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div className="banner lg:pt-20 pt-[28px] pb-20 lg:pb-[190px]">
       <div className="max-w-[1280px] lg:mx-auto mx-[20px] text-center">
-        <p className="text-[#0C0020] text-4xl lg:text-5xl lg:text-[72px] font-extrabold leading-[110%] tracking-[-1px]  lg:tracking-[-2px] mb-3">
+        <p className="text-[#0C0020] text-4xl lg:text-5xl lg:text-[72px] font-extrabold leading-[36px] lg:leading-[110%] tracking-[-1px]  lg:tracking-[-2px] mb-3">
           The easy way to <br className="lg:flex hidden" /> make videos
         </p>
         <p className="text-[#0C0020] text-lg font-medium mb-8 lg:mb-10">

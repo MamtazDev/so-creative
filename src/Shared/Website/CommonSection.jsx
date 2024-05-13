@@ -5,7 +5,7 @@ const CommonSection = ({ title, subtitle, pic, customWidth }) => {
     <div className="max-w-[1280px] mx-auto">
       <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 lg:mx-0 mx-[20px]">
         <div>
-          <p className="text-[#0C0020] text-4xl lg:text-[48px] font-extrabold mb-4 leading-10 lg:leading-[48px]">
+          <p className="text-[#0C0020] text-4xl lg:text-[48px] font-extrabold mb-4 leading-[36px] lg:leading-[110%]">
             {title}
           </p>
           <p

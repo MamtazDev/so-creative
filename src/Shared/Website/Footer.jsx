@@ -22,27 +22,27 @@ const Footer = () => {
               <div className="flex justify-center lg:justify-start items-center gap-3">
                 <Link
                   to="/"
-                  className="w-11 h-11 rounded-full bg-white flex items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
                 >
-                  <InstagramLogo size={24} weight="fill" />
+                  <InstagramLogo size={20} weight="fill" />
                 </Link>
                 <Link
                   to="/"
-                  className="w-11 h-11 rounded-full bg-white flex items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
                 >
-                  <LinkedinLogo size={24} weight="fill" />
+                  <LinkedinLogo size={20} weight="fill" />
                 </Link>
                 <Link
                   to="/"
-                  className="w-11 h-11 rounded-full bg-white flex items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
                 >
                   <img src={xlogo} alt="" />
                 </Link>
                 <Link
                   to="/"
-                  className="w-11 h-11 rounded-full bg-white flex items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
                 >
-                  <YoutubeLogo size={24} weight="fill" />
+                  <YoutubeLogo size={20} weight="fill" />
                 </Link>
               </div>
             </div>

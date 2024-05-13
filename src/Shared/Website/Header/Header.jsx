@@ -33,14 +33,14 @@ const Header = () => {
           <div className="nav_brand flex w-full lg:w-auto items-center gap-4 justify-between">
             <Link to={"/"}>
               <img
-                className="max-w-[168px] h-12"
+                className="max-w-[168px] h-9 lg:h-10"
                 src={NavLogo}
                 alt="brand_nav"
               />
             </Link>
             <button
               onClick={() => setOpen(!open)}
-              className="block lg:hidden bg-slate-900 text-white text-bold px-5 py-2 rounded-full"
+              className="block lg:hidden bg-slate-900 text-white text-bold px-[18px] py-1.5 rounded-full"
             >
               {open ? (
                 "✕"
