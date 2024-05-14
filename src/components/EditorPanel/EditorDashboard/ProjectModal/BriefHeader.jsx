@@ -1,9 +1,9 @@
 import React from "react";
-import imgOne from "../../../../assets/editor_panel/profile_profile.svg";
-import { DateConverter } from "../../../../utils/converter";
-import { useUpdateProjectMutation } from "../../../../features/project/projectApi";
-import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import imgOne from "../../../../assets/editor_panel/profile_profile.svg";
+import { useUpdateProjectMutation } from "../../../../features/project/projectApi";
+import { DateConverter } from "../../../../utils/converter";
 
 const BriefHeader = ({
   selectedProject,

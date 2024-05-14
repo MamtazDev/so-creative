@@ -4,11 +4,14 @@ import {
   DotsThreeOutline,
   Plus,
   TextAa,
+  Trash,
 } from "@phosphor-icons/react";
-import brand from "../../../assets/socreative-brand.svg";
 import { useRef, useState } from "react";
+import brand from "../../../assets/socreative-brand.svg";
+import { useDeleteBrandMutation } from "../../../features/brand-kit/brandKitApi";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 import useViewFile from "../../../hooks/useViewFile";
+import Swal from "sweetalert2";
 
 const AllBrands = ({ setStep, data = [] }) => {
   const { viewImg } = useViewFile();
@@ -21,6 +24,27 @@ const AllBrands = ({ setStep, data = [] }) => {
     setSelectedOption(option);
     setShowSort(false);
   };
+
+  const [deleteBrandKit] = useDeleteBrandMutation();
+
+  const deleteHandler = async (id) => {
+    const res = await deleteBrandKit(id).unwrap();
+
+    if (res?.success) {
+      Swal.fire({
+        icon: "success",
+        title: "successful...",
+        text: `Brandkit deleted successfully!`,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Somthing is wrong!`,
+      });
+    }
+  };
+
   return (
     <div>
       <div className="flex items-center gap-3 justify-between mb-6">
@@ -70,8 +94,14 @@ const AllBrands = ({ setStep, data = [] }) => {
             key={index}
             className="border rounded-3xl p-8 flex items-center gap-8 relative"
           >
-            <button className="absolute top-8 right-8">
+            <button className="absolute top-5 right-5 p-2 hover:bg-gray-300 rounded-full">
               <DotsThreeOutline size={24} weight="fill" />
+            </button>
+            <button
+              className="absolute top-16 right-5 p-2 hover:bg-gray-300 rounded-full"
+              onClick={() => deleteHandler(item._id)}
+            >
+              <Trash size={24} />
             </button>
             <img
               src={viewImg(item?.brandLogo) || brand}

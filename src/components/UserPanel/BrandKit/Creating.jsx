@@ -1,11 +1,11 @@
+import { Plus } from "@phosphor-icons/react";
 import CreatingBrand from "../../../Shared/UserPanel/CreatingBrand";
 import created from "../../../assets/created.svg";
-import { setStep } from "../../../features/project/projectSlice";
-import useLoading from "../../../hooks/useLoading";
-import { Plus } from "@phosphor-icons/react";
+// import useLoading from "../../../hooks/useLoading";
 
-const Creating = ({ setStep }) => {
-  const { isLoading } = useLoading();
+const Creating = ({ setStep, isLoading }) => {
+  // const { isLoading } = useLoading();
+
   return (
     <div className="h-full flex flex-col items-center justify-center">
       {isLoading ? (

@@ -1,14 +1,16 @@
 import { useState } from "react";
-import FirstBrand from "../../components/UserPanel/BrandKit/FirstBrand";
+import Loading from "../../Shared/Loading";
+import AllBrands from "../../components/UserPanel/BrandKit/AllBrands";
 import BrandGuidelines from "../../components/UserPanel/BrandKit/BrandGuidelines";
 import Creating from "../../components/UserPanel/BrandKit/Creating";
-import AllBrands from "../../components/UserPanel/BrandKit/AllBrands";
+import FirstBrand from "../../components/UserPanel/BrandKit/FirstBrand";
 import { useMyBrandKitsQuery } from "../../features/brand-kit/brandKitApi";
-import Loading from "../../Shared/Loading";
 
 const BrandKit = () => {
   const { data, isLoading } = useMyBrandKitsQuery();
   const [step, setStep] = useState(0);
+
+  console.log(step);
   console.log("brand kits: ", data);
   return (
     <div className="h-full">

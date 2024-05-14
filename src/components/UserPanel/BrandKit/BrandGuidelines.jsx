@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import BrandUpload from "../../../Shared/UserPanel/BrandUpload";
+import React, { useRef, useState } from "react";
+import Confetti from "react-confetti";
 import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
 import created from "../../../assets/created.svg";
-import Confetti from "react-confetti";
 
-import { guidelines } from "../../../utils/data";
-import { useNavigate } from "react-router-dom";
-import Creating from "./Creating";
 import { Plus } from "@phosphor-icons/react";
-import BrandKitEditor from "./BrandKitEditor";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useCreateBrandMutation } from "../../../features/brand-kit/brandKitApi";
+import { guidelines } from "../../../utils/data";
+import BrandKitEditor from "./BrandKitEditor";
+import Creating from "./Creating";
 
 const BrandGuidelines = () => {
   const [createBrand] = useCreateBrandMutation();
@@ -95,8 +95,15 @@ const BrandGuidelines = () => {
     const result = await createBrand(formData);
     if (result?.data?.success) {
       setIsLoading("done");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${result?.error?.error}`,
+      });
+      setIsLoading(false);
+      console.log(result);
     }
-    setIsLoading("done");
 
     // setIsLoading("loading");
 
@@ -184,8 +191,9 @@ const BrandGuidelines = () => {
                 type="file"
                 onChange={handleImageChange}
                 ref={brandImgRef}
-                className="hidden"
+                className="absolute top-1/2 opacity-0"
                 accept="image/*"
+                required={brandImg ? false : true}
               />
 
               <img
@@ -209,6 +217,7 @@ const BrandGuidelines = () => {
                 onChange={(e) => setBrandname(e.target.value)}
                 className="border w-full px-4 py-3.5 rounded-lg"
                 placeholder="Enter your brand name"
+                required={true}
               />
             </div>
             <div className="mb-6">
@@ -224,6 +233,7 @@ const BrandGuidelines = () => {
                 value={description}
                 onChange={handleDescriptionChange}
                 maxLength={maxLength}
+                required={true}
               ></textarea>
               <p className="text-slate-500 text-sm font-normal text-end">
                 {description.length}/{maxLength} Characters
