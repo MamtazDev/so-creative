@@ -4,6 +4,7 @@ import AdminRoute from "../components/Route/AdminRoute";
 import EditorRoute from "../components/Route/EditorRoute";
 import PublicRoute from "../components/Route/PublicRoute";
 import UserRoute from "../components/Route/UserRoute";
+import BrandGuidelineEdit from "../components/UserPanel/BrandKit/BrandGuidelineEdit";
 import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 import Companies from "../pages/AdminPanel/Companies";
 import InternalUsers from "../pages/AdminPanel/InternalUsers";
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: "/user/brand-kit/create",
         element: <BrandGuidelines />,
+      },
+      {
+        path: "/user/brand-kit/:id",
+        element: <BrandGuidelineEdit />,
       },
       {
         path: "/user/purchase-credit/:credit",

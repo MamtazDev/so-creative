@@ -12,87 +12,55 @@ import { guidelines } from "../../../utils/data";
 import BrandKitEditor from "./BrandKitEditor";
 import Creating from "./Creating";
 
-const BrandGuidelines = () => {
-  const [createBrand] = useCreateBrandMutation();
-  const [brandImg, setBrandImg] = useState(null);
-  const [description, setDescription] = useState("");
-  const [brandname, setBrandname] = useState("");
-  const [brand, setBrand] = useState({});
+const BrandGuidelines = ({ databaseData = false }) => {
+  const maxLength = 500;
+  const navigate = useNavigate();
 
-  const [allbrand, setAllBrand] = useState([]);
+  const [brand, setBrand] = useState({});
+  const [data, setData] = useState({
+    brandName: "",
+    brandDescription: "",
+    brandLogo: null,
+    brandGuidelines: [],
+    logos: [],
+    fonts: [],
+    colorPalette: [],
+    imageAssets: [],
+    videoAssets: [],
+    audioAssets: [],
+  });
+
+  console.log(data);
+  console.log(brand);
+
+  const [createBrand] = useCreateBrandMutation();
+
   const [isLoading, setIsLoading] = useState(false);
   const brandImgRef = useRef();
   const guidelinesInputRefs = useRef(
     Array.from({ length: guidelines.length }).map(() => React.createRef())
   );
-  const navigate = useNavigate();
-
-  const maxLength = 500;
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setBrandImg(file);
-    }
-  };
-
-  const handleDescriptionChange = (event) => {
-    const inputValue = event.target.value;
-    setDescription(inputValue);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading("loading");
-    // console.log("brand", brandname);
-    // console.log("brandImg", brandImg);
-    // console.log("description", description);
-
-    // setAllBrand([
-    //   ...allbrand,
-    //   {
-    //     brand: brand,
-    //     name: brandname,
-    //     Description: description,
-    //     brandLogo: brandImg,
-    //   },
-    // ]);
-
-    const data = {
-      brand: brand, // Each property is an array
-      brandName: brandname,
-      brandDescription: description,
-      brandLogo: brandImg,
-    };
 
     const formData = new FormData();
 
-    // Append brand data if it exists
-    if (data?.brand) {
-      for (const [key, value] of Object.entries(data.brand)) {
+    formData.append("brandName", data.brandName);
+    formData.append("brandDescription", data.brandDescription);
+    formData.append("brandLogo", data.brandLogo);
+
+    for (const [key, value] of Object.entries(data)) {
+      if (Array.isArray(value)) {
         value.forEach((el) => {
           formData.append(`brand[${key}]`, el);
         });
       }
     }
 
-    // Append brand logo if it exists
-    if (brandImg) {
-      formData.append("brandLogo", brandImg);
-    }
-
-    // Append name if it exists
-    if (brandname) {
-      formData.append("brandName", brandname);
-    }
-
-    // Append description if it exists
-    if (description) {
-      formData.append("brandDescription", description);
-    }
-
-    // Assuming createBrand is an asynchronous function that sends data to create a brand
     const result = await createBrand(formData);
+
     if (result?.data?.success) {
       setIsLoading("done");
     } else {
@@ -104,12 +72,6 @@ const BrandGuidelines = () => {
       setIsLoading(false);
       console.log(result);
     }
-
-    // setIsLoading("loading");
-
-    // setTimeout(() => {
-    //   setIsLoading("done");
-    // }, 1000);
   };
 
   const handleAssetPortion = () => {
@@ -119,8 +81,6 @@ const BrandGuidelines = () => {
     const videoId = match ? match[1] : null;
     console.log("Video id: ", videoId);
   };
-
-  // console.log("setAllBrand", allbrand);
 
   const handleChange = (e, fieldName, index) => {
     const file = e.target.files[0];
@@ -139,48 +99,7 @@ const BrandGuidelines = () => {
           className="flex items-start justify-between gap-10 "
         >
           <div className="w-1/2 flex flex-col gap-10 ">
-            {/* {
-            guidelines.length > 0 ? (
-              guidelines.map((data, index) => (
-                <div key={index}>
-                  {data.inputName === "colors" ? (
-                    <input
-                      type="color"
-                      className="h-0 w-0 border-0 hidden"
-                      onChange={(e) => handleChange(e, data.inputName)}
-                      ref={guidelinesInputRefs.current[index]}
-                    />
-                  ) : (
-                    <input
-                      type="file"
-                      name={data.inputName}
-                      accept={data?.acceptType}
-                      className="hidden"
-                      onChange={(e) => handleChange(e, data.inputName)}
-                      ref={guidelinesInputRefs.current[index]}
-                    />
-                  )}
-
-                  <BrandUpload
-                    brandData={brand}
-                    title={data.title}
-                    subTitle={data.subtitle}
-                    buttonName={data.buttonName}
-                    inputName={data.inputName}
-                    acceptType={data?.acceptType}
-                    inputRefClick={() =>
-                      guidelinesInputRefs.current[index].current.click()
-                    }
-                  />
-                </div>
-              ))
-
-
-
-            ) : (
-              <p>There is no data</p>
-            )} */}
-            <BrandKitEditor brand={brand} setBrand={setBrand} />
+            <BrandKitEditor brand={data} setBrand={setData} />
           </div>
           <div className="max-w-[584px] w-full border rounded-3xl p-10 fixed right-16">
             <div
@@ -189,16 +108,25 @@ const BrandGuidelines = () => {
             >
               <input
                 type="file"
-                onChange={handleImageChange}
+                onChange={(e) => {
+                  setData((prev) => ({
+                    ...prev,
+                    brandLogo: e.target.files[0],
+                  }));
+                }}
                 ref={brandImgRef}
                 className="absolute top-1/2 opacity-0"
                 accept="image/*"
-                required={brandImg ? false : true}
+                required={data.brandLogo ? false : true}
               />
 
               <img
                 className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer object-cover"
-                src={brandImg ? URL.createObjectURL(brandImg) : brandInput}
+                src={
+                  data.brandLogo
+                    ? URL.createObjectURL(data.brandLogo)
+                    : brandInput
+                }
                 alt=""
               />
               <img
@@ -213,8 +141,13 @@ const BrandGuidelines = () => {
               </label>
               <input
                 type="text"
-                value={brandname}
-                onChange={(e) => setBrandname(e.target.value)}
+                value={data.brandName}
+                onChange={(e) => {
+                  setData((prev) => ({
+                    ...prev,
+                    brandName: e.target.value,
+                  }));
+                }}
                 className="border w-full px-4 py-3.5 rounded-lg"
                 placeholder="Enter your brand name"
                 required={true}
@@ -230,13 +163,18 @@ const BrandGuidelines = () => {
                 rows="5"
                 className="border w-full px-4 py-3.5 rounded-lg"
                 placeholder="Tell us more about your brand"
-                value={description}
-                onChange={handleDescriptionChange}
+                value={data.brandDescription}
+                onChange={(e) => {
+                  setData((prev) => ({
+                    ...prev,
+                    brandDescription: e.target.value,
+                  }));
+                }}
                 maxLength={maxLength}
                 required={true}
               ></textarea>
               <p className="text-slate-500 text-sm font-normal text-end">
-                {description.length}/{maxLength} Characters
+                {data.brandDescription.length}/{maxLength} Characters
               </p>
             </div>
             <button

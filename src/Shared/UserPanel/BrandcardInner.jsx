@@ -1,6 +1,6 @@
+import mp3 from "../../assets/audio.svg";
 import close from "../../assets/close.svg";
 import mp4 from "../../assets/mp4.svg";
-import mp3 from "../../assets/audio.svg";
 
 const BrandcardInner = ({ brand, main, data, setMain, index }) => {
   // console.log(data);
@@ -36,6 +36,7 @@ const BrandcardInner = ({ brand, main, data, setMain, index }) => {
       [index]: updatedMain,
     }));
   };
+
   return (
     <div className="border rounded-xl relative">
       <span onClick={removeHandler} className="absolute top-1 right-1">

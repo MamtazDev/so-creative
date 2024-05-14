@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import UploadButton from "../../../Shared/UserPanel/UploadButton";
-import BrandcardInner from "../../../Shared/UserPanel/BrandcardInner";
-import PlusButton from "../../../Shared/UserPanel/PlusButton";
-import BrandKitCommon from "./BrandKitCommon";
 import AddColor from "../../../Modal/AddColor";
+import BrandcardInner from "../../../Shared/UserPanel/BrandcardInner";
 import BrandcolorInner from "../../../Shared/UserPanel/BrandcolorInner";
+import PlusButton from "../../../Shared/UserPanel/PlusButton";
+import UploadButton from "../../../Shared/UserPanel/UploadButton";
+import BrandKitCommon from "./BrandKitCommon";
 
 const BrandKitEditor = ({ brand, setBrand }) => {
   const [colorModal, setColorModal] = useState(false);
@@ -21,6 +21,8 @@ const BrandKitEditor = ({ brand, setBrand }) => {
   const handleChange = (e) => {
     const file = e.target.files[0];
     const { name } = e.target;
+
+    console.log("name::", name);
     if (name === "colors") {
       setBrand((prevState) => ({
         ...prevState,
@@ -45,18 +47,18 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           title="Brand Guidelines"
           subtitle="Add brand images and custom watermarks and use them across your projects."
           acceptType="application/pdf"
-          kitName="guidelines"
+          kitName="brandGuidelines"
           handleChange={handleChange}
           kitRef={guidelineRef}
         />
-        {brand?.guidelines?.length > 0 ? (
+        {brand?.brandGuidelines?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.guidelines?.map((data, index) => (
+            {brand?.brandGuidelines?.map((data, index) => (
               <BrandcardInner
                 key={index}
                 data={data}
-                main={brand.guidelines}
-                index={"guidelines"}
+                main={brand.brandGuidelines}
+                index={"brandGuidelines"}
                 setMain={setBrand}
               />
             ))}
@@ -126,14 +128,14 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           subtitle="Add your brand color palettes to maintain brand consistency across your videos"
         />
 
-        {brand?.color?.length > 0 ? (
+        {brand?.colorPalette?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.color?.map((data, index) => (
+            {brand?.colorPalette?.map((data, index) => (
               <BrandcolorInner
                 key={index}
                 data={data}
-                index={"color"}
-                main={brand?.color}
+                index={"colorPalette"}
+                main={brand?.colorPalette}
                 setMain={setBrand}
               />
             ))}

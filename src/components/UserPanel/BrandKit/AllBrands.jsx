@@ -1,17 +1,18 @@
 import {
   CalendarBlank,
   CaretDown,
-  DotsThreeOutline,
+  PencilSimpleLine,
   Plus,
   TextAa,
   Trash,
 } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import brand from "../../../assets/socreative-brand.svg";
 import { useDeleteBrandMutation } from "../../../features/brand-kit/brandKitApi";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 import useViewFile from "../../../hooks/useViewFile";
-import Swal from "sweetalert2";
 
 const AllBrands = ({ setStep, data = [] }) => {
   const { viewImg } = useViewFile();
@@ -94,14 +95,18 @@ const AllBrands = ({ setStep, data = [] }) => {
             key={index}
             className="border rounded-3xl p-8 flex items-center gap-8 relative"
           >
-            <button className="absolute top-5 right-5 p-2 hover:bg-gray-300 rounded-full">
-              <DotsThreeOutline size={24} weight="fill" />
-            </button>
+            <Link
+              to={`/user/brand-kit/${item._id}`}
+              className="absolute top-5 right-5 p-2 hover:bg-gray-300 rounded-full"
+            >
+              {/* <DotsThreeOutline size={24} weight="fill" /> */}
+              <PencilSimpleLine size={20} />
+            </Link>
             <button
-              className="absolute top-16 right-5 p-2 hover:bg-gray-300 rounded-full"
+              className="absolute top-14 right-5 p-2 hover:bg-gray-300 rounded-full"
               onClick={() => deleteHandler(item._id)}
             >
-              <Trash size={24} />
+              <Trash size={20} />
             </button>
             <img
               src={viewImg(item?.brandLogo) || brand}
