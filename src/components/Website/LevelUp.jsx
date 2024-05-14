@@ -11,8 +11,7 @@ const LevelUp = () => {
         <p className="text-[#0C0020] text-lg lg:text-xl font-medium text-center mb-8 lg:mb-20">
           We are here to guide your journey with comprehensive
           <br className="lg:block hidden " />
-          training materials and <br className="lg:block hidden" /> seamless
-          onboarding support
+          training materials and seamless onboarding support
         </p>
         <div className="grid grid-cols-1  lg:grid-cols-3  gap-8  ">
           {levelUp.map((data, index) => (

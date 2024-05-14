@@ -8,16 +8,16 @@ const Banner = () => {
         <p className="text-[#0C0020] text-4xl lg:text-5xl lg:text-[72px] font-extrabold leading-[36px] lg:leading-[110%] tracking-[-1px]  lg:tracking-[-2px] mb-3">
           The easy way to <br className="lg:flex hidden" /> make videos
         </p>
-        <p className="text-[#0C0020] text-lg font-medium mb-8 lg:mb-10">
+        <p className="text-[#0C0020] text-lg font-medium mb-8 lg:mb-10 ">
           Produce high-quality video content without slow pace{" "}
           <br className="lg:flex hidden" /> and costs of traditional video
           production.
         </p>
-        <div className="flex gap-4 items-center justify-center mb-8 lg:mb-20">
-          <button className="bg-indigo-600 rounded-full text-white text-base font-bold py-2 px-[20px] ">
+        <div className="flex gap-4 items-center justify-center mb-8 lg:mb-20 ">
+          <button className="bg-indigo-600 rounded-full text-white text-base font-semibold py-2 px-[20px] ">
             Talk to us
           </button>
-          <button className="bg-indigo-100 py-2 pl-4 pr-2 rounded-full text-base font-bold text-indigo-600 flex items-center gap-1 ">
+          <button className="bg-indigo-100 py-2 pl-4 pr-2 rounded-full text-base font-semibold text-indigo-600 flex items-center gap-1 ">
             Watch Video <PlayCircle size={24} />
           </button>
         </div>

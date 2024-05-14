@@ -16,7 +16,7 @@ const VideoContent = () => {
           For teams that create <br />
           <span className="text-indigo-600"> video content at scale</span>
         </p>
-        <div className="hidden lg:max-w-[817px] mx-auto w-full rounded-full bg-stone-100 p-1 lg:flex items-center mb-20 overflow-x-auto no_scrollbar ">
+        <div className="hidden lg:max-w-[813px] mx-auto w-full rounded-full bg-stone-100 p-1 lg:flex items-center mb-20 overflow-x-auto no_scrollbar ">
           {videoContentTab.map((data, index) => (
             <button
               className={`${
@@ -41,10 +41,10 @@ const VideoContent = () => {
           </div>
 
           {show && (
-            <div className="absolute top-16 rounded-[35px] flex flex-col gap-4 w-full bg-stone-100 p-8 mb-9">
+            <div className="absolute top-16 rounded-3xl flex flex-col gap-1 w-full bg-stone-100 p-1 mb-9">
               {videoContentTab.map((data, index) => (
                 <button
-                  className="text-[#0C0020] font-semibold text-sm  whitespace-nowrap "
+                  className="text-[#0C0020] font-semibold text-sm py-3 rounded-full hover:bg-white  whitespace-nowrap "
                   onClick={() => {
                     setSelectedOption(data);
                     setShow(false);
@@ -60,12 +60,13 @@ const VideoContent = () => {
 
         <div>
           <div className="max-w-[1086px] mx-auto">
-            <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-5 lg:mx-0 ">
+            <div className="grid items-center grid-cols-1 lg:grid-cols-2 lg:gap-5 lg:mx-0 ">
               <div>
                 <p className="text-[#0C0020] text-2xl font-extrabold mb-2 lg:mb-4 leading-[32px]">
-                  Create immersive learning experiences
+                  Create immersive <br className="block lg:hidden" /> learning
+                  experiences
                 </p>
-                <p className="text-[#0C0020] text-lg lg:text-xl font-medium mb-6 lg:mb-[33px] max-w-[440px]">
+                <p className="text-[#0C0020] text-lg lg:text-xl font-medium mb-8 lg:mb-[33px] max-w-[440px]">
                   Empower your team to excel with engaging and interactive
                   content that caters to diverse learning styles.
                 </p>

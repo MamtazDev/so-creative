@@ -19,7 +19,7 @@ const Home = () => {
       <Teams />
       <div id="features">
         <CommonSection
-          title="Video production. without the hassle"
+          title="Video production. Without the hassle"
           subtitle="Film anytime, anywhere with our versatile 
 filming kit, packed with the essential 
 tools to capture high-quality videos"

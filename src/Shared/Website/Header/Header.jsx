@@ -86,18 +86,18 @@ const Header = () => {
             >
               Login
             </Link>
-            <button className="text-white font-bold text-base py-2 px-5 rounded-full bg-slate-900">
+            <button className="text-white font-semibold text-base py-2 px-5 rounded-full bg-slate-900">
               Get Started
             </button>
           </div>
           {open && (
-            <div className=" absolute  top-[57px] bg-slate-900 rounded-3xl shadow-2xl w-[94%] pb-2 pt-8 px-2">
+            <div className=" absolute z-40  top-[57px] bg-slate-900 rounded-[32px] shadow-2xl w-[94%]  p-2">
               <nav className="block lg:hidden mx-auto mb-8">
-                <ul className="flex flex-col justify-center items-center lg:flex-row gap-4 ">
+                <ul className="flex flex-col justify-center items-center lg:flex-row gap-2 ">
                   {NavItemData.length > 0 &&
                     NavItemData.map((navitem, index) => (
                       <li
-                        className="w-full text-center transition-all duration-300 ease-in hover:bg-slate-800 py-2 rounded-full"
+                        className="w-full text-center transition-all duration-300 ease-in hover:bg-slate-800 py-3 rounded-full"
                         key={index}
                       >
                         <ScrollLink
@@ -113,14 +113,14 @@ const Header = () => {
                     ))}
                 </ul>
               </nav>
-              <div className=" flex flex-col lg:flex-row bg-slate-800 rounded-[19px]  p-2 items-center gap-6">
+              <div className=" flex flex-col lg:flex-row bg-slate-800 rounded-3xl  p-2 items-center gap-6">
                 <Link
                   to={"/login"}
                   className="block  text-white text-base font-bold"
                 >
                   Login
                 </Link>
-                <button className="text-slate-900 font-bold text-base py-2 px-5 rounded-full w-full bg-white">
+                <button className="text-slate-900 font-semibold text-base py-2 px-5 rounded-full w-full bg-white">
                   Get Started
                 </button>
               </div>
