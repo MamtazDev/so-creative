@@ -12,11 +12,21 @@ const VideoContent = () => {
   return (
     <div id="usecases" className="video_content py-7 lg:py-20">
       <div className="mx-5 lg:mx-auto">
-        <p className="text-center text-4xl lg:text-[56px] font-extrabold leading-10 lg:leading-[64px] text-[#0C0020] mb-6 lg:mb-10">
+        <p
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="200"
+          className="text-center text-4xl lg:text-[56px] font-extrabold leading-10 lg:leading-[64px] text-[#0C0020] mb-6 lg:mb-10"
+        >
           For teams that create <br />
           <span className="text-indigo-600"> video content at scale</span>
         </p>
-        <div className="hidden lg:max-w-[813px] mx-auto w-full rounded-full bg-stone-100 p-1 lg:flex items-center mb-20 overflow-x-auto no_scrollbar ">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="400"
+          className="hidden lg:max-w-[813px] mx-auto w-full rounded-full bg-stone-100 p-1 lg:flex items-center mb-20 overflow-x-auto no_scrollbar "
+        >
           {videoContentTab.map((data, index) => (
             <button
               className={`${
@@ -61,7 +71,11 @@ const VideoContent = () => {
         <div>
           <div className="max-w-[1086px] mx-auto">
             <div className="grid items-center grid-cols-1 lg:grid-cols-2 lg:gap-5 lg:mx-0 ">
-              <div>
+              <div
+                data-aos="fade-right"
+                data-aos-duration="800"
+                data-aos-delay="200"
+              >
                 <p className="text-[#0C0020] text-2xl font-extrabold mb-2 lg:mb-4 leading-[32px]">
                   Create immersive <br className="block lg:hidden" /> learning
                   experiences
@@ -88,7 +102,11 @@ const VideoContent = () => {
                   </svg>
                 </button> */}
               </div>
-              <div>
+              <div
+                data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-delay="200"
+              >
                 <img src={experlences} alt="" />
               </div>
             </div>

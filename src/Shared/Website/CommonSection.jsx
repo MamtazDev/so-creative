@@ -4,7 +4,7 @@ const CommonSection = ({ title, subtitle, pic, customWidth }) => {
   return (
     <div className="max-w-[1280px] mx-auto">
       <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 lg:mx-0 mx-[20px]">
-        <div>
+        <div data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
           <p className="text-[#0C0020] text-4xl lg:text-[48px] font-extrabold mb-4 leading-[110%] ">
             {title}
           </p>
@@ -30,7 +30,7 @@ const CommonSection = ({ title, subtitle, pic, customWidth }) => {
             </svg>
           </button> */}
         </div>
-        <div>
+        <div data-aos="fade-left" data-aos-duration="1500" data-aos-delay="200">
           <img src={pic} alt="" />
         </div>
       </div>

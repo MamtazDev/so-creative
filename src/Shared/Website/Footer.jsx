@@ -11,7 +11,12 @@ import {
 
 const Footer = () => {
   return (
-    <div className="p-4 ">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="800"
+      data-aos-delay="200"
+      className="p-4 "
+    >
       <div className="bg-stone-100 rounded-[48px] p-5 lg:py-20">
         <div className="max-w-[1280px] mx-auto">
           <div className="grid grid-cols-12 gap-1 lg:gap-10 mb-10 lg:mb-[69px] lg:text-start text-center">

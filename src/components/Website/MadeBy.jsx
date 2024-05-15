@@ -5,13 +5,37 @@ import madelogosm from "../../assets/website/made-by-logo-sm.svg";
 
 const MadeBy = () => {
   return (
-    <div className="max-w-[1280px] py-[57px] lg:py-[100px] relative lg:mx-auto mx-[20px] ">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="800"
+      data-aos-delay="200"
+      className="max-w-[1280px] py-[57px] lg:py-[100px] relative lg:mx-auto mx-[20px] "
+    >
       <div className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">
-        <p className="text-[#0C0020] text-4xl lg:text-[60px] font-bold leading-[125%] mb-2 lg:mb-4">
+        <p
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="400"
+          className="text-[#0C0020] text-4xl lg:text-[60px] font-bold leading-[125%] mb-2 lg:mb-4"
+        >
           Made by
         </p>
-        <img className="block lg:hidden mx-auto" src={madelogosm} alt="" />
-        <img className="hidden lg:block mx-auto" src={madelogo} alt="" />
+        <img
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="400"
+          className="block lg:hidden mx-auto"
+          src={madelogosm}
+          alt=""
+        />
+        <img
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="400"
+          className="hidden lg:block mx-auto"
+          src={madelogo}
+          alt=""
+        />
       </div>
       <div>
         <img className="hidden lg:block" src={made} alt="" />
