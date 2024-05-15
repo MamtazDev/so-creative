@@ -1,4 +1,4 @@
-import { Plus } from "@phosphor-icons/react";
+import { FileVideo, FilmStrip, Plus } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import CreateProjectModal from "../../Modal/CreateProjectModal";
@@ -18,12 +18,14 @@ import {
 const Sidebar = ({ user }) => {
   const location = useLocation();
   const showRef = useRef();
+  const settingRef = useRef();
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
 
   const [showTeamModal, setShowTeamModal] = useState(false);
   useOutsideClick(showRef, () => setShow(false));
+  useOutsideClick(settingRef, () => setOpen(false));
   const { showCretedModal, showDraftModal } = useSelector(
     (state) => state.project
   );
@@ -53,7 +55,11 @@ const Sidebar = ({ user }) => {
                   }}
                   className="flex gap-3.5 items-center text-base font-medium mb-6"
                 >
-                  <img src={createProject} alt="" />
+                  <FilmStrip
+                    className="text-indigo-600"
+                    size={24}
+                    weight="bold"
+                  />
                   Create Project
                 </button>
                 <button
@@ -63,7 +69,11 @@ const Sidebar = ({ user }) => {
                   }}
                   className="flex gap-3.5 items-center text-base font-medium"
                 >
-                  <img src={selectDraft} alt="" />
+                  <FileVideo
+                    className="text-[#E11D48]"
+                    size={24}
+                    weight="bold"
+                  />
                   Select Drafts
                 </button>
               </div>
@@ -99,7 +109,10 @@ const Sidebar = ({ user }) => {
         </div>
       </div>
       {user?.role === "USER" && (
-        <div className={`${open && "rounded-2xl shadow-2xl bg-white"}`}>
+        <div
+          ref={settingRef}
+          className={`${open && "rounded-2xl shadow-2xl bg-white"}`}
+        >
           {open && (
             <div className="border-b">
               {workspaceMenu.map((data, index) => (

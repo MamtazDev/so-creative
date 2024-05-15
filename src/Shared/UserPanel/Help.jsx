@@ -1,9 +1,9 @@
 import help from "../../assets/help.svg";
-import close from "../../assets/close.svg";
 import { useState } from "react";
 import HelpOptions from "./HelpOptions";
 import GettingStarted from "./GettingStarted";
 import ChangeEmail from "./ChangeEmail";
+import { XCircle } from "@phosphor-icons/react";
 
 const Help = ({ setShowHelp, helpRef }) => {
   const [step, setStep] = useState(1);
@@ -22,7 +22,7 @@ const Help = ({ setShowHelp, helpRef }) => {
           </div>
         </div>
         <button onClick={() => setShowHelp(false)}>
-          <img src={close} alt="" />
+          <XCircle size={32} weight="fill" />
         </button>
       </div>
       <div className="p-8">

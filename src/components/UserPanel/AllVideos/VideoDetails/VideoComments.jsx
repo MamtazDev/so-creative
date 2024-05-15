@@ -1,7 +1,4 @@
-import search from "../../../../assets/search.svg";
-import filter from "../../../../assets/filter.svg";
 import send from "../../../../assets/send.svg";
-import aveter from "../../../../assets/aveter1.svg";
 import chatBot from "../../../../assets/noChat.svg";
 import { useState } from "react";
 import {
@@ -10,6 +7,7 @@ import {
 } from "../../../../features/project/projectApi";
 import Swal from "sweetalert2";
 import { DateConverterWithTime } from "../../../../utils/converter";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 
 const VideoComments = ({ data }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -72,7 +70,7 @@ const VideoComments = ({ data }) => {
     <div className="border rounded-xl p-6 max-h-[70vh]">
       <div className="h-full flex flex-col gap-6 justify-between ">
         <div className="bg-slate-100 rounded-full flex items-center gap-2.5 p-2 ">
-          <img src={search} alt="" />
+          <MagnifyingGlass size={20} />
           <input
             className="bg-transparent w-full"
             type="search"
@@ -95,11 +93,25 @@ const VideoComments = ({ data }) => {
                 .map((item, index) => (
                   <div className="activity_card flex gap-2 " key={index}>
                     <div className="left_activity_card">
-                      <img
+                      {/* <img
                         className="h-10 w-10 rounded-full object-cover"
                         src={item.user.image ? item.user.image : aveter}
                         alt="activity_img"
-                      />
+                      /> */}
+
+                      {item.user.image ? (
+                        <div className="h-10 w-10 rounded-full cursor-pointer ">
+                          <img
+                            src={item.user.image}
+                            alt=""
+                            className="h-full w-full object-cover rounded-full"
+                          />
+                        </div>
+                      ) : (
+                        <button className="text-white uppercase text-sm font-semibold h-10 w-10 cursor-pointer bg-[#4F16A5] rounded-full p-3">
+                          {item.user.name.slice(0, 2)}
+                        </button>
+                      )}
                     </div>
                     <div className="right_activity_card">
                       <h3 className="text-base font-semibold text-slate-900 pb-3">

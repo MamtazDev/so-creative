@@ -1,6 +1,4 @@
 import React, { useRef, useState } from "react";
-import Details from "../../../UserPanel/AllVideos/VideoDetails/Details";
-import check from "../../../../assets/check-icon.svg";
 import VimeoPlayer from "react-player/vimeo";
 import useOutsideClick from "../../../../hooks/useOutsideClick";
 import { DownloadSimple } from "@phosphor-icons/react";

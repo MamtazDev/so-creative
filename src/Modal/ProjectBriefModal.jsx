@@ -26,7 +26,7 @@ const ProjectBriefModal = ({
   const [updateProject, { isLoading }] = useUpdateProjectMutation();
 
   const handleSubmitVideo = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const res = await fetch(`${BASE_API_URL}/v1/vimeo/create-video-instant`, {
         method: "POST",
@@ -67,12 +67,12 @@ const ProjectBriefModal = ({
             size: file?.size,
             path: result.data.player_embed_url,
             projectId: selectedProject?._id,
-            submitVideo: true
+            submitVideo: true,
           };
 
           const uploadRes = await updateProject(formData);
           if (uploadRes?.error?.error) {
-            setLoading(false)
+            setLoading(false);
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -80,7 +80,7 @@ const ProjectBriefModal = ({
             });
           }
           if (uploadRes?.error?.data?.message) {
-            setLoading(false)
+            setLoading(false);
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -88,9 +88,9 @@ const ProjectBriefModal = ({
             });
           }
           if (uploadRes?.data?.success) {
-            setModalPopup(false)
-            setFile(null)
-            setLoading(false)
+            setModalPopup(false);
+            setFile(null);
+            setLoading(false);
             Swal.fire({
               icon: "success",
               title: "Successful!",
@@ -102,7 +102,7 @@ const ProjectBriefModal = ({
 
       tusUpload.start();
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -142,7 +142,6 @@ const ProjectBriefModal = ({
               selectedProject={selectedProject}
               setFile={setFile}
               file={file}
-
             />
           )}
           {step === "Video Files" && (
@@ -161,11 +160,7 @@ const ProjectBriefModal = ({
             Total Project Cost:{" "}
             <span className="font-bold">
               {" "}
-              {selectedProject?.addOns.reduce(
-                (total, current) => total + current.credit,
-                0
-              )}{" "}
-              Credit
+              {selectedProject?.totalCredit} Credit
             </span>
           </p>
           <p className="text-indigo-600 text-sm font-semibold">

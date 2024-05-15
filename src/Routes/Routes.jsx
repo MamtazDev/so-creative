@@ -21,16 +21,27 @@ import Projects from "../pages/UserPanel/Projects";
 import EditorProjects from "../pages/EditorPanel/EditorProjects";
 import BrandGuidelines from "../components/UserPanel/BrandKit/BrandGuidelines";
 import PurchaseCredit from "../pages/UserPanel/PurchaseCredit";
+import PurchaseSubscription from "../pages/UserPanel/PurchaseSubscription";
+import Home from "../pages/Website/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <PublicRoute>
+        <Home />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: "/login",
+    element: (
+      <PublicRoute>
         <Login />
       </PublicRoute>
     ),
   },
+
   {
     path: "/register",
     element: (
@@ -82,8 +93,12 @@ export const router = createBrowserRouter([
         element: <BrandGuidelines />,
       },
       {
-        path: "/user/purchase-credit",
+        path: "/user/purchase-credit/:credit",
         element: <PurchaseCredit />,
+      },
+      {
+        path: "/user/subscribe/:plan",
+        element: <PurchaseSubscription />,
       },
     ],
   },

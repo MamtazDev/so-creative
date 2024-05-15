@@ -91,6 +91,16 @@ export const authApi = apiSlice.injectEndpoints({
         } catch (error) {}
       },
     }),
+    makeSubscription: builder.mutation({
+      query: (data) => ({
+        url: "/v1/auth/makeSubscription",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getPaymentsInfo: builder.query({
+      query: () => "/v1/auth/payments",
+    }),
   }),
 });
 
@@ -98,4 +108,6 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useUpdateUserSettingsMutation,
+  useMakeSubscriptionMutation,
+  useGetPaymentsInfoQuery,
 } = authApi;

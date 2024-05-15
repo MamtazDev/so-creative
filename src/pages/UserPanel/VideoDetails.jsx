@@ -5,6 +5,7 @@ import ExperienceModal from "../../Modal/ExperienceModal";
 import VideoComments from "../../components/UserPanel/AllVideos/VideoDetails/VideoComments";
 import { useLoaderData, useParams } from "react-router-dom";
 import {
+  useAddReviewMutation,
   useGetProjectDetailsQuery,
   useUpdateProjectMutation,
 } from "../../features/project/projectApi";
@@ -14,6 +15,7 @@ const VideoDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetProjectDetailsQuery(id);
   const [updateProject, { isLoading: updating }] = useUpdateProjectMutation();
+  const [addReview, { isLoading: reviewing }] = useAddReviewMutation();
 
   console.log(data, "projectDetails");
   const [showExperienceModal, setShowExperienceModal] = useState(false);
@@ -42,8 +44,8 @@ const VideoDetails = () => {
         });
       }
       if (res?.data?.success) {
-        // navigate("/user");
-        setShowExperienceModal(false);
+        const reviewRes = await addReview({ project: data._id, ...reviewData });
+        reviewRes?.data?.success && setShowExperienceModal(false);
       }
     } catch (error) {
       Swal.fire({
@@ -58,7 +60,7 @@ const VideoDetails = () => {
       <DetailsHeader
         setShowExperienceModal={setShowExperienceModal}
         data={data}
-        isLoading={updating}
+        isLoading={updating || reviewing}
       />
       <div className="grid grid-cols-3 gap-[30px]">
         <div className="col-span-2">
@@ -70,7 +72,7 @@ const VideoDetails = () => {
         <ExperienceModal
           setShowExperienceModal={setShowExperienceModal}
           handleApprove={handleApprove}
-          isLoading={updating}
+          isLoading={updating || reviewing}
           setReviewData={setReviewData}
           reviewData={reviewData}
         />

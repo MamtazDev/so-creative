@@ -1,12 +1,14 @@
 import { DotsThreeOutline, DownloadSimple, Trash } from "@phosphor-icons/react";
 import mp4 from "../../../assets/mp4.svg";
 import { formatFileSize, truncateFilename } from "../../../utils/converter";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Deleting from "../../../Modal/Deleting";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const VideoCard = ({ video, setClickedItem, clickedItem }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [title, setTitle] = useState(null);
+  const clickedItemRef = useRef();
   console.log("video", video);
   const handleClick = (e, id) => {
     e.stopPropagation();
@@ -25,6 +27,8 @@ const VideoCard = ({ video, setClickedItem, clickedItem }) => {
 
     anchor.click();
   };
+
+  useOutsideClick(clickedItemRef, () => setClickedItem(false));
   return (
     <div>
       <div className="text-center relative">
@@ -40,6 +44,7 @@ const VideoCard = ({ video, setClickedItem, clickedItem }) => {
         </button>
         {clickedItem === video?._id && (
           <div
+            ref={clickedItemRef}
             className="absolute top-0 -right-40 z-40 bg-white w-[196px]  shadow-xl  rounded-xl "
             onClick={(e) => e.stopPropagation()}
           >

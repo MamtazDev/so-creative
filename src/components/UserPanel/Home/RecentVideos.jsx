@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import VideoCard from "../../../Shared/UserPanel/VideoCard";
-import arrow from "../../../assets/arrow-right.svg";
-import { videos } from "../../../utils/data";
 import { truncateFilename } from "../../../utils/converter";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { CaretRight } from "@phosphor-icons/react";
 
 const RecentVideos = ({ data }) => {
   const responsive = {
@@ -35,7 +34,7 @@ const RecentVideos = ({ data }) => {
           className="text-indigo-600 text-base font-semibold flex items-center gap-1"
         >
           All Videos
-          <img src={arrow} alt="" />
+          <CaretRight size={20} weight="bold" />
         </Link>
       </div>
 

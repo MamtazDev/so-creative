@@ -1,5 +1,6 @@
 import React from "react";
 import { timeAgo } from "../../../utils/converter";
+import NoData from "../../../Shared/NoData";
 
 const AllProjectFileLayout = ({ data }) => {
   return (
@@ -54,7 +55,7 @@ const AllProjectFileLayout = ({ data }) => {
                 </tr>
               ))
             ) : (
-              <p>There is no data</p>
+              <NoData/>
             )}
           </tbody>
         </table>

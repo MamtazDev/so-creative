@@ -6,32 +6,37 @@ import useOutsideClick from "../../../../hooks/useOutsideClick";
 import { timeAgo, truncateFilename } from "../../../../utils/converter";
 import VideoCard from "../../../../Shared/UserPanel/VideoCard";
 
-
 const Details = ({ data }) => {
   const downloadRef = useRef();
 
-  console.log(data, "exxx")
+  console.log(data, "exxx");
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   useOutsideClick(downloadRef, () => setShowDownloadOptions(false));
   return (
     <div>
-      {data?.exportedUrl ? <div className="h-[570px] mb-5">
-        <VimeoPlayer
-          className="bg-gray-400 rounded-xl"
-          url={data.exportedUrl.file}
-          width="100%"
-          height="100%"
-          controls={true}
-        />
-      </div> : <div className="h-[570px] mb-5 flex gap-10  flex-wrap">
-        {data?.files.map((item, idx) => <VideoCard
-          key={idx}
-          data={item}
-          name={truncateFilename(item.fileData.title)}
-          status={item.fileData.status}
-          time={item.fileData.createdAt}
-        />)}
-      </div>}
+      {data?.exportedUrl ? (
+        <div className="h-[570px] mb-5">
+          <VimeoPlayer
+            className="bg-gray-400 rounded-xl"
+            url={data.exportedUrl.file}
+            width="100%"
+            height="100%"
+            controls={true}
+          />
+        </div>
+      ) : (
+        <div className="h-[570px] mb-5 flex gap-10  flex-wrap">
+          {data?.files.map((item, idx) => (
+            <VideoCard
+              key={idx}
+              data={item?.fileData}
+              name={truncateFilename(item.fileData.title)}
+              status={item.fileData.status}
+              time={item.fileData.createdAt}
+            />
+          ))}
+        </div>
+      )}
       <div>
         <div className="flex items-center gap-4 justify-between">
           <div>

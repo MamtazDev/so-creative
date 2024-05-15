@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
-import close from "../assets/close.svg";
+import { XCircle } from "@phosphor-icons/react";
 
 const AddColor = ({
   setColorModal,
@@ -11,21 +11,17 @@ const AddColor = ({
 }) => {
   const colorRef = useRef();
 
-  const [ nameColor, setNameColor ] = useState()
-  const [ valueColor, setValueColor ] = useState()
-
-
+  const [nameColor, setNameColor] = useState();
+  const [valueColor, setValueColor] = useState();
 
   const handleChange = (e) => {
-
     setSelectedColor(e.target.value);
 
-
     const { name } = e.target;
-    console.log("Name:", name)
-    console.log("Value:", e.target.value )
-    setNameColor(name)
-    setValueColor(e.target.value)
+    console.log("Name:", name);
+    console.log("Value:", e.target.value);
+    setNameColor(name);
+    setValueColor(e.target.value);
     // setBrand((prevState) => ({
     //   ...prevState,
     //   [name]: [...(prevState[name] || []), e.target.value],
@@ -34,20 +30,19 @@ const AddColor = ({
 
   const handleSubmitColor = (e) => {
     const { name } = e.target;
-    console.log("Name:", name)
-    console.log("Value:", e.target.value )
+    console.log("Name:", name);
+    console.log("Value:", e.target.value);
     setBrand((prevState) => ({
       ...prevState,
       [nameColor]: [...(prevState[nameColor] || []), valueColor],
     }));
 
-    setColorModal(false)
+    setColorModal(false);
   };
-
 
   const handleColorChange = (e) => {
     setSelectedColor(e.target.value);
-    console.log("e.target.value: ", e.target.value)
+    console.log("e.target.value: ", e.target.value);
   };
   useOutsideClick(colorRef, () => setColorModal(false));
   return (
@@ -60,7 +55,7 @@ const AddColor = ({
           onClick={() => setColorModal(false)}
           className="absolute top-5 right-5 "
         >
-          <img src={close} alt="" />
+          <XCircle size={32} weight="fill" />
         </button>
 
         <div className="mb-5">

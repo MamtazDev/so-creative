@@ -5,8 +5,13 @@ import InvitePeople from "../components/UserPanel/TeamSettings/InvitePeople";
 import TeamBilling from "../components/UserPanel/TeamSettings/TeamBilling";
 import Notifications from "../components/UserPanel/TeamSettings/Notifications";
 import useOutsideClick from "../hooks/useOutsideClick";
+import { useGetPaymentsInfoQuery } from "../features/auth/authApi";
 
 const TeamSettingModal = ({ setShowTeamModal, step, setStep }) => {
+  const { data } = useGetPaymentsInfoQuery();
+
+  console.log(data, "userPymejnht");
+
   const modalRef = useRef();
   useOutsideClick(modalRef, () => setShowTeamModal(false));
   return (
@@ -20,9 +25,9 @@ const TeamSettingModal = ({ setShowTeamModal, step, setStep }) => {
             <WorkspaceSidebar setStep={setStep} step={step} />
           </div>
           <div className="p-6 w-full overflow-y-auto no_scrollbar">
-            {step === 0 && <TeamSettings />}
+            {step === 0 && <TeamSettings setShowTeamModal={setShowTeamModal} />}
             {step === 1 && <InvitePeople />}
-            {step === 2 && <TeamBilling />}
+            {step === 2 && <TeamBilling paymentDatas={data} />}
             {step === 3 && <Notifications />}
           </div>
         </div>

@@ -1,13 +1,16 @@
-import close from "../../assets/close.svg";
 import secure from "../../assets/secure.svg";
 import credit from "../../assets/credit.svg";
-import minus from "../../assets/minus.svg";
-import creditPlus from "../../assets/creditPlus.svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { MinusCircle, PlusCircle, XCircle } from "@phosphor-icons/react";
 
 const Credit = ({ setShowCredit, creditRef }) => {
-  const [count, setCount] = useState(2);
+  const [count, setCount] = useState(0);
+
+  const { user } = useSelector((state) => state.auth);
+
   const handleIncrement = () => {
     setCount(count + 1);
   };
@@ -16,6 +19,14 @@ const Credit = ({ setShowCredit, creditRef }) => {
       setCount(count - 1);
     }
   };
+
+  const navigate = useNavigate();
+
+  const purchaseHandler = () => {
+    navigate(`/user/purchase-credit/${count}`);
+    setShowCredit(false);
+  };
+
   return (
     <div
       ref={creditRef}
@@ -25,10 +36,10 @@ const Credit = ({ setShowCredit, creditRef }) => {
         <div className="flex items-center gap-2 justify-between mb-8">
           <div>
             <p className="text-slate-500 text-xs font-medium mb-1">Balance</p>
-            <p className="text-sm font-semibold">0 Credit</p>
+            <p className="text-sm font-semibold">{user?.credit} Credit</p>
           </div>
           <button onClick={() => setShowCredit(false)}>
-            <img src={close} alt="" />
+            <XCircle size={32} weight="fill" />
           </button>
         </div>
         <div className="text-center mb-8">
@@ -40,24 +51,24 @@ const Credit = ({ setShowCredit, creditRef }) => {
         </div>
         <div className="border rounded-full flex items-center justify-between gap-2 p-2 mb-8">
           <button onClick={handleDecrement}>
-            <img src={minus} alt="" />
+            <MinusCircle className="text-red-500" size={48} weight="fill" />
           </button>
           <p className="text-lg font-bold">{count} Credit</p>
           <button onClick={handleIncrement}>
-            <img src={creditPlus} alt="" />
+            <PlusCircle className="text-green-500" size={48} weight="fill" />
           </button>
         </div>
         <div className="flex justify-between gap-2 items-center">
           <p className="text-base font-normal">
-            Total Cost: <span className="font-bold">$1,000.00</span>{" "}
+            Total Cost: <span className="font-bold">${count * 11.5}</span>{" "}
           </p>
-          <Link
-            to="/user/purchase-credit"
-            onClick={() => setShowCredit(false)}
+          <button
+            onClick={() => purchaseHandler()}
+            disabled={count === 0}
             className="bg-indigo-600 rounded-full text-base font-semibold text-white px-6 py-3"
           >
             Purchase Now
-          </Link>
+          </button>
         </div>
       </div>
       <div className="bg-slate-100 flex items-center justify-center gap-3 p-4 ">

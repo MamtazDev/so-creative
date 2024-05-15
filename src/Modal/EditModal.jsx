@@ -5,7 +5,7 @@ import {
   useUpdateFolderMutation,
 } from "../features/videos/videoApi";
 import useOutsideClick from "../hooks/useOutsideClick";
-import close from "../assets/close.svg";
+import { XCircle } from "@phosphor-icons/react";
 
 const EditModal = ({
   setOpenCreateFolderModal,
@@ -61,7 +61,7 @@ const EditModal = ({
         <div className="flex items-center gap-4 justify-between mb-4">
           <p className="text-lg font-semibold">Rename</p>
           <button onClick={() => setOpenCreateFolderModal(false)}>
-            <img src={close} alt="" />
+            <XCircle size={32} weight="fill" />
           </button>
         </div>
         <form onSubmit={handleSubmit}>

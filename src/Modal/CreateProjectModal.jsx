@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import Stepper from "../components/UserPanel/CreateProject/Stepper";
-import close from "../assets/close.svg";
 import UploadFile from "../components/UserPanel/CreateProject/UploadFile";
 import StockVideos from "../components/UserPanel/CreateProject/StockVideos";
 import AllAvater from "../components/UserPanel/CreateProject/AllAvater";
@@ -15,12 +14,18 @@ import {
   setStep,
 } from "../features/project/projectSlice";
 import CreatingBrand from "../Shared/UserPanel/CreatingBrand";
+import { useUpdateProjectMutation } from "../features/project/projectApi";
+import Swal from "sweetalert2";
+import { XCircle } from "@phosphor-icons/react";
 const CreateProjectModal = () => {
   const createRef = useRef();
 
   const { projectId, step, projectCrating } = useSelector(
     (state) => state.project
   );
+  const [updateProject, { isLoading }] = useUpdateProjectMutation();
+  const [selectedVideo, setSelectedVideo] = useState([]);
+  const [selectedAveter, setSelectedAveter] = useState([]);
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -28,6 +33,49 @@ const CreateProjectModal = () => {
     dispatch(setStep(0));
     dispatch(setActiveBrif(undefined));
     dispatch(setShowCreateModal(false));
+  };
+
+  console.log(selectedVideo, "selectedVideo");
+  console.log(selectedAveter, "selectedAveter");
+
+  const handleSaveProject = async () => {
+    // onClick={() => dispatch(setStep(1))}
+
+    try {
+      const formData = {
+        projectId: projectId,
+        stockVideos: selectedVideo,
+        avatar: selectedAveter,
+        totalCredit:
+          Number(selectedVideo.length) * 1 + Number(selectedAveter.length) * 1,
+      };
+
+      const res = await updateProject(formData);
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        dispatch(setStep(1));
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
   };
 
   return (
@@ -42,21 +90,28 @@ const CreateProjectModal = () => {
           className="max-w-[1280px] max-h-[90vh] overflow-y-auto no_scrollbar w-full bg-white text-black p-10 rounded-2xl relative"
         >
           <button onClick={handleClick} className="absolute top-5 right-5 ">
-            <img src={close} alt="" />
+            <XCircle size={32} weight="fill" />
           </button>
           {step !== 3 && <Stepper step={step} />}
           {step === 0 && (
             <div className="">
               <UploadFile />
-              <StockVideos />
-              <AllAvater />
+              <StockVideos
+                selectedVideo={selectedVideo}
+                setSelectedVideo={setSelectedVideo}
+              />
+              <AllAvater
+                selectedAveter={selectedAveter}
+                setSelectedAveter={setSelectedAveter}
+              />
               <div className="mt-10 text-center">
                 <button
-                  disabled={!projectId}
-                  onClick={() => dispatch(setStep(1))}
+                  disabled={!projectId || isLoading}
+                  // onClick={() => dispatch(setStep(1))}
+                  onClick={handleSaveProject}
                   className=" primary_btn disabled:bg-indigo-300"
                 >
-                  Save & Continue
+                  {isLoading ? "Saving..." : "Save & Continue"}
                 </button>
               </div>
             </div>

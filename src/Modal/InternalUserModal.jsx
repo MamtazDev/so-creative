@@ -1,7 +1,7 @@
 import InsightsCard from "../components/EditorPanel/EditorDashboard/InsightsCard";
-import close from "../assets/close.svg";
 import aveter from "../assets/aveter1.svg";
 import RecentWorks from "../components/AdminPanel/InternalUsers/RecentWorks";
+import { XCircle } from "@phosphor-icons/react";
 
 const InternalUserModal = ({ setUserModal }) => {
   return (
@@ -19,7 +19,7 @@ const InternalUserModal = ({ setUserModal }) => {
           </div>
 
           <button onClick={() => setUserModal(false)}>
-            <img src={close} alt="" />
+            <XCircle size={32} weight="fill" />
           </button>
         </div>
         <div className="p-10">

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 const SelectDraft = () => {
   const draftRef = useRef();
   const dispatch = useDispatch();
-  const [step, setStep] = useState(1);
   const { draftStep } = useSelector((state) => state.project);
   useOutsideClick(draftRef, () => dispatch(setShowDraftModal(false)));
 

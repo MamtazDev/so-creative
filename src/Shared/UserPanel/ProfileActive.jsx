@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import active from "../../assets/active.svg";
 
 const ProfileActive = () => {
   const { user } = useSelector((state) => state.auth);
@@ -7,7 +6,7 @@ const ProfileActive = () => {
   return (
     <div className="relative">
       {user?.image ? (
-        <div className="h-12 w-12 rounded-full">
+        <div className="h-12 w-12 rounded-full cursor-pointer ">
           <img
             src={user.image}
             alt=""
@@ -15,11 +14,12 @@ const ProfileActive = () => {
           />
         </div>
       ) : (
-        <button className="text-white uppercase text-sm font-semibold h-12 w-12 bg-[#4F16A5] rounded-full p-3">
+        <button className="text-white uppercase text-sm font-semibold h-12 w-12 cursor-pointer bg-[#4F16A5] rounded-full p-3">
           {firstLetter}
         </button>
       )}
-      <img className="absolute bottom-0 -right-1" src={active} alt="" />
+
+      <div className=" border-2 border-white rounded-full bg-green-500 w-4 h-4 absolute bottom-0 -right-1"></div>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import search from "../../assets/search.svg";
 import message from "../../assets/message-question.svg";
 import help from "../../assets/help-black.svg";
 import notification from "../../assets/notification.svg";
@@ -14,7 +13,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { useSelector } from "react-redux";
 
-const Header = ({ user }) => {
+const Header = ({ user, show, setShow }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showCredit, setShowCredit] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
@@ -37,14 +36,14 @@ const Header = ({ user }) => {
           <Link to="/">
             <img className="max-w-60 h-10" src={logo} alt="" />
           </Link>
-          <div className="flex items-center gap-5 rounded-full bg-white p-3 w-full max-w-xl">
+          {/* <div className="flex items-center gap-5 rounded-full bg-white p-3 w-full max-w-xl">
             <img src={search} alt="" />
             <input
               className="w-full"
               type="search"
               placeholder="Search videos"
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full flex justify-end items-center gap-4">
@@ -53,7 +52,7 @@ const Header = ({ user }) => {
               onClick={() => setShowCredit(!showCredit)}
               className="bg-gradient-to-r from-purple-500 to-indigo-900 text-transparent bg-clip-text whitespace-nowrap hover:text-indigo-600 hover:border-indigo-600 transition-all duration-300 ease-in gradient_text text-sm font-semibold py-3 px-5 rounded-full border border-[#C67CFF]"
             >
-              6 Credits Remaining
+              {user?.credit} Credits Remaining
             </button>
           )}
 
@@ -106,6 +105,9 @@ const Header = ({ user }) => {
         <ProfileDropdown
           setShowProfile={setShowProfile}
           profileRef={profileRef}
+          user={user}
+          show={show}
+          setShow={setShow}
         />
       )}
     </div>

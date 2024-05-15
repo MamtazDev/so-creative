@@ -1,15 +1,9 @@
-import AboutProject from "../components/UserPanel/CreateProject/AboutProject";
-import SupportingMaterial from "../components/UserPanel/CreateProject/SupportingMaterial";
-import SelectBrand from "../components/UserPanel/CreateProject/SelectBrand";
-import AspectRatio from "../components/UserPanel/CreateProject/AspectRatio";
+/* eslint-disable no-unused-vars */
 import AddPresenter from "../components/UserPanel/CreateProject/AddPresenter";
-
 import accepted from "../assets/accepted.svg";
-import access from "../assets/access.svg";
 import alert from "../assets/alert.svg";
 import brandActive from "../assets/brand-active.svg";
 import brand from "../assets/brand.svg";
-import edit from "../assets/edit.svg";
 import activityPersonImg1 from "../assets/editor_panel/acivity_img.svg";
 import clientImg1 from "../assets/editor_panel/clientImg1.svg";
 import clientIconActive from "../assets/editor_panel/client_active.svg";
@@ -23,11 +17,9 @@ import homeActive from "../assets/home-active.svg";
 import home from "../assets/home.svg";
 import mediaActive from "../assets/media-active.svg";
 import media from "../assets/media.svg";
-import plus from "../assets/plus.svg";
 import premium from "../assets/premium.svg";
 import rejected from "../assets/rejected.svg";
 import sad from "../assets/sad.svg";
-import upload from "../assets/upload.svg";
 import upset from "../assets/upset.svg";
 import videoActive from "../assets/video-active.svg";
 import video from "../assets/video.svg";
@@ -49,15 +41,27 @@ import business from "../assets/business-plan.svg";
 import enterprise from "../assets/enterprise-plan.svg";
 import email from "../assets/email-notification.svg";
 import slack from "../assets/slack-notification.svg";
+import benz from "../assets/website/benz.svg";
+import ant from "../assets/website/ant.svg";
+import buildcorp from "../assets/website/buildcorp.svg";
+import biess from "../assets/website/biess.svg";
+import volvo from "../assets/website/volvo.svg";
+import film from "../assets/website/film-kit.svg";
+import ongoing from "../assets/website/ongoing-support.svg";
+import editing from "../assets/website/editting-team.svg";
 
 import {
   FileVideo,
+  Folder,
   GearSix,
   NewspaperClipping,
   Note,
   Notebook,
+  PlusCircle,
   Question,
+  Scissors,
   Swatches,
+  UploadSimple,
   Users,
   Video,
 } from "@phosphor-icons/react";
@@ -348,28 +352,28 @@ export const videos = [
 
 export const details = [
   {
-    pic: plus,
+    icon: <PlusCircle size={24} weight="fill" />,
     name: "New Projects",
     bgColor: "bg-purple-100",
     buttonBg: "bg-purple-950",
     title: "Create your first project",
   },
   {
-    pic: edit,
+    icon: <Scissors size={24} />,
     name: "Edit Video",
     bgColor: "bg-pink-100",
     buttonBg: "bg-pink-900",
     title: "Make changes to your videos",
   },
   {
-    pic: upload,
+    icon: <UploadSimple size={24} />,
     name: "Upload Brand",
     bgColor: "bg-emerald-100",
     buttonBg: "bg-emerald-900",
     title: "Upload your brand kit",
   },
   {
-    pic: access,
+    icon: <Folder size={24} weight="fill" />,
     name: "Access Files",
     bgColor: "bg-amber-100",
     buttonBg: "bg-amber-700",
@@ -746,12 +750,14 @@ export const plans = [
   {
     pic: business,
     title: "Business Plan",
+    slug: "business",
     subtitle:
       "For professionals that need translation, storage, and more instruments.",
   },
   {
     pic: enterprise,
     title: "Enterprise Plan",
+    slug: "enterprise",
     subtitle:
       "For professionals that need translation, storage, and more instruments.",
   },
@@ -803,5 +809,55 @@ export const projectTab = [
   {
     icon: <Question size={16} weight="bold" />,
     name: "Ask Questions",
+  },
+];
+
+export const teams = [benz, ant, buildcorp, volvo, biess];
+
+export const videoContentTab = [
+  "Learning & Development",
+  "Communications",
+  "Marketing",
+  "Product",
+  "Sales Enablement",
+];
+
+export const levelUp = [
+  {
+    pic: film,
+    label: "Film Kit",
+  },
+  {
+    pic: ongoing,
+    label: "Ongoing Support",
+  },
+  {
+    pic: editing,
+    label: "Dedicated Editing Team",
+  },
+];
+
+export const footerLink = [
+  {
+    title: "Features",
+    routes: ["Overview", "Platform", "Film Kits", "AI Video"],
+  },
+  {
+    title: "Use Cases",
+    routes: [
+      "Learning & Development",
+      "Communications",
+      "Marketing",
+      "Product",
+      "Sales Enablement",
+    ],
+  },
+  {
+    title: "Resources",
+    routes: ["Blog", "Academy", "Help Centre"],
+  },
+  {
+    title: "Company",
+    routes: ["About", "Careers", "Pricing"],
   },
 ];

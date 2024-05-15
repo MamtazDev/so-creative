@@ -12,7 +12,23 @@ const ProjectType = ({ save, isLoading, projectData }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInputData({ ...inputData, [name]: value });
+    if (name === "videoDuration") {
+      const calcutateCredit =
+        value === "under 5 mins"
+          ? projectData?.totalCredit + 1
+          : value === "under 10 mins"
+          ? projectData?.totalCredit + 2
+          : projectData?.totalCredit + 3;
+
+      setInputData({
+        ...inputData,
+        totalCredit: calcutateCredit,
+        videoDuration: value,
+      });
+    }
   };
+
+  console.log(inputData, "df");
 
   const handleContinue = async (activeBrif) => {
     try {
@@ -100,19 +116,19 @@ const ProjectType = ({ save, isLoading, projectData }) => {
             value="under 5 mins"
             selected={projectData?.videoDuration === "under 5 mins"}
           >
-            Under 5 mins
+            Under 5 mins - 1 Credit
           </option>
           <option
             value="under 10 mins"
             selected={projectData?.videoDuration === "under 10 mins"}
           >
-            Under 10 mins
+            Under 10 mins - 2 Credit
           </option>
           <option
-            value="Under 15 mins"
+            value="under 15 mins"
             selected={projectData?.videoDuration === "Under 15 mins"}
           >
-            Under 15 mins
+            Under 15 mins - 3 Credit
           </option>
         </select>
       </div>
@@ -202,9 +218,9 @@ const ProjectType = ({ save, isLoading, projectData }) => {
           <option selected disabled>
             Select video duration
           </option>
-          <option value="under 5 mins">Under 5 mins</option>
-          <option value="under 10 mins">Under 10 mins</option>
-          <option value="Under 15 mins">Under 15 mins</option>
+          <option value="under 5 mins">Under 5 mins - 1 Credit</option>
+          <option value="under 10 mins">Under 10 mins - 2 Credit</option>
+          <option value="under 15 mins">Under 15 mins - 3 Credit</option>
         </select>
       </div>
       <button

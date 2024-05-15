@@ -2,9 +2,12 @@ import { useState } from "react";
 import plan from "../../../assets/enterprise-plan.svg";
 import PaymentDetails from "./PaymentDetails";
 import Invoice from "./Invoice";
+import { useSelector } from "react-redux";
+import { DateConverter } from "../../../utils/converter";
 
-const TeamBilling = () => {
+const TeamBilling = ({ paymentDatas }) => {
   const [active, setActive] = useState(1);
+  const { user } = useSelector((state) => state.auth);
   return (
     <div>
       <p className="text-base text-semibold mb-4">Team Billing</p>
@@ -33,12 +36,15 @@ const TeamBilling = () => {
             <div className="flex items-center gap-4 justify-between mb-4">
               <img src={plan} alt="" />
               <button className=" rounded-full px-[18px] py-1.5 text-base font-semibold ">
-                Pro Plan
+                {user?.currentPlan} Plan
               </button>
             </div>
-            <p className="text-lg font-semibold mb-2">A$384.44/year</p>
+            <p className="text-lg font-semibold mb-2">
+              ${user?.currentPlan === "Business" ? 384.44 : 524.44}/year
+            </p>
             <p className="text-slate-100 font-normal text-sm mb-4">
-              Subscription will renew on April 26, 2024
+              Subscription will renew on{" "}
+              {DateConverter(user?.subscriptionExpierDate)}
             </p>
             <button className="bg-white rounded-full text-slate-900 text-base font-semibold w-full py-1.5 px-4">
               Upgrade
@@ -47,7 +53,7 @@ const TeamBilling = () => {
           <PaymentDetails />
         </>
       ) : (
-        <Invoice />
+        <Invoice paymentDatas={paymentDatas} />
       )}
     </div>
   );

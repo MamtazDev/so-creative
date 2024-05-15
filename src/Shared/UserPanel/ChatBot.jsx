@@ -1,20 +1,157 @@
 import { useEffect, useRef, useState } from "react";
-import active from "../../assets/active.svg";
 import profile from "../../assets/chatbot.svg";
 import chatOff from "../../assets/chatOff.svg";
-import close from "../../assets/close.svg";
+import chatBot from "../../assets/noChat.svg";
 import {
   chatHistory,
   getFormattedDate,
   suggestionData,
 } from "../../utils/chat";
 import { useScrollToBottom } from "../../utils/useScrollToBottom";
-import { ArrowUp } from "@phosphor-icons/react";
+import { ArrowUp, XCircle } from "@phosphor-icons/react";
+import {
+  useAddAutoReplyMutation,
+  useAddMessageMutation,
+  useGetUserContactMessageQuery,
+} from "../../features/contactUs/contactUsApi";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { convetChatDateTime } from "../../utils/converter";
 
-const ChatBotV2 = () => {
-  const [show, setShow] = useState(false);
+const ChatBotV2 = ({ show, setShow }) => {
   const [inputValue, setInputValue] = useState("");
+
+  const { user } = useSelector((state) => state.auth);
+  const [addMessage, { isLoading: sendingMessage }] = useAddMessageMutation();
+  const [addAutoReply, { isLoading: autoRepling }] = useAddAutoReplyMutation();
+
+  const { data, isLoading } = useGetUserContactMessageQuery();
+
+  const [suggestionEnabled, setSuggestionEnabled] = useState(true);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const message = form.message.value;
+
+    const formData = data
+      ? {
+          message,
+          contactId: data?._id,
+        }
+      : { message };
+
+    try {
+      const res = await addMessage(formData);
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        form.reset();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
+  };
+
+  const handleAutoReplyMessageSend = async (title) => {
+    const formData = data
+      ? {
+          message: title,
+          contactId: data?._id,
+        }
+      : { message: title };
+
+    try {
+      const res = await addMessage(formData);
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        await handleAutoReply(title);
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
+  };
+
+  const handleAutoReply = async (title) => {
+    const formData = data
+      ? {
+          messageType: title,
+          contactId: data?._id,
+        }
+      : {
+          messageType: title,
+        };
+    try {
+      const res = await addAutoReply(formData);
+
+      if (res?.error?.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.error}`,
+        });
+      }
+      if (res?.error?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${res?.error?.data?.message}`,
+        });
+      }
+      if (res?.data?.success) {
+        // form.reset();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error?.message}`,
+      });
+    }
+  };
+
+  const messagesEndRef = useRef(null);
   const chatbotRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -30,65 +167,14 @@ const ChatBotV2 = () => {
     };
   }, []);
 
-  const chatBoxRef = useRef(null);
-  const [chat, setChat] = useState(chatHistory);
-  const [suggestionEnabled, setSuggestionEnabled] = useState(true);
-
-  const chatHandler = ({ message, isSuggestion = false }) => {
-    setChat((prev) => ({
-      ...prev,
-      history: [
-        ...prev.history,
-        {
-          type: "user_message",
-          message: message,
-          createdAt: getFormattedDate(),
-        },
-      ],
-    }));
-
-    if (isSuggestion) {
-      setChat((prev) => ({
-        ...prev,
-        history: [
-          ...prev.history,
-          {
-            type: "loading",
-            message: "Loading...",
-            createdAt: getFormattedDate(),
-          },
-        ],
-      }));
-
-      setTimeout(() => {
-        const suggestion = suggestionData.find((i) => i.title === message);
-
-        const newHistory = [...chat.history];
-        newHistory.pop();
-        newHistory.push({
-          type: "admin_message",
-          message: suggestion.description,
-          createdAt: getFormattedDate(),
-        });
-
-        setChat((prev) => ({
-          ...prev,
-          history: newHistory,
-        }));
-      }, 2000);
-    }
-
-    if (suggestionEnabled) {
-      setSuggestionEnabled(false);
-    }
-  };
-
-  useScrollToBottom(chatBoxRef, chat, suggestionEnabled);
+  useEffect(() => {
+    scrollToBottom();
+  }, [data, show, autoRepling]);
 
   return (
     <div
-      ref={chatbotRef}
       className="fixed z-40 max-w-[512px] w-full  bottom-32 right-14"
+      ref={chatbotRef}
     >
       {show && (
         <div className="rounded-3xl bg-white shadow-2xl max-h-[672px]  h-full ">
@@ -98,7 +184,7 @@ const ChatBotV2 = () => {
               <div>
                 <p className=" text-xl font-bold mb-1">SoCreative Bot</p>
                 <div className="flex items-center gap-1">
-                  <img src={active} alt="" />
+                  <div className=" border-2 border-white rounded-full bg-green-500 w-4 h-4"></div>
                   <p className="text-slate-500 text-sm font-medium">
                     Active Now
                   </p>
@@ -106,11 +192,11 @@ const ChatBotV2 = () => {
               </div>
             </div>
             <button onClick={() => setShow(false)}>
-              <img src={close} alt="" />
+              <XCircle size={32} weight="fill" />
             </button>
           </div>
           <div className="chatbot_body overflow-y-auto no_scrollbar p-8">
-            {chat.history.length === 0 && (
+            {data && data?.messages.length === 0 && (
               <>
                 <p className="text-2xl font-bold ">
                   How can we
@@ -126,41 +212,48 @@ const ChatBotV2 = () => {
             )}
 
             <div
-              ref={chatBoxRef}
               className={`${
                 suggestionEnabled ? "max-h-[300px]" : "max-h-[420px]"
               } chat-box overflow-y-auto no_scrollbar`}
             >
-              {chat.history?.map((data, index) => (
-                <div
-                  key={index}
-                  className={`mb-6 flex ${
-                    data.type === "user_message"
-                      ? "justify-end pr-2 [&>div>div]:float-right [&>div>div]:clear-both [&>div>.date]:text-right "
-                      : "justify-start"
-                  }`}
-                >
+              {data &&
+                data?.messages.length > 0 &&
+                data?.messages?.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`mb-6 flex ${
+                      item.sender._id === user._id
+                        ? "justify-end pr-2 [&>div>div]:float-right [&>div>div]:clear-both [&>div>.date]:text-right "
+                        : "justify-start"
+                    }`}
+                  >
+                    <div className={`max-w-[350px]`}>
+                      <div
+                        className={`px-4 py-2 text-sm border rounded-xl inline-block mb-[10px]`}
+                      >
+                        {item.message}
+                      </div>
+
+                      <div className="date text-xs text-[#64748B]">
+                        {convetChatDateTime(item.createdAt)}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              {autoRepling && (
+                <div className=" flex justify-start">
                   <div className={`max-w-[350px]`}>
                     <div
                       className={`px-4 py-2 text-sm border rounded-xl inline-block mb-[10px]`}
                     >
-                      {data.type === "loading" ? (
-                        // <img src={loading} width={32} />
-                        <p>loading...</p>
-                      ) : (
-                        data.message
-                      )}
+                      <p>loading...</p>
                     </div>
-                    {(data.type === "user_message" ||
-                      data.type === "admin_message") && (
-                      <div className="date text-xs text-[#64748B]">
-                        {data.createdAt}
-                      </div>
-                    )}
                   </div>
                 </div>
-              ))}
+              )}
+              <div ref={messagesEndRef} />
             </div>
+
             {suggestionEnabled && (
               <div
                 className="pt-1"
@@ -168,19 +261,13 @@ const ChatBotV2 = () => {
               >
                 <p className="text-xs font-semibold mb-3">SUGGESTIONS</p>
                 <div className="flex items-center flex-wrap gap-3">
-                  {suggestionData.map((data, index) => (
+                  {suggestionData.map((i, index) => (
                     <button
                       className="bg-indigo-100 py-2 px-4 rounded-xl text-sm font-normal"
-                      onClick={() => {
-                        chatHandler({
-                          message: data.title,
-                          isSuggestion: true,
-                        });
-                        setSuggestionEnabled(false);
-                      }}
+                      onClick={() => handleAutoReplyMessageSend(i.title)}
                       key={index}
                     >
-                      {data.title}
+                      {i.title}
                     </button>
                   ))}
                 </div>
@@ -189,13 +276,7 @@ const ChatBotV2 = () => {
           </div>
           <div className="chatbot_input_box pt-0 p-8">
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.target;
-                chatHandler({ message: form.message.value });
-                form.reset();
-                setInputValue("");
-              }}
+              onSubmit={handleSubmit}
               className=" flex items-center gap-2 border rounded-full py-2 pr-2 pl-4"
             >
               <input
@@ -207,7 +288,7 @@ const ChatBotV2 = () => {
                 required
               />
               <button
-                disabled={!inputValue}
+                disabled={!inputValue || sendingMessage || autoRepling}
                 className={`flex-shrink-0 w-10 h-10 bg-indigo-600 disabled:bg-slate-300 rounded-full flex items-center justify-center text-white`}
                 type="submit"
               >

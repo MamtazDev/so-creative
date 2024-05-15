@@ -1,4 +1,4 @@
-import close from "../assets/close.svg";
+import { XCircle } from "@phosphor-icons/react";
 import UploadVideo from "../components/UserPanel/MediaStorage/UploadVideo";
 
 const UploadVideoModal = ({ setOpedUploadVideoModal }) => {
@@ -9,7 +9,7 @@ const UploadVideoModal = ({ setOpedUploadVideoModal }) => {
           onClick={() => setOpedUploadVideoModal(false)}
           className="absolute top-5 right-5 "
         >
-          <img src={close} alt="" />
+          <XCircle size={32} weight="fill" />
         </button>
         <UploadVideo setOpedUploadVideoModal={setOpedUploadVideoModal} />
       </div>

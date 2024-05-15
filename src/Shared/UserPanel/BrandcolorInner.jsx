@@ -1,8 +1,8 @@
-import close from "../../assets/close.svg";
 import mp4 from "../../assets/mp4.svg";
 import mp3 from "../../assets/audio.svg";
+import { XCircle } from "@phosphor-icons/react";
 
-const BrandcolorInner = ({ brand, main, data, setMain,index }) => {
+const BrandcolorInner = ({ brand, main, data, setMain, index }) => {
   console.log(data);
   // const fileName = data?.name.split(".")[0];
   // const fileExtension = data?.name.split(".").slice(1).join(".");
@@ -10,12 +10,11 @@ const BrandcolorInner = ({ brand, main, data, setMain,index }) => {
   //   fileName.length > 10 ? fileName.slice(0, 10) : fileName;
 
   const removeHandler = () => {
-
-    console.log("main", main)
-    console.log("main.guidelines", main)
-    console.log("data", data)
-    console.log("data index", index)
-    console.log("data indexbrand ", brand)
+    console.log("main", main);
+    console.log("main.guidelines", main);
+    console.log("data", data);
+    console.log("data index", index);
+    console.log("data indexbrand ", brand);
 
     // Filter out the data to be removed from the main array
     const updatedMain = main.filter((item) => item !== data);
@@ -32,19 +31,20 @@ const BrandcolorInner = ({ brand, main, data, setMain,index }) => {
     //   return newArray;
     // });
 
-    setMain(prevState => ({
+    setMain((prevState) => ({
       ...prevState,
-      [index]: updatedMain
-  }));
-
+      [index]: updatedMain,
+    }));
   };
   return (
     <div className="border rounded-xl relative">
       <span onClick={removeHandler} className="absolute top-1 right-1">
-        <img src={close} alt="" />
+        <XCircle size={32} weight="fill" />
       </span>
-      <div className={` ${data} h-[90px] flex justify-center rounded-t-xl`} style={{backgroundColor: `${data}`}}>
-       
+      <div
+        className={` ${data} h-[90px] flex justify-center rounded-t-xl`}
+        style={{ backgroundColor: `${data}` }}
+      >
         {/* {fileExtension.toLowerCase() === "pdf" ? (
           <img
             className="object-cover"
@@ -66,9 +66,7 @@ const BrandcolorInner = ({ brand, main, data, setMain,index }) => {
           />
         )} */}
       </div>
-      <div className="py-2 px-3">
-       {data}
-      </div>
+      <div className="py-2 px-3">{data}</div>
     </div>
   );
 };

@@ -1,15 +1,18 @@
 import { Headset, SignOut, User } from "@phosphor-icons/react";
 import ProfileActive from "./ProfileActive";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AccountModal from "../../Modal/AccountModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLoggedOut } from "../../features/auth/authSlice";
 import Cookies from "js-cookie";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
-const ProfileDropdown = ({ setShowProfile, profileRef }) => {
+const ProfileDropdown = ({ setShowProfile, show, setShow }) => {
   const [showAccount, setShowAccount] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  const modalRef = useRef();
+  useOutsideClick(modalRef, () => setShowProfile(false));
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,16 +26,29 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
     Cookies.remove("soCreativeAuth");
     navigate("/");
   };
+
+  const handleOpenChat = () => {
+    setShow(!show);
+    setShowProfile(false);
+  };
+
   const items = [
     {
       icon: <User className="text-state-700" size={24} weight="bold" />,
-      title: "Account Settings",
+      title: "Account Settings ",
       event: openAccountModal,
     },
-    {
-      icon: <Headset className="text-state-700" size={24} weight="bold" />,
-      title: "Support ",
-    },
+    ...(user.role !== "ADMIN"
+      ? [
+          {
+            icon: (
+              <Headset className="text-state-700" size={24} weight="bold" />
+            ),
+            title: "Support",
+            event: handleOpenChat,
+          },
+        ]
+      : []),
     {
       icon: <SignOut className="text-state-700" size={24} weight="bold" />,
       title: "Logout ",
@@ -43,7 +59,7 @@ const ProfileDropdown = ({ setShowProfile, profileRef }) => {
   return (
     <div>
       <div
-        // ref={profileRef}
+        ref={modalRef}
         className="fixed z-[9999] top-[84px] right-6  w-full max-h-[85vh] overflow-y-auto no_scrollbar  bg-white rounded-2xl shadow-2xl  max-w-[320px]"
       >
         <div className="flex items-center gap-3.5 p-5 border-b">
