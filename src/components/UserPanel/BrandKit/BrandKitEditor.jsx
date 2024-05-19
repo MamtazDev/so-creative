@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import AddColor from "../../../Modal/AddColor";
 import BrandcardInner from "../../../Shared/UserPanel/BrandcardInner";
 import BrandcolorInner from "../../../Shared/UserPanel/BrandcolorInner";
@@ -6,14 +6,13 @@ import PlusButton from "../../../Shared/UserPanel/PlusButton";
 import UploadButton from "../../../Shared/UserPanel/UploadButton";
 import BrandKitCommon from "./BrandKitCommon";
 
-const BrandKitEditor = ({ brand, setBrand }) => {
+const BrandKitEditor = ({ data, setData }) => {
   const [colorModal, setColorModal] = useState(false);
-  const [selectedColor, setSelectedColor] = useState("#000000");
+
   const guidelineRef = useRef();
   const logoRef = useRef();
   const fontRef = useRef();
   const colorRef = useRef();
-
   const imageAssetRef = useRef();
   const videoAssetRef = useRef();
   const audioAssetRef = useRef();
@@ -22,24 +21,12 @@ const BrandKitEditor = ({ brand, setBrand }) => {
     const file = e.target.files[0];
     const { name } = e.target;
 
-    console.log("name::", name);
-    if (name === "colors") {
-      setBrand((prevState) => ({
-        ...prevState,
-        colors: [...prevState.colors, selectedColor],
-      }));
-    } else {
-      setBrand((prevState) => ({
-        ...prevState,
-        [name]: [...(prevState[name] || []), file],
-      }));
-    }
+    setData((prevState) => ({
+      ...prevState,
+      [name]: [...(prevState[name] || []), file],
+    }));
   };
 
-  // console.log(brand, "brand data");
-  useEffect(() => {
-    // console.log("Brand object updated:", brand);
-  }, [brand]);
   return (
     <div className="w-full flex flex-col gap-10 ">
       <div>
@@ -51,15 +38,15 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           handleChange={handleChange}
           kitRef={guidelineRef}
         />
-        {brand?.brandGuidelines?.length > 0 ? (
+        {data?.brandGuidelines?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.brandGuidelines?.map((data, index) => (
+            {data?.brandGuidelines?.map((i, index) => (
               <BrandcardInner
                 key={index}
-                data={data}
-                main={brand.brandGuidelines}
+                data={i}
                 index={"brandGuidelines"}
-                setMain={setBrand}
+                main={data.brandGuidelines}
+                setMain={setData}
               />
             ))}
             <PlusButton handleClick={() => guidelineRef.current.click()} />
@@ -78,16 +65,15 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           kitRef={logoRef}
         />
 
-        {brand?.logos?.length > 0 ? (
+        {data?.logos?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.logos?.map((data, index) => (
+            {data?.logos?.map((i, index) => (
               <BrandcardInner
-                brand={brand}
-                main={brand?.logos}
                 key={index}
-                data={data}
-                setMain={setBrand}
+                data={i}
                 index={"logos"}
+                main={data?.logos}
+                setMain={setData}
               />
             ))}
             <PlusButton handleClick={() => logoRef.current.click()} />
@@ -105,15 +91,15 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           handleChange={handleChange}
           kitRef={fontRef}
         />
-        {brand?.fonts?.length > 0 ? (
+        {data?.fonts?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.fonts?.map((data, index) => (
+            {data?.fonts?.map((i, index) => (
               <BrandcardInner
                 key={index}
-                data={data}
+                data={i}
                 index={"fonts"}
-                main={brand?.fonts}
-                setMain={setBrand}
+                main={data?.fonts}
+                setMain={setData}
               />
             ))}
             <PlusButton handleClick={() => fontRef.current.click()} />
@@ -126,23 +112,31 @@ const BrandKitEditor = ({ brand, setBrand }) => {
         <BrandKitCommon
           title="Color Palette"
           subtitle="Add your brand color palettes to maintain brand consistency across your videos"
+          kitName="colorPalette"
+          kitRef={colorRef}
         />
-
-        {brand?.colorPalette?.length > 0 ? (
+        {data?.colorPalette?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.colorPalette?.map((data, index) => (
+            {data?.colorPalette?.map((i, index) => (
               <BrandcolorInner
                 key={index}
-                data={data}
+                data={i}
                 index={"colorPalette"}
-                main={brand?.colorPalette}
-                setMain={setBrand}
+                main={data?.colorPalette}
+                setMain={setData}
               />
             ))}
             <PlusButton handleClick={() => setColorModal(true)} />
           </div>
         ) : (
           <UploadButton handleFunction={() => setColorModal(true)} />
+        )}
+        {colorModal && (
+          <AddColor
+            nameColor="colorPalette"
+            setData={setData}
+            modalHandler={setColorModal}
+          />
         )}
       </div>
       <div>
@@ -154,15 +148,15 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           handleChange={handleChange}
           kitRef={imageAssetRef}
         />
-        {brand?.imageAssets?.length > 0 ? (
+        {data?.imageAssets?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.imageAssets?.map((data, index) => (
+            {data?.imageAssets?.map((i, index) => (
               <BrandcardInner
                 key={index}
-                data={data}
+                data={i}
                 index={"imageAssets"}
-                main={brand?.imageAssets}
-                setMain={setBrand}
+                main={data?.imageAssets}
+                setMain={setData}
               />
             ))}
             <PlusButton handleClick={() => imageAssetRef.current.click()} />
@@ -180,15 +174,15 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           handleChange={handleChange}
           kitRef={videoAssetRef}
         />
-        {brand?.videoAssets?.length > 0 ? (
+        {data?.videoAssets?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.videoAssets?.map((data, index) => (
+            {data?.videoAssets?.map((i, index) => (
               <BrandcardInner
                 key={index}
-                data={data}
+                data={i}
                 index={"videoAssets"}
-                main={brand?.videoAssets}
-                setMain={setBrand}
+                main={data?.videoAssets}
+                setMain={setData}
               />
             ))}
             <PlusButton handleClick={() => videoAssetRef.current.click()} />
@@ -206,15 +200,15 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           handleChange={handleChange}
           kitRef={audioAssetRef}
         />
-        {brand?.audioAssets?.length > 0 ? (
+        {data?.audioAssets?.length > 0 ? (
           <div className="grid grid-cols-4 gap-6">
-            {brand?.audioAssets?.map((data, index) => (
+            {data?.audioAssets?.map((i, index) => (
               <BrandcardInner
                 key={index}
-                data={data}
+                data={i}
                 index={"audioAssets"}
-                main={brand?.audioAssets}
-                setMain={setBrand}
+                main={data?.audioAssets}
+                setMain={setData}
               />
             ))}
             <PlusButton handleClick={() => audioAssetRef.current.click()} />
@@ -223,14 +217,6 @@ const BrandKitEditor = ({ brand, setBrand }) => {
           <UploadButton handleFunction={() => audioAssetRef.current.click()} />
         )}
       </div>
-      {colorModal && (
-        <AddColor
-          setBrand={setBrand}
-          setColorModal={setColorModal}
-          selectedColor={selectedColor}
-          setSelectedColor={setSelectedColor}
-        />
-      )}
     </div>
   );
 };

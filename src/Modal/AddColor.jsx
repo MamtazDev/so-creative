@@ -1,53 +1,22 @@
-import React, { useRef, useState } from "react";
-import useOutsideClick from "../hooks/useOutsideClick";
+import { useRef, useState } from "react";
 import close from "../assets/close.svg";
+import useOutsideClick from "../hooks/useOutsideClick";
 
-const AddColor = ({
-  setColorModal,
-  selectedColor,
-  setSelectedColor,
-  setBrand,
-  // handleChange,
-}) => {
+const AddColor = ({ modalHandler, setData, nameColor }) => {
   const colorRef = useRef();
+  const [color, setColor] = useState("#000000");
 
-  const [ nameColor, setNameColor ] = useState("color")
-  const [ valueColor, setValueColor ] = useState(selectedColor)
-
-
-  const handleChange = (e) => {
-    setSelectedColor(e.target.value);
-
-
-    // const { name } = e.target;
-    // console.log("Name:", e.target)
-    console.log("Value:", e.target.value )
-    // setNameColor(name)
-    setValueColor(e.target.value)
-    // setBrand((prevState) => ({
-    //   ...prevState,
-    //   [name]: [...(prevState[name] || []), e.target.value],
-    // }));
-  };
-
-  const handleSubmitColor = (e) => {
-    const { name } = e.target;
-    console.log("Name:", name)
-    console.log("Value:", e.target.value )
-    setBrand((prevState) => ({
+  const handleSubmitColor = () => {
+    setData((prevState) => ({
       ...prevState,
-      [nameColor]: [...(prevState[nameColor] || []), valueColor],
+      [nameColor]: [...(prevState[nameColor] || []), color],
     }));
 
-    setColorModal(false)
+    modalHandler(false);
   };
 
-  const handleColorChange = (e) => {
-    setSelectedColor(e.target.value);
-    console.log("e.target.value: ", e.target.value)
-  };
+  useOutsideClick(colorRef, () => modalHandler(false));
 
-  useOutsideClick(colorRef, () => setColorModal(false));
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-full bg-[#00000080] backdrop-blur-xl flex items-center justify-center">
       <div
@@ -55,7 +24,7 @@ const AddColor = ({
         className="max-w-[540px] w-full bg-white text-black p-10 rounded-2xl relative"
       >
         <button
-          onClick={() => setColorModal(false)}
+          onClick={() => modalHandler(false)}
           className="absolute top-5 right-5 "
         >
           <img src={close} alt="" />
@@ -65,10 +34,8 @@ const AddColor = ({
           <label className="block mb-2">Choose color from here</label>
           <input
             type="color"
-            name="color"
-            value={selectedColor}
-            onChange={handleChange}
-            // onChange={handleColorChange}
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
             className="rounded-md w-full"
           />
         </div>
@@ -77,15 +44,15 @@ const AddColor = ({
           <input
             type="text"
             className="border border-gray-300 p-2 rounded-md w-full"
-            value={selectedColor}
-            onChange={handleChange}
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
           />
         </div>
 
         <div className="text-center">
           <button
-            onClick={handleSubmitColor}
             type="button"
+            onClick={handleSubmitColor}
             className="primary_btn mt-5 "
           >
             Add

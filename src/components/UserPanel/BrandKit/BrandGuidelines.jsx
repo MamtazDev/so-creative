@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
+import { Plus } from "@phosphor-icons/react";
+import { useRef, useState } from "react";
 import Confetti from "react-confetti";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import brandInput from "../../../assets/brand-img.svg";
 import camera from "../../../assets/camera.svg";
 import created from "../../../assets/created.svg";
-
-import { Plus } from "@phosphor-icons/react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { useCreateBrandMutation } from "../../../features/brand-kit/brandKitApi";
-import { guidelines } from "../../../utils/data";
+import {
+  useCreateBrandMutation,
+  useUpdateBrandMutation,
+} from "../../../features/brand-kit/brandKitApi";
 import BrandKitEditor from "./BrandKitEditor";
 import Creating from "./Creating";
 
@@ -16,30 +17,25 @@ const BrandGuidelines = ({ databaseData = false }) => {
   const maxLength = 500;
   const navigate = useNavigate();
 
-  const [brand, setBrand] = useState({});
-  const [data, setData] = useState({
-    brandName: "",
-    brandDescription: "",
-    brandLogo: null,
-    brandGuidelines: [],
-    logos: [],
-    fonts: [],
-    colorPalette: [],
-    imageAssets: [],
-    videoAssets: [],
-    audioAssets: [],
-  });
-
-  console.log(data);
-  console.log(brand);
+  const [data, setData] = useState(
+    databaseData || {
+      brandName: "",
+      brandDescription: "",
+      brandLogo: null,
+      brandGuidelines: [],
+      logos: [],
+      fonts: [],
+      colorPalette: [],
+      imageAssets: [],
+      videoAssets: [],
+      audioAssets: [],
+    }
+  );
 
   const [createBrand] = useCreateBrandMutation();
-
+  const [updateBrand] = useUpdateBrandMutation();
   const [isLoading, setIsLoading] = useState(false);
   const brandImgRef = useRef();
-  const guidelinesInputRefs = useRef(
-    Array.from({ length: guidelines.length }).map(() => React.createRef())
-  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +55,9 @@ const BrandGuidelines = ({ databaseData = false }) => {
       }
     }
 
-    const result = await createBrand(formData);
+    const result = !databaseData
+      ? await createBrand(formData)
+      : await updateBrand(formData);
 
     if (result?.data?.success) {
       setIsLoading("done");
@@ -74,22 +72,6 @@ const BrandGuidelines = ({ databaseData = false }) => {
     }
   };
 
-  const handleAssetPortion = () => {
-    const url = "https://player.vimeo.com/video/929420372?h=2df2a64de8";
-    const regex = /\/video\/(\d+)\?/;
-    const match = url.match(regex);
-    const videoId = match ? match[1] : null;
-    console.log("Video id: ", videoId);
-  };
-
-  const handleChange = (e, fieldName, index) => {
-    const file = e.target.files[0];
-    setBrand((prevState) => ({
-      ...prevState,
-      [fieldName]: [...(prevState[fieldName] || []), file],
-    }));
-  };
-
   return (
     <>
       {isLoading === "loading" && <Creating isLoading={isLoading} />}
@@ -99,7 +81,7 @@ const BrandGuidelines = ({ databaseData = false }) => {
           className="flex items-start justify-between gap-10 "
         >
           <div className="w-1/2 flex flex-col gap-10 ">
-            <BrandKitEditor brand={data} setBrand={setData} />
+            <BrandKitEditor data={data} setData={setData} />
           </div>
           <div className="max-w-[584px] w-full border rounded-3xl p-10 fixed right-16">
             <div
@@ -119,12 +101,13 @@ const BrandGuidelines = ({ databaseData = false }) => {
                 accept="image/*"
                 required={data.brandLogo ? false : true}
               />
-
               <img
                 className="w-[120px] h-[120px] rounded-full mb-6 cursor-pointer object-cover"
                 src={
-                  data.brandLogo
+                  typeof data.brandLogo === "object" && data.brandLogo !== null
                     ? URL.createObjectURL(data.brandLogo)
+                    : typeof data.brandLogo === "string"
+                    ? data.brandLogo
                     : brandInput
                 }
                 alt=""

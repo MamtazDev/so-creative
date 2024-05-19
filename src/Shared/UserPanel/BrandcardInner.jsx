@@ -2,34 +2,11 @@ import mp3 from "../../assets/audio.svg";
 import close from "../../assets/close.svg";
 import mp4 from "../../assets/mp4.svg";
 
-const BrandcardInner = ({ brand, main, data, setMain, index }) => {
-  // console.log(data);
-  const fileName = data?.name.split(".")[0];
-  const fileExtension = data?.name.split(".").slice(1).join(".");
-  const truncatedFileName =
-    fileName.length > 10 ? fileName.slice(0, 10) : fileName;
+const BrandcardInner = ({ main, data, setMain, index }) => {
+  const { fileExtension, truncatedFileName, type } = processData(data);
 
   const removeHandler = () => {
-    console.log("main", main);
-    console.log("main.guidelines", main);
-    console.log("data", data);
-    console.log("data index", index);
-    console.log("data indexbrand ", brand);
-
-    // Filter out the data to be removed from the main array
     const updatedMain = main.filter((item) => item !== data);
-    console.log("updatedMain", updatedMain);
-    // setMain(updatedMain)
-
-    // setMain(prevArray => {
-    //   // Copying the previous array
-    //   const newArray = [...main];
-
-    //   // Updating the guidelines key with new array
-    //   newArray[0].index = updatedMain;
-
-    //   return newArray;
-    // });
 
     setMain((prevState) => ({
       ...prevState,
@@ -43,37 +20,75 @@ const BrandcardInner = ({ brand, main, data, setMain, index }) => {
         <img src={close} alt="" />
       </span>
       <div className="h-[90px] flex justify-center bg-indigo-100 rounded-t-xl overflow-hidden">
-        {fileExtension.toLowerCase() === "pdf" ? (
-          <img
-            className="object-cover rounded-t-xl"
-            src="https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_1280.png"
-            alt=""
-          />
-        ) : fileExtension.toLowerCase() === "mp4" ||
-          fileExtension.toLowerCase() === "wmv" ||
-          fileExtension.toLowerCase() === "mov" ? (
-          <img className="object-cover" src={mp4} alt="" />
-        ) : fileExtension.toLowerCase() === "mp3" ||
-          fileExtension.toLowerCase() === "wav" ? (
-          <img className="object-cover" src={mp3} alt="" />
-        ) : (
-          <img
-            className="object-cover"
-            src={URL.createObjectURL(data)}
-            alt=""
-          />
-        )}
+        <Img extension={fileExtension} data={data} type={type} />
       </div>
       <div className="py-2 px-3">
         <p className="text-sm font-semibold mb-1">
           {truncatedFileName}.{fileExtension}
         </p>
-        <p className="text-xs font-normal">
-          {(data.size / (1024 * 1024)).toFixed(2)} MB
-        </p>
+        {type === "object" && (
+          <p className="text-xs font-normal">
+            {(data.size / (1024 * 1024)).toFixed(2)} MB
+          </p>
+        )}
       </div>
     </div>
   );
 };
 
 export default BrandcardInner;
+
+function processData(data) {
+  let fileName, fileExtension, truncatedFileName, type;
+
+  if (typeof data === "object" && data !== null && data.name) {
+    fileName = data.name.split(".")[0];
+    fileExtension = data.name.split(".").slice(1).join(".");
+    truncatedFileName = fileName.length > 10 ? fileName.slice(0, 10) : fileName;
+    type = "object";
+  } else if (typeof data === "string") {
+    const urlParts = data.split("/");
+    const fullFileName = urlParts[urlParts.length - 1];
+    fileName = fullFileName.split(".")[0];
+    fileExtension = fullFileName.split(".").slice(1).join(".");
+    truncatedFileName = fileName.length > 10 ? fileName.slice(0, 10) : fileName;
+    type = "string";
+  } else {
+    throw new Error("Unsupported data type or malformed data");
+  }
+
+  return { fileName, fileExtension, truncatedFileName, type };
+}
+
+const Img = ({ extension, data, type }) => {
+  return (
+    <>
+      {extension.toLowerCase() === "pdf" ? (
+        <img
+          className="object-cover rounded-t-xl"
+          src="https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_1280.png"
+          alt=""
+        />
+      ) : extension.toLowerCase() === "mp4" ||
+        extension.toLowerCase() === "wmv" ||
+        extension.toLowerCase() === "mov" ? (
+        <img className="object-cover" src={mp4} alt="" />
+      ) : extension.toLowerCase() === "mp3" ||
+        extension.toLowerCase() === "wav" ? (
+        <img className="object-cover" src={mp3} alt="" />
+      ) : (
+        <img
+          className="object-cover"
+          src={
+            type === "string"
+              ? data
+              : type === "object" && data !== null
+              ? URL.createObjectURL(data)
+              : ""
+          }
+          alt=""
+        />
+      )}
+    </>
+  );
+};

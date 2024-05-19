@@ -16,7 +16,6 @@ const BrandGuidelineEdit = () => {
   }
   return (
     <div className="h-full">
-      <img src={data.data.brandLogo} alt="" />
       <BrandGuidelines databaseData={data.data} />
     </div>
   );

@@ -29,21 +29,33 @@ const AllBrands = ({ setStep, data = [] }) => {
   const [deleteBrandKit] = useDeleteBrandMutation();
 
   const deleteHandler = async (id) => {
-    const res = await deleteBrandKit(id).unwrap();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await deleteBrandKit(id).unwrap();
 
-    if (res?.success) {
-      Swal.fire({
-        icon: "success",
-        title: "successful...",
-        text: `Brandkit deleted successfully!`,
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `Somthing is wrong!`,
-      });
-    }
+        if (res?.success) {
+          Swal.fire({
+            icon: "success",
+            title: "successful...",
+            text: `Brandkit deleted successfully!`,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `Somthing is wrong!`,
+          });
+        }
+      }
+    });
   };
 
   return (
