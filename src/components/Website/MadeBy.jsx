@@ -15,7 +15,7 @@ const MadeBy = () => {
         <p
           data-aos="fade-up"
           data-aos-duration="800"
-          data-aos-delay="400"
+          data-aos-delay="250"
           className="text-[#0C0020] text-4xl lg:text-[60px] font-bold leading-[125%] mb-2 lg:mb-4"
         >
           Made by
@@ -23,7 +23,7 @@ const MadeBy = () => {
         <img
           data-aos="fade-up"
           data-aos-duration="800"
-          data-aos-delay="400"
+          data-aos-delay="350"
           className="block lg:hidden mx-auto"
           src={madelogosm}
           alt=""
@@ -31,7 +31,7 @@ const MadeBy = () => {
         <img
           data-aos="fade-up"
           data-aos-duration="800"
-          data-aos-delay="400"
+          data-aos-delay="350"
           className="hidden lg:block mx-auto"
           src={madelogo}
           alt=""
