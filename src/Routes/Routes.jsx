@@ -33,119 +33,119 @@ export const router = createBrowserRouter([
       </PublicRoute>
     ),
   },
-  {
-    path: "/login",
-    element: (
-      <PublicRoute>
-        <Login />
-      </PublicRoute>
-    ),
-  },
+  // {
+  //   path: "/login",
+  //   element: (
+  //     <PublicRoute>
+  //       <Login />
+  //     </PublicRoute>
+  //   ),
+  // },
 
-  {
-    path: "/register",
-    element: (
-      <PublicRoute>
-        <Register />
-      </PublicRoute>
-    ),
-  },
+  // {
+  //   path: "/register",
+  //   element: (
+  //     <PublicRoute>
+  //       <Register />
+  //     </PublicRoute>
+  //   ),
+  // },
 
-  {
-    path: "/user",
-    element: (
-      <UserRoute>
-        <MainLayout />
-      </UserRoute>
-    ),
-    children: [
-      {
-        path: "/user",
-        element: <UserHome />,
-      },
-      {
-        path: "/user/projects",
-        element: <Projects />,
-      },
-      {
-        path: "/user/all-videos",
-        element: <AllVideos />,
-      },
+  // {
+  //   path: "/user",
+  //   element: (
+  //     <UserRoute>
+  //       <MainLayout />
+  //     </UserRoute>
+  //   ),
+  //   children: [
+  //     {
+  //       path: "/user",
+  //       element: <UserHome />,
+  //     },
+  //     {
+  //       path: "/user/projects",
+  //       element: <Projects />,
+  //     },
+  //     {
+  //       path: "/user/all-videos",
+  //       element: <AllVideos />,
+  //     },
 
-      {
-        path: "/user/project-details/:id",
-        element: <VideoDetails />,
-      },
-      {
-        path: "/user/media-storage",
-        element: <MediaStorage />,
-      },
-      {
-        path: "/user/media-storage/folder/:id",
-        element: <Folder />,
-      },
-      {
-        path: "/user/brand-kit",
-        element: <BrandKit />,
-      },
-      {
-        path: "/user/brand-kit/create",
-        element: <BrandGuidelines />,
-      },
-      {
-        path: "/user/purchase-credit/:credit",
-        element: <PurchaseCredit />,
-      },
-      {
-        path: "/user/subscribe/:plan",
-        element: <PurchaseSubscription />,
-      },
-    ],
-  },
+  //     {
+  //       path: "/user/project-details/:id",
+  //       element: <VideoDetails />,
+  //     },
+  //     {
+  //       path: "/user/media-storage",
+  //       element: <MediaStorage />,
+  //     },
+  //     {
+  //       path: "/user/media-storage/folder/:id",
+  //       element: <Folder />,
+  //     },
+  //     {
+  //       path: "/user/brand-kit",
+  //       element: <BrandKit />,
+  //     },
+  //     {
+  //       path: "/user/brand-kit/create",
+  //       element: <BrandGuidelines />,
+  //     },
+  //     {
+  //       path: "/user/purchase-credit/:credit",
+  //       element: <PurchaseCredit />,
+  //     },
+  //     {
+  //       path: "/user/subscribe/:plan",
+  //       element: <PurchaseSubscription />,
+  //     },
+  //   ],
+  // },
 
-  {
-    path: "/editor",
-    element: (
-      <EditorRoute>
-        <MainLayout />
-      </EditorRoute>
-    ),
-    children: [
-      {
-        path: "/editor",
-        element: <EditorDashboard />,
-      },
-      {
-        path: "/editor/my-projects",
-        element: <EditorProjects />,
-      },
-      {
-        path: "/editor/all-projects",
-        element: <EditorAllProjects />,
-      },
-      {
-        path: "/editor/clients",
-        element: <EditorAllClients />,
-      },
-    ],
-  },
+  // {
+  //   path: "/editor",
+  //   element: (
+  //     <EditorRoute>
+  //       <MainLayout />
+  //     </EditorRoute>
+  //   ),
+  //   children: [
+  //     {
+  //       path: "/editor",
+  //       element: <EditorDashboard />,
+  //     },
+  //     {
+  //       path: "/editor/my-projects",
+  //       element: <EditorProjects />,
+  //     },
+  //     {
+  //       path: "/editor/all-projects",
+  //       element: <EditorAllProjects />,
+  //     },
+  //     {
+  //       path: "/editor/clients",
+  //       element: <EditorAllClients />,
+  //     },
+  //   ],
+  // },
 
-  {
-    path: "/admin",
-    element: (
-      <AdminRoute>
-        <MainLayout />
-      </AdminRoute>
-    ),
-    children: [
-      {
-        path: "/admin/internal-users",
-        element: <InternalUsers />,
-      },
-      {
-        path: "/admin/companies",
-        element: <Companies />,
-      },
-    ],
-  },
+  // {
+  //   path: "/admin",
+  //   element: (
+  //     <AdminRoute>
+  //       <MainLayout />
+  //     </AdminRoute>
+  //   ),
+  //   children: [
+  //     {
+  //       path: "/admin/internal-users",
+  //       element: <InternalUsers />,
+  //     },
+  //     {
+  //       path: "/admin/companies",
+  //       element: <Companies />,
+  //     },
+  //   ],
+  // },
 ]);
